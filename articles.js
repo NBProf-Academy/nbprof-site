@@ -242,7 +242,56 @@ const ARTICLES = [
       ar: `<h3>لماذا تدقيق المدرسة؟</h3><p>لتحسين الحوكمة والفعالية.</p>`,
       en: `<h3>Why audit a school?</h3><p>To improve governance and efficiency.</p>`
     }
+  },
+{
+  id: 5,
+  category: 'management',
+  icon: '⚙️',
+  date:     { fr: 'Juin 2026',          ar: 'يونيو 2026',       en: 'June 2026' },
+  readTime: { fr: '5 min',              ar: '5 دقائق',          en: '5 min' },
+  badge:    { fr: 'Test - Management',  ar: 'اختبار - إدارة',    en: 'Test - Management' },
+  title: {
+    fr: "Article TEST : Les 5 forces de Porter",
+    ar: "مقال اختبار: قوى بورتر الخمس",
+    en: "TEST Article: Porter's 5 Forces"
+  },
+  excerpt: {
+    fr: "Article de test pour vérifier que le déploiement automatique GitHub vers Netlify fonctionne parfaitement.",
+    ar: "مقال اختبار للتحقق من أن النشر التلقائي يعمل بشكل مثالي.",
+    en: "Test article to verify automatic GitHub to Netlify deployment works perfectly."
+  },
+  content: {
+    fr: `
+      <h3>🎯 Article de test</h3>
+      <p>Si vous lisez ceci sur <strong>nbprof.com</strong>, cela signifie que le système GitHub → Netlify fonctionne parfaitement !</p>
+      <div class="highlight-box">
+        ✅ <strong>Bravo Noamane !</strong> Vous pouvez désormais publier des articles en 30 secondes.
+      </div>
+      <h3>Workflow validé</h3>
+      <ul>
+        <li>Modification sur GitHub</li>
+        <li>Commit automatique</li>
+        <li>Déploiement Netlify automatique</li>
+        <li>Site mis à jour</li>
+      </ul>
+      <blockquote>"La vraie force d'un site, c'est sa simplicité de mise à jour."</blockquote>
+    `,
+    ar: `
+      <h3>🎯 مقال اختبار</h3>
+      <p>إذا كنت تقرأ هذا على <strong>nbprof.com</strong>، فهذا يعني أن النظام يعمل بشكل مثالي!</p>
+      <div class="highlight-box">
+        ✅ <strong>مبروك نعمان!</strong> يمكنك الآن نشر مقالات في 30 ثانية.
+      </div>
+    `,
+    en: `
+      <h3>🎯 Test article</h3>
+      <p>If you read this on <strong>nbprof.com</strong>, the system works perfectly!</p>
+      <div class="highlight-box">
+        ✅ <strong>Congrats Noamane!</strong> You can now publish articles in 30 seconds.
+      </div>
+    `
   }
+}
 
   // ⬇️⬇️⬇️ AJOUTEZ VOS NOUVEAUX ARTICLES CI-DESSOUS ⬇️⬇️⬇️
   // N'oubliez pas de mettre une VIRGULE après l'article 4 ci-dessus
