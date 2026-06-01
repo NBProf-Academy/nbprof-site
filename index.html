@@ -25,13 +25,11 @@
   --blue: #3A7FD5;
   --blue-dim: rgba(58,127,213,0.15);
 }
-
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden}
 .gold{color:var(--gold)}
 a{color:inherit;text-decoration:none}
-
 nav{position:fixed;top:0;left:0;right:0;padding:18px 40px;z-index:1000;background:linear-gradient(to bottom,rgba(7,7,26,.95),transparent);display:flex;justify-content:space-between;align-items:center;transition:background .3s}
 nav.scrolled{background:rgba(7,7,26,.98);box-shadow:0 2px 20px rgba(0,0,0,.5)}
 .nav-logo{font-size:1.4em;font-weight:bold;color:var(--gold);cursor:pointer}
@@ -44,7 +42,6 @@ nav.scrolled{background:rgba(7,7,26,.98);box-shadow:0 2px 20px rgba(0,0,0,.5)}
 .lang-btn.active{background:var(--gold);color:var(--navy);font-weight:600}
 .lang-flag{font-size:1em}
 .burger{display:none;font-size:1.6em;cursor:pointer;color:var(--gold);background:none;border:none;margin-left:5px}
-
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;background:radial-gradient(circle at 50% 30%,rgba(201,168,76,.15),transparent 60%)}
 .hero-content{max-width:850px}
 .hero-tag{display:inline-block;color:var(--gold);font-size:.9em;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;border:1px solid var(--gold);padding:6px 18px;border-radius:30px}
@@ -60,13 +57,11 @@ nav.scrolled{background:rgba(7,7,26,.98);box-shadow:0 2px 20px rgba(0,0,0,.5)}
 .hero-stat{text-align:center}
 .hero-stat-num{font-size:2em;color:var(--gold);font-weight:bold}
 .hero-stat-label{font-size:.85em;color:var(--white-dim);margin-top:5px}
-
 section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .section-tag{color:var(--gold);font-size:.85em;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .section-title{font-size:2.4em;margin-bottom:15px;line-height:1.2}
 .divider{width:60px;height:3px;background:var(--gold);margin-bottom:25px}
 .section-sub{color:var(--white-dim);margin-bottom:45px;max-width:700px;font-size:1.05em}
-
 .themes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:25px}
 .theme-card{background:var(--white-soft);border:1px solid var(--gold-dim);border-radius:10px;padding:30px;transition:all .3s;cursor:pointer}
 .theme-card:hover{transform:translateY(-5px);border-color:var(--gold)}
@@ -74,7 +69,6 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .theme-card h3{color:var(--gold);margin-bottom:10px;font-size:1.15em}
 .theme-card p{color:var(--white-dim);font-size:.95em;margin-bottom:15px}
 .theme-tag{display:inline-block;background:var(--gold-dim);color:var(--gold);padding:3px 10px;border-radius:4px;font-size:.75em}
-
 .about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:50px;align-items:start}
 .about-img{width:100%;aspect-ratio:1;border-radius:15px;background:linear-gradient(135deg,var(--gold) 0%,#8b6914 100%);display:flex;align-items:center;justify-content:center;font-size:7em;color:var(--navy);font-weight:bold;box-shadow:0 20px 60px rgba(201,168,76,.2)}
 .about-card{background:var(--white-soft);padding:25px;border-radius:10px;border:1px solid var(--gold-dim);margin-top:20px}
@@ -92,7 +86,6 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .timeline-icon{font-size:1.8em;flex-shrink:0}
 .timeline-content h4{color:var(--gold);margin-bottom:5px;font-size:1em}
 .timeline-content p{color:var(--white-dim);font-size:.9em;margin:0}
-
 .pub-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
 .filter-btn{background:transparent;border:1px solid var(--gold-strong);color:var(--white);padding:8px 18px;border-radius:25px;cursor:pointer;font-size:.9em;transition:all .3s}
 .filter-btn.active,.filter-btn:hover{background:var(--gold);color:var(--navy);border-color:var(--gold)}
@@ -106,7 +99,6 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .pub-card .pub-excerpt{color:var(--white-dim);font-size:.92em;margin-bottom:15px;flex:1}
 .pub-meta{display:flex;justify-content:space-between;font-size:.82em;color:var(--white-dim);align-items:center}
 .pub-link{color:var(--gold);font-weight:600}
-
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding:40px 20px;overflow-y:auto;backdrop-filter:blur(5px)}
 .modal-overlay.active{display:flex}
 .modal{background:var(--navy-2);border:1px solid var(--gold-strong);border-radius:12px;max-width:850px;width:100%;padding:40px;position:relative;animation:slideUp .4s}
@@ -123,7 +115,6 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .modal-content blockquote{border-left:3px solid var(--gold);padding:15px 20px;margin:20px 0;background:rgba(201,168,76,.05);font-style:italic;border-radius:0 8px 8px 0}
 .modal-content .highlight-box{background:rgba(201,168,76,.08);border:1px solid var(--gold-strong);padding:15px 20px;border-radius:8px;margin:20px 0}
 .modal-content strong{color:var(--gold)}
-
 .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
 .service-card{background:var(--white-soft);border:1px solid var(--gold-dim);border-radius:10px;padding:30px 22px;text-align:center;transition:all .3s}
 .service-card:hover{transform:translateY(-5px);border-color:var(--gold)}
@@ -134,13 +125,11 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .service-unit{display:block;color:var(--white-dim);font-size:.82em;margin-bottom:20px}
 .service-btn{background:var(--gold);color:var(--navy);padding:10px 20px;border-radius:5px;cursor:pointer;font-weight:bold;display:inline-block;transition:transform .2s;border:none;font-size:.9em}
 .service-btn:hover{transform:translateY(-2px)}
-
 .why-box{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(201,168,76,.03));border:1px solid var(--gold-strong);border-radius:12px;padding:35px;margin-top:50px}
 .why-box h3{color:var(--gold);margin-bottom:20px;font-size:1.4em}
 .why-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
 .why-item{display:flex;gap:10px;align-items:flex-start;color:var(--white)}
 .why-item span{color:var(--gold);font-weight:bold;flex-shrink:0}
-
 .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .contact-info p{margin-bottom:25px;color:var(--white-dim)}
 .contact-item{display:flex;gap:15px;margin-bottom:20px;align-items:flex-start}
@@ -158,7 +147,6 @@ section{padding:90px 40px;max-width:1200px;margin:0 auto}
 .form-submit:hover{transform:translateY(-2px)}
 .form-status{margin-top:15px;padding:12px;border-radius:5px;display:none;font-size:.92em}
 .form-status.success{display:block;background:rgba(46,204,113,.15);color:#2ecc71;border:1px solid #2ecc71}
-
 footer{background:var(--navy-darker);padding:50px 20px 30px;text-align:center;border-top:1px solid var(--gold-dim)}
 .footer-logo{font-size:1.5em;color:var(--gold);font-weight:bold;margin-bottom:10px}
 .footer-tagline{color:var(--white-dim);margin-bottom:20px;font-size:.95em}
@@ -169,14 +157,11 @@ footer{background:var(--navy-darker);padding:50px 20px 30px;text-align:center;bo
 .footer-socials{display:flex;justify-content:center;gap:15px}
 .social-btn{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:bold;transition:transform .2s}
 .social-btn:hover{transform:scale(1.1)}
-
 .reveal{opacity:0;transform:translateY(30px);transition:all .7s}
 .reveal.visible{opacity:1;transform:translateY(0)}
-
 body.rtl{direction:rtl}
 body.rtl .timeline-item{border-left:none;border-right:3px solid var(--gold);border-radius:8px 0 0 8px}
 body.rtl .pub-badge{align-self:flex-end}
-
 @media(max-width:768px){
   nav{padding:15px 20px}
   .nav-center{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy-2);flex-direction:column;padding:20px;border-top:1px solid var(--gold-dim)}
@@ -216,7 +201,7 @@ body.rtl .pub-badge{align-self:flex-end}
     <span class="hero-tag">Enseignant-Chercheur · Futur Auditeur</span>
     <h1>Noamane <span class="gold">Boulahcen</span></h1>
     <p class="hero-subtitle">Expert en IA, Management Stratégique &amp; Audit</p>
-    <p class="hero-sub">23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.</p>
+    <p class="hero-sub">23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale. Passionné par la transformation des pratiques managériales grâce à l'intelligence artificielle.</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="scrollToSection('services')">Mes Services</button>
       <button class="btn-secondary" onclick="scrollToSection('publications')">Mes Publications</button>
@@ -230,14 +215,138 @@ body.rtl .pub-badge{align-self:flex-end}
   </div>
 </section>
 
+<section id="themes">
+  <div class="reveal">
+    <div class="section-tag">Domaines d'expertise</div>
+    <h2 class="section-title">Mes <span class="gold">Thèmes</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.</p>
+  </div>
+  <div class="themes-grid">
+    <div class="theme-card reveal" onclick="filterAndScroll('ia')">
+      <span class="theme-icon">🤖</span>
+      <h3>Intelligence Artificielle &amp; Éducation</h3>
+      <p>Comment l'IA transforme les pratiques managériales dans les établissements scolaires publics.</p>
+      <span class="theme-tag">Publication · 2026</span>
+    </div>
+    <div class="theme-card reveal" onclick="filterAndScroll('management')">
+      <span class="theme-icon">📊</span>
+      <h3>Management Stratégique</h3>
+      <p>Analyse SWOT, PESTEL, forces de Porter, diagnostic stratégique expliqués simplement.</p>
+      <span class="theme-tag">Management · Stratégie</span>
+    </div>
+    <div class="theme-card reveal" onclick="filterAndScroll('audit')">
+      <span class="theme-icon">🔍</span>
+      <h3>Audit &amp; Contrôle de Gestion</h3>
+      <p>Audit organisationnel et contrôle de gestion appliqués aux organisations éducatives.</p>
+      <span class="theme-tag">Audit · Gestion</span>
+    </div>
+    <div class="theme-card reveal" onclick="filterAndScroll('methodologie')">
+      <span class="theme-icon">🔬</span>
+      <h3>Méthodologie de Recherche</h3>
+      <p>PRISMA 2020, approches qualitatives et quantitatives pour mémoires et thèses.</p>
+      <span class="theme-tag">PRISMA 2020</span>
+    </div>
+    <div class="theme-card reveal" onclick="filterAndScroll('pedagogie')">
+      <span class="theme-icon">🎓</span>
+      <h3>Pédagogie Moderne</h3>
+      <p>Innovations pédagogiques et pratiques d'enseignement adaptées au contexte marocain.</p>
+      <span class="theme-tag">Éducation</span>
+    </div>
+    <div class="theme-card reveal" onclick="filterAndScroll('digital')">
+      <span class="theme-icon">💻</span>
+      <h3>Transformation Digitale</h3>
+      <p>Numérisation des établissements scolaires et nouveaux outils managériaux.</p>
+      <span class="theme-tag">Digital</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="reveal">
+    <div class="section-tag">À propos</div>
+    <h2 class="section-title">Qui <span class="gold">suis-je</span> ?</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="about-img">NB</div>
+      <div class="about-card">
+        <h4>📍 Localisation</h4>
+        <p style="color:var(--white-dim);margin:0;font-size:.92em">Kelaa Des Sraghna · Maroc</p>
+      </div>
+      <div class="about-card">
+        <h4>🎓 Formation actuelle</h4>
+        <p style="color:var(--white-dim);margin:0;font-size:.92em">Master AMSO · FSJESKS · Université Cadi Ayyad</p>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <p>Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans au sein du Ministère de l'Éducation Nationale du Maroc. Ma mission : <strong style="color:var(--gold)">rendre le savoir accessible à tous, partout</strong>.</p>
+      <p>À travers ce site, je partage mes connaissances en management stratégique, audit, intelligence artificielle, méthodologie de recherche et pédagogie moderne — de manière simple, rigoureuse et accessible.</p>
+      <blockquote style="border-left:3px solid var(--gold);padding:12px 20px;margin:20px 0;background:rgba(201,168,76,.05);font-style:italic;color:var(--white)">"L'éducation est l'arme la plus puissante pour changer le monde. Ma mission est de la rendre accessible à tous ceux qui en ont besoin."</blockquote>
+      <div class="publication-box">
+        <span class="pub-label">📄 Publication scientifique internationale</span>
+        <h4>"L'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"</h4>
+        <p class="pub-journal">African Journal of Management Engineering and Technology · Vol. 4, N°2, 2026 · pp. 153-165</p>
+        <p class="pub-authors">Co-auteurs : Nouib A., Boulkhir L., Boulahcen N. — SupMoTI Rabat, Maroc</p>
+        <div class="pub-tags">
+          <span class="pub-tag-item">PRISMA 2020</span>
+          <span class="pub-tag-item">IA &amp; Éducation</span>
+          <span class="pub-tag-item">Management Scolaire</span>
+          <span class="pub-tag-item">AJMET</span>
+        </div>
+      </div>
+      <h3 style="color:var(--gold);margin:25px 0 15px">Mon parcours</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-icon">🎓</span>
+          <div class="timeline-content">
+            <h4>2000-2002 — CFI Kénitra</h4>
+            <p>Formation bilingue arabe-français en sciences de l'éducation et pédagogie.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-icon">👨‍🏫</span>
+          <div class="timeline-content">
+            <h4>2002-aujourd'hui — Enseignant</h4>
+            <p>23 ans d'enseignement au sein du Ministère de l'Éducation Nationale du Maroc.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-icon">📺</span>
+          <div class="timeline-content">
+            <h4>Créateur de contenu YouTube</h4>
+            <p>Création de vidéos pédagogiques pour aider les élèves.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-icon">🔬</span>
+          <div class="timeline-content">
+            <h4>2025-aujourd'hui — Master AMSO</h4>
+            <p>Audit et Management Stratégique des Organisations — FSJESKS, Université Cadi Ayyad.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <span class="timeline-icon">📄</span>
+          <div class="timeline-content">
+            <h4>2026 — Publication scientifique internationale</h4>
+            <p>"L'IA comme levier de transformation managériale" — AJMET, Vol. 4, N°2.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="publications">
   <div class="reveal">
     <div class="section-tag">Mes publications</div>
     <h2 class="section-title">Articles &amp; <span class="gold">Recherches</span></h2>
     <div class="divider"></div>
+    <p class="section-sub">Cliquez sur un article pour le lire en intégralité - tout est intégré dans le site.</p>
     <div class="pub-filters" id="pubFilters">
       <button class="filter-btn active" onclick="filterPubs('all',this)">Tous</button>
-      <button class="filter-btn" onclick="filterPubs('ia',this)">IA</button>
+      <button class="filter-btn" onclick="filterPubs('ia',this)">IA &amp; Éducation</button>
       <button class="filter-btn" onclick="filterPubs('management',this)">Management</button>
       <button class="filter-btn" onclick="filterPubs('methodologie',this)">Méthodologie</button>
       <button class="filter-btn" onclick="filterPubs('audit',this)">Audit</button>
@@ -246,9 +355,150 @@ body.rtl .pub-badge{align-self:flex-end}
   <div class="pub-grid" id="pubGrid"></div>
 </section>
 
+<section id="services">
+  <div class="reveal">
+    <div class="section-tag">Ce que je propose</div>
+    <h2 class="section-title">Mes <span class="gold">Services</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Accompagnement académique professionnel en français, arabe et anglais, à distance ou en présentiel.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">✍️</span>
+      <h3>Rédaction de Mémoire</h3>
+      <p>Accompagnement complet : problématique, revue de littérature, méthodologie, résultats et conclusion.</p>
+      <span class="service-price">Sur devis</span>
+      <span class="service-unit">Tarif selon le niveau et la complexité</span>
+      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🔬</span>
+      <h3>Accompagnement Méthodologique</h3>
+      <p>PRISMA 2020, approches qualitatives et quantitatives, cadre théorique et épistémologique.</p>
+      <span class="service-price">Sur devis</span>
+      <span class="service-unit">Sessions individuelles ou en groupe</span>
+      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📝</span>
+      <h3>Relecture &amp; Correction</h3>
+      <p>Correction linguistique et méthodologique d'articles scientifiques, mémoires et rapports.</p>
+      <span class="service-price">Sur devis</span>
+      <span class="service-unit">2 à 5 jours selon la longueur</span>
+      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">📊</span>
+      <h3>Conseil en Management</h3>
+      <p>Analyse SWOT, PESTEL, audit organisationnel et stratégie pour organisations éducatives.</p>
+      <span class="service-price">Sur devis</span>
+      <span class="service-unit">Selon la mission</span>
+      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+    </div>
+  </div>
+  <div class="why-box reveal">
+    <h3>💡 Pourquoi me choisir ?</h3>
+    <div class="why-list">
+      <div class="why-item"><span>✓</span> <span>23 ans d'expérience en éducation</span></div>
+      <div class="why-item"><span>✓</span> <span>Auteur d'une publication scientifique internationale</span></div>
+      <div class="why-item"><span>✓</span> <span>Master AMSO en cours</span></div>
+      <div class="why-item"><span>✓</span> <span>Maîtrise de la méthode PRISMA 2020</span></div>
+      <div class="why-item"><span>✓</span> <span>Multilingue français-arabe-anglais</span></div>
+      <div class="why-item"><span>✓</span> <span>Tarifs adaptés aux étudiants</span></div>
+      <div class="why-item"><span>✓</span> <span>Travail à distance partout au Maroc &amp; international</span></div>
+      <div class="why-item"><span>✓</span> <span>Réponse sous 24-48h</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="reveal">
+    <div class="section-tag">Travaillons ensemble</div>
+    <h2 class="section-title">Me <span class="gold">Contacter</span></h2>
+    <div class="divider"></div>
+    <p class="section-sub">Vous avez un mémoire à rédiger ? Un article à corriger ? Je suis disponible pour vous accompagner.</p>
+  </div>
+  <div class="contact-wrap">
+    <div class="contact-info reveal">
+      <div class="contact-item">
+        <span class="contact-item-icon">📍</span>
+        <div class="contact-item-text">
+          <strong>Localisation</strong>
+          El Kelaa Des Sraghna · Marrakech-Safi · Maroc
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">🔗</span>
+        <div class="contact-item-text">
+          <strong>LinkedIn</strong>
+          <a href="https://www.linkedin.com/in/noamane-boulahcen-015b3115" target="_blank" rel="noopener" style="color:var(--white-dim)">linkedin.com/in/noamane-boulahcen</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">🌐</span>
+        <div class="contact-item-text">
+          <strong>Site web</strong>
+          <a href="https://www.nbprof.com" target="_blank" rel="noopener" style="color:var(--white-dim)">www.nbprof.com</a>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">🎓</span>
+        <div class="contact-item-text">
+          <strong>Affiliation académique</strong>
+          FSJESKS · Université Cadi Ayyad
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">🌍</span>
+        <div class="contact-item-text">
+          <strong>Langues de travail</strong>
+          🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">⏱️</span>
+        <div class="contact-item-text">
+          <strong>Délai de réponse</strong>
+          24 à 48 heures
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Votre prénom *</label>
+            <input class="form-input" type="text" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Votre nom *</label>
+            <input class="form-input" type="text" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Votre email *</label>
+          <input class="form-input" type="email" required placeholder="exemple@email.com" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Votre message *</label>
+          <textarea class="form-textarea" required placeholder="Décrivez votre projet..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">📩 Envoyer ma demande</button>
+        <div class="form-status" id="formStatus">✅ Votre message a bien été envoyé !</div>
+      </form>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <div class="footer-logo">NBProf</div>
+  <div class="footer-logo">#NBProf</div>
   <div class="footer-tagline">Enseignant-Chercheur · Expert en IA, Management Stratégique &amp; Audit</div>
+  <div class="footer-links">
+    <a onclick="scrollToSection('about')">À propos</a>
+    <a onclick="scrollToSection('publications')">Publications</a>
+    <a onclick="scrollToSection('services')">Services</a>
+    <a onclick="scrollToSection('contact')">Contact</a>
+  </div>
   <div class="footer-copy">© 2026 Noamane Boulahcen · Tous droits réservés</div>
   <div class="footer-socials">
     <a class="social-btn" href="https://www.linkedin.com/in/noamane-boulahcen-015b3115" target="_blank" rel="noopener">in</a>
@@ -296,6 +546,16 @@ function filterPubs(category, btn) {
   renderArticles(category);
 }
 
+function filterAndScroll(category) {
+  scrollToSection('publications');
+  setTimeout(() => {
+    const btns = document.querySelectorAll('#pubFilters .filter-btn');
+    const map = {ia:1, management:2, methodologie:3, audit:4};
+    if (map[category] && btns[map[category]]) filterPubs(category, btns[map[category]]);
+    else filterPubs('all', btns[0]);
+  }, 600);
+}
+
 function openArticle(id) {
   if (typeof ARTICLES === 'undefined') return;
   const a = ARTICLES.find(x => x.id === id);
@@ -319,6 +579,7 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal()
 function scrollToSection(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('navCenter').classList.remove('open');
 }
 function toggleMenu() { document.getElementById('navCenter').classList.toggle('open'); }
 function setLang(lang, btn) {
@@ -335,6 +596,18 @@ window.addEventListener('scroll', () => {
   if (window.scrollY > 50) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 });
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function handleSubmit(e) {
+  e.preventDefault();
+  setTimeout(() => { document.getElementById('formStatus').className = 'form-status success'; }, 500);
+}
 
 window.addEventListener('load', () => { renderArticles(); });
 </script>
