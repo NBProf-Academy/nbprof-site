@@ -710,40 +710,317 @@ const ARTICLES = [
 },
 
   {
-    id: 3,
-    category: 'methodologie',
-    icon: '🔬',
-    date:     { fr: 'Avril 2026', ar: 'أبريل 2026', en: 'April 2026' },
-    readTime: { fr: '10 min', ar: '10 دقائق', en: '10 min' },
-    badge:    { fr: 'Méthodologie de Recherche', ar: 'منهجية البحث', en: 'Research Methodology' },
-    title: {
-      fr: 'PRISMA 2020 : Guide pratique',
-      ar: 'PRISMA 2020: دليل عملي',
-      en: 'PRISMA 2020: Practical Guide'
-    },
-    excerpt: {
-      fr: "La méthode PRISMA 2020 est devenue la référence internationale pour les revues systématiques.",
-      ar: "أصبحت PRISMA 2020 المرجع الدولي للمراجعات المنهجية.",
-      en: "PRISMA 2020 has become the international reference for systematic reviews."
-    },
-    content: {
-      fr: `<h3>Qu'est-ce que PRISMA 2020 ?</h3>
-        <p>Cadre méthodologique standardisé pour les revues systématiques, divisé en 27 items et 7 sections.</p>
-        <div class="highlight-box">📌 <strong>Important :</strong> PRISMA est un cadre de reporting, pas une méthodologie en soi.</div>
-        <h3>6 étapes pratiques</h3>
-        <ul>
-          <li>Protocole sur PROSPERO</li>
-          <li>Recherche multi-bases (Scopus, WoS)</li>
-          <li>Double screening en aveugle</li>
-          <li>Extraction standardisée</li>
-          <li>Évaluation qualité (ROBIS, JBI)</li>
-          <li>Synthèse</li>
-        </ul>
-        <blockquote>J'ai utilisé PRISMA 2020 pour ma publication scientifique internationale.</blockquote>`,
-      ar: `<h3>ما هي PRISMA 2020؟</h3><p>إطار منهجي للمراجعات المنهجية.</p>`,
-      en: `<h3>What is PRISMA 2020?</h3><p>Standardized framework for systematic reviews.</p>`
-    }
+  id: 3,
+  category: 'methodologie',
+  icon: '🔬',
+  date:     { fr: 'Juin 2026', ar: 'يونيو 2026', en: 'June 2026' },
+  readTime: { fr: '12 min', ar: '12 دقيقة', en: '12 min' },
+  badge:    { fr: 'Méthodologie · Recherche Scientifique', ar: 'منهجية · بحث علمي', en: 'Methodology · Scientific Research' },
+  title: {
+    fr: "C'est quoi la méthode PRISMA 2020 ? Guide complet pour étudiants et chercheurs",
+    ar: "ما هي منهجية PRISMA 2020؟ دليل شامل للطلاب والباحثين",
+    en: "What is PRISMA 2020? Complete guide for students and researchers"
   },
+  excerpt: {
+    fr: "La méthode PRISMA 2020 est devenue une référence incontournable en recherche scientifique. Utilisée dans ma publication internationale, elle garantit rigueur, transparence et reproductibilité. Voici tout ce que vous devez savoir.",
+    ar: "أصبحت منهجية PRISMA 2020 مرجعا لا غنى عنه في البحث العلمي. مستخدمة في منشوري الدولي، تضمن الصرامة والشفافية وقابلية التكرار.",
+    en: "PRISMA 2020 has become an essential reference in scientific research. Used in my international publication, it guarantees rigor, transparency and reproducibility."
+  },
+  content: {
+    fr: `
+      <p>Si vous rédigez un mémoire de master, une thèse de doctorat ou un article scientifique basé sur une revue de littérature, vous avez probablement rencontré le terme <strong>PRISMA</strong>. Mais qu'est-ce que c'est exactement ? Comment l'utiliser ? Et pourquoi les revues scientifiques l'exigent-elles de plus en plus ?</p>
+
+      <h3>1. Définition : qu'est-ce que PRISMA 2020 ?</h3>
+      <p><strong>PRISMA</strong> est l'acronyme de <em>Preferred Reporting Items for Systematic Reviews and Meta-Analyses</em>. En français : <strong>Éléments préférés pour le rapportage des revues systématiques et méta-analyses</strong>.</p>
+      <p>C'est un <strong>guide méthodologique standardisé</strong> qui définit comment conduire et rapporter une revue de littérature systématique de manière rigoureuse, transparente et reproductible. La version 2020 est la mise à jour la plus récente, publiée dans plusieurs revues scientifiques internationales simultanément [1].</p>
+
+      <div class="highlight-box">
+        💡 <strong>En résumé :</strong> PRISMA 2020 est le "mode d'emploi officiel" pour faire une revue de littérature systématique. Il garantit que votre recherche est crédible, vérifiable et acceptée par la communauté scientifique internationale.
+      </div>
+
+      <h3>2. Pourquoi utiliser PRISMA 2020 ?</h3>
+      <p>Les raisons d'utiliser PRISMA 2020 sont multiples :</p>
+      <ul>
+        <li>✅ <strong>Crédibilité scientifique</strong> : les revues internationales exigent de plus en plus le respect du protocole PRISMA</li>
+        <li>✅ <strong>Reproductibilité</strong> : un autre chercheur peut reproduire votre démarche et obtenir des résultats similaires</li>
+        <li>✅ <strong>Transparence</strong> : chaque décision d'inclusion ou d'exclusion est justifiée et documentée</li>
+        <li>✅ <strong>Exhaustivité</strong> : la méthode garantit que vous n'avez pas raté des études importantes</li>
+        <li>✅ <strong>Reconnaissance</strong> : un mémoire basé sur PRISMA 2020 est perçu comme plus rigoureux par les évaluateurs</li>
+      </ul>
+
+      <div class="highlight-box">
+        📊 <strong>Les chiffres clés de PRISMA 2020 :</strong><br>
+        • <strong>27</strong> éléments à vérifier dans la checklist [1]<br>
+        • <strong>4</strong> phases principales du processus<br>
+        • <strong>1</strong> diagramme de flux standardisé [2]
+      </div>
+
+      <h3>3. Les 4 phases du processus PRISMA 2020</h3>
+
+      <h3>🔍 Phase 1 — IDENTIFICATION</h3>
+      <p>Recherche dans les bases de données (Google Scholar, Scopus, Web of Science, PubMed...). On collecte TOUS les articles potentiellement pertinents sans filtre. C'est le filet le plus large.</p>
+
+      <h3>📋 Phase 2 — SÉLECTION (Screening)</h3>
+      <p>Lecture des titres et résumés. On élimine les doublons et les articles hors sujet en appliquant des critères d'inclusion et d'exclusion définis à l'avance.</p>
+
+      <h3>📖 Phase 3 — ÉLIGIBILITÉ</h3>
+      <p>Lecture complète des articles sélectionnés. Vérification approfondie de la pertinence, de la qualité méthodologique et de la conformité aux critères définis.</p>
+
+      <h3>✅ Phase 4 — INCLUSION</h3>
+      <p>Les articles qui passent tous les filtres sont inclus dans la revue finale. C'est sur ces articles que se base votre analyse et vos conclusions.</p>
+
+      <blockquote>
+        "Dans ma publication de 2026, j'ai appliqué la méthode PRISMA 2020 pour analyser l'impact de l'IA sur le management scolaire. Le processus a permis de passer de plusieurs centaines d'articles identifiés à un corpus final d'études rigoureusement sélectionnées."
+      </blockquote>
+
+      <h3>4. Les critères d'inclusion et d'exclusion</h3>
+      <p>L'élément le plus important — et le plus souvent négligé — est la définition <strong>préalable</strong> des critères d'inclusion et d'exclusion. Ces critères doivent être définis AVANT de commencer la recherche, pas après.</p>
+
+      <h3>Exemples de critères d'inclusion ✅</h3>
+      <ul>
+        <li>Articles publiés entre 2015 et 2026</li>
+        <li>Rédigés en français, arabe ou anglais</li>
+        <li>Portant sur l'IA dans le contexte éducatif</li>
+        <li>Publiés dans des revues à comité de lecture</li>
+        <li>Disponibles en texte intégral</li>
+      </ul>
+
+      <h3>Exemples de critères d'exclusion ❌</h3>
+      <ul>
+        <li>Articles de presse ou blogs non scientifiques</li>
+        <li>Études portant sur l'enseignement supérieur uniquement</li>
+        <li>Articles sans résumé disponible</li>
+        <li>Travaux non publiés ou en prépublication</li>
+        <li>Articles dont le texte intégral est inaccessible</li>
+      </ul>
+
+      <div class="highlight-box">
+        ⚠️ <strong>Erreur fréquente :</strong> Beaucoup d'étudiants définissent leurs critères APRÈS avoir lu les articles, en fonction de ce qu'ils ont trouvé. C'est une faute méthodologique grave qui invalide l'ensemble de la démarche PRISMA.
+      </div>
+
+      <h3>5. Le diagramme de flux PRISMA — Comment le construire</h3>
+      <p>Le diagramme de flux (flow chart) est l'élément visuel central de toute revue PRISMA [2]. Il montre clairement le nombre d'articles à chaque étape et les raisons d'exclusion.</p>
+
+      <p>Il doit mentionner :</p>
+      <ul>
+        <li><strong>1.</strong> Nombre total d'articles identifiés dans chaque base de données</li>
+        <li><strong>2.</strong> Nombre de doublons supprimés</li>
+        <li><strong>3.</strong> Nombre d'articles sélectionnés après lecture des titres/résumés</li>
+        <li><strong>4.</strong> Nombre d'articles exclus avec les raisons</li>
+        <li><strong>5.</strong> Nombre d'articles évalués en texte intégral</li>
+        <li><strong>6.</strong> Nombre final d'articles inclus dans la revue</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Astuce :</strong> Toutes les versions du diagramme PRISMA 2020 (y compris une Shiny App) sont disponibles gratuitement sur le site officiel : prisma-statement.org [2]
+      </div>
+
+      <h3>6. Les bases de données à utiliser</h3>
+      <p>Pour une revue PRISMA rigoureuse, consultez au minimum 3 bases de données :</p>
+      <ul>
+        <li><strong>Google Scholar</strong> : large couverture, gratuit, idéal pour commencer</li>
+        <li><strong>Scopus</strong> : base de données internationale très reconnue</li>
+        <li><strong>Web of Science</strong> : référence en sciences sociales et management</li>
+        <li><strong>ERIC</strong> : spécialisée en éducation</li>
+        <li><strong>PubMed</strong> : pour les sciences de la santé et psychologie</li>
+        <li><strong>CAIRN</strong> : excellente pour la littérature francophone</li>
+      </ul>
+
+      <h3>7. PRISMA 2020 et votre mémoire de master</h3>
+      <p>Si vous rédigez un mémoire de master et que votre méthodologie est une revue de littérature, adopter PRISMA 2020 vous apporte plusieurs avantages concrets :</p>
+      <ul>
+        <li>✅ Votre jury verra immédiatement la rigueur de votre démarche</li>
+        <li>✅ Votre chapitre méthodologie sera structuré et professionnel</li>
+        <li>✅ Vous éviterez les reproches de manque de systématisme</li>
+        <li>✅ Votre travail sera potentiellement publiable dans une revue scientifique</li>
+        <li>✅ Vous développerez des compétences de chercheur reconnues</li>
+      </ul>
+
+      <h3>Conclusion</h3>
+      <p>La méthode PRISMA 2020 n'est pas réservée aux chercheurs confirmés. Elle est accessible à tout étudiant en master qui souhaite donner à son travail une dimension scientifique sérieuse et reconnue.</p>
+      <p>Dans ma publication internationale de 2026, cette méthode a été le socle méthodologique qui a permis de produire des résultats crédibles et acceptés par une revue internationale à comité de lecture.</p>
+
+      <blockquote>
+        "La rigueur méthodologique n'est pas un obstacle à la créativité scientifique. C'est sa meilleure garantie."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Auteur d'une publication internationale utilisant la méthode PRISMA 2020</p>
+
+      <div class="highlight-box">
+        📚 Vous rédigez un mémoire avec une revue de littérature ? Besoin d'aide pour appliquer PRISMA 2020 ?<br>
+        <strong>Contactez-moi sur NBProf.com</strong>
+      </div>
+
+      <p style="color:var(--white-dim);font-size:0.9em">#PRISMA2020 #MéthodologieRecherche #RevueSystématique #MémoireMaster #NBProf #AMSO</p>
+    `,
+    ar: `
+      <p>إذا كنت تكتب مذكرة ماستر، أطروحة دكتوراه أو مقالا علميا يستند إلى مراجعة أدبيات، فمن المحتمل أنك صادفت مصطلح <strong>PRISMA</strong>. لكن ما هو بالضبط؟ كيف تستخدمه؟ ولماذا تطلبه المجلات العلمية بشكل متزايد؟</p>
+
+      <h3>1. تعريف: ما هي منهجية PRISMA 2020؟</h3>
+      <p><strong>PRISMA</strong> هو اختصار لعبارة <em>Preferred Reporting Items for Systematic Reviews and Meta-Analyses</em>.</p>
+      <p>هو <strong>دليل منهجي موحد</strong> يحدد كيفية إجراء وتقرير مراجعة منهجية للأدبيات بطريقة صارمة وشفافة وقابلة للتكرار. النسخة 2020 هي التحديث الأحدث، منشورة في عدة مجلات علمية دولية في وقت واحد.</p>
+
+      <div class="highlight-box">
+        💡 <strong>باختصار:</strong> PRISMA 2020 هو "دليل الاستخدام الرسمي" لإجراء مراجعة منهجية للأدبيات. يضمن أن بحثك ذو مصداقية وقابل للتحقق ومقبول من المجتمع العلمي الدولي.
+      </div>
+
+      <h3>2. لماذا استخدام PRISMA 2020؟</h3>
+      <ul>
+        <li>✅ <strong>المصداقية العلمية</strong>: المجلات الدولية تطلب احترام بروتوكول PRISMA</li>
+        <li>✅ <strong>قابلية التكرار</strong>: يمكن لباحث آخر تكرار طريقتك</li>
+        <li>✅ <strong>الشفافية</strong>: كل قرار إدراج أو استبعاد مبرر وموثق</li>
+        <li>✅ <strong>الشمولية</strong>: تضمن المنهجية أنك لم تفوت دراسات مهمة</li>
+        <li>✅ <strong>الاعتراف</strong>: مذكرة مبنية على PRISMA 2020 تعتبر أكثر صرامة</li>
+      </ul>
+
+      <div class="highlight-box">
+        📊 <strong>الأرقام الرئيسية لـ PRISMA 2020:</strong><br>
+        • <strong>27</strong> عنصرا للتحقق في القائمة<br>
+        • <strong>4</strong> مراحل رئيسية للعملية<br>
+        • <strong>1</strong> مخطط تدفق موحد
+      </div>
+
+      <h3>3. المراحل الأربع لعملية PRISMA 2020</h3>
+
+      <h3>🔍 المرحلة 1 — التحديد</h3>
+      <p>البحث في قواعد البيانات (Google Scholar، Scopus، Web of Science، PubMed...). نجمع كل المقالات المحتملة الصلة دون فلتر.</p>
+
+      <h3>📋 المرحلة 2 — الاختيار</h3>
+      <p>قراءة العناوين والملخصات. نلغي التكرارات والمقالات خارج الموضوع بتطبيق معايير الإدراج والاستبعاد المحددة مسبقا.</p>
+
+      <h3>📖 المرحلة 3 — الأهلية</h3>
+      <p>قراءة كاملة للمقالات المختارة. تحقق معمق من الصلة والجودة المنهجية والمطابقة للمعايير.</p>
+
+      <h3>✅ المرحلة 4 — الإدراج</h3>
+      <p>المقالات التي تجتاز كل المرشحات تُدرج في المراجعة النهائية.</p>
+
+      <blockquote>
+        "في منشوري لعام 2026، طبقت منهجية PRISMA 2020 لتحليل تأثير الذكاء الاصطناعي على الإدارة المدرسية. سمحت العملية بالانتقال من مئات المقالات المحددة إلى مجموعة نهائية من الدراسات المختارة بصرامة."
+      </blockquote>
+
+      <h3>4. معايير الإدراج والاستبعاد</h3>
+      <p>العنصر الأكثر أهمية — والأكثر إهمالا — هو تعريف معايير الإدراج والاستبعاد <strong>مسبقا</strong>. يجب تحديد هذه المعايير قبل البحث، وليس بعده.</p>
+
+      <div class="highlight-box">
+        ⚠️ <strong>خطأ شائع:</strong> العديد من الطلاب يحددون معاييرهم بعد قراءة المقالات. هذا خطأ منهجي خطير يبطل كامل منهج PRISMA.
+      </div>
+
+      <h3>5. مخطط تدفق PRISMA</h3>
+      <p>مخطط التدفق هو العنصر البصري المركزي لكل مراجعة PRISMA. يوضح بوضوح عدد المقالات في كل مرحلة وأسباب الاستبعاد.</p>
+
+      <h3>6. قواعد البيانات للاستخدام</h3>
+      <ul>
+        <li><strong>Google Scholar</strong>: تغطية واسعة، مجاني</li>
+        <li><strong>Scopus</strong>: قاعدة بيانات دولية معترف بها</li>
+        <li><strong>Web of Science</strong>: مرجع في العلوم الاجتماعية</li>
+        <li><strong>ERIC</strong>: متخصصة في التعليم</li>
+        <li><strong>PubMed</strong>: للعلوم الصحية</li>
+        <li><strong>CAIRN</strong>: ممتازة للأدبيات الفرنسية</li>
+      </ul>
+
+      <h3>خاتمة</h3>
+      <p>منهجية PRISMA 2020 ليست محصورة على الباحثين المؤكدين. متاحة لكل طالب ماستر يريد إعطاء عمله بعدا علميا جديا.</p>
+
+      <blockquote>
+        "الصرامة المنهجية ليست عائقا للإبداع العلمي. بل هي أفضل ضمان له."<br>
+        <strong>— ن.ب</strong>
+      </blockquote>
+
+      <p><strong>نعمان بولحسن</strong><br>
+      أستاذ-باحث · مدقق المستقبل · ماستر AMSO – جامعة القاضي عياض</p>
+
+      <div class="highlight-box">
+        📚 هل تكتب مذكرة بمراجعة أدبيات؟ تحتاج مساعدة في تطبيق PRISMA 2020؟<br>
+        <strong>تواصل معي على NBProf.com</strong>
+      </div>
+    `,
+    en: `
+      <p>If you are writing a Master's thesis, doctoral dissertation, or scientific article based on a literature review, you have probably encountered the term <strong>PRISMA</strong>. But what exactly is it? How do you use it? And why are scientific journals increasingly requiring it?</p>
+
+      <h3>1. Definition: what is PRISMA 2020?</h3>
+      <p><strong>PRISMA</strong> stands for <em>Preferred Reporting Items for Systematic Reviews and Meta-Analyses</em>.</p>
+      <p>It is a <strong>standardized methodological guide</strong> that defines how to conduct and report a systematic literature review rigorously, transparently and reproducibly. The 2020 version is the most recent update, published simultaneously in several international scientific journals [1].</p>
+
+      <div class="highlight-box">
+        💡 <strong>In summary:</strong> PRISMA 2020 is the "official manual" for conducting a systematic literature review. It ensures that your research is credible, verifiable, and accepted by the international scientific community.
+      </div>
+
+      <h3>2. Why use PRISMA 2020?</h3>
+      <ul>
+        <li>✅ <strong>Scientific credibility</strong>: international journals increasingly require PRISMA compliance</li>
+        <li>✅ <strong>Reproducibility</strong>: another researcher can reproduce your approach</li>
+        <li>✅ <strong>Transparency</strong>: every inclusion or exclusion decision is justified</li>
+        <li>✅ <strong>Comprehensiveness</strong>: the method ensures you didn't miss important studies</li>
+        <li>✅ <strong>Recognition</strong>: a PRISMA-based thesis is perceived as more rigorous</li>
+      </ul>
+
+      <div class="highlight-box">
+        📊 <strong>PRISMA 2020 key figures:</strong><br>
+        • <strong>27</strong> items to verify in the checklist [1]<br>
+        • <strong>4</strong> main process phases<br>
+        • <strong>1</strong> standardized flow diagram [2]
+      </div>
+
+      <h3>3. The 4 phases of the PRISMA 2020 process</h3>
+
+      <h3>🔍 Phase 1 — IDENTIFICATION</h3>
+      <p>Search in databases (Google Scholar, Scopus, Web of Science, PubMed...). We collect ALL potentially relevant articles without filter.</p>
+
+      <h3>📋 Phase 2 — SCREENING</h3>
+      <p>Reading titles and abstracts. We eliminate duplicates and off-topic articles by applying pre-defined inclusion and exclusion criteria.</p>
+
+      <h3>📖 Phase 3 — ELIGIBILITY</h3>
+      <p>Full reading of selected articles. Thorough verification of relevance, methodological quality, and compliance with defined criteria.</p>
+
+      <h3>✅ Phase 4 — INCLUSION</h3>
+      <p>Articles passing all filters are included in the final review.</p>
+
+      <blockquote>
+        "In my 2026 publication, I applied PRISMA 2020 methodology to analyze the impact of AI on school management. The process allowed moving from hundreds of identified articles to a final corpus of rigorously selected studies."
+      </blockquote>
+
+      <h3>4. Inclusion and exclusion criteria</h3>
+      <p>The most important — and most often neglected — element is the <strong>prior</strong> definition of inclusion and exclusion criteria. These criteria must be defined BEFORE starting the search, not after.</p>
+
+      <div class="highlight-box">
+        ⚠️ <strong>Common mistake:</strong> Many students define their criteria AFTER reading the articles. This is a serious methodological fault that invalidates the entire PRISMA approach.
+      </div>
+
+      <h3>5. The PRISMA flow diagram</h3>
+      <p>The flow diagram is the central visual element of any PRISMA review [2]. It clearly shows the number of articles at each stage and the reasons for exclusion.</p>
+
+      <h3>6. Databases to use</h3>
+      <ul>
+        <li><strong>Google Scholar</strong>: wide coverage, free</li>
+        <li><strong>Scopus</strong>: highly recognized international database</li>
+        <li><strong>Web of Science</strong>: reference in social sciences</li>
+        <li><strong>ERIC</strong>: specialized in education</li>
+        <li><strong>PubMed</strong>: for health sciences</li>
+        <li><strong>CAIRN</strong>: excellent for French-language literature</li>
+      </ul>
+
+      <h3>Conclusion</h3>
+      <p>PRISMA 2020 methodology is not reserved for confirmed researchers. It is accessible to any Master's student who wishes to give their work a serious scientific dimension.</p>
+
+      <blockquote>
+        "Methodological rigor is not an obstacle to scientific creativity. It is its best guarantee."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Teacher-Researcher · Future Auditor · Master AMSO – Cadi Ayyad University<br>
+      Author of an international publication using PRISMA 2020 methodology</p>
+
+      <div class="highlight-box">
+        📚 Writing a thesis with a literature review? Need help applying PRISMA 2020?<br>
+        <strong>Contact me on NBProf.com</strong>
+      </div>
+    `
+  }
+},
 
   {
     id: 4,
