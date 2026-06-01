@@ -4,8 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NBProf · Noamane Boulahcen · Enseignant-Chercheur</title>
-<meta name="description" content="NBProf - Noamane Boulahcen, Enseignant-Chercheur, Master AMSO. Expert en IA, Management Stratégique, Audit et Méthodologie PRISMA 2020. 23 ans d'expérience." />
-<meta name="keywords" content="NBProf, Noamane Boulahcen, IA éducation, management stratégique, audit, PRISMA 2020, AMSO, FSJESKS, Cadi Ayyad" />
+<meta name="description" content="NBProf - Noamane Boulahcen, Enseignant-Chercheur, Master AMSO. Expert en IA, Management Stratégique, Audit et Méthodologie PRISMA 2020." />
 <style>
 :root {
   --gold: #C9A84C;
@@ -23,7 +22,6 @@
   --white-soft: rgba(245,240,232,0.04);
   --white-medium: rgba(245,240,232,0.05);
   --blue: #3A7FD5;
-  --blue-dim: rgba(58,127,213,0.15);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -182,11 +180,11 @@ body.rtl .pub-badge{align-self:flex-end}
 <nav id="navbar">
   <div class="nav-logo" onclick="scrollToSection('hero')">NBProf</div>
   <div class="nav-center" id="navCenter">
-    <a onclick="scrollToSection('themes')">Thèmes</a>
-    <a onclick="scrollToSection('about')">À propos</a>
-    <a onclick="scrollToSection('publications')">Publications</a>
-    <a onclick="scrollToSection('services')">Services</a>
-    <a onclick="scrollToSection('contact')">Contact</a>
+    <a onclick="scrollToSection('themes')" data-i18n="nav_themes">Thèmes</a>
+    <a onclick="scrollToSection('about')" data-i18n="nav_about">À propos</a>
+    <a onclick="scrollToSection('publications')" data-i18n="nav_pubs">Publications</a>
+    <a onclick="scrollToSection('services')" data-i18n="nav_services">Services</a>
+    <a onclick="scrollToSection('contact')" data-i18n="nav_contact">Contact</a>
   </div>
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('fr',this)"><span class="lang-flag">🇫🇷</span> FR</button>
@@ -198,65 +196,65 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <section class="hero" id="hero">
   <div class="hero-content reveal">
-    <span class="hero-tag">Enseignant-Chercheur · Futur Auditeur</span>
+    <span class="hero-tag" data-i18n="hero_tag">Enseignant-Chercheur · Futur Auditeur</span>
     <h1>Noamane <span class="gold">Boulahcen</span></h1>
-    <p class="hero-subtitle">Expert en IA, Management Stratégique &amp; Audit</p>
-    <p class="hero-sub">23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale. Passionné par la transformation des pratiques managériales grâce à l'intelligence artificielle.</p>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Expert en IA, Management Stratégique &amp; Audit</p>
+    <p class="hero-sub" data-i18n="hero_sub">23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.</p>
     <div class="hero-cta">
-      <button class="btn-primary" onclick="scrollToSection('services')">Mes Services</button>
-      <button class="btn-secondary" onclick="scrollToSection('publications')">Mes Publications</button>
+      <button class="btn-primary" onclick="scrollToSection('services')" data-i18n="hero_btn1">Mes Services</button>
+      <button class="btn-secondary" onclick="scrollToSection('publications')" data-i18n="hero_btn2">Mes Publications</button>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num">23</div><div class="hero-stat-label">Ans d'expérience</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Niveaux enseignés</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label">Publication int'l</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Langues</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">23</div><div class="hero-stat-label" data-i18n="stat1">Ans d'expérience</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label" data-i18n="stat2">Niveaux enseignés</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label" data-i18n="stat3">Publication int'l</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label" data-i18n="stat4">Langues</div></div>
     </div>
   </div>
 </section>
 
 <section id="themes">
   <div class="reveal">
-    <div class="section-tag">Domaines d'expertise</div>
-    <h2 class="section-title">Mes <span class="gold">Thèmes</span></h2>
+    <div class="section-tag" data-i18n="themes_tag">Domaines d'expertise</div>
+    <h2 class="section-title"><span data-i18n="themes_title_1">Mes</span> <span class="gold" data-i18n="themes_title_2">Thèmes</span></h2>
     <div class="divider"></div>
-    <p class="section-sub">Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.</p>
+    <p class="section-sub" data-i18n="themes_sub">Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.</p>
   </div>
   <div class="themes-grid">
     <div class="theme-card reveal" onclick="filterAndScroll('ia')">
       <span class="theme-icon">🤖</span>
-      <h3>Intelligence Artificielle &amp; Éducation</h3>
-      <p>Comment l'IA transforme les pratiques managériales dans les établissements scolaires publics.</p>
+      <h3 data-i18n="theme1_t">Intelligence Artificielle &amp; Éducation</h3>
+      <p data-i18n="theme1_d">Comment l'IA transforme les pratiques managériales.</p>
       <span class="theme-tag">Publication · 2026</span>
     </div>
     <div class="theme-card reveal" onclick="filterAndScroll('management')">
       <span class="theme-icon">📊</span>
-      <h3>Management Stratégique</h3>
-      <p>Analyse SWOT, PESTEL, forces de Porter, diagnostic stratégique expliqués simplement.</p>
-      <span class="theme-tag">Management · Stratégie</span>
+      <h3 data-i18n="theme2_t">Management Stratégique</h3>
+      <p data-i18n="theme2_d">Analyse SWOT, PESTEL, forces de Porter.</p>
+      <span class="theme-tag" data-i18n="theme2_tag">Management · Stratégie</span>
     </div>
     <div class="theme-card reveal" onclick="filterAndScroll('audit')">
       <span class="theme-icon">🔍</span>
-      <h3>Audit &amp; Contrôle de Gestion</h3>
-      <p>Audit organisationnel et contrôle de gestion appliqués aux organisations éducatives.</p>
-      <span class="theme-tag">Audit · Gestion</span>
+      <h3 data-i18n="theme3_t">Audit &amp; Contrôle de Gestion</h3>
+      <p data-i18n="theme3_d">Audit organisationnel et contrôle de gestion.</p>
+      <span class="theme-tag" data-i18n="theme3_tag">Audit · Gestion</span>
     </div>
     <div class="theme-card reveal" onclick="filterAndScroll('methodologie')">
       <span class="theme-icon">🔬</span>
-      <h3>Méthodologie de Recherche</h3>
-      <p>PRISMA 2020, approches qualitatives et quantitatives pour mémoires et thèses.</p>
+      <h3 data-i18n="theme4_t">Méthodologie de Recherche</h3>
+      <p data-i18n="theme4_d">PRISMA 2020, approches qualitatives et quantitatives.</p>
       <span class="theme-tag">PRISMA 2020</span>
     </div>
     <div class="theme-card reveal" onclick="filterAndScroll('pedagogie')">
       <span class="theme-icon">🎓</span>
-      <h3>Pédagogie Moderne</h3>
-      <p>Innovations pédagogiques et pratiques d'enseignement adaptées au contexte marocain.</p>
-      <span class="theme-tag">Éducation</span>
+      <h3 data-i18n="theme5_t">Pédagogie Moderne</h3>
+      <p data-i18n="theme5_d">Innovations pédagogiques adaptées au Maroc.</p>
+      <span class="theme-tag" data-i18n="theme5_tag">Éducation</span>
     </div>
     <div class="theme-card reveal" onclick="filterAndScroll('digital')">
       <span class="theme-icon">💻</span>
-      <h3>Transformation Digitale</h3>
-      <p>Numérisation des établissements scolaires et nouveaux outils managériaux.</p>
+      <h3 data-i18n="theme6_t">Transformation Digitale</h3>
+      <p data-i18n="theme6_d">Numérisation des établissements scolaires.</p>
       <span class="theme-tag">Digital</span>
     </div>
   </div>
@@ -264,84 +262,66 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <section id="about">
   <div class="reveal">
-    <div class="section-tag">À propos</div>
-    <h2 class="section-title">Qui <span class="gold">suis-je</span> ?</h2>
+    <div class="section-tag" data-i18n="about_tag">À propos</div>
+    <h2 class="section-title"><span data-i18n="about_title_1">Qui</span> <span class="gold" data-i18n="about_title_2">suis-je</span> ?</h2>
     <div class="divider"></div>
   </div>
   <div class="about-grid">
     <div class="reveal">
       <div class="about-img">NB</div>
       <div class="about-card">
-        <h4>📍 Localisation</h4>
+        <h4 data-i18n="about_loc">📍 Localisation</h4>
         <p style="color:var(--white-dim);margin:0;font-size:.92em">Kelaa Des Sraghna · Maroc</p>
       </div>
       <div class="about-card">
-        <h4>🎓 Formation actuelle</h4>
+        <h4 data-i18n="about_form">🎓 Formation actuelle</h4>
         <p style="color:var(--white-dim);margin:0;font-size:.92em">Master AMSO · FSJESKS · Université Cadi Ayyad</p>
       </div>
     </div>
     <div class="about-text reveal">
-      <p>Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans au sein du Ministère de l'Éducation Nationale du Maroc. Ma mission : <strong style="color:var(--gold)">rendre le savoir accessible à tous, partout</strong>.</p>
-      <p>À travers ce site, je partage mes connaissances en management stratégique, audit, intelligence artificielle, méthodologie de recherche et pédagogie moderne — de manière simple, rigoureuse et accessible.</p>
-      <blockquote style="border-left:3px solid var(--gold);padding:12px 20px;margin:20px 0;background:rgba(201,168,76,.05);font-style:italic;color:var(--white)">"L'éducation est l'arme la plus puissante pour changer le monde. Ma mission est de la rendre accessible à tous ceux qui en ont besoin."</blockquote>
+      <p data-i18n="about_p1">Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans. Ma mission : <strong style="color:var(--gold)">rendre le savoir accessible à tous</strong>.</p>
+      <p data-i18n="about_p2">À travers ce site, je partage mes connaissances en management stratégique, audit, intelligence artificielle, méthodologie de recherche et pédagogie moderne.</p>
+      <blockquote style="border-left:3px solid var(--gold);padding:12px 20px;margin:20px 0;background:rgba(201,168,76,.05);font-style:italic;color:var(--white)" data-i18n="about_quote">"L'éducation est l'arme la plus puissante pour changer le monde."</blockquote>
       <div class="publication-box">
-  <span class="pub-label">📄 Publication scientifique internationale</span>
-  <h4><a href="https://revues.imist.ma/index.php/AJMET/article/view/65683" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none;transition:color 0.3s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--white)'">"L'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"</a></h4>
-  <p class="pub-journal">African Journal of Management Engineering and Technology · Vol. 4, N°2, 2026 · pp. 153-165</p>
-  <p class="pub-authors">Co-auteurs : Nouib A., Boulkhir L., Boulahcen N. — SupMoTI Rabat, Maroc</p>
-  
-  <div style="background:rgba(7,7,26,0.4);padding:12px 15px;border-radius:6px;margin-top:15px;font-size:0.85em;color:var(--white-dim);font-style:italic;border-left:2px solid var(--gold)">
-    💡 <strong style="color:var(--gold)">Citation :</strong> Nouib A., Boulkhir L., Boulahcen N. (2026). L'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics. <em>AJMET</em>, 4(2), 153-165.
-  </div>
-  
-  <div class="pub-tags" style="margin-top:15px">
-    <span class="pub-tag-item">PRISMA 2020</span>
-    <span class="pub-tag-item">IA &amp; Éducation</span>
-    <span class="pub-tag-item">Management Scolaire</span>
-    <span class="pub-tag-item">AJMET</span>
-  </div>
-  
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
-    <a href="https://revues.imist.ma/index.php/AJMET/article/view/65683" target="_blank" rel="noopener" style="display:inline-block;padding:10px 22px;background:var(--gold);color:var(--navy);border-radius:6px;text-decoration:none;font-weight:bold;font-size:0.92em;transition:transform 0.2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">📖 Lire la publication complète →</a>
-    
-    <a href="https://revues.imist.ma/index.php/AJMET/article/view/65683" target="_blank" rel="noopener" style="display:inline-block;padding:10px 22px;background:transparent;color:var(--gold);border:2px solid var(--gold);border-radius:6px;text-decoration:none;font-weight:bold;font-size:0.92em;transition:all 0.2s" onmouseover="this.style.background='var(--gold)';this.style.color='var(--navy)'" onmouseout="this.style.background='transparent';this.style.color='var(--gold)'">🔗 Voir sur IMIST</a>
-  </div>
-</div>
-      <h3 style="color:var(--gold);margin:25px 0 15px">Mon parcours</h3>
+        <span class="pub-label" data-i18n="pub_label">📄 Publication scientifique internationale</span>
+        <h4><a href="https://revues.imist.ma/index.php/AJMET/article/view/65683" target="_blank" rel="noopener" style="color:var(--white);text-decoration:none" data-i18n="pub_title">"L'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"</a></h4>
+        <p class="pub-journal">African Journal of Management Engineering and Technology · Vol. 4, N°2, 2026 · pp. 153-165</p>
+        <p class="pub-authors" data-i18n="pub_authors">Co-auteurs : Nouib A., Boulkhir L., Boulahcen N. — SupMoTI Rabat, Maroc</p>
+        <div class="pub-tags">
+          <span class="pub-tag-item">PRISMA 2020</span>
+          <span class="pub-tag-item">IA &amp; Éducation</span>
+          <span class="pub-tag-item">AJMET</span>
+        </div>
+        <a href="https://revues.imist.ma/index.php/AJMET/article/view/65683" target="_blank" rel="noopener" style="display:inline-block;margin-top:15px;padding:10px 20px;background:var(--gold);color:var(--navy);border-radius:6px;font-weight:bold;font-size:0.9em">📖 Lire la publication →</a>
+      </div>
+      <h3 style="color:var(--gold);margin:25px 0 15px" data-i18n="about_parcours">Mon parcours</h3>
       <div class="timeline">
         <div class="timeline-item">
           <span class="timeline-icon">🎓</span>
           <div class="timeline-content">
-            <h4>2000-2002 — CFI Kénitra</h4>
-            <p>Formation bilingue arabe-français en sciences de l'éducation et pédagogie.</p>
+            <h4 data-i18n="tl1_t">2000-2002 — CFI Kénitra</h4>
+            <p data-i18n="tl1_d">Formation bilingue arabe-français en sciences de l'éducation.</p>
           </div>
         </div>
         <div class="timeline-item">
           <span class="timeline-icon">👨‍🏫</span>
           <div class="timeline-content">
-            <h4>2002-aujourd'hui — Enseignant</h4>
-            <p>23 ans d'enseignement au sein du Ministère de l'Éducation Nationale du Maroc.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <span class="timeline-icon">📺</span>
-          <div class="timeline-content">
-            <h4>Créateur de contenu YouTube</h4>
-            <p>Création de vidéos pédagogiques pour aider les élèves.</p>
+            <h4 data-i18n="tl2_t">2002-aujourd'hui — Enseignant</h4>
+            <p data-i18n="tl2_d">23 ans d'enseignement au Ministère de l'Éducation Nationale.</p>
           </div>
         </div>
         <div class="timeline-item">
           <span class="timeline-icon">🔬</span>
           <div class="timeline-content">
-            <h4>2025-aujourd'hui — Master AMSO</h4>
-            <p>Audit et Management Stratégique des Organisations — FSJESKS, Université Cadi Ayyad.</p>
+            <h4 data-i18n="tl5_t">2025-aujourd'hui — Master AMSO</h4>
+            <p data-i18n="tl5_d">Audit et Management Stratégique des Organisations — FSJESKS.</p>
           </div>
         </div>
         <div class="timeline-item">
           <span class="timeline-icon">📄</span>
           <div class="timeline-content">
-            <h4>2026 — Publication scientifique internationale</h4>
-            <p>"L'IA comme levier de transformation managériale" — AJMET, Vol. 4, N°2.</p>
+            <h4 data-i18n="tl6_t">2026 — Publication scientifique internationale</h4>
+            <p data-i18n="tl6_d">"L'IA comme levier de transformation managériale" — AJMET.</p>
           </div>
         </div>
       </div>
@@ -351,16 +331,16 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <section id="publications">
   <div class="reveal">
-    <div class="section-tag">Mes publications</div>
-    <h2 class="section-title">Articles &amp; <span class="gold">Recherches</span></h2>
+    <div class="section-tag" data-i18n="pubs_tag">Mes publications</div>
+    <h2 class="section-title"><span data-i18n="pubs_title_1">Articles &amp;</span> <span class="gold" data-i18n="pubs_title_2">Recherches</span></h2>
     <div class="divider"></div>
-    <p class="section-sub">Cliquez sur un article pour le lire en intégralité - tout est intégré dans le site.</p>
+    <p class="section-sub" data-i18n="pubs_sub">Cliquez sur un article pour le lire en intégralité.</p>
     <div class="pub-filters" id="pubFilters">
-      <button class="filter-btn active" onclick="filterPubs('all',this)">Tous</button>
-      <button class="filter-btn" onclick="filterPubs('ia',this)">IA &amp; Éducation</button>
-      <button class="filter-btn" onclick="filterPubs('management',this)">Management</button>
-      <button class="filter-btn" onclick="filterPubs('methodologie',this)">Méthodologie</button>
-      <button class="filter-btn" onclick="filterPubs('audit',this)">Audit</button>
+      <button class="filter-btn active" onclick="filterPubs('all',this)" data-i18n="filter_all">Tous</button>
+      <button class="filter-btn" onclick="filterPubs('ia',this)" data-i18n="filter_ia">IA &amp; Éducation</button>
+      <button class="filter-btn" onclick="filterPubs('management',this)" data-i18n="filter_mgmt">Management</button>
+      <button class="filter-btn" onclick="filterPubs('methodologie',this)" data-i18n="filter_meth">Méthodologie</button>
+      <button class="filter-btn" onclick="filterPubs('audit',this)" data-i18n="filter_audit">Audit</button>
     </div>
   </div>
   <div class="pub-grid" id="pubGrid"></div>
@@ -368,74 +348,81 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <section id="services">
   <div class="reveal">
-    <div class="section-tag">Ce que je propose</div>
-    <h2 class="section-title">Mes <span class="gold">Services</span></h2>
+    <div class="section-tag" data-i18n="services_tag">Ce que je propose</div>
+    <h2 class="section-title"><span data-i18n="services_title_1">Mes</span> <span class="gold" data-i18n="services_title_2">Services</span></h2>
     <div class="divider"></div>
-    <p class="section-sub">Accompagnement académique professionnel en français, arabe et anglais, à distance ou en présentiel.</p>
+    <p class="section-sub" data-i18n="services_sub">Accompagnement académique professionnel en français, arabe et anglais.</p>
   </div>
   <div class="services-grid">
     <div class="service-card reveal">
       <span class="service-icon">✍️</span>
-      <h3>Rédaction de Mémoire</h3>
-      <p>Accompagnement complet : problématique, revue de littérature, méthodologie, résultats et conclusion.</p>
-      <span class="service-price">Sur devis</span>
-      <span class="service-unit">Tarif selon le niveau et la complexité</span>
-      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+      <h3 data-i18n="srv1_t">Rédaction de Mémoire</h3>
+      <p data-i18n="srv1_d">Accompagnement complet : problématique, revue de littérature, méthodologie.</p>
+      <span class="service-price" data-i18n="srv_price">Sur devis</span>
+      <span class="service-unit" data-i18n="srv1_u">Tarif selon le niveau</span>
+      <button class="service-btn" onclick="scrollToSection('contact')" data-i18n="srv_btn">Me contacter</button>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">🔬</span>
-      <h3>Accompagnement Méthodologique</h3>
-      <p>PRISMA 2020, approches qualitatives et quantitatives, cadre théorique et épistémologique.</p>
-      <span class="service-price">Sur devis</span>
-      <span class="service-unit">Sessions individuelles ou en groupe</span>
-      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+      <h3 data-i18n="srv2_t">Accompagnement Méthodologique</h3>
+      <p data-i18n="srv2_d">PRISMA 2020, approches qualitatives et quantitatives.</p>
+      <span class="service-price" data-i18n="srv_price">Sur devis</span>
+      <span class="service-unit" data-i18n="srv2_u">Sessions individuelles</span>
+      <button class="service-btn" onclick="scrollToSection('contact')" data-i18n="srv_btn">Me contacter</button>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">📝</span>
-      <h3>Relecture &amp; Correction</h3>
-      <p>Correction linguistique et méthodologique d'articles scientifiques, mémoires et rapports.</p>
-      <span class="service-price">Sur devis</span>
-      <span class="service-unit">2 à 5 jours selon la longueur</span>
-      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+      <h3 data-i18n="srv3_t">Relecture &amp; Correction</h3>
+      <p data-i18n="srv3_d">Correction linguistique et méthodologique.</p>
+      <span class="service-price" data-i18n="srv_price">Sur devis</span>
+      <span class="service-unit" data-i18n="srv3_u">2 à 5 jours</span>
+      <button class="service-btn" onclick="scrollToSection('contact')" data-i18n="srv_btn">Me contacter</button>
     </div>
     <div class="service-card reveal">
       <span class="service-icon">📊</span>
-      <h3>Conseil en Management</h3>
-      <p>Analyse SWOT, PESTEL, audit organisationnel et stratégie pour organisations éducatives.</p>
-      <span class="service-price">Sur devis</span>
-      <span class="service-unit">Selon la mission</span>
-      <button class="service-btn" onclick="scrollToSection('contact')">Me contacter</button>
+      <h3 data-i18n="srv4_t">Conseil en Management</h3>
+      <p data-i18n="srv4_d">Analyse SWOT, PESTEL, audit organisationnel.</p>
+      <span class="service-price" data-i18n="srv_price">Sur devis</span>
+      <span class="service-unit" data-i18n="srv4_u">Selon la mission</span>
+      <button class="service-btn" onclick="scrollToSection('contact')" data-i18n="srv_btn">Me contacter</button>
     </div>
   </div>
   <div class="why-box reveal">
-    <h3>💡 Pourquoi me choisir ?</h3>
+    <h3 data-i18n="why_title">💡 Pourquoi me choisir ?</h3>
     <div class="why-list">
-      <div class="why-item"><span>✓</span> <span>23 ans d'expérience en éducation</span></div>
-      <div class="why-item"><span>✓</span> <span>Auteur d'une publication scientifique internationale</span></div>
-      <div class="why-item"><span>✓</span> <span>Master AMSO en cours</span></div>
-      <div class="why-item"><span>✓</span> <span>Maîtrise de la méthode PRISMA 2020</span></div>
-      <div class="why-item"><span>✓</span> <span>Multilingue français-arabe-anglais</span></div>
-      <div class="why-item"><span>✓</span> <span>Tarifs adaptés aux étudiants</span></div>
-      <div class="why-item"><span>✓</span> <span>Travail à distance partout au Maroc &amp; international</span></div>
-      <div class="why-item"><span>✓</span> <span>Réponse sous 24-48h</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why1">23 ans d'expérience en éducation</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why2">Publication scientifique internationale</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why3">Master AMSO en cours</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why4">Maîtrise de PRISMA 2020</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why5">Multilingue FR-AR-EN</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why6">Tarifs étudiants</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why7">Travail à distance</span></div>
+      <div class="why-item"><span>✓</span> <span data-i18n="why8">Réponse sous 24-48h</span></div>
     </div>
   </div>
 </section>
 
 <section id="contact">
   <div class="reveal">
-    <div class="section-tag">Travaillons ensemble</div>
-    <h2 class="section-title">Me <span class="gold">Contacter</span></h2>
+    <div class="section-tag" data-i18n="contact_tag">Travaillons ensemble</div>
+    <h2 class="section-title"><span data-i18n="contact_title_1">Me</span> <span class="gold" data-i18n="contact_title_2">Contacter</span></h2>
     <div class="divider"></div>
-    <p class="section-sub">Vous avez un mémoire à rédiger ? Un article à corriger ? Je suis disponible pour vous accompagner.</p>
+    <p class="section-sub" data-i18n="contact_sub">Vous avez un mémoire à rédiger ? Je suis disponible pour vous accompagner.</p>
   </div>
   <div class="contact-wrap">
     <div class="contact-info reveal">
       <div class="contact-item">
         <span class="contact-item-icon">📍</span>
         <div class="contact-item-text">
-          <strong>Localisation</strong>
-          El Kelaa Des Sraghna · Marrakech-Safi · Maroc
+          <strong data-i18n="ci_loc">Localisation</strong>
+          El Kelaa Des Sraghna · Maroc
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="contact-item-icon">📧</span>
+        <div class="contact-item-text">
+          <strong>Email</strong>
+          <a href="mailto:noamane73@gmail.com" style="color:var(--white-dim)">noamane73@gmail.com</a>
         </div>
       </div>
       <div class="contact-item">
@@ -446,31 +433,24 @@ body.rtl .pub-badge{align-self:flex-end}
         </div>
       </div>
       <div class="contact-item">
-        <span class="contact-item-icon">🌐</span>
-        <div class="contact-item-text">
-          <strong>Site web</strong>
-          <a href="https://www.nbprof.com" target="_blank" rel="noopener" style="color:var(--white-dim)">www.nbprof.com</a>
-        </div>
-      </div>
-      <div class="contact-item">
         <span class="contact-item-icon">🎓</span>
         <div class="contact-item-text">
-          <strong>Affiliation académique</strong>
+          <strong data-i18n="ci_aff">Affiliation académique</strong>
           FSJESKS · Université Cadi Ayyad
         </div>
       </div>
       <div class="contact-item">
         <span class="contact-item-icon">🌍</span>
         <div class="contact-item-text">
-          <strong>Langues de travail</strong>
-          🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija
+          <strong data-i18n="ci_lang">Langues de travail</strong>
+          <span data-i18n="ci_lang_v">🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija</span>
         </div>
       </div>
       <div class="contact-item">
         <span class="contact-item-icon">⏱️</span>
         <div class="contact-item-text">
-          <strong>Délai de réponse</strong>
-          24 à 48 heures
+          <strong data-i18n="ci_delay">Délai de réponse</strong>
+          <span data-i18n="ci_delay_v">24 à 48 heures</span>
         </div>
       </div>
     </div>
@@ -478,24 +458,24 @@ body.rtl .pub-badge{align-self:flex-end}
       <form class="contact-form" onsubmit="handleSubmit(event)">
         <div class="form-row">
           <div class="form-group">
-            <label class="form-label">Votre prénom *</label>
-            <input class="form-input" type="text" required />
+            <label class="form-label" data-i18n="f_prenom">Votre prénom *</label>
+            <input class="form-input" type="text" name="prenom" required />
           </div>
           <div class="form-group">
-            <label class="form-label">Votre nom *</label>
-            <input class="form-input" type="text" required />
+            <label class="form-label" data-i18n="f_nom">Votre nom *</label>
+            <input class="form-input" type="text" name="nom" required />
           </div>
         </div>
         <div class="form-group">
-          <label class="form-label">Votre email *</label>
-          <input class="form-input" type="email" required placeholder="exemple@email.com" />
+          <label class="form-label" data-i18n="f_email">Votre email *</label>
+          <input class="form-input" type="email" name="email" required placeholder="exemple@email.com" />
         </div>
         <div class="form-group">
-          <label class="form-label">Votre message *</label>
-          <textarea class="form-textarea" required placeholder="Décrivez votre projet..."></textarea>
+          <label class="form-label" data-i18n="f_msg">Votre message *</label>
+          <textarea class="form-textarea" name="message" required placeholder="Décrivez votre projet..."></textarea>
         </div>
-        <button type="submit" class="form-submit">📩 Envoyer ma demande</button>
-        <div class="form-status" id="formStatus">✅ Votre message a bien été envoyé !</div>
+        <button type="submit" class="form-submit" data-i18n="f_submit">📩 Envoyer ma demande</button>
+        <div class="form-status" id="formStatus" data-i18n="f_success">✅ Votre message a bien été envoyé !</div>
       </form>
     </div>
   </div>
@@ -503,14 +483,14 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <footer>
   <div class="footer-logo">#NBProf</div>
-  <div class="footer-tagline">Enseignant-Chercheur · Expert en IA, Management Stratégique &amp; Audit</div>
+  <div class="footer-tagline" data-i18n="footer_tag">Enseignant-Chercheur · Expert en IA, Management Stratégique &amp; Audit</div>
   <div class="footer-links">
-    <a onclick="scrollToSection('about')">À propos</a>
-    <a onclick="scrollToSection('publications')">Publications</a>
-    <a onclick="scrollToSection('services')">Services</a>
-    <a onclick="scrollToSection('contact')">Contact</a>
+    <a onclick="scrollToSection('about')" data-i18n="nav_about">À propos</a>
+    <a onclick="scrollToSection('publications')" data-i18n="nav_pubs">Publications</a>
+    <a onclick="scrollToSection('services')" data-i18n="nav_services">Services</a>
+    <a onclick="scrollToSection('contact')" data-i18n="nav_contact">Contact</a>
   </div>
-  <div class="footer-copy">© 2026 Noamane Boulahcen · Tous droits réservés</div>
+  <div class="footer-copy" data-i18n="footer_copy">© 2026 Noamane Boulahcen · Tous droits réservés</div>
   <div class="footer-socials">
     <a class="social-btn" href="https://www.linkedin.com/in/noamane-boulahcen-015b3115" target="_blank" rel="noopener">in</a>
   </div>
@@ -525,102 +505,24 @@ body.rtl .pub-badge{align-self:flex-end}
 
 <script src="articles.js"></script>
 <script>
-let currentLang = 'fr';
-
-function renderArticles(filter = 'all') {
-  const grid = document.getElementById('pubGrid');
-  grid.innerHTML = '';
-  if (typeof ARTICLES === 'undefined') return;
-  const filtered = filter === 'all' ? ARTICLES : ARTICLES.filter(a => a.category === filter);
-  filtered.forEach(a => {
-    const card = document.createElement('div');
-    card.className = 'pub-card reveal visible';
-    card.onclick = () => openArticle(a.id);
-    card.innerHTML = `
-      <div class="pub-thumb">${a.icon}</div>
-      <div class="pub-body">
-        <span class="pub-badge">${a.badge[currentLang]}</span>
-        <h3>${a.title[currentLang]}</h3>
-        <p class="pub-excerpt">${a.excerpt[currentLang]}</p>
-        <div class="pub-meta">
-          <span>${a.date[currentLang]} · ${a.readTime[currentLang]}</span>
-          <span class="pub-link">Lire →</span>
-        </div>
-      </div>`;
-    grid.appendChild(card);
-  });
-}
-
-function filterPubs(category, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderArticles(category);
-}
-
-function filterAndScroll(category) {
-  scrollToSection('publications');
-  setTimeout(() => {
-    const btns = document.querySelectorAll('#pubFilters .filter-btn');
-    const map = {ia:1, management:2, methodologie:3, audit:4};
-    if (map[category] && btns[map[category]]) filterPubs(category, btns[map[category]]);
-    else filterPubs('all', btns[0]);
-  }, 600);
-}
-
-function openArticle(id) {
-  if (typeof ARTICLES === 'undefined') return;
-  const a = ARTICLES.find(x => x.id === id);
-  if (!a) return;
-  document.getElementById('modalBody').innerHTML = `
-    <span class="modal-badge">${a.badge[currentLang]}</span>
-    <h2>${a.title[currentLang]}</h2>
-    <div class="modal-meta">📅 ${a.date[currentLang]} · ⏱️ ${a.readTime[currentLang]}</div>
-    <div class="modal-content">${a.content[currentLang]}</div>`;
-  document.getElementById('modalOverlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  document.getElementById('modalOverlay').classList.remove('active');
-  document.body.style.overflow = '';
-}
-function closeModalOutside(e) { if (e.target.id === 'modalOverlay') closeModal(); }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-  document.getElementById('navCenter').classList.remove('open');
-}
-function toggleMenu() { document.getElementById('navCenter').classList.toggle('open'); }
-function setLang(lang, btn) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  if (lang === 'ar') document.body.classList.add('rtl');
-  else document.body.classList.remove('rtl');
-  renderArticles('all');
-}
-
-window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) nav.classList.add('scrolled');
-  else nav.classList.remove('scrolled');
-});
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) setTimeout(() => entry.target.classList.add('visible'), i * 80);
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-function handleSubmit(e) {
-  e.preventDefault();
-  setTimeout(() => { document.getElementById('formStatus').className = 'form-status success'; }, 500);
-}
-
-window.addEventListener('load', () => { renderArticles(); });
+const TRANSLATIONS={fr:{nav_themes:"Thèmes",nav_about:"À propos",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",hero_tag:"Enseignant-Chercheur · Futur Auditeur",hero_subtitle:"Expert en IA, Management Stratégique & Audit",hero_sub:"23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.",hero_btn1:"Mes Services",hero_btn2:"Mes Publications",stat1:"Ans d'expérience",stat2:"Niveaux enseignés",stat3:"Publication int'l",stat4:"Langues",themes_tag:"Domaines d'expertise",themes_title_1:"Mes",themes_title_2:"Thèmes",themes_sub:"Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.",theme1_t:"Intelligence Artificielle & Éducation",theme1_d:"Comment l'IA transforme les pratiques managériales.",theme2_t:"Management Stratégique",theme2_d:"Analyse SWOT, PESTEL, forces de Porter.",theme2_tag:"Management · Stratégie",theme3_t:"Audit & Contrôle de Gestion",theme3_d:"Audit organisationnel et contrôle de gestion.",theme3_tag:"Audit · Gestion",theme4_t:"Méthodologie de Recherche",theme4_d:"PRISMA 2020, approches qualitatives et quantitatives.",theme5_t:"Pédagogie Moderne",theme5_d:"Innovations pédagogiques adaptées au Maroc.",theme5_tag:"Éducation",theme6_t:"Transformation Digitale",theme6_d:"Numérisation des établissements scolaires.",about_tag:"À propos",about_title_1:"Qui",about_title_2:"suis-je",about_loc:"📍 Localisation",about_form:"🎓 Formation actuelle",about_p1:"Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans. Ma mission : <strong style='color:var(--gold)'>rendre le savoir accessible à tous</strong>.",about_p2:"À travers ce site, je partage mes connaissances en management stratégique, audit, IA et méthodologie de recherche.",about_quote:'"L\'éducation est l\'arme la plus puissante pour changer le monde."',pub_label:"📄 Publication scientifique internationale",pub_title:'"L\'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"',pub_authors:"Co-auteurs : Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"Mon parcours",tl1_t:"2000-2002 — CFI Kénitra",tl1_d:"Formation bilingue arabe-français en sciences de l'éducation.",tl2_t:"2002-aujourd'hui — Enseignant",tl2_d:"23 ans d'enseignement au Ministère de l'Éducation Nationale.",tl5_t:"2025-aujourd'hui — Master AMSO",tl5_d:"Audit et Management Stratégique — FSJESKS.",tl6_t:"2026 — Publication scientifique internationale",tl6_d:'"L\'IA comme levier de transformation managériale" — AJMET.',pubs_tag:"Mes publications",pubs_title_1:"Articles &",pubs_title_2:"Recherches",pubs_sub:"Cliquez sur un article pour le lire en intégralité.",filter_all:"Tous",filter_ia:"IA & Éducation",filter_mgmt:"Management",filter_meth:"Méthodologie",filter_audit:"Audit",services_tag:"Ce que je propose",services_title_1:"Mes",services_title_2:"Services",services_sub:"Accompagnement académique professionnel en français, arabe et anglais.",srv1_t:"Rédaction de Mémoire",srv1_d:"Accompagnement complet : problématique, revue de littérature, méthodologie.",srv2_t:"Accompagnement Méthodologique",srv2_d:"PRISMA 2020, approches qualitatives et quantitatives.",srv3_t:"Relecture & Correction",srv3_d:"Correction linguistique et méthodologique.",srv4_t:"Conseil en Management",srv4_d:"Analyse SWOT, PESTEL, audit organisationnel.",srv_price:"Sur devis",srv1_u:"Tarif selon le niveau",srv2_u:"Sessions individuelles",srv3_u:"2 à 5 jours",srv4_u:"Selon la mission",srv_btn:"Me contacter",why_title:"💡 Pourquoi me choisir ?",why1:"23 ans d'expérience en éducation",why2:"Publication scientifique internationale",why3:"Master AMSO en cours",why4:"Maîtrise de PRISMA 2020",why5:"Multilingue FR-AR-EN",why6:"Tarifs étudiants",why7:"Travail à distance",why8:"Réponse sous 24-48h",contact_tag:"Travaillons ensemble",contact_title_1:"Me",contact_title_2:"Contacter",contact_sub:"Vous avez un mémoire à rédiger ? Je suis disponible.",ci_loc:"Localisation",ci_aff:"Affiliation académique",ci_lang:"Langues de travail",ci_lang_v:"🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija",ci_delay:"Délai de réponse",ci_delay_v:"24 à 48 heures",f_prenom:"Votre prénom *",f_nom:"Votre nom *",f_email:"Votre email *",f_msg:"Votre message *",f_submit:"📩 Envoyer ma demande",f_success:"✅ Votre message a bien été envoyé !",footer_tag:"Enseignant-Chercheur · Expert en IA, Management Stratégique & Audit",footer_copy:"© 2026 Noamane Boulahcen · Tous droits réservés",read_more:"Lire →",contact_me:"Me contacter"},ar:{nav_themes:"المحاور",nav_about:"نبذة عني",nav_pubs:"المنشورات",nav_services:"الخدمات",nav_contact:"تواصل",hero_tag:"أستاذ باحث · مدقق المستقبل",hero_subtitle:"خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",hero_sub:"23 سنة من الخبرة في التعليم. مؤلف منشور علمي دولي.",hero_btn1:"خدماتي",hero_btn2:"منشوراتي",stat1:"سنة خبرة",stat2:"مستويات تدريس",stat3:"منشور دولي",stat4:"لغات",themes_tag:"مجالات الخبرة",themes_title_1:"محاوري",themes_title_2:"",themes_sub:"محتوى تعليمي غني وميسر.",theme1_t:"الذكاء الاصطناعي والتعليم",theme1_d:"كيف يحول الذكاء الاصطناعي الممارسات الإدارية.",theme2_t:"الإدارة الاستراتيجية",theme2_d:"تحليل SWOT وPESTEL وقوى بورتر.",theme2_tag:"إدارة · استراتيجية",theme3_t:"التدقيق ومراقبة التسيير",theme3_d:"التدقيق التنظيمي ومراقبة التسيير.",theme3_tag:"تدقيق · تسيير",theme4_t:"منهجية البحث",theme4_d:"PRISMA 2020، المقاربات النوعية والكمية.",theme5_t:"البيداغوجيا الحديثة",theme5_d:"الابتكارات البيداغوجية المكيفة مع المغرب.",theme5_tag:"تعليم",theme6_t:"التحول الرقمي",theme6_d:"رقمنة المؤسسات المدرسية.",about_tag:"نبذة عني",about_title_1:"من",about_title_2:"أنا",about_loc:"📍 الموقع",about_form:"🎓 التكوين الحالي",about_p1:"من مواليد الراشيدية، أب لثلاثة أطفال، أستاذ منذ 23 سنة. مهمتي: <strong style='color:var(--gold)'>جعل المعرفة متاحة للجميع</strong>.",about_p2:"من خلال هذا الموقع، أشارك معرفتي في الإدارة الاستراتيجية والتدقيق والذكاء الاصطناعي.",about_quote:'"التعليم هو أقوى سلاح لتغيير العالم."',pub_label:"📄 منشور علمي دولي",pub_title:'"الذكاء الاصطناعي كرافعة لتحويل الممارسات الإدارية في المؤسسات المدرسية العمومية: مراجعة منهجية وفق PRISMA 2020"',pub_authors:"المؤلفون المشاركون: نويب أ.، بولخير ل.، بولحسن ن.",about_parcours:"مساري",tl1_t:"2000-2002 — CFI القنيطرة",tl1_d:"تكوين ثنائي اللغة في علوم التربية.",tl2_t:"2002-اليوم — أستاذ",tl2_d:"23 سنة من التدريس.",tl5_t:"2025-اليوم — ماستر AMSO",tl5_d:"التدقيق والإدارة الاستراتيجية — FSJESKS.",tl6_t:"2026 — منشور علمي دولي",tl6_d:'"الذكاء الاصطناعي كرافعة للتحول الإداري" — AJMET.',pubs_tag:"منشوراتي",pubs_title_1:"مقالات و",pubs_title_2:"أبحاث",pubs_sub:"انقر على أي مقال لقراءته كاملا.",filter_all:"الكل",filter_ia:"ذكاء اصطناعي",filter_mgmt:"إدارة",filter_meth:"منهجية",filter_audit:"تدقيق",services_tag:"ما أقدمه",services_title_1:"",services_title_2:"خدماتي",services_sub:"مرافقة أكاديمية احترافية بالفرنسية والعربية والإنجليزية.",srv1_t:"كتابة المذكرات",srv1_d:"مرافقة شاملة: الإشكالية، مراجعة الأدبيات، المنهجية.",srv2_t:"المرافقة المنهجية",srv2_d:"PRISMA 2020، المقاربات النوعية والكمية.",srv3_t:"المراجعة والتصحيح",srv3_d:"تصحيح لغوي ومنهجي.",srv4_t:"استشارة في الإدارة",srv4_d:"تحليل SWOT وPESTEL والتدقيق التنظيمي.",srv_price:"حسب الطلب",srv1_u:"السعر حسب المستوى",srv2_u:"جلسات فردية",srv3_u:"2 إلى 5 أيام",srv4_u:"حسب المهمة",srv_btn:"تواصل معي",why_title:"💡 لماذا تختارني؟",why1:"23 سنة من الخبرة في التعليم",why2:"منشور علمي دولي",why3:"ماستر AMSO قيد الإنجاز",why4:"إتقان PRISMA 2020",why5:"متعدد اللغات",why6:"أسعار طلابية",why7:"عمل عن بعد",why8:"رد خلال 24-48 ساعة",contact_tag:"لنعمل معًا",contact_title_1:"تواصل",contact_title_2:"معي",contact_sub:"هل لديك مذكرة لكتابتها؟ أنا متاح.",ci_loc:"الموقع",ci_aff:"الانتماء الأكاديمي",ci_lang:"لغات العمل",ci_lang_v:"🇫🇷 الفرنسية · 🇲🇦 العربية · 🇬🇧 الإنجليزية · الدارجة",ci_delay:"مدة الرد",ci_delay_v:"24 إلى 48 ساعة",f_prenom:"اسمك الشخصي *",f_nom:"اسمك العائلي *",f_email:"بريدك الإلكتروني *",f_msg:"رسالتك *",f_submit:"📩 إرسال طلبي",f_success:"✅ تم إرسال رسالتك بنجاح!",footer_tag:"أستاذ باحث · خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",footer_copy:"© 2026 نعمان بولحسن · جميع الحقوق محفوظة",read_more:"اقرأ ←",contact_me:"تواصل معي"},en:{nav_themes:"Topics",nav_about:"About",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",hero_tag:"Lecturer-Researcher · Future Auditor",hero_subtitle:"Expert in AI, Strategic Management & Audit",hero_sub:"23 years of experience in education. Author of an international scientific publication.",hero_btn1:"My Services",hero_btn2:"My Publications",stat1:"Years of experience",stat2:"Teaching levels",stat3:"Int'l publication",stat4:"Languages",themes_tag:"Areas of expertise",themes_title_1:"My",themes_title_2:"Topics",themes_sub:"Rich, accessible educational content based on scientific research.",theme1_t:"AI & Education",theme1_d:"How AI is transforming managerial practices.",theme2_t:"Strategic Management",theme2_d:"SWOT, PESTEL, Porter's forces.",theme2_tag:"Management · Strategy",theme3_t:"Audit & Management Control",theme3_d:"Organizational audit and management control.",theme3_tag:"Audit · Control",theme4_t:"Research Methodology",theme4_d:"PRISMA 2020, qualitative and quantitative approaches.",theme5_t:"Modern Pedagogy",theme5_d:"Pedagogical innovations adapted to Morocco.",theme5_tag:"Education",theme6_t:"Digital Transformation",theme6_d:"Digitization of schools.",about_tag:"About",about_title_1:"Who",about_title_2:"am I",about_loc:"📍 Location",about_form:"🎓 Current education",about_p1:"From Errachidia, father of 3 children, teacher for 23 years. My mission: <strong style='color:var(--gold)'>make knowledge accessible to all</strong>.",about_p2:"Through this site, I share my knowledge in strategic management, audit, AI and research methodology.",about_quote:'"Education is the most powerful weapon to change the world."',pub_label:"📄 International scientific publication",pub_title:'"Artificial intelligence as a lever for transforming managerial practices in public schools: a systematic literature review using PRISMA 2020"',pub_authors:"Co-authors: Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"My journey",tl1_t:"2000-2002 — CFI Kenitra",tl1_d:"Bilingual Arabic-French training.",tl2_t:"2002-present — Teacher",tl2_d:"23 years of teaching.",tl5_t:"2025-present — Master AMSO",tl5_d:"Audit and Strategic Management — FSJESKS.",tl6_t:"2026 — International scientific publication",tl6_d:'"AI as a lever for managerial transformation" — AJMET.',pubs_tag:"My publications",pubs_title_1:"Articles &",pubs_title_2:"Research",pubs_sub:"Click on an article to read it in full.",filter_all:"All",filter_ia:"AI & Education",filter_mgmt:"Management",filter_meth:"Methodology",filter_audit:"Audit",services_tag:"What I offer",services_title_1:"My",services_title_2:"Services",services_sub:"Professional academic support in French, Arabic and English.",srv1_t:"Thesis Writing",srv1_d:"Complete support: research question, literature review, methodology.",srv2_t:"Methodological Support",srv2_d:"PRISMA 2020, qualitative and quantitative approaches.",srv3_t:"Proofreading & Editing",srv3_d:"Linguistic and methodological correction.",srv4_t:"Management Consulting",srv4_d:"SWOT, PESTEL analysis, organizational audit.",srv_price:"On quote",srv1_u:"Price depending on level",srv2_u:"Individual sessions",srv3_u:"2 to 5 days",srv4_u:"Depending on the mission",srv_btn:"Contact me",why_title:"💡 Why choose me?",why1:"23 years of experience in education",why2:"International scientific publication",why3:"Master AMSO in progress",why4:"Mastery of PRISMA 2020",why5:"Multilingual FR-AR-EN",why6:"Student rates",why7:"Remote work",why8:"Response within 24-48h",contact_tag:"Let's work together",contact_title_1:"Contact",contact_title_2:"Me",contact_sub:"Do you have a thesis to write? I am available.",ci_loc:"Location",ci_aff:"Academic affiliation",ci_lang:"Working languages",ci_lang_v:"🇫🇷 French · 🇲🇦 Arabic · 🇬🇧 English · Darija",ci_delay:"Response time",ci_delay_v:"24 to 48 hours",f_prenom:"Your first name *",f_nom:"Your last name *",f_email:"Your email *",f_msg:"Your message *",f_submit:"📩 Send my request",f_success:"✅ Your message has been sent!",footer_tag:"Lecturer-Researcher · Expert in AI, Strategic Management & Audit",footer_copy:"© 2026 Noamane Boulahcen · All rights reserved",read_more:"Read →",contact_me:"Contact me"}};
+let currentLang='fr';
+function applyTranslations(lang){const t=TRANSLATIONS[lang];if(!t)return;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key]!==undefined)el.innerHTML=t[key];});}
+function renderArticles(filter='all'){const grid=document.getElementById('pubGrid');grid.innerHTML='';if(typeof ARTICLES==='undefined')return;const filtered=filter==='all'?ARTICLES:ARTICLES.filter(a=>a.category===filter);const readMore=TRANSLATIONS[currentLang].read_more||'Lire →';filtered.forEach(a=>{const card=document.createElement('div');card.className='pub-card reveal visible';card.onclick=()=>openArticle(a.id);card.innerHTML=`<div class="pub-thumb">${a.icon}</div><div class="pub-body"><span class="pub-badge">${a.badge[currentLang]}</span><h3>${a.title[currentLang]}</h3><p class="pub-excerpt">${a.excerpt[currentLang]}</p><div class="pub-meta"><span>${a.date[currentLang]} · ${a.readTime[currentLang]}</span><span class="pub-link">${readMore}</span></div></div>`;grid.appendChild(card);});}
+function filterPubs(category,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderArticles(category);}
+function filterAndScroll(category){scrollToSection('publications');setTimeout(()=>{const btns=document.querySelectorAll('#pubFilters .filter-btn');const map={ia:1,management:2,methodologie:3,audit:4};if(map[category]&&btns[map[category]])filterPubs(category,btns[map[category]]);else filterPubs('all',btns[0]);},600);}
+function openArticle(id){if(typeof ARTICLES==='undefined')return;const a=ARTICLES.find(x=>x.id===id);if(!a)return;const contactMe=TRANSLATIONS[currentLang].contact_me||'Me contacter';document.getElementById('modalBody').innerHTML=`<span class="modal-badge">${a.badge[currentLang]}</span><h2>${a.title[currentLang]}</h2><div class="modal-meta">📅 ${a.date[currentLang]} · ⏱️ ${a.readTime[currentLang]}</div><div class="modal-content">${a.content[currentLang]}</div><div style="margin-top:30px;padding-top:20px;border-top:1px solid var(--gold-medium);text-align:center"><button class="btn-primary" onclick="closeModal();scrollToSection('contact')">📩 ${contactMe}</button></div>`;document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden';document.querySelector('.modal').scrollTop=0;}
+function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target.id==='modalOverlay')closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+function scrollToSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});document.getElementById('navCenter').classList.remove('open');}
+function toggleMenu(){document.getElementById('navCenter').classList.toggle('open');}
+function setLang(lang,btn){currentLang=lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyTranslations(lang);if(lang==='ar'){document.body.classList.add('rtl');document.documentElement.setAttribute('lang','ar');document.documentElement.setAttribute('dir','rtl');}else{document.body.classList.remove('rtl');document.documentElement.setAttribute('lang',lang);document.documentElement.setAttribute('dir','ltr');}renderArticles('all');}
+window.addEventListener('scroll',()=>{const nav=document.getElementById('navbar');if(window.scrollY>50)nav.classList.add('scrolled');else nav.classList.remove('scrolled');});
+const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting)setTimeout(()=>entry.target.classList.add('visible'),i*80);});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+function handleSubmit(e){e.preventDefault();setTimeout(()=>{document.getElementById('formStatus').className='form-status success';},500);}
+window.addEventListener('load',()=>{renderArticles();});
 </script>
 </body>
 </html>
