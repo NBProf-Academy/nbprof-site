@@ -228,44 +228,486 @@ const ARTICLES = [
     }
   },
 
-  {
-    id: 2,
-    category: 'management',
-    icon: '🎯',
-    date:     { fr: 'Mai 2026', ar: 'ماي 2026', en: 'May 2026' },
-    readTime: { fr: '6 min', ar: '6 دقائق', en: '6 min' },
-    badge:    { fr: 'Management Stratégique', ar: 'إدارة استراتيجية', en: 'Strategic Management' },
-    title: {
-      fr: "L'analyse SWOT expliquée simplement",
-      ar: "تحليل SWOT بطريقة مبسطة",
-      en: "SWOT Analysis explained simply"
-    },
-    excerpt: {
-      fr: "L'outil stratégique le plus cité mais aussi le plus mal utilisé.",
-      ar: "الأداة الاستراتيجية الأكثر استشهادًا والأسوأ استخدامًا.",
-      en: "The most cited strategic tool but also the most misused."
-    },
-    content: {
-      fr: `<h3>Les 4 dimensions</h3>
-        <ul>
-          <li><strong>Forces (S)</strong> : atouts internes</li>
-          <li><strong>Faiblesses (W)</strong> : limites internes</li>
-          <li><strong>Opportunités (O)</strong> : tendances externes favorables</li>
-          <li><strong>Menaces (T)</strong> : risques externes</li>
-        </ul>
-        <div class="highlight-box">⚠️ <strong>Erreur fréquente :</strong> Confondre interne et externe.</div>
-        <h3>Du SWOT au TOWS</h3>
-        <ul>
-          <li><strong>SO</strong> : forces × opportunités</li>
-          <li><strong>WO</strong> : faiblesses × opportunités</li>
-          <li><strong>ST</strong> : forces × menaces</li>
-          <li><strong>WT</strong> : faiblesses × menaces</li>
-        </ul>
-        <blockquote>Bien utilisée, l'analyse SWOT reste un outil stratégique puissant.</blockquote>`,
-      ar: `<h3>مقدمة</h3><p>يُختزل SWOT غالبا في قائمة بسيطة دون تحليل.</p>`,
-      en: `<h3>Introduction</h3><p>SWOT is often reduced to a simple list without analysis.</p>`
-    }
+ {
+  id: 2,
+  category: 'management',
+  icon: '🎯',
+  date:     { fr: 'Juin 2026', ar: 'يونيو 2026', en: 'June 2026' },
+  readTime: { fr: '12 min', ar: '12 دقيقة', en: '12 min' },
+  badge:    { fr: 'Management Stratégique · Diagnostic', ar: 'إدارة استراتيجية · تشخيص', en: 'Strategic Management · Diagnosis' },
+  title: {
+    fr: "L'analyse SWOT expliquée simplement : définition, méthode et erreurs à éviter",
+    ar: "تحليل SWOT بطريقة مبسطة: تعريف، منهجية، وأخطاء يجب تجنبها",
+    en: "SWOT Analysis explained simply: definition, method and mistakes to avoid"
   },
+  excerpt: {
+    fr: "L'analyse SWOT est l'outil stratégique le plus cité en management. Pourtant, 90% des organisations le font mal. Découvrez comment le maîtriser vraiment — avec des exemples concrets appliqués au contexte marocain.",
+    ar: "تحليل SWOT هو الأداة الاستراتيجية الأكثر استشهادا في الإدارة. ومع ذلك، 90% من المنظمات تطبقه بشكل خاطئ. اكتشف كيفية إتقانه حقا — مع أمثلة ملموسة من السياق المغربي.",
+    en: "SWOT analysis is the most cited strategic tool in management. Yet 90% of organizations do it wrong. Discover how to truly master it — with concrete examples applied to the Moroccan context."
+  },
+  content: {
+    fr: `
+      <p>Que vous soyez étudiant en master, directeur d'établissement scolaire, chef d'entreprise ou responsable d'une organisation publique, vous avez forcément entendu parler de l'analyse SWOT. Mais savoir la <em>nommer</em> et savoir la <em>réaliser correctement</em> sont deux choses très différentes.</p>
+
+      <h3>1. Qu'est-ce que l'analyse SWOT ?</h3>
+      <p>L'analyse SWOT est un outil de diagnostic stratégique qui permet d'évaluer la situation d'une organisation en croisant deux dimensions :</p>
+      <ul>
+        <li><strong>L'environnement interne</strong> : ce qui dépend de l'organisation elle-même</li>
+        <li><strong>L'environnement externe</strong> : ce qui vient de l'extérieur de l'organisation</li>
+      </ul>
+
+      <p>Le mot SWOT est un acronyme anglais qui correspond à :</p>
+
+      <h3>💪 S — Strengths (Forces)</h3>
+      <ul>
+        <li>Avantages internes</li>
+        <li>Ce que vous faites mieux</li>
+        <li>Ressources disponibles</li>
+        <li>Compétences distinctives</li>
+      </ul>
+
+      <h3>⚠️ W — Weaknesses (Faiblesses)</h3>
+      <ul>
+        <li>Limites internes</li>
+        <li>Ce qui vous freine</li>
+        <li>Manques à combler</li>
+        <li>Points à améliorer</li>
+      </ul>
+
+      <h3>🚀 O — Opportunities (Opportunités)</h3>
+      <ul>
+        <li>Facteurs externes favorables</li>
+        <li>Tendances du marché</li>
+        <li>Évolutions réglementaires</li>
+        <li>Nouvelles technologies</li>
+      </ul>
+
+      <h3>🎯 T — Threats (Menaces)</h3>
+      <ul>
+        <li>Risques externes</li>
+        <li>Concurrence accrue</li>
+        <li>Changements défavorables</li>
+        <li>Crises potentielles</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Règle d'or :</strong> Forces et Faiblesses sont INTERNES (vous pouvez les contrôler). Opportunités et Menaces sont EXTERNES (vous ne pouvez pas les contrôler, mais vous pouvez vous y adapter).
+      </div>
+
+      <h3>2. Exemple concret : SWOT d'un établissement scolaire marocain</h3>
+      <p>Appliquons l'analyse SWOT à un établissement scolaire public marocain pour mieux comprendre son fonctionnement :</p>
+
+      <h3>💪 Forces</h3>
+      <ul>
+        <li>Équipe enseignante expérimentée</li>
+        <li>Bonne réputation locale</li>
+        <li>Infrastructures récentes</li>
+        <li>Direction motivée</li>
+      </ul>
+
+      <h3>⚠️ Faiblesses</h3>
+      <ul>
+        <li>Surcharge des classes</li>
+        <li>Manque de ressources numériques</li>
+        <li>Formation continue insuffisante</li>
+        <li>Communication interne limitée</li>
+      </ul>
+
+      <h3>🚀 Opportunités</h3>
+      <ul>
+        <li>Plan numérique du gouvernement</li>
+        <li>Partenariats avec universités</li>
+        <li>Outils d'IA accessibles</li>
+        <li>Demande croissante de qualité</li>
+      </ul>
+
+      <h3>🎯 Menaces</h3>
+      <ul>
+        <li>Concurrence des écoles privées</li>
+        <li>Départ des bons enseignants</li>
+        <li>Budgets contraints</li>
+        <li>Évolution rapide des programmes</li>
+      </ul>
+
+      <h3>3. La vraie puissance du SWOT : le croisement stratégique</h3>
+      <p>Remplir les 4 cases du SWOT n'est que la première étape. La vraie valeur vient du <strong>croisement</strong> de ces quatre dimensions pour construire une stratégie concrète.</p>
+
+      <div class="highlight-box">
+        <strong>🎯 Matrice de croisement stratégique :</strong><br><br>
+        <strong>Forces × Opportunités → Stratégie SO ("Attaque")</strong><br>
+        Utiliser vos forces pour saisir les opportunités<br><br>
+        <strong>Forces × Menaces → Stratégie ST ("Défense")</strong><br>
+        Utiliser vos forces pour contrer les menaces<br><br>
+        <strong>Faiblesses × Opportunités → Stratégie WO ("Redressement")</strong><br>
+        Combler vos faiblesses grâce aux opportunités<br><br>
+        <strong>Faiblesses × Menaces → Stratégie WT ("Survie")</strong><br>
+        Réduire vos faiblesses et éviter les menaces
+      </div>
+
+      <blockquote>
+        "Une bonne analyse SWOT ne s'arrête pas au diagnostic. Elle débouche sur un plan d'action stratégique clair et priorisé."
+      </blockquote>
+
+      <h3>4. Les 5 erreurs les plus fréquentes</h3>
+
+      <h3>Erreur 1 — Confondre interne et externe</h3>
+      <div class="highlight-box">
+        ❌ <strong>Erreur :</strong> "La concurrence est une faiblesse"<br>
+        ✅ <strong>Correct :</strong> "La concurrence est une menace (externe). Notre manque de différenciation est une faiblesse (interne)"
+      </div>
+
+      <h3>Erreur 2 — Être trop vague</h3>
+      <div class="highlight-box">
+        ❌ <strong>Erreur :</strong> "Notre équipe est bien formée"<br>
+        ✅ <strong>Correct :</strong> "80% de nos enseignants ont plus de 10 ans d'expérience et une double compétence pédagogique/numérique"
+      </div>
+
+      <h3>Erreur 3 — Ne pas prioriser</h3>
+      <div class="highlight-box">
+        ❌ <strong>Erreur :</strong> Lister 20 forces, 15 faiblesses, 12 opportunités et 18 menaces sans hiérarchie<br>
+        ✅ <strong>Correct :</strong> Identifier les 3 à 5 éléments les plus impactants dans chaque catégorie
+      </div>
+
+      <h3>Erreur 4 — Ne pas croiser les données</h3>
+      <div class="highlight-box">
+        ❌ <strong>Erreur :</strong> S'arrêter après avoir rempli les 4 cases<br>
+        ✅ <strong>Correct :</strong> Construire la matrice croisée SO/ST/WO/WT pour définir des stratégies concrètes
+      </div>
+
+      <h3>Erreur 5 — Faire le SWOT seul</h3>
+      <div class="highlight-box">
+        ❌ <strong>Erreur :</strong> Le directeur remplit seul le SWOT dans son bureau<br>
+        ✅ <strong>Correct :</strong> Impliquer toutes les parties prenantes : enseignants, personnel, parents, élèves
+      </div>
+
+      <h3>5. Méthode pratique pour réaliser votre SWOT en 4 étapes</h3>
+      <ul>
+        <li><strong>1. Collecte des données</strong> : entretiens, questionnaires, données chiffrées, observations terrain</li>
+        <li><strong>2. Brainstorming collectif</strong> : impliquer toutes les parties prenantes dans un atelier participatif</li>
+        <li><strong>3. Priorisation</strong> : classer les éléments par ordre d'importance et d'urgence</li>
+        <li><strong>4. Croisement stratégique</strong> : construire la matrice SO/ST/WO/WT et définir le plan d'action</li>
+      </ul>
+
+      <div class="highlight-box">
+        ⏱️ <strong>Durée recommandée :</strong> Comptez 2 à 3 heures pour un SWOT de qualité réalisé en équipe. Un SWOT fait en 20 minutes ne vaut rien — c'est un exercice de réflexion stratégique, pas une formalité administrative.
+      </div>
+
+      <h3>Conclusion</h3>
+      <p>L'analyse SWOT est un outil puissant — à condition de le prendre au sérieux. Bien réalisé, il devient la boussole stratégique de votre organisation, qu'il s'agisse d'un établissement scolaire, d'une entreprise ou d'une association.</p>
+      <p>Dans mes cours et mes accompagnements, je constate régulièrement que les organisations qui maîtrisent vraiment le SWOT prennent de meilleures décisions, anticipent mieux les crises et saisissent plus d'opportunités.</p>
+
+      <blockquote>
+        "La stratégie sans diagnostic est une illusion. Le SWOT, bien conduit, transforme l'intuition en décision éclairée."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Expert en Management Stratégique et Audit</p>
+
+      <div class="highlight-box">
+        📝 Vous rédigez un mémoire avec une analyse SWOT ? Besoin d'accompagnement méthodologique ?<br>
+        <strong>Contactez-moi sur NBProf.com</strong>
+      </div>
+
+      <p style="color:var(--white-dim);font-size:0.9em">#SWOT #ManagementStratégique #DiagnosticStratégique #NBProf #AMSO #Leadership</p>
+    `,
+    ar: `
+      <p>سواء كنت طالبا في الماستر، مديرا لمؤسسة مدرسية، رئيس مقاولة أو مسؤولا في منظمة عمومية، فقد سمعت حتما عن تحليل SWOT. لكن معرفة <em>تسميته</em> ومعرفة <em>تطبيقه بشكل صحيح</em> شيئان مختلفان تماما.</p>
+
+      <h3>1. ما هو تحليل SWOT؟</h3>
+      <p>تحليل SWOT هو أداة تشخيص استراتيجي تسمح بتقييم وضعية منظمة من خلال تقاطع بعدين:</p>
+      <ul>
+        <li><strong>البيئة الداخلية</strong>: ما يعتمد على المنظمة نفسها</li>
+        <li><strong>البيئة الخارجية</strong>: ما يأتي من خارج المنظمة</li>
+      </ul>
+
+      <h3>💪 S — القوة (Strengths)</h3>
+      <ul>
+        <li>المزايا الداخلية</li>
+        <li>ما تقومون به بشكل أفضل</li>
+        <li>الموارد المتاحة</li>
+        <li>الكفاءات المميزة</li>
+      </ul>
+
+      <h3>⚠️ W — الضعف (Weaknesses)</h3>
+      <ul>
+        <li>الحدود الداخلية</li>
+        <li>ما يعرقلكم</li>
+        <li>النواقص الواجب سدها</li>
+        <li>نقاط للتحسين</li>
+      </ul>
+
+      <h3>🚀 O — الفرص (Opportunities)</h3>
+      <ul>
+        <li>عوامل خارجية مواتية</li>
+        <li>اتجاهات السوق</li>
+        <li>التطورات التنظيمية</li>
+        <li>التكنولوجيات الجديدة</li>
+      </ul>
+
+      <h3>🎯 T — التهديدات (Threats)</h3>
+      <ul>
+        <li>المخاطر الخارجية</li>
+        <li>المنافسة المتزايدة</li>
+        <li>التغييرات غير المواتية</li>
+        <li>الأزمات المحتملة</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>القاعدة الذهبية:</strong> القوة والضعف داخليان (يمكنك التحكم فيهما). الفرص والتهديدات خارجيتان (لا يمكنك التحكم فيهما، لكن يمكنك التكيف معهما).
+      </div>
+
+      <h3>2. مثال ملموس: SWOT لمؤسسة مدرسية مغربية</h3>
+
+      <h3>💪 القوة</h3>
+      <ul>
+        <li>طاقم تربوي ذو خبرة</li>
+        <li>سمعة محلية جيدة</li>
+        <li>بنيات تحتية حديثة</li>
+        <li>إدارة محفزة</li>
+      </ul>
+
+      <h3>⚠️ الضعف</h3>
+      <ul>
+        <li>اكتظاظ الأقسام</li>
+        <li>نقص الموارد الرقمية</li>
+        <li>تكوين مستمر غير كاف</li>
+        <li>تواصل داخلي محدود</li>
+      </ul>
+
+      <h3>🚀 الفرص</h3>
+      <ul>
+        <li>المخطط الرقمي للحكومة</li>
+        <li>شراكات مع الجامعات</li>
+        <li>أدوات الذكاء الاصطناعي المتاحة</li>
+        <li>طلب متزايد على الجودة</li>
+      </ul>
+
+      <h3>🎯 التهديدات</h3>
+      <ul>
+        <li>منافسة المدارس الخاصة</li>
+        <li>مغادرة الأساتذة المتميزين</li>
+        <li>ميزانيات مقيدة</li>
+        <li>تطور سريع للمناهج</li>
+      </ul>
+
+      <h3>3. القوة الحقيقية لـ SWOT: التقاطع الاستراتيجي</h3>
+      <p>ملء الخانات الأربع لـ SWOT ليس سوى الخطوة الأولى. القيمة الحقيقية تأتي من <strong>تقاطع</strong> هذه الأبعاد الأربعة لبناء استراتيجية ملموسة.</p>
+
+      <div class="highlight-box">
+        <strong>🎯 مصفوفة التقاطع الاستراتيجي:</strong><br><br>
+        <strong>القوة × الفرص → استراتيجية SO ("هجوم")</strong><br>
+        استخدام قواتكم لاغتنام الفرص<br><br>
+        <strong>القوة × التهديدات → استراتيجية ST ("دفاع")</strong><br>
+        استخدام قواتكم لمواجهة التهديدات<br><br>
+        <strong>الضعف × الفرص → استراتيجية WO ("استدراك")</strong><br>
+        سد نقاط ضعفكم بفضل الفرص<br><br>
+        <strong>الضعف × التهديدات → استراتيجية WT ("بقاء")</strong><br>
+        تقليل نقاط الضعف وتجنب التهديدات
+      </div>
+
+      <h3>4. الأخطاء الخمسة الأكثر شيوعا</h3>
+
+      <h3>الخطأ 1 — الخلط بين الداخلي والخارجي</h3>
+      <div class="highlight-box">
+        ❌ <strong>خطأ:</strong> "المنافسة نقطة ضعف"<br>
+        ✅ <strong>صحيح:</strong> "المنافسة تهديد (خارجي). نقص تميزنا نقطة ضعف (داخلية)"
+      </div>
+
+      <h3>الخطأ 2 — الغموض المفرط</h3>
+      <div class="highlight-box">
+        ❌ <strong>خطأ:</strong> "فريقنا جيد التكوين"<br>
+        ✅ <strong>صحيح:</strong> "80% من أساتذتنا لديهم أكثر من 10 سنوات خبرة وكفاءة مزدوجة تربوية/رقمية"
+      </div>
+
+      <h3>الخطأ 3 — عدم التحديد الأولوي</h3>
+      <p>تحديد 3 إلى 5 عناصر الأكثر تأثيرا في كل فئة.</p>
+
+      <h3>الخطأ 4 — عدم تقاطع البيانات</h3>
+      <p>بناء المصفوفة المتقاطعة SO/ST/WO/WT لتحديد استراتيجيات ملموسة.</p>
+
+      <h3>الخطأ 5 — القيام بـ SWOT بمفردك</h3>
+      <p>إشراك جميع الأطراف المعنية: الأساتذة، الموظفون، الآباء، التلاميذ.</p>
+
+      <h3>5. منهجية عملية لتحقيق SWOT في 4 خطوات</h3>
+      <ul>
+        <li><strong>1. جمع البيانات</strong>: مقابلات، استبيانات، بيانات رقمية، ملاحظات ميدانية</li>
+        <li><strong>2. عصف ذهني جماعي</strong>: إشراك جميع الأطراف المعنية في ورشة تشاركية</li>
+        <li><strong>3. التحديد الأولوي</strong>: ترتيب العناصر حسب الأهمية والاستعجال</li>
+        <li><strong>4. التقاطع الاستراتيجي</strong>: بناء المصفوفة وتحديد خطة العمل</li>
+      </ul>
+
+      <div class="highlight-box">
+        ⏱️ <strong>المدة الموصى بها:</strong> احسبوا من 2 إلى 3 ساعات لـ SWOT ذي جودة منجز كفريق. SWOT منجز في 20 دقيقة لا يساوي شيئا.
+      </div>
+
+      <h3>خاتمة</h3>
+      <p>تحليل SWOT أداة قوية — بشرط أخذها على محمل الجد. عند تطبيقه بشكل جيد، يصبح بوصلة استراتيجية لمنظمتكم.</p>
+
+      <blockquote>
+        "الاستراتيجية بدون تشخيص وهم. SWOT المُنجز جيدا يحول الحدس إلى قرار مستنير."<br>
+        <strong>— ن.ب</strong>
+      </blockquote>
+
+      <p><strong>نعمان بولحسن</strong><br>
+      أستاذ-باحث · مدقق المستقبل · ماستر AMSO – جامعة القاضي عياض<br>
+      خبير في الإدارة الاستراتيجية والتدقيق</p>
+
+      <div class="highlight-box">
+        📝 هل تكتب مذكرة تتضمن تحليل SWOT؟ تحتاج مرافقة منهجية؟<br>
+        <strong>تواصل معي على NBProf.com</strong>
+      </div>
+    `,
+    en: `
+      <p>Whether you are a Master's student, school director, business leader or head of a public organization, you have certainly heard of SWOT analysis. But knowing how to <em>name</em> it and knowing how to <em>perform it correctly</em> are two very different things.</p>
+
+      <h3>1. What is SWOT analysis?</h3>
+      <p>SWOT analysis is a strategic diagnostic tool that evaluates an organization's situation by crossing two dimensions:</p>
+      <ul>
+        <li><strong>Internal environment</strong>: what depends on the organization itself</li>
+        <li><strong>External environment</strong>: what comes from outside the organization</li>
+      </ul>
+
+      <h3>💪 S — Strengths</h3>
+      <ul>
+        <li>Internal advantages</li>
+        <li>What you do best</li>
+        <li>Available resources</li>
+        <li>Distinctive competencies</li>
+      </ul>
+
+      <h3>⚠️ W — Weaknesses</h3>
+      <ul>
+        <li>Internal limitations</li>
+        <li>What holds you back</li>
+        <li>Gaps to fill</li>
+        <li>Points to improve</li>
+      </ul>
+
+      <h3>🚀 O — Opportunities</h3>
+      <ul>
+        <li>Favorable external factors</li>
+        <li>Market trends</li>
+        <li>Regulatory developments</li>
+        <li>New technologies</li>
+      </ul>
+
+      <h3>🎯 T — Threats</h3>
+      <ul>
+        <li>External risks</li>
+        <li>Increased competition</li>
+        <li>Unfavorable changes</li>
+        <li>Potential crises</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Golden rule:</strong> Strengths and Weaknesses are INTERNAL (you can control them). Opportunities and Threats are EXTERNAL (you cannot control them, but you can adapt to them).
+      </div>
+
+      <h3>2. Concrete example: SWOT of a Moroccan public school</h3>
+
+      <h3>💪 Strengths</h3>
+      <ul>
+        <li>Experienced teaching team</li>
+        <li>Good local reputation</li>
+        <li>Recent infrastructure</li>
+        <li>Motivated management</li>
+      </ul>
+
+      <h3>⚠️ Weaknesses</h3>
+      <ul>
+        <li>Overcrowded classes</li>
+        <li>Lack of digital resources</li>
+        <li>Insufficient continuous training</li>
+        <li>Limited internal communication</li>
+      </ul>
+
+      <h3>🚀 Opportunities</h3>
+      <ul>
+        <li>Government digital plan</li>
+        <li>University partnerships</li>
+        <li>Accessible AI tools</li>
+        <li>Growing demand for quality</li>
+      </ul>
+
+      <h3>🎯 Threats</h3>
+      <ul>
+        <li>Competition from private schools</li>
+        <li>Loss of top teachers</li>
+        <li>Constrained budgets</li>
+        <li>Rapid program evolution</li>
+      </ul>
+
+      <h3>3. The real power of SWOT: strategic crossing</h3>
+      <p>Filling the 4 SWOT boxes is just the first step. The real value comes from <strong>crossing</strong> these four dimensions to build a concrete strategy.</p>
+
+      <div class="highlight-box">
+        <strong>🎯 Strategic crossing matrix:</strong><br><br>
+        <strong>Strengths × Opportunities → SO Strategy ("Attack")</strong><br>
+        Use your strengths to seize opportunities<br><br>
+        <strong>Strengths × Threats → ST Strategy ("Defense")</strong><br>
+        Use your strengths to counter threats<br><br>
+        <strong>Weaknesses × Opportunities → WO Strategy ("Recovery")</strong><br>
+        Fill your weaknesses thanks to opportunities<br><br>
+        <strong>Weaknesses × Threats → WT Strategy ("Survival")</strong><br>
+        Reduce your weaknesses and avoid threats
+      </div>
+
+      <h3>4. The 5 most common mistakes</h3>
+
+      <h3>Mistake 1 — Confusing internal and external</h3>
+      <div class="highlight-box">
+        ❌ <strong>Mistake:</strong> "Competition is a weakness"<br>
+        ✅ <strong>Correct:</strong> "Competition is a threat (external). Our lack of differentiation is a weakness (internal)"
+      </div>
+
+      <h3>Mistake 2 — Being too vague</h3>
+      <div class="highlight-box">
+        ❌ <strong>Mistake:</strong> "Our team is well trained"<br>
+        ✅ <strong>Correct:</strong> "80% of our teachers have over 10 years of experience and dual pedagogical/digital skills"
+      </div>
+
+      <h3>Mistake 3 — Not prioritizing</h3>
+      <p>Identify the 3 to 5 most impactful elements in each category.</p>
+
+      <h3>Mistake 4 — Not crossing the data</h3>
+      <p>Build the crossed SO/ST/WO/WT matrix to define concrete strategies.</p>
+
+      <h3>Mistake 5 — Doing SWOT alone</h3>
+      <p>Involve all stakeholders: teachers, staff, parents, students.</p>
+
+      <h3>5. Practical method to do your SWOT in 4 steps</h3>
+      <ul>
+        <li><strong>1. Data collection</strong>: interviews, questionnaires, figures, field observations</li>
+        <li><strong>2. Collective brainstorming</strong>: involve all stakeholders in a participatory workshop</li>
+        <li><strong>3. Prioritization</strong>: rank elements by importance and urgency</li>
+        <li><strong>4. Strategic crossing</strong>: build the SO/ST/WO/WT matrix and define the action plan</li>
+      </ul>
+
+      <div class="highlight-box">
+        ⏱️ <strong>Recommended duration:</strong> Count 2 to 3 hours for a quality SWOT done as a team. A SWOT done in 20 minutes is worthless.
+      </div>
+
+      <h3>Conclusion</h3>
+      <p>SWOT analysis is a powerful tool — provided you take it seriously. When done well, it becomes the strategic compass of your organization.</p>
+
+      <blockquote>
+        "Strategy without diagnosis is an illusion. SWOT, properly conducted, transforms intuition into informed decision."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Teacher-Researcher · Future Auditor · Master AMSO – Cadi Ayyad University<br>
+      Expert in Strategic Management and Audit</p>
+
+      <div class="highlight-box">
+        📝 Writing a thesis with SWOT analysis? Need methodological support?<br>
+        <strong>Contact me on NBProf.com</strong>
+      </div>
+    `
+  }
+},
 
   {
     id: 3,
