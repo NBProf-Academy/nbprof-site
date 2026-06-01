@@ -336,49 +336,278 @@ const ARTICLES = [
       en: `<h3>Why audit a school?</h3><p>To improve governance and efficiency.</p>`
     }
   },
+{
+  id: 5,
+  category: 'methodologie',
+  icon: '📝',
+  date:     { fr: 'Juin 2026', ar: 'يونيو 2026', en: 'June 2026' },
+  readTime: { fr: '10 min', ar: '10 دقائق', en: '10 min' },
+  badge:    { fr: 'Mémoire Master · Méthodologie', ar: 'مذكرة الماستر · منهجية', en: 'Master Thesis · Methodology' },
+  title: {
+    fr: "Les 3 erreurs fatales dans un mémoire de master — et comment les éviter",
+    ar: "الأخطاء الثلاثة القاتلة في مذكرة الماستر — وكيفية تجنبها",
+    en: "The 3 fatal mistakes in a Master's thesis — and how to avoid them"
+  },
+  excerpt: {
+    fr: "Chaque année, des centaines d'étudiants voient leur mémoire de master recalé à cause des mêmes erreurs récurrentes. Voici les 3 plus fatales — et comment les éviter définitivement.",
+    ar: "كل سنة، يرى مئات الطلاب مذكرة الماستر الخاصة بهم مرفوضة بسبب نفس الأخطاء المتكررة. إليك الثلاثة الأكثر فتكا وكيفية تجنبها نهائيا.",
+    en: "Every year, hundreds of students see their Master's thesis rejected because of the same recurring mistakes. Here are the 3 most fatal ones — and how to definitively avoid them."
+  },
+  content: {
+    fr: `
+      <p>Rédiger un mémoire de master est une étape décisive dans votre parcours académique. C'est souvent votre première vraie expérience de recherche scientifique. Pourtant, beaucoup d'étudiants tombent dans les mêmes pièges, par manque d'information ou de guidage.</p>
 
-  {
-    id: 5,
-    category: 'management',
-    icon: '⚙️',
-    date:     { fr: 'Juin 2026', ar: 'يونيو 2026', en: 'June 2026' },
-    readTime: { fr: '5 min', ar: '5 دقائق', en: '5 min' },
-    badge:    { fr: 'Test - Management', ar: 'اختبار - إدارة', en: 'Test - Management' },
-    title: {
-      fr: "Article TEST : Les 5 forces de Porter",
-      ar: "مقال اختبار: قوى بورتر الخمس",
-      en: "TEST Article: Porter's 5 Forces"
-    },
-    excerpt: {
-      fr: "Article de test pour vérifier que le déploiement automatique GitHub vers Netlify fonctionne parfaitement.",
-      ar: "مقال اختبار للتحقق من أن النشر التلقائي يعمل بشكل مثالي.",
-      en: "Test article to verify automatic GitHub to Netlify deployment works perfectly."
-    },
-    content: {
-      fr: `<h3>🎯 Article de test</h3>
-        <p>Si vous lisez ceci sur <strong>nbprof.com</strong>, cela signifie que le système GitHub → Netlify fonctionne parfaitement !</p>
-        <div class="highlight-box">
-          ✅ <strong>Bravo Noamane !</strong> Vous pouvez désormais publier des articles en 30 secondes.
-        </div>
-        <h3>Workflow validé</h3>
-        <ul>
-          <li>Modification sur GitHub</li>
-          <li>Commit automatique</li>
-          <li>Déploiement Netlify automatique</li>
-          <li>Site mis à jour</li>
-        </ul>
-        <blockquote>"La vraie force d'un site, c'est sa simplicité de mise à jour."</blockquote>`,
-      ar: `<h3>🎯 مقال اختبار</h3>
-        <p>إذا كنت تقرأ هذا على <strong>nbprof.com</strong>، فهذا يعني أن النظام يعمل بشكل مثالي!</p>
-        <div class="highlight-box">
-          ✅ <strong>مبروك نعمان!</strong> يمكنك الآن نشر مقالات في 30 ثانية.
-        </div>`,
-      en: `<h3>🎯 Test article</h3>
-        <p>If you read this on <strong>nbprof.com</strong>, the system works perfectly!</p>
-        <div class="highlight-box">
-          ✅ <strong>Congrats Noamane!</strong> You can now publish articles in 30 seconds.
-        </div>`
-    }
+      <p>Ce guide est le fruit de mon expérience en tant qu'enseignant-chercheur et étudiant en Master AMSO à l'Université Cadi Ayyad, auteur d'une publication scientifique internationale. Je vous partage ici ce que j'aurais aimé savoir avant de commencer.</p>
+
+      <h3>1. Une problématique floue ou absente</h3>
+      <p>C'est sans conteste <strong>l'erreur numéro 1</strong> et la plus grave. La problématique est le cœur de votre mémoire. Tout le reste — cadre théorique, méthodologie, résultats, conclusion — en découle directement.</p>
+      <p><em>Une problématique floue génère un mémoire flou. Point.</em></p>
+
+      <div class="highlight-box">
+        ❌ <strong>Problématique mauvaise :</strong><br>
+        "Quel est l'impact de l'intelligence artificielle sur l'éducation ?"<br>
+        <em>→ Trop vague, trop large, impossible à traiter en 80 pages</em>
+      </div>
+
+      <div class="highlight-box">
+        ✅ <strong>Problématique correcte :</strong><br>
+        "Dans quelle mesure l'intégration de l'intelligence artificielle transforme-t-elle les pratiques managériales des directeurs d'établissements scolaires publics au Maroc ?"<br>
+        <em>→ Précise, délimitée, contextualisée, mesurable</em>
+      </div>
+
+      <h3>Les 4 qualités d'une bonne problématique</h3>
+      <ul>
+        <li><strong>Précise</strong> : elle porte sur un sujet délimité et identifiable</li>
+        <li><strong>Pertinente</strong> : elle a une utilité scientifique et/ou pratique réelle</li>
+        <li><strong>Faisable</strong> : elle peut être traitée avec les moyens dont vous disposez</li>
+        <li><strong>Originale</strong> : elle apporte quelque chose de nouveau à la connaissance existante</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Conseil pratique :</strong> Testez votre problématique avec cette question : "Si je réponds à cette question, est-ce que j'apporte une valeur ajoutée à la connaissance scientifique existante ?" Si la réponse est oui, vous êtes sur la bonne voie.
+      </div>
+
+      <h3>2. Une revue de littérature qui n'est qu'un copier-coller</h3>
+      <p>La deuxième erreur la plus fréquente est de traiter la revue de littérature comme un simple résumé de ce que d'autres ont dit. Ce n'est pas ça. Une revue de littérature est une <strong>analyse critique et synthétique</strong> de l'état des connaissances sur votre sujet.</p>
+
+      <div class="highlight-box">
+        ❌ <strong>Revue de littérature incorrecte :</strong><br>
+        "Selon Dupont (2020), l'IA permet de... Selon Martin (2021), l'IA favorise... Selon Ahmed (2022), l'IA transforme..."<br>
+        <em>→ C'est une liste de résumés, pas une revue de littérature</em>
+      </div>
+
+      <div class="highlight-box">
+        ✅ <strong>Revue de littérature correcte :</strong><br>
+        "Les travaux de Dupont (2020) et Martin (2021) convergent sur l'impact positif de l'IA sur l'apprentissage, tandis qu'Ahmed (2022) nuance cette vision en soulignant les inégalités d'accès. Cette tension entre opportunité et équité constitue le fil directeur de notre analyse..."<br>
+        <em>→ Synthèse critique, mise en dialogue des auteurs, lien avec votre problématique</em>
+      </div>
+
+      <h3>Comment construire une vraie revue de littérature</h3>
+      <ul>
+        <li><strong>1. Identifier</strong> les sources pertinentes (méthode PRISMA 2020 recommandée)</li>
+        <li><strong>2. Lire</strong> intégralement — pas seulement les résumés</li>
+        <li><strong>3. Regrouper</strong> les auteurs par courant de pensée ou par conclusion</li>
+        <li><strong>4. Comparer</strong> : qui est d'accord ? Qui s'oppose ? Pourquoi ?</li>
+        <li><strong>5. Synthétiser</strong> : quelle est la position dominante ? Quelles sont les lacunes ?</li>
+        <li><strong>6. Positionner</strong> votre recherche par rapport à l'existant</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Conseil pratique :</strong> Après chaque section de votre revue de littérature, posez-vous cette question : "Qu'est-ce que cette section apporte à la compréhension de ma problématique ?" Si vous ne trouvez pas de réponse, supprimez cette section.
+      </div>
+
+      <h3>3. Une méthodologie choisie sans justification</h3>
+      <p>La troisième erreur fatale est de choisir sa méthodologie par facilité ou par imitation, sans la justifier scientifiquement. La méthodologie n'est pas un simple chapitre à remplir — c'est le <strong>passeport de crédibilité</strong> de votre recherche.</p>
+
+      <div class="highlight-box">
+        ❌ <strong>Justification incorrecte :</strong><br>
+        "Nous avons choisi l'approche qualitative car elle est plus adaptée aux sciences sociales."<br>
+        <em>→ Justification vague et non argumentée</em>
+      </div>
+
+      <div class="highlight-box">
+        ✅ <strong>Justification correcte :</strong><br>
+        "Nous avons opté pour une approche qualitative de type revue systématique (PRISMA 2020) car notre objectif est d'analyser et de synthétiser la littérature existante sur un phénomène encore émergent. Cette approche est cohérente avec notre positionnement épistémologique interprétiviste, qui vise à comprendre les significations plutôt qu'à mesurer des variables."<br>
+        <em>→ Justification précise, liée à l'épistémologie et à l'objectif de recherche</em>
+      </div>
+
+      <h3>Les questions clés pour choisir votre méthodologie</h3>
+      <ul>
+        <li><strong>1.</strong> Quelle est la nature de votre problématique ? Comprendre, mesurer, comparer ou prédire ?</li>
+        <li><strong>2.</strong> Quel est votre positionnement épistémologique ? Positiviste, interprétiviste ou constructiviste ?</li>
+        <li><strong>3.</strong> Quelles données avez-vous accès ? Quantitatives, qualitatives ou mixtes ?</li>
+        <li><strong>4.</strong> Quelle est votre contrainte de temps ? Certaines méthodes prennent plus de temps</li>
+        <li><strong>5.</strong> Quelle est la pratique dans votre domaine ? Consultez les articles récents de votre champ</li>
+      </ul>
+
+      <div class="highlight-box">
+        💡 <strong>Conseil pratique :</strong> Lisez 5 à 10 articles récents publiés dans votre domaine. Regardez quelle méthodologie ils utilisent majoritairement. Cette pratique disciplinaire est un excellent point de départ pour choisir et justifier votre propre méthode.
+      </div>
+
+      <h3>Bonus — Les 5 erreurs supplémentaires à éviter</h3>
+      <ul>
+        <li>⚠️ <strong>Plagiat involontaire</strong> : toujours citer vos sources, même quand vous paraphrasez</li>
+        <li>⚠️ <strong>Bibliographie incomplète</strong> : chaque source citée dans le texte doit apparaître en bibliographie et vice versa</li>
+        <li>⚠️ <strong>Introduction sans annonce de plan</strong> : votre jury doit savoir dès l'introduction comment votre mémoire est structuré</li>
+        <li>⚠️ <strong>Conclusion sans réponse à la problématique</strong> : la conclusion doit explicitement répondre à la question posée en introduction</li>
+        <li>⚠️ <strong>Commencer à rédiger trop tôt</strong> : rédigez d'abord votre plan détaillé, puis votre revue de littérature, avant de rédiger le texte final</li>
+      </ul>
+
+      <h3>Conclusion — Un mémoire réussi se prépare, pas s'improvise</h3>
+      <p>Ces trois erreurs fatales ont un point commun : elles résultent toutes d'un manque de préparation et d'accompagnement. Un mémoire de master n'est pas un devoir scolaire amélioré. C'est votre première contribution à la connaissance scientifique.</p>
+      <p>Prenez le temps de bien poser votre problématique, de construire une vraie revue de littérature et de justifier rigoureusement votre méthodologie. Ces trois éléments constituent les fondations de tout ce que vous écrirez ensuite.</p>
+
+      <blockquote>
+        "Un mémoire bien construit, c'est 30% de rédaction et 70% de réflexion préalable. Investissez votre temps là où ça compte vraiment."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Accompagnement en rédaction académique et méthodologie de recherche</p>
+
+      <div class="highlight-box">
+        📝 Vous préparez votre mémoire de master ? Évitez ces erreurs grâce à un accompagnement personnalisé !<br>
+        <strong>Contactez-moi sur NBProf.com</strong>
+      </div>
+
+      <p style="color:var(--white-dim);font-size:0.9em">#MémoireMaster #RédactionAcadémique #MéthodologieRecherche #NBProf #AMSO #ConseilsEtudiants</p>
+    `,
+    ar: `
+      <p>كتابة مذكرة الماستر مرحلة حاسمة في مسارك الأكاديمي. غالبا ما تكون أول تجربة حقيقية في البحث العلمي. لكن العديد من الطلاب يقعون في نفس الفخاخ بسبب نقص المعلومات أو التوجيه.</p>
+
+      <h3>1. إشكالية غامضة أو غائبة</h3>
+      <p>هذا بلا شك <strong>الخطأ رقم 1</strong> والأخطر. الإشكالية هي قلب مذكرتك. كل ما تبقى — الإطار النظري، المنهجية، النتائج، الخاتمة — ينبع منها مباشرة.</p>
+
+      <div class="highlight-box">
+        ❌ <strong>إشكالية سيئة:</strong><br>
+        "ما تأثير الذكاء الاصطناعي على التعليم؟"<br>
+        <em>← غامضة جدا، واسعة جدا، يستحيل معالجتها في 80 صفحة</em>
+      </div>
+
+      <div class="highlight-box">
+        ✅ <strong>إشكالية صحيحة:</strong><br>
+        "إلى أي مدى يحول دمج الذكاء الاصطناعي الممارسات الإدارية لمديري المؤسسات المدرسية العمومية بالمغرب؟"<br>
+        <em>← دقيقة، محددة، مؤطرة، قابلة للقياس</em>
+      </div>
+
+      <h3>2. مراجعة أدبيات مجرد نسخ ولصق</h3>
+      <p>الخطأ الثاني الأكثر شيوعا هو التعامل مع مراجعة الأدبيات كمجرد ملخص لما قاله الآخرون. ليست كذلك. مراجعة الأدبيات هي <strong>تحليل نقدي وتركيبي</strong> لحالة المعرفة حول موضوعك.</p>
+
+      <div class="highlight-box">
+        💡 <strong>نصيحة:</strong> طبق منهجية PRISMA 2020 لمراجعة منهجية وصارمة للأدبيات.
+      </div>
+
+      <h3>3. منهجية مختارة دون تبرير</h3>
+      <p>الخطأ القاتل الثالث هو اختيار المنهجية بسهولة أو بالتقليد، دون تبريرها علميا. المنهجية ليست مجرد فصل لملئه — إنها <strong>جواز سفر المصداقية</strong> لبحثك.</p>
+
+      <h3>الأسئلة الرئيسية لاختيار منهجيتك</h3>
+      <ul>
+        <li><strong>1.</strong> ما طبيعة إشكاليتك؟ فهم، قياس، مقارنة أم تنبؤ؟</li>
+        <li><strong>2.</strong> ما موقفك الإبستمولوجي؟</li>
+        <li><strong>3.</strong> ما البيانات المتاحة لك؟</li>
+        <li><strong>4.</strong> ما قيود الوقت لديك؟</li>
+        <li><strong>5.</strong> ما الممارسة في مجالك؟</li>
+      </ul>
+
+      <h3>الأخطاء الخمسة الإضافية لتجنبها</h3>
+      <ul>
+        <li>⚠️ <strong>الانتحال غير المقصود</strong>: استشهد دائما بمصادرك</li>
+        <li>⚠️ <strong>ببليوغرافيا ناقصة</strong>: كل مصدر مذكور يجب أن يظهر</li>
+        <li>⚠️ <strong>مقدمة بدون إعلان الخطة</strong></li>
+        <li>⚠️ <strong>خاتمة بدون إجابة على الإشكالية</strong></li>
+        <li>⚠️ <strong>البدء في الكتابة مبكرا جدا</strong></li>
+      </ul>
+
+      <h3>خاتمة</h3>
+      <p>هذه الأخطاء الثلاثة القاتلة لها قاسم مشترك: كلها تنتج عن نقص الإعداد والمرافقة. مذكرة الماستر ليست واجبا مدرسيا محسنا. إنها أول مساهمة لك في المعرفة العلمية.</p>
+
+      <blockquote>
+        "مذكرة مبنية جيدا، 30% كتابة و70% تفكير مسبق. استثمر وقتك حيث يهم حقا."<br>
+        <strong>— ن.ب</strong>
+      </blockquote>
+
+      <p><strong>نعمان بولحسن</strong><br>
+      أستاذ-باحث · مدقق المستقبل · ماستر AMSO – جامعة القاضي عياض</p>
+
+      <div class="highlight-box">
+        📝 هل تحضر مذكرة الماستر؟ تجنب هذه الأخطاء بفضل مرافقة مخصصة!<br>
+        <strong>تواصل معي على NBProf.com</strong>
+      </div>
+    `,
+    en: `
+      <p>Writing a Master's thesis is a decisive step in your academic journey. It is often your first real experience of scientific research. Yet many students fall into the same traps due to lack of information or guidance.</p>
+
+      <p>This guide is the result of my experience as a teacher-researcher and Master AMSO student at Cadi Ayyad University, author of an international scientific publication.</p>
+
+      <h3>1. A vague or absent research question</h3>
+      <p>This is undoubtedly <strong>mistake number 1</strong> and the most serious. The research question is the heart of your thesis. Everything else — theoretical framework, methodology, results, conclusion — flows directly from it.</p>
+
+      <div class="highlight-box">
+        ❌ <strong>Bad research question:</strong><br>
+        "What is the impact of artificial intelligence on education?"<br>
+        <em>→ Too vague, too broad, impossible to address in 80 pages</em>
+      </div>
+
+      <div class="highlight-box">
+        ✅ <strong>Good research question:</strong><br>
+        "To what extent does the integration of AI transform the managerial practices of public school directors in Morocco?"<br>
+        <em>→ Precise, delimited, contextualized, measurable</em>
+      </div>
+
+      <h3>The 4 qualities of a good research question</h3>
+      <ul>
+        <li><strong>Precise</strong>: focused on a delimited and identifiable subject</li>
+        <li><strong>Relevant</strong>: has real scientific and/or practical utility</li>
+        <li><strong>Feasible</strong>: can be addressed with available means</li>
+        <li><strong>Original</strong>: brings something new to existing knowledge</li>
+      </ul>
+
+      <h3>2. A literature review that is just copy-paste</h3>
+      <p>The second most common mistake is treating the literature review as a simple summary of what others have said. It's not that. A literature review is a <strong>critical and synthetic analysis</strong> of the state of knowledge on your topic.</p>
+
+      <div class="highlight-box">
+        💡 <strong>Practical tip:</strong> Apply PRISMA 2020 methodology for a rigorous systematic literature review.
+      </div>
+
+      <h3>3. A methodology chosen without justification</h3>
+      <p>The third fatal mistake is choosing methodology by convenience or imitation, without scientific justification. Methodology is not just a chapter to fill — it is the <strong>credibility passport</strong> of your research.</p>
+
+      <h3>Key questions to choose your methodology</h3>
+      <ul>
+        <li><strong>1.</strong> What is the nature of your research question? Understand, measure, compare, or predict?</li>
+        <li><strong>2.</strong> What is your epistemological position?</li>
+        <li><strong>3.</strong> What data do you have access to?</li>
+        <li><strong>4.</strong> What are your time constraints?</li>
+        <li><strong>5.</strong> What is the practice in your field?</li>
+      </ul>
+
+      <h3>Bonus — 5 additional mistakes to avoid</h3>
+      <ul>
+        <li>⚠️ <strong>Unintentional plagiarism</strong>: always cite your sources</li>
+        <li>⚠️ <strong>Incomplete bibliography</strong>: every cited source must appear</li>
+        <li>⚠️ <strong>Introduction without plan announcement</strong></li>
+        <li>⚠️ <strong>Conclusion without answering the research question</strong></li>
+        <li>⚠️ <strong>Starting to write too early</strong></li>
+      </ul>
+
+      <h3>Conclusion — A successful thesis is prepared, not improvised</h3>
+      <p>These three fatal mistakes have one thing in common: they all result from a lack of preparation and guidance. A Master's thesis is not an enhanced school assignment. It is your first contribution to scientific knowledge.</p>
+
+      <blockquote>
+        "A well-built thesis is 30% writing and 70% prior reflection. Invest your time where it really matters."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Teacher-Researcher · Future Auditor · Master AMSO – Cadi Ayyad University</p>
+
+      <div class="highlight-box">
+        📝 Preparing your Master's thesis? Avoid these mistakes with personalized guidance!<br>
+        <strong>Contact me on NBProf.com</strong>
+      </div>
+    `
   }
+}  
 
 ];
