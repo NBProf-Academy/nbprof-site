@@ -88,7 +88,7 @@ const ARTICLES = [
         </blockquote>
 
         <p><strong>Noamane Boulahcen</strong><br>
-        Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+        Professeur au primaire Etudiant-chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
         Auteur d'une publication scientifique internationale (PRISMA 2020)</p>
 
         <div class="highlight-box">
@@ -402,7 +402,7 @@ const ARTICLES = [
       </blockquote>
 
       <p><strong>Noamane Boulahcen</strong><br>
-      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Professeur au primaire Etudiant-chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
       Expert en Management Stratégique et Audit</p>
 
       <div class="highlight-box">
@@ -846,7 +846,7 @@ const ARTICLES = [
       </blockquote>
 
       <p><strong>Noamane Boulahcen</strong><br>
-      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Professeur au primaire Etudiant-chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
       Auteur d'une publication internationale utilisant la méthode PRISMA 2020</p>
 
       <div class="highlight-box">
@@ -1076,7 +1076,7 @@ const ARTICLES = [
     fr: `
       <p>Rédiger un mémoire de master est une étape décisive dans votre parcours académique. C'est souvent votre première vraie expérience de recherche scientifique. Pourtant, beaucoup d'étudiants tombent dans les mêmes pièges, par manque d'information ou de guidage.</p>
 
-      <p>Ce guide est le fruit de mon expérience en tant qu'enseignant-chercheur et étudiant en Master AMSO à l'Université Cadi Ayyad, auteur d'une publication scientifique internationale. Je vous partage ici ce que j'aurais aimé savoir avant de commencer.</p>
+      <p>Ce guide est le fruit de mon expérience en tant que professeur au primaire etudiant-chercheur en Master AMSO à l'Université Cadi Ayyad, auteur d'une publication scientifique internationale. Je vous partage ici ce que j'aurais aimé savoir avant de commencer.</p>
 
       <h3>1. Une problématique floue ou absente</h3>
       <p>C'est sans conteste <strong>l'erreur numéro 1</strong> et la plus grave. La problématique est le cœur de votre mémoire. Tout le reste — cadre théorique, méthodologie, résultats, conclusion — en découle directement.</p>
@@ -1182,7 +1182,7 @@ const ARTICLES = [
       </blockquote>
 
       <p><strong>Noamane Boulahcen</strong><br>
-      Enseignant-Chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
+      Professeur au primaire Etudiant-chercheur · Futur Auditeur · Master AMSO – Université Cadi Ayyad<br>
       Accompagnement en rédaction académique et méthodologie de recherche</p>
 
       <div class="highlight-box">
