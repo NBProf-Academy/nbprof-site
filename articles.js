@@ -1327,7 +1327,7 @@ const ARTICLES = [
       </div>
     `
   }
-}  
+},  
 {
   id: 6,
   category: 'management',
