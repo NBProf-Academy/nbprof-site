@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 6 - Audit Comptable et Financier | AMSO 2026</title>
+  <meta name="description" content="Résumé du Module 6 : Audit Comptable et Financier - Master AMSO 2026">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350" crossorigin="anonymous"></script>
+  
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: rgba(201,168,76,0.1);
+      --gold-medium: rgba(201,168,76,0.3);
+      --navy: #0a1628;
+      --navy-2: #0f1e35;
+      --text-light: #e8e8e8;
+      --text-muted: #a0a0a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .course-nav {
+      background: var(--navy-2);
+      padding: 15px 30px;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .course-nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .course-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .course-module-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .course-header h1 {
+      color: var(--gold);
+      font-size: 2.3em;
+      margin-bottom: 10px;
+    }
+
+    .course-header .meta {
+      color: var(--text-muted);
+      font-size: 1.05em;
+    }
+
+    .course-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .course-container h2 {
+      color: var(--gold);
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold-medium);
+    }
+
+    .course-container h3 {
+      color: var(--gold);
+      font-size: 1.3em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .course-container p {
+      margin-bottom: 18px;
+      color: var(--text-light);
+    }
+
+    .course-container ul, .course-container ol {
+      margin: 15px 0 20px 30px;
+      color: var(--text-light);
+    }
+
+    .course-container li {
+      margin-bottom: 10px;
+    }
+
+    .course-container strong {
+      color: var(--gold);
+    }
+
+    .course-container blockquote {
+      border-left: 4px solid var(--gold);
+      padding: 15px 20px;
+      background: var(--gold-light);
+      margin: 25px 0;
+      font-style: italic;
+      border-radius: 4px;
+    }
+
+    .key-concept {
+      background: var(--navy-2);
+      border: 1px solid var(--gold-medium);
+      border-left: 4px solid var(--gold);
+      padding: 20px 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+
+    .key-concept h4 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .summary-box {
+      background: var(--gold-light);
+      border: 2px solid var(--gold);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .summary-box h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: var(--navy-2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      padding: 15px;
+      text-align: left;
+      border: 1px solid var(--gold-medium);
+    }
+
+    .matrix-table th {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .matrix-table tr:hover {
+      background: var(--gold-light);
+    }
+
+    .badge-inline {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.85em;
+      margin-right: 6px;
+      font-weight: bold;
+    }
+
+    .course-footer {
+      background: var(--navy-2);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid var(--gold-medium);
+      margin-top: 60px;
+    }
+
+    .nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--gold-medium);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .nav-bottom a {
+      color: var(--gold);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .nav-bottom a:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .course-header h1 { font-size: 1.6em; }
+      .course-container { padding: 0 15px; }
+      .matrix-table { font-size: 0.9em; }
+      .matrix-table th, .matrix-table td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="course-nav">
+    <a href="amso2026.html">← Retour à AMSO 2026</a>
+    <a href="index.html">Accueil NBProf</a>
+  </nav>
+
+  <!-- Header -->
+  <header class="course-header">
+    <span class="course-module-badge">Module 6</span>
+    <h1>Audit Comptable et Financier</h1>
+    <p class="meta">Master AMSO 2026 | Cours du Pr BENNANI Otmane</p>
+  </header>
+
+  <!-- Mention de transparence -->
+  <div style="max-width: 900px; margin: 30px auto 0; padding: 0 20px;">
+    <div style="background: rgba(201,168,76,0.1); border-left: 4px solid #C9A84C; padding: 18px 22px; border-radius: 6px; font-style: italic; color: #a0a0a0; font-size: 0.95em;">
+      📚 Ce document est un résumé élaboré à partir des supports de cours du <strong>Pr BENNANI Otmane</strong> dans le cadre du Master AMSO 2026. Il constitue un outil de révision complémentaire et ne remplace pas le cours magistral.
+    </div>
+  </div>
+
+  <!-- Content -->
+  <article class="course-container">
+    
+    <!-- INTRODUCTION -->
+    <h2>🎯 Introduction</h2>
+    <p>
+      L'audit comptable et financier constitue une discipline en pleine expansion, 
+      liée à la nécessité de <strong>fiabiliser les paramètres financiers</strong> et 
+      les informations à la disposition de ceux qui ont la charge de définir les 
+      orientations de l'entreprise et de la gérer quotidiennement .
+    </p>
+
+    <div class="summary-box">
+      <h3>🎯 Plan du cours </h3>
+      <ol>
+        <li>Introduction et notions de base</li>
+        <li>Normes d'audit comptable et financier</li>
+        <li>Démarche et outils de l'audit</li>
+        <li>Approche par les cycles</li>
+        <li>Cas pratiques et travaux dirigés</li>
+      </ol>
+    </div>
+
+    <blockquote>
+      L'objectif est de donner aux étudiants <strong>les concepts fondamentaux, les techniques 
+      et les outils les plus efficaces en audit</strong> (audit financier et audit interne), 
+      permettant d'acquérir la méthodologie de conduite des missions d'audit, dans le 
+      respect des <strong>normes internationales (ISA)</strong> définies par l'International 
+      Federation of Accountants (IFAC) .
+    </blockquote>
+
+    <!-- CHAPITRE 1 -->
+    <h2>1️⃣ Définition et notions de base</h2>
+
+    <h3>1.1 Qu'est-ce que l'audit comptable et financier ?</h3>
+    <p>
+      L'audit comptable et financier est <strong>l'examen auquel procède un professionnel 
+      compétent et indépendant</strong> en vue d'exprimer une <strong>opinion motivée et une 
+      assurance raisonnable</strong> sur la régularité, la sincérité et la fiabilité des 
+      informations comptables et financières d'une entité .
+    </p>
+    <p>
+      Il s'assure que les systèmes et procédures comptables permettent de produire une 
+      <strong>image fidèle des états financiers</strong> conformes aux références, aux lois, 
+      règlements, et aux normes en vigueur .
+    </p>
+
+    <div class="key-concept">
+      <h4>💡 Les 4 piliers fondamentaux de l'audit </h4>
+      <ul>
+        <li><strong>Indépendance</strong> : l'auditeur doit être libre de tout lien d'influence</li>
+        <li><strong>Opinion motivée</strong> : conclusion fondée sur des éléments probants</li>
+        <li><strong>Image fidèle</strong> : représentation honnête de la situation financière</li>
+        <li><strong>Assurance raisonnable</strong> : niveau élevé mais non absolu de certitude</li>
+      </ul>
+    </div>
+
+    <h3>1.2 Les objectifs de l'audit</h3>
+    <ul>
+      <li><strong>Régularité</strong> : conformité aux règles comptables et fiscales</li>
+      <li><strong>Sincérité</strong> : bonne foi dans l'établissement des comptes</li>
+      <li><strong>Fiabilité</strong> : crédibilité des informations financières produites</li>
+    </ul>
+
+    <!-- CHAPITRE 2 -->
+    <h2>2️⃣ Les types d'audit</h2>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Critère</th>
+          <th>Audit Interne</th>
+          <th>Audit Externe (Financier)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Statut</strong></td>
+          <td>Salarié de l'entreprise</td>
+          <td>Professionnel indépendant</td>
+        </tr>
+        <tr>
+          <td><strong>Objectif</strong></td>
+          <td>Évaluer le contrôle interne</td>
+          <td>Certifier les comptes</td>
+        </tr>
+        <tr>
+          <td><strong>Destinataire</strong></td>
+          <td>Direction générale</td>
+          <td>Actionnaires, tiers</td>
+        </tr>
+        <tr>
+          <td><strong>Cadre</strong></td>
+          <td>Normes IIA</td>
+          <td>Normes ISA (IFAC)</td>
+        </tr>
+        <tr>
+          <td><strong>Périodicité</strong></td>
+          <td>Continue</td>
+          <td>Annuelle</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPITRE 3 -->
+    <h2>3️⃣ Les normes d'audit comptable et financier</h2>
+
+    <h3>3.1 Les normes ISA (International Standards on Auditing)</h3>
+    <p>
+      Les normes ISA, définies par l'<strong>IFAC</strong> (International Federation of 
+      Accountants), constituent le référentiel international des missions d'audit . 
+      Elles encadrent l'ensemble du processus d'audit, de la planification au rapport final.
+    </p>
+
+    <div class="key-concept">
+      <h4>📋 Les principales normes ISA</h4>
+      <ul>
+        <li><strong>ISA 200</strong> : Objectifs généraux de l'auditeur indépendant</li>
+        <li><strong>ISA 315</strong> : Identification et évaluation des risques</li>
+        <li><strong>ISA 330</strong> : Réponses aux risques évalués</li>
+        <li><strong>ISA 500</strong> : Éléments probants</li>
+        <li><strong>ISA 700</strong> : Opinion et rapport d'audit</li>
+        <li><strong>ISA 800</strong> : Missions d'audit spéciales </li>
+      </ul>
+    </div>
+
+    <h3>3.2 Les missions d'audit spéciales (ISA 800)</h3>
+    <p>L'ISA 800 établit des procédures et principes fondamentaux pour  :</p>
+    <ul>
+      <li>Des états financiers établis selon un référentiel comptable différent des Normes Comptables Internationales ou Nationales </li>
+      <li>Des comptes ou rubriques d'états financiers </li>
+      <li>Le respect de clauses contractuelles </li>
+      <li>Des états financiers condensés </li>
+    </ul>
+
+    <!-- CHAPITRE 4 -->
+    <h2>4️⃣ La démarche d'audit</h2>
+
+    <h3>4.1 Les phases de la mission d'audit</h3>
+    <ol>
+      <li><strong>Acceptation de la mission</strong> : évaluation des risques et de l'indépendance</li>
+      <li><strong>Planification</strong> : compréhension de l'entité et de son environnement</li>
+      <li><strong>Évaluation du contrôle interne</strong> : identification des forces et faiblesses</li>
+      <li><strong>Contrôle des comptes</strong> : tests de validation des soldes et opérations</li>
+      <li><strong>Travaux de fin de mission</strong> : synthèse et événements postérieurs</li>
+      <li><strong>Émission du rapport</strong> : formulation de l'opinion</li>
+    </ol>
+
+    <h3>4.2 Les outils de l'auditeur</h3>
+    <ul>
+      <li><span class="badge-inline">Sondage</span> Techniques d'échantillonnage statistique</li>
+      <li><span class="badge-inline">Tests</span> Tests de procédures et tests substantifs</li>
+      <li><span class="badge-inline">Confirmation</span> Circularisation auprès des tiers</li>
+      <li><span class="badge-inline">Observation</span> Inventaire physique, contrôles directs</li>
+      <li><span class="badge-inline">Analytique</span> Procédures analytiques et ratios</li>
+    </ul>
+
+    <!-- CHAPITRE 5 -->
+    <h2>5️⃣ L'approche par les cycles</h2>
+
+    <p>
+      L'audit s'organise par <strong>cycles d'opérations homogènes</strong>, ce qui permet 
+      une approche systématique et cohérente des comptes.
+    </p>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Cycle</th>
+          <th>Comptes concernés</th>
+          <th>Risques principaux</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Ventes-Clients</strong></td>
+          <td>CA, créances, TVA collectée</td>
+          <td>Fictivité, cut-off, recouvrement</td>
+        </tr>
+        <tr>
+          <td><strong>Achats-Fournisseurs</strong></td>
+          <td>Achats, dettes, TVA déductible</td>
+          <td>Exhaustivité, séparation des exercices</td>
+        </tr>
+        <tr>
+          <td><strong>Personnel-Paie</strong></td>
+          <td>Salaires, charges sociales</td>
+          <td>Fictivité, calcul, déclarations</td>
+        </tr>
+        <tr>
+          <td><strong>Immobilisations</strong></td>
+          <td>Actifs, amortissements</td>
+          <td>Existence, valorisation, dépréciation</td>
+        </tr>
+        <tr>
+          <td><strong>Trésorerie</strong></td>
+          <td>Banque, caisse</td>
+          <td>Rapprochements, fraudes</td>
+        </tr>
+        <tr>
+          <td><strong>Stocks</strong></td>
+          <td>Marchandises, produits</td>
+          <td>Existence, valorisation, obsolescence</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CHAPITRE 6 -->
+    <h2>6️⃣ Le rapport d'audit et l'opinion</h2>
+
+    <h3>6.1 Structure du rapport</h3>
+    <p>
+      Le rapport de l'auditeur doit <strong>préciser le référentiel comptable utilisé</strong> 
+      ou indiquer la note annexe aux états financiers donnant cette information . 
+      L'opinion doit indiquer si « les états financiers ont été établis, dans tous leurs 
+      aspects significatifs, conformément à ce référentiel comptable » .
+    </p>
+
+    <h3>6.2 Les types d'opinion</h3>
+    <ul>
+      <li><strong>Opinion sans réserve (favorable)</strong> : les comptes sont réguliers et sincères</li>
+      <li><strong>Opinion avec réserve</strong> : limitation ou désaccord ponctuel</li>
+      <li><strong>Opinion défavorable</strong> : les comptes ne donnent pas une image fidèle</li>
+      <li><strong>Refus de certifier</strong> : impossibilité d'exprimer une opinion</li>
+    </ul>
+
+    <div class="key-concept">
+      <h4>📝 Rapport sur une rubrique des états financiers </h4>
+      <p>
+        Il peut être demandé à l'auditeur d'exprimer une opinion sur une ou plusieurs 
+        rubriques (créances clients, stocks, provisions...). Le rapport doit indiquer 
+        les rubriques concernées et prendre en compte les rubriques interdépendantes 
+        susceptibles d'avoir une incidence significative .
+      </p>
+    </div>
+
+    <h3>6.3 Les missions de compilation</h3>
+    <blockquote>
+      « Sur la base des informations fournies par la direction, nous avons préparé le bilan 
+      de la société ABC au 31 décembre 20xx. La préparation de ces états a été effectuée 
+      selon la norme Internationale d'audit relative aux missions de compilation. 
+      La direction est responsable de ces états financiers qui n'ont fait l'objet ni d'un 
+      audit, ni d'un examen limité de notre part. Nous ne donnons, par conséquent, 
+      aucune assurance sur ces derniers. » 
+    </blockquote>
+
+    <!-- SYNTHÈSE -->
+    <h2>🧭 Synthèse — Le processus d'audit</h2>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Objectif</th>
+          <th>Livrable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Acceptation</td>
+          <td>Évaluer le risque mission</td>
+          <td>Lettre de mission</td>
+        </tr>
+        <tr>
+          <td>Planification</td>
+          <td>Définir la stratégie d'audit</td>
+          <td>Plan de mission</td>
+        </tr>
+        <tr>
+          <td>Évaluation CI</td>
+          <td>Mesurer la fiabilité des procédures</td>
+          <td>Mémorandum CI</td>
+        </tr>
+        <tr>
+          <td>Contrôle des comptes</td>
+          <td>Vérifier les soldes et opérations</td>
+          <td>Dossier de travail</td>
+        </tr>
+        <tr>
+          <td>Synthèse</td>
+          <td>Conclure sur les comptes</td>
+          <td>Note de synthèse</td>
+        </tr>
+        <tr>
+          <td>Rapport</td>
+          <td>Communiquer l'opinion</td>
+          <td>Rapport d'audit</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CONCLUSION -->
+    <h2>✅ À retenir</h2>
+    
+    <div class="summary-box">
+      <h3>📌 Points clés du module</h3>
+      <ol>
+        <li>L'audit repose sur 4 piliers : <strong>indépendance, opinion motivée, image fidèle, assurance raisonnable</strong> </li>
+        <li>Les <strong>normes ISA</strong> de l'IFAC constituent le référentiel international </li>
+        <li>L'audit suit une <strong>démarche structurée</strong> en 6 phases</li>
+        <li>L'<strong>approche par les cycles</strong> permet une analyse systématique des comptes</li>
+        <li>L'opinion peut être : <strong>sans réserve, avec réserve, défavorable ou refus</strong></li>
+        <li>L'auditeur exprime une <strong>assurance raisonnable</strong> et non absolue</li>
+        <li>Le rapport doit préciser le <strong>référentiel comptable utilisé</strong> </li>
+      </ol>
+    </div>
+
+    <!-- QUESTIONS DE RÉVISION -->
+    <h2>❓ Questions de révision</h2>
+    <ol>
+      <li>Quels sont les 4 piliers fondamentaux de l'audit comptable et financier ?</li>
+      <li>Quelle différence entre audit interne et audit externe ?</li>
+      <li>Qu'est-ce que les normes ISA et qui les édicte ?</li>
+      <li>Citez les 6 phases de la démarche d'audit.</li>
+      <li>Quels sont les principaux cycles d'audit ?</li>
+      <li>Quels sont les 4 types d'opinion que peut formuler un auditeur ?</li>
+      <li>Que prévoit l'ISA 800 concernant les missions spéciales ?</li>
+      <li>Quelle est la différence entre une mission d'audit et une mission de compilation ?</li>
+    </ol>
+
+    <!-- RÉFÉRENCES -->
+    <h2>📚 Références</h2>
+    <ul>
+      <li><strong>Pr BENNANI Otmane</strong> — Support de cours Audit Comptable et Financier, Master AMSO 2026 </li>
+      <li>Normes Internationales d'Audit (ISA) — IFAC (International Federation of Accountants)</li>
+      <li>ISA 200 — Objectifs généraux de l'auditeur indépendant</li>
+      <li>ISA 315 — Identification et évaluation des risques d'anomalies significatives</li>
+      <li>ISA 700 — Opinion et rapport sur les états financiers</li>
+      <li>ISA 800 — Missions d'audit spéciales </li>
+    </ul>
+
+    <!-- Navigation -->
+    <div class="nav-bottom">
+      <a href="amso-module5.html">← Module 5 : Contrôle de Gestion</a>
+      <a href="amso-module7.html">Module 7 : Culture & Innovation →</a>
+    </div>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="course-footer">
+    <p>© 2026 NBProf - Noamane Boulahcen | <a href="confidentialite.html" style="color: var(--gold);">Politique de confidentialité</a></p>
+  </footer>
+
+</body>
+</html>
