@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMSO 2026 - Résumés de Cours | NBProf</title>
+  <meta name="description" content="Résumés de cours du Master AMSO 2026 - Analyse et Management Stratégique des Organisations par Noamane Boulahcen">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350" crossorigin="anonymous"></script>
+  
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: rgba(201,168,76,0.1);
+      --gold-medium: rgba(201,168,76,0.3);
+      --navy: #0a1628;
+      --navy-2: #0f1e35;
+      --text-light: #e8e8e8;
+      --text-muted: #a0a0a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: var(--navy);
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* Navigation */
+    .amso-nav {
+      background: var(--navy-2);
+      padding: 20px 40px;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .amso-nav-logo {
+      color: var(--gold);
+      font-size: 1.4em;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .amso-nav-links a {
+      color: var(--text-light);
+      text-decoration: none;
+      margin-left: 25px;
+      transition: color 0.3s;
+    }
+
+    .amso-nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .amso-hero {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .amso-hero h1 {
+      color: var(--gold);
+      font-size: 3em;
+      margin-bottom: 15px;
+    }
+
+    .amso-hero p {
+      color: var(--text-muted);
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .amso-badge {
+      display: inline-block;
+      background: var(--gold-light);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 30px;
+      border: 1px solid var(--gold);
+      margin-bottom: 20px;
+      font-size: 0.9em;
+    }
+
+    /* Container */
+    .amso-container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .amso-section-title {
+      color: var(--gold);
+      font-size: 2em;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .amso-section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--gold);
+    }
+
+    /* Cards Grid */
+    .amso-courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .amso-course-card {
+      background: var(--navy-2);
+      border: 1px solid var(--gold-medium);
+      border-radius: 12px;
+      padding: 30px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .amso-course-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gold);
+      transform: scaleY(0);
+      transition: transform 0.3s;
+      transform-origin: bottom;
+    }
+
+    .amso-course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(201,168,76,0.2);
+      border-color: var(--gold);
+    }
+
+    .amso-course-card:hover::before {
+      transform: scaleY(1);
+      transform-origin: top;
+    }
+
+    .amso-course-icon {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .amso-course-number {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.85em;
+      margin-bottom: 15px;
+    }
+
+    .amso-course-title {
+      color: var(--gold);
+      font-size: 1.2em;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .amso-course-desc {
+      color: var(--text-muted);
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+
+    .amso-course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid var(--gold-medium);
+      font-size: 0.85em;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .amso-course-link {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .amso-course-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Info Box */
+    .amso-info-box {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 40px 0;
+    }
+
+    .amso-info-box h3 {
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    .amso-footer {
+      background: var(--navy-2);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid var(--gold-medium);
+      margin-top: 60px;
+    }
+
+    .amso-footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    /* Status badges */
+    .status-available {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    .status-soon {
+      color: #fbbf24;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .amso-hero h1 { font-size: 2em; }
+      .amso-nav { padding: 15px 20px; }
+      .amso-nav-links a { margin-left: 15px; font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="amso-nav">
+    <a href="index.html" class="amso-nav-logo">← #NBProf</a>
+    <div class="amso-nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="amso2026.html">AMSO 2026</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="amso-hero">
+    <span class="amso-badge">📚 Année universitaire 2025-2026</span>
+    <h1>Master AMSO 2026</h1>
+    <p>Analyse et Management Stratégique des Organisations<br>
+    Résumés de cours, ressources et supports pédagogiques</p>
+  </section>
+
+  <!-- Main Content -->
+  <div class="amso-container">
+    
+    <!-- Info Box -->
+    <div class="amso-info-box">
+      <h3>💡 À propos de cette section</h3>
+      <p>
+        Cette page regroupe les résumés des 7 modules du Master AMSO 2026. 
+        Chaque résumé est conçu pour faciliter votre apprentissage et votre révision. 
+        Les contenus sont régulièrement mis à jour au fil du semestre.
+      </p>
+    </div>
+
+    <!-- Courses Section -->
+    <h2 class="amso-section-title">📖 Les 7 modules du programme</h2>
+
+    <div class="amso-courses-grid">
+      
+      <!-- MODULE 1 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">🔬</span>
+        <span class="amso-course-number">Module 1</span>
+        <h3 class="amso-course-title">Méthodologie en Sciences de Gestion</h3>
+        <p class="amso-course-desc">
+          Méthodes de recherche, démarches scientifiques et outils méthodologiques 
+          appliqués aux sciences de gestion.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module1.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 2 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">📊</span>
+        <span class="amso-course-number">Module 2</span>
+        <h3 class="amso-course-title">Diagnostic Stratégique et Évaluation de la Performance</h3>
+        <p class="amso-course-desc">
+          Outils de diagnostic stratégique (SWOT, PESTEL, Porter) et 
+          méthodes d'évaluation de la performance organisationnelle.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module2.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 3 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">👥</span>
+        <span class="amso-course-number">Module 3</span>
+        <h3 class="amso-course-title">Management des Ressources Humaines</h3>
+        <p class="amso-course-desc">
+          Gestion stratégique des RH, recrutement, formation, motivation 
+          et développement des compétences.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module3.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 4 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">💻</span>
+        <span class="amso-course-number">Module 4</span>
+        <h3 class="amso-course-title">Système d'Information de Gestion</h3>
+        <p class="amso-course-desc">
+          Conception et utilisation des SI, ERP, transformation digitale 
+          et pilotage par les données.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module4.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 5 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">📈</span>
+        <span class="amso-course-number">Module 5</span>
+        <h3 class="amso-course-title">Contrôle de Gestion</h3>
+        <p class="amso-course-desc">
+          Outils de pilotage, budgets, tableaux de bord, analyse des écarts 
+          et reporting financier.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module5.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 6 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">🔍</span>
+        <span class="amso-course-number">Module 6</span>
+        <h3 class="amso-course-title">Audit Comptable et Financier</h3>
+        <p class="amso-course-desc">
+          Démarche d'audit, contrôle interne, normes internationales 
+          et certification des comptes.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module6.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+      <!-- MODULE 7 -->
+      <div class="amso-course-card">
+        <span class="amso-course-icon">💡</span>
+        <span class="amso-course-number">Module 7</span>
+        <h3 class="amso-course-title">Culture, Communication et Innovation</h3>
+        <p class="amso-course-desc">
+          Culture organisationnelle, communication interne et externe, 
+          management de l'innovation et créativité.
+        </p>
+        <div class="amso-course-meta">
+          <span class="status-soon">⏳ En préparation</span>
+          <a href="amso-module7.html" class="amso-course-link">Voir le résumé →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section Ressources -->
+    <h2 class="amso-section-title" style="margin-top: 80px;">🎓 Conseils d'utilisation</h2>
+
+    <div class="amso-info-box">
+      <h3>📌 Comment tirer le meilleur des résumés ?</h3>
+      <p>
+        • <strong>Avant le cours</strong> : lisez le résumé pour avoir une vue d'ensemble du module<br>
+        • <strong>Pendant le cours</strong> : utilisez-le comme support de prise de notes<br>
+        • <strong>Après le cours</strong> : révisez avec le résumé pour consolider vos acquis<br>
+        • <strong>Avant l'examen</strong> : utilisez-le comme outil de révision rapide et efficace
+      </p>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="amso-footer">
+    <p>© 2026 NBProf - Noamane Boulahcen | <a href="confidentialite.html">Politique de confidentialité</a></p>
+    <p style="margin-top: 10px;"><a href="index.html">← Retour à l'accueil</a></p>
+  </footer>
+
+</body>
+</html>
