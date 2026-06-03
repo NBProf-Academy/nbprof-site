@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2 - Diagnostic Stratégique et Évaluation de la Performance | AMSO 2026</title>
+  <meta name="description" content="Résumé du Module 2 : Diagnostic Stratégique et Évaluation de la Performance - Master AMSO 2026">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350" crossorigin="anonymous"></script>
+  
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: rgba(201,168,76,0.1);
+      --gold-medium: rgba(201,168,76,0.3);
+      --navy: #0a1628;
+      --navy-2: #0f1e35;
+      --text-light: #e8e8e8;
+      --text-muted: #a0a0a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .course-nav {
+      background: var(--navy-2);
+      padding: 15px 30px;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .course-nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .course-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .course-module-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .course-header h1 {
+      color: var(--gold);
+      font-size: 2.3em;
+      margin-bottom: 10px;
+    }
+
+    .course-header .meta {
+      color: var(--text-muted);
+      font-size: 1.05em;
+    }
+
+    .course-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .course-container h2 {
+      color: var(--gold);
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold-medium);
+    }
+
+    .course-container h3 {
+      color: var(--gold);
+      font-size: 1.3em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .course-container p {
+      margin-bottom: 18px;
+      color: var(--text-light);
+    }
+
+    .course-container ul, .course-container ol {
+      margin: 15px 0 20px 30px;
+      color: var(--text-light);
+    }
+
+    .course-container li {
+      margin-bottom: 10px;
+    }
+
+    .course-container strong {
+      color: var(--gold);
+    }
+
+    .course-container blockquote {
+      border-left: 4px solid var(--gold);
+      padding: 15px 20px;
+      background: var(--gold-light);
+      margin: 25px 0;
+      font-style: italic;
+      border-radius: 4px;
+    }
+
+    .key-concept {
+      background: var(--navy-2);
+      border: 1px solid var(--gold-medium);
+      border-left: 4px solid var(--gold);
+      padding: 20px 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+
+    .key-concept h4 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .summary-box {
+      background: var(--gold-light);
+      border: 2px solid var(--gold);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .summary-box h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    /* Tableau pour matrices */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      background: var(--navy-2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .matrix-table th,
+    .matrix-table td {
+      padding: 15px;
+      text-align: left;
+      border: 1px solid var(--gold-medium);
+    }
+
+    .matrix-table th {
+      background: var(--gold);
+      color: var(--navy);
+      font-weight: bold;
+    }
+
+    .matrix-table tr:hover {
+      background: var(--gold-light);
+    }
+
+    .course-footer {
+      background: var(--navy-2);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid var(--gold-medium);
+      margin-top: 60px;
+    }
+
+    .nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--gold-medium);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .nav-bottom a {
+      color: var(--gold);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .nav-bottom a:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .course-header h1 { font-size: 1.6em; }
+      .course-container { padding: 0 15px; }
+      .matrix-table { font-size: 0.9em; }
+      .matrix-table th, .matrix-table td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="course-nav">
+    <a href="amso2026.html">← Retour à AMSO 2026</a>
+    <a href="index.html">Accueil NBProf</a>
+  </nav>
+
+  <!-- Header -->
+  <header class="course-header">
+    <span class="course-module-badge">Module 2</span>
+    <h1>Diagnostic Stratégique et Évaluation de la Performance</h1>
+    <p class="meta">Master AMSO 2026 | Par Noamane Boulahcen</p>
+  </header>
+
+  <!-- Content -->
+  <article class="course-container">
+    
+    <!-- INTRODUCTION -->
+    <h2>📖 Introduction</h2>
+    <p>
+      Le diagnostic stratégique est un processus fondamental qui permet aux organisations 
+      d'analyser leur environnement interne et externe afin de formuler des stratégies 
+      pertinentes. L'évaluation de la performance, quant à elle, mesure le degré 
+      d'atteinte des objectifs et l'efficacité des actions menées.
+    </p>
+
+    <div class="summary-box">
+      <h3>🎯 Objectifs du module</h3>
+      <ul>
+        <li>Maîtriser les outils de diagnostic stratégique (SWOT, PESTEL, Porter)</li>
+        <li>Analyser l'environnement interne et externe de l'organisation</li>
+        <li>Comprendre les indicateurs de performance (KPI)</li>
+        <li>Savoir construire et interpréter un tableau de bord</li>
+        <li>Évaluer la performance globale d'une organisation</li>
+      </ul>
+    </div>
+
+    <!-- CHAPITRE 1 -->
+    <h2>1️⃣ Les fondamentaux du diagnostic stratégique</h2>
+    
+    <h3>1.1 Définition et enjeux</h3>
+    <p>
+      Le diagnostic stratégique consiste à analyser la position concurrentielle d'une 
+      organisation et à identifier les opportunités et menaces de son environnement, 
+      ainsi que ses forces et faiblesses internes.
+    </p>
+
+    <div class="key-concept">
+      <h4>💡 Concept clé : Diagnostic stratégique</h4>
+      <p>
+        Démarche analytique visant à comprendre la situation actuelle d'une organisation 
+        dans son environnement, afin de définir les orientations stratégiques futures. 
+        Il se compose de deux volets : le <strong>diagnostic interne</strong> 
+        (ressources, compétences) et le <strong>diagnostic externe</strong> 
+        (environnement, marché, concurrence).
+      </p>
+    </div>
+
+    <h3>1.2 Les niveaux d'analyse stratégique</h3>
+    <ul>
+      <li><strong>Niveau corporate</strong> : stratégie d'entreprise globale</li>
+      <li><strong>Niveau business</strong> : stratégie par domaine d'activité (DAS)</li>
+      <li><strong>Niveau fonctionnel</strong> : stratégie par fonction (marketing, RH...)</li>
+    </ul>
+
+    <!-- CHAPITRE 2 -->
+    <h2>2️⃣ L'analyse de l'environnement externe</h2>
+    
+    <h3>2.1 L'analyse PESTEL</h3>
+    <p>
+      L'analyse PESTEL permet d'identifier les facteurs macro-environnementaux 
+      qui influencent l'organisation.
+    </p>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Facteur</th>
+          <th>Description</th>
+          <th>Exemples</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>P</strong>olitique</td>
+          <td>Politiques gouvernementales, stabilité</td>
+          <td>Lois, fiscalité, subventions</td>
+        </tr>
+        <tr>
+          <td><strong>E</strong>conomique</td>
+          <td>Conjoncture économique</td>
+          <td>Inflation, croissance, chômage</td>
+        </tr>
+        <tr>
+          <td><strong>S</strong>ocio-culturel</td>
+          <td>Tendances sociétales</td>
+          <td>Démographie, modes de vie</td>
+        </tr>
+        <tr>
+          <td><strong>T</strong>echnologique</td>
+          <td>Innovations et progrès technique</td>
+          <td>IA, digitalisation, R&D</td>
+        </tr>
+        <tr>
+          <td><strong>E</strong>nvironnemental</td>
+          <td>Enjeux écologiques</td>
+          <td>RSE, normes vertes, climat</td>
+        </tr>
+        <tr>
+          <td><strong>L</strong>égal</td>
+          <td>Cadre juridique</td>
+          <td>Réglementation, droit du travail</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>2.2 Les 5 forces de Porter</h3>
+    <p>
+      Le modèle de Michael Porter analyse l'intensité concurrentielle d'un secteur 
+      à travers cinq forces majeures.
+    </p>
+
+    <ol>
+      <li><strong>La rivalité entre concurrents existants</strong> : intensité de la concurrence directe</li>
+      <li><strong>La menace des nouveaux entrants</strong> : barrières à l'entrée du secteur</li>
+      <li><strong>Le pouvoir de négociation des fournisseurs</strong> : influence sur les prix et conditions</li>
+      <li><strong>Le pouvoir de négociation des clients</strong> : capacité à imposer leurs exigences</li>
+      <li><strong>La menace des produits de substitution</strong> : alternatives disponibles</li>
+    </ol>
+
+    <div class="key-concept">
+      <h4>💡 Concept clé : Avantage concurrentiel</h4>
+      <p>
+        Selon Porter, une organisation peut adopter trois stratégies génériques : 
+        <strong>la domination par les coûts</strong>, <strong>la différenciation</strong>, 
+        ou <strong>la focalisation (niche)</strong>.
+      </p>
+    </div>
+
+    <!-- CHAPITRE 3 -->
+    <h2>3️⃣ L'analyse de l'environnement interne</h2>
+
+    <h3>3.1 L'analyse des ressources et compétences</h3>
+    <p>
+      L'approche RBV (Resource-Based View) considère que l'avantage concurrentiel 
+      repose sur les ressources et compétences propres à l'organisation.
+    </p>
+
+    <h3>3.2 Le modèle VRIO</h3>
+    <p>Une ressource constitue un avantage concurrentiel durable si elle est :</p>
+    <ul>
+      <li><strong>V</strong>aluable (Valorisable) : crée de la valeur</li>
+      <li><strong>R</strong>are : peu de concurrents la possèdent</li>
+      <li><strong>I</strong>nimitable : difficile à copier</li>
+      <li><strong>O</strong>rganized : exploitée par l'organisation</li>
+    </ul>
+
+    <h3>3.3 La chaîne de valeur de Porter</h3>
+    <p>
+      La chaîne de valeur décompose l'activité de l'entreprise en activités 
+      principales (logistique, production, marketing...) et activités de soutien 
+      (RH, infrastructure, R&D...) pour identifier les sources de création de valeur.
+    </p>
+
+    <!-- CHAPITRE 4 -->
+    <h2>4️⃣ La synthèse : matrice SWOT</h2>
+    <p>
+      La matrice SWOT (Strengths, Weaknesses, Opportunities, Threats) synthétise 
+      le diagnostic interne et externe pour orienter la décision stratégique.
+    </p>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Positif</th>
+          <th>Négatif</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Interne</strong></td>
+          <td>Forces (Strengths)</td>
+          <td>Faiblesses (Weaknesses)</td>
+        </tr>
+        <tr>
+          <td><strong>Externe</strong></td>
+          <td>Opportunités (Opportunities)</td>
+          <td>Menaces (Threats)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      "Le diagnostic stratégique n'est pas une fin en soi, mais un point de départ 
+      pour la formulation et la mise en œuvre de la stratégie."
+      <br>— Strategor
+    </blockquote>
+
+    <!-- CHAPITRE 5 -->
+    <h2>5️⃣ L'évaluation de la performance</h2>
+
+    <h3>5.1 Définition de la performance</h3>
+    <p>
+      La performance est la capacité d'une organisation à atteindre ses objectifs 
+      de manière efficace (résultats) et efficiente (ressources utilisées).
+    </p>
+
+    <div class="key-concept">
+      <h4>💡 Les 3 E de la performance</h4>
+      <ul>
+        <li><strong>Efficacité</strong> : atteindre les objectifs fixés</li>
+        <li><strong>Efficience</strong> : optimiser l'usage des ressources</li>
+        <li><strong>Économie</strong> : minimiser les coûts</li>
+      </ul>
+    </div>
+
+    <h3>5.2 Les indicateurs clés de performance (KPI)</h3>
+    <p>Les KPI mesurent la performance selon différentes dimensions :</p>
+    <ul>
+      <li><strong>Financiers</strong> : chiffre d'affaires, ROI, marge, rentabilité</li>
+      <li><strong>Commerciaux</strong> : part de marché, taux de fidélisation</li>
+      <li><strong>Opérationnels</strong> : productivité, taux de rebut, délais</li>
+      <li><strong>Humains</strong> : turnover, absentéisme, satisfaction</li>
+      <li><strong>RSE</strong> : impact environnemental, engagement social</li>
+    </ul>
+
+    <h3>5.3 Le Balanced Scorecard (BSC)</h3>
+    <p>
+      Le tableau de bord prospectif de Kaplan et Norton équilibre la mesure 
+      de performance selon 4 axes :
+    </p>
+    <ol>
+      <li><strong>Financier</strong> : "Que doit-on apporter aux actionnaires ?"</li>
+      <li><strong>Client</strong> : "Comment doit-on apparaître aux yeux des clients ?"</li>
+      <li><strong>Processus internes</strong> : "Quels processus doit-on exceller ?"</li>
+      <li><strong>Apprentissage organisationnel</strong> : "Comment maintenir notre capacité à changer ?"</li>
+    </ol>
+
+    <!-- CONCLUSION -->
+    <h2>✅ Synthèse et points clés</h2>
+    
+    <div class="summary-box">
+      <h3>📌 À retenir</h3>
+      <ol>
+        <li>Le diagnostic stratégique combine analyse externe (PESTEL, Porter) et interne (VRIO, chaîne de valeur)</li>
+        <li>La matrice SWOT synthétise les éléments du diagnostic</li>
+        <li>La performance se mesure à travers efficacité, efficience et économie</li>
+        <li>Les KPI doivent être SMART (Spécifiques, Mesurables, Atteignables, Réalistes, Temporels)</li>
+        <li>Le Balanced Scorecard offre une vision équilibrée et multidimensionnelle</li>
+        <li>Le diagnostic est un processus continu, à actualiser régulièrement</li>
+      </ol>
+    </div>
+
+    <!-- QUESTIONS DE RÉVISION -->
+    <h2>❓ Questions de révision</h2>
+    <ol>
+      <li>Quelle est la différence entre diagnostic interne et diagnostic externe ?</li>
+      <li>Expliquez les 5 forces de Porter avec un exemple concret.</li>
+      <li>Qu'est-ce qui rend une ressource stratégique selon le modèle VRIO ?</li>
+      <li>Comment construire une matrice SWOT pertinente ?</li>
+      <li>Quelles sont les limites des indicateurs financiers traditionnels ?</li>
+      <li>Présentez les 4 axes du Balanced Scorecard.</li>
+    </ol>
+
+    <!-- RÉFÉRENCES -->
+    <h2>📚 Références bibliographiques</h2>
+    <ul>
+      <li>Porter, M. (1985). <em>Competitive Advantage</em>. Free Press.</li>
+      <li>Kaplan, R. & Norton, D. (1996). <em>The Balanced Scorecard</em>. Harvard Business School Press.</li>
+      <li>Strategor (2019). <em>Toute la stratégie d'entreprise</em>. Dunod, 8e édition.</li>
+      <li>Johnson, G., Scholes, K., Whittington, R. (2020). <em>Stratégique</em>. Pearson.</li>
+      <li>Barney, J. (1991). Firm Resources and Sustained Competitive Advantage. <em>Journal of Management</em>, 17(1), 99-120.</li>
+    </ul>
+
+    <!-- Navigation -->
+    <div class="nav-bottom">
+      <a href="amso-module1.html">← Module 1 : Méthodologie</a>
+      <a href="amso-module3.html">Module 3 : Management RH →</a>
+    </div>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="course-footer">
+    <p>© 2026 NBProf - Noamane Boulahcen | <a href="confidentialite.html" style="color: var(--gold);">Politique de confidentialité</a></p>
+  </footer>
+
+</body>
+</html>
