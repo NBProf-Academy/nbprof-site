@@ -1521,5 +1521,5 @@ const ARTICLES = [
       <p><strong>🌟 When your employees thrive, your company prospers.</strong></p>
     `
   }
-},
+}
 ];
