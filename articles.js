@@ -1328,5 +1328,198 @@ const ARTICLES = [
     `
   }
 }  
+{
+  id: 6,
+  category: 'management',
+  icon: '🏢',
+  date:     { fr: 'Juin 2026', ar: 'يونيو 2026', en: 'June 2026' },
+  readTime: { fr: '10 min', ar: '10 دقيقة', en: '10 min' },
+  badge:    { fr: 'Management · Ressources Humaines', ar: 'الإدارة · الموارد البشرية', en: 'Management · Human Resources' },
+  title: {
+    fr: "Culture d'entreprise et motivation : les clés d'une performance durable",
+    ar: "ثقافة الشركة وتحفيز الموظفين: مفاتيح الأداء المستدام",
+    en: "Corporate culture and employee motivation: the keys to sustainable performance"
+  },
+  excerpt: {
+    fr: "Et si la vraie richesse d'une entreprise n'était ni ses machines ni ses capitaux, mais ses collaborateurs ? Découvrez comment la culture organisationnelle façonne la motivation et la performance durable.",
+    ar: "ماذا لو كانت الثروة الحقيقية للشركة ليست آلاتها ولا رؤوس أموالها، بل موظفيها؟ اكتشف كيف تشكل الثقافة التنظيمية الدافع والأداء المستدام.",
+    en: "What if a company's true wealth was neither its machines nor its capital, but its employees? Discover how organizational culture shapes motivation and sustainable performance."
+  },
+  content: {
+    fr: `
+      <p>Dans un monde du travail en pleine transformation — marqué par la digitalisation, le télétravail et l'arrivée de l'intelligence artificielle — la <strong>culture d'entreprise</strong> et la <strong>motivation des employés</strong> sont devenues des leviers stratégiques majeurs. Aujourd'hui, les organisations qui réussissent ne sont plus seulement celles qui offrent les meilleurs salaires, mais celles qui savent <strong>donner du sens au travail</strong> et <strong>construire une identité forte</strong>.</p>
 
+      <h3>1. Qu'est-ce que la culture d'entreprise ?</h3>
+      <p>La culture d'entreprise se définit comme <strong>l'ensemble des valeurs, croyances, normes, symboles et pratiques partagés</strong> au sein d'une organisation. Elle constitue son identité profonde et influence directement les comportements et la performance globale.</p>
+
+      <p><strong>Ses composantes principales :</strong></p>
+      <ul>
+        <li><strong>Les valeurs</strong> : respect, esprit d'équipe, innovation, responsabilité.</li>
+        <li><strong>Les normes et règles</strong> : horaires, hiérarchie, procédures.</li>
+        <li><strong>Les symboles et rituels</strong> : logo, slogan, événements internes.</li>
+        <li><strong>Le style de management</strong> : autoritaire, participatif ou collaboratif.</li>
+        <li><strong>La communication interne</strong> : circulation de l'information et climat social.</li>
+      </ul>
+
+      <p>Selon <strong>Edgar Schein</strong>, la culture se décline en trois niveaux : les <em>artefacts visibles</em> (logo, locaux), les <em>valeurs partagées</em> (principes affichés) et les <em>postulats fondamentaux inconscients</em> (croyances profondes).</p>
+
+      <h3>2. Pourquoi la culture influence-t-elle la motivation ?</h3>
+      <p>Une culture forte et positive crée un environnement où les employés se sentent <strong>valorisés, écoutés et engagés</strong>. Comme le rappelle une célèbre formule :</p>
+      <blockquote>« La culture mange la stratégie au petit déjeuner. »</blockquote>
+      <p>Autrement dit, une stratégie excellente sur le papier peut échouer si elle n'est pas alignée avec la culture vécue au quotidien.</p>
+
+      <h3>3. Les deux types de motivation</h3>
+      <p><strong>🔹 Motivation intrinsèque :</strong> vient de l'intérieur (plaisir, accomplissement, sens du travail).</p>
+      <p><strong>🔹 Motivation extrinsèque :</strong> vient de l'extérieur (salaire, primes, reconnaissance).</p>
+      <p>Les entreprises performantes combinent les deux, mais la motivation intrinsèque est <strong>plus durable</strong> car elle repose sur le sens et l'épanouissement personnel.</p>
+
+      <h3>4. Les bénéfices d'une culture motivante</h3>
+      <ul>
+        <li>✅ Hausse de la productivité</li>
+        <li>✅ Réduction du turnover</li>
+        <li>✅ Renforcement de l'image employeur</li>
+        <li>✅ Stimulation de l'innovation</li>
+        <li>✅ Employés-ambassadeurs de la marque</li>
+      </ul>
+
+      <h3>5. Les 7 leviers pour motiver vos équipes</h3>
+      <ol>
+        <li>🗣️ <strong>Adopter un leadership à l'écoute</strong></li>
+        <li>🏅 <strong>Reconnaître les efforts régulièrement</strong></li>
+        <li>📚 <strong>Investir dans la formation continue</strong></li>
+        <li>🌍 <strong>Créer un environnement inclusif</strong></li>
+        <li>🧘 <strong>Soutenir le bien-être au travail</strong></li>
+        <li>💡 <strong>Encourager l'innovation et l'autonomie</strong></li>
+        <li>🔍 <strong>Communiquer en toute transparence</strong></li>
+      </ol>
+
+      <h3>6. Les défis actuels : télétravail, IA et expérience collaborateur</h3>
+      <p>Le télétravail complique la transmission de la culture, l'IA transforme les pratiques RH, et la digitalisation modifie les modes de communication. Désormais, la <strong>guerre des talents</strong> ne se gagne plus uniquement par le salaire, mais par la <strong>qualité de l'expérience collaborateur</strong>.</p>
+
+      <h3>7. L'humain au cœur de la performance</h3>
+      <blockquote>« Les actifs les plus précieux de l'entreprise rentrent chez eux chaque soir. »</blockquote>
+      <p>Cette phrase résume tout : la vraie richesse d'une organisation, ce sont ses <strong>collaborateurs</strong>. Sans engagement humain, aucune stratégie ne peut créer de valeur durable.</p>
+
+      <h3>✨ Conclusion</h3>
+      <p>La culture d'entreprise et la motivation des employés ne sont plus de simples sujets RH : ce sont des <strong>leviers stratégiques essentiels</strong>. En investissant dans une culture forte, positive et porteuse de sens, vous construisez les fondations d'une performance durable.</p>
+      <p><strong>🌟 Quand vos employés s'épanouissent, votre entreprise prospère.</strong></p>
+    `,
+    ar: `
+      <p>في عالم العمل المتحول بفعل الرقمنة والعمل عن بعد والذكاء الاصطناعي، أصبحت <strong>ثقافة الشركة</strong> و<strong>تحفيز الموظفين</strong> من أهم الروافع الاستراتيجية. اليوم، المؤسسات الناجحة ليست تلك التي تقدم أفضل الرواتب فقط، بل التي تعرف كيف <strong>تمنح معنى للعمل</strong> و<strong>تبني هوية قوية</strong>.</p>
+
+      <h3>1. ما هي ثقافة الشركة؟</h3>
+      <p>تُعرَّف ثقافة الشركة بأنها <strong>مجموعة القيم والمعتقدات والمعايير والرموز والممارسات المشتركة</strong> داخل المنظمة. وهي تشكل هويتها العميقة وتؤثر مباشرة على السلوكيات والأداء العام.</p>
+
+      <p><strong>مكوناتها الرئيسية:</strong></p>
+      <ul>
+        <li><strong>القيم</strong>: الاحترام، روح الفريق، الابتكار، المسؤولية.</li>
+        <li><strong>المعايير والقواعد</strong>: ساعات العمل، التسلسل الهرمي، الإجراءات.</li>
+        <li><strong>الرموز والطقوس</strong>: الشعار، الأحداث الداخلية.</li>
+        <li><strong>أسلوب الإدارة</strong>: استبدادي أو تشاركي أو تعاوني.</li>
+        <li><strong>التواصل الداخلي</strong>: تدفق المعلومات والمناخ الاجتماعي.</li>
+      </ul>
+
+      <p>وفقًا لـ <strong>إدغار شاين</strong>، تتكون الثقافة من ثلاثة مستويات: <em>المظاهر المرئية</em>، و<em>القيم المشتركة</em>، و<em>الافتراضات الأساسية اللاواعية</em>.</p>
+
+      <h3>2. لماذا تؤثر الثقافة على التحفيز؟</h3>
+      <p>الثقافة القوية والإيجابية تخلق بيئة يشعر فيها الموظفون بأنهم <strong>مُقدَّرون ومسموعون ومشاركون</strong>.</p>
+      <blockquote>«الثقافة تأكل الاستراتيجية على الإفطار.»</blockquote>
+      <p>أي أن الاستراتيجية الممتازة على الورق قد تفشل إذا لم تكن متوافقة مع الثقافة اليومية.</p>
+
+      <h3>3. نوعا التحفيز</h3>
+      <p><strong>🔹 التحفيز الداخلي:</strong> ينبع من الداخل (المتعة، الإنجاز، معنى العمل).</p>
+      <p><strong>🔹 التحفيز الخارجي:</strong> يأتي من الخارج (الراتب، المكافآت، التقدير).</p>
+      <p>الشركات الناجحة تجمع بينهما، لكن التحفيز الداخلي <strong>أكثر استدامة</strong>.</p>
+
+      <h3>4. فوائد الثقافة المحفزة</h3>
+      <ul>
+        <li>✅ زيادة الإنتاجية</li>
+        <li>✅ تقليل معدل الدوران الوظيفي</li>
+        <li>✅ تعزيز صورة صاحب العمل</li>
+        <li>✅ تحفيز الابتكار</li>
+        <li>✅ تحويل الموظفين إلى سفراء للعلامة التجارية</li>
+      </ul>
+
+      <h3>5. 7 روافع لتحفيز فرقك</h3>
+      <ol>
+        <li>🗣️ <strong>اعتماد قيادة مستمعة</strong></li>
+        <li>🏅 <strong>تقدير الجهود بانتظام</strong></li>
+        <li>📚 <strong>الاستثمار في التكوين المستمر</strong></li>
+        <li>🌍 <strong>خلق بيئة شاملة</strong></li>
+        <li>🧘 <strong>دعم الرفاهية في العمل</strong></li>
+        <li>💡 <strong>تشجيع الابتكار والاستقلالية</strong></li>
+        <li>🔍 <strong>التواصل بشفافية تامة</strong></li>
+      </ol>
+
+      <h3>6. التحديات الحالية: العمل عن بعد، الذكاء الاصطناعي وتجربة الموظف</h3>
+      <p>العمل عن بعد يصعّب نقل الثقافة، الذكاء الاصطناعي يغير ممارسات الموارد البشرية، والرقمنة تعدل أساليب التواصل. أصبحت <strong>حرب المواهب</strong> لا تُكسب بالراتب فقط، بل بجودة <strong>تجربة الموظف</strong>.</p>
+
+      <h3>7. الإنسان في قلب الأداء</h3>
+      <blockquote>«أثمن أصول الشركة تعود إلى منازلها كل مساء.»</blockquote>
+      <p>هذه العبارة تختصر كل شيء: الثروة الحقيقية للمنظمة هي <strong>موظفوها</strong>. بدون مشاركة بشرية، لا يمكن لأي استراتيجية أن تخلق قيمة مستدامة.</p>
+
+      <h3>✨ خاتمة</h3>
+      <p>ثقافة الشركة وتحفيز الموظفين لم تعد مجرد مواضيع للموارد البشرية: بل هي <strong>روافع استراتيجية أساسية</strong>. بالاستثمار في ثقافة قوية وإيجابية وذات معنى، تبني أسس أداء مستدام.</p>
+      <p><strong>🌟 عندما يزدهر موظفوك، تزدهر شركتك.</strong></p>
+    `,
+    en: `
+      <p>In a rapidly transforming work environment — shaped by digitalization, remote work, and the rise of artificial intelligence — <strong>corporate culture</strong> and <strong>employee motivation</strong> have become major strategic levers. Today, the most successful organizations are not those offering the highest salaries, but those that know how to <strong>give meaning to work</strong> and <strong>build a strong identity</strong>.</p>
+
+      <h3>1. What is corporate culture?</h3>
+      <p>Corporate culture is defined as <strong>the set of values, beliefs, norms, symbols, and practices shared</strong> within an organization. It constitutes its deep identity and directly influences behaviors and overall performance.</p>
+
+      <p><strong>Its main components:</strong></p>
+      <ul>
+        <li><strong>Values</strong>: respect, teamwork, innovation, responsibility.</li>
+        <li><strong>Norms and rules</strong>: schedules, hierarchy, procedures.</li>
+        <li><strong>Symbols and rituals</strong>: logo, slogan, internal events.</li>
+        <li><strong>Management style</strong>: authoritarian, participative, or collaborative.</li>
+        <li><strong>Internal communication</strong>: information flow and social climate.</li>
+      </ul>
+
+      <p>According to <strong>Edgar Schein</strong>, culture has three levels: <em>visible artifacts</em>, <em>shared values</em>, and <em>unconscious fundamental assumptions</em>.</p>
+
+      <h3>2. Why does culture influence motivation?</h3>
+      <p>A strong and positive culture creates an environment where employees feel <strong>valued, heard, and engaged</strong>.</p>
+      <blockquote>"Culture eats strategy for breakfast."</blockquote>
+      <p>In other words, even an excellent strategy on paper can fail if it's not aligned with the daily lived culture.</p>
+
+      <h3>3. The two types of motivation</h3>
+      <p><strong>🔹 Intrinsic motivation:</strong> comes from within (pleasure, accomplishment, meaning).</p>
+      <p><strong>🔹 Extrinsic motivation:</strong> comes from outside (salary, bonuses, recognition).</p>
+      <p>High-performing companies combine both, but intrinsic motivation is <strong>more sustainable</strong>.</p>
+
+      <h3>4. The benefits of a motivating culture</h3>
+      <ul>
+        <li>✅ Increased productivity</li>
+        <li>✅ Reduced turnover</li>
+        <li>✅ Strengthened employer brand</li>
+        <li>✅ Innovation stimulation</li>
+        <li>✅ Employees as brand ambassadors</li>
+      </ul>
+
+      <h3>5. The 7 levers to motivate your teams</h3>
+      <ol>
+        <li>🗣️ <strong>Adopt active listening leadership</strong></li>
+        <li>🏅 <strong>Regularly recognize efforts</strong></li>
+        <li>📚 <strong>Invest in continuous training</strong></li>
+        <li>🌍 <strong>Create an inclusive environment</strong></li>
+        <li>🧘 <strong>Support well-being at work</strong></li>
+        <li>💡 <strong>Encourage innovation and autonomy</strong></li>
+        <li>🔍 <strong>Communicate transparently</strong></li>
+      </ol>
+
+      <h3>6. Current challenges: remote work, AI, and employee experience</h3>
+      <p>Remote work complicates culture transmission, AI transforms HR practices, and digitalization reshapes communication. Today, the <strong>war for talent</strong> is no longer won by salary alone, but by the quality of the <strong>employee experience</strong>.</p>
+
+      <h3>7. Humans at the heart of performance</h3>
+      <blockquote>"The most valuable assets of the company go home every evening."</blockquote>
+      <p>This phrase says it all: an organization's true wealth is its <strong>employees</strong>. Without human engagement, no strategy can create lasting value.</p>
+
+      <h3>✨ Conclusion</h3>
+      <p>Corporate culture and employee motivation are no longer just HR topics: they are <strong>essential strategic levers</strong>. By investing in a strong, positive, and meaningful culture, you build the foundations of sustainable performance.</p>
+      <p><strong>🌟 When your employees thrive, your company prospers.</strong></p>
+    `
+  }
+},
 ];
