@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1 - Méthodologie en Sciences de Gestion | AMSO 2026</title>
+  <meta name="description" content="Résumé du Module 1 : Méthodologie en Sciences de Gestion - Master AMSO 2026">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350" crossorigin="anonymous"></script>
+  
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: rgba(201,168,76,0.1);
+      --gold-medium: rgba(201,168,76,0.3);
+      --navy: #0a1628;
+      --navy-2: #0f1e35;
+      --text-light: #e8e8e8;
+      --text-muted: #a0a0a0;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--navy);
+      color: var(--text-light);
+      line-height: 1.8;
+    }
+
+    .course-nav {
+      background: var(--navy-2);
+      padding: 15px 30px;
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .course-nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .course-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+      padding: 60px 20px;
+      text-align: center;
+      border-bottom: 3px solid var(--gold);
+    }
+
+    .course-module-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .course-header h1 {
+      color: var(--gold);
+      font-size: 2.3em;
+      margin-bottom: 10px;
+    }
+
+    .course-header .meta {
+      color: var(--text-muted);
+      font-size: 1.05em;
+    }
+
+    .course-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 20px;
+    }
+
+    .course-container h2 {
+      color: var(--gold);
+      font-size: 1.8em;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--gold-medium);
+    }
+
+    .course-container h3 {
+      color: var(--gold);
+      font-size: 1.3em;
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .course-container p {
+      margin-bottom: 18px;
+      color: var(--text-light);
+    }
+
+    .course-container ul, .course-container ol {
+      margin: 15px 0 20px 30px;
+      color: var(--text-light);
+    }
+
+    .course-container li {
+      margin-bottom: 10px;
+    }
+
+    .course-container strong {
+      color: var(--gold);
+    }
+
+    .course-container blockquote {
+      border-left: 4px solid var(--gold);
+      padding: 15px 20px;
+      background: var(--gold-light);
+      margin: 25px 0;
+      font-style: italic;
+      border-radius: 4px;
+    }
+
+    .key-concept {
+      background: var(--navy-2);
+      border: 1px solid var(--gold-medium);
+      border-left: 4px solid var(--gold);
+      padding: 20px 25px;
+      margin: 25px 0;
+      border-radius: 8px;
+    }
+
+    .key-concept h4 {
+      color: var(--gold);
+      margin-bottom: 10px;
+      font-size: 1.1em;
+    }
+
+    .summary-box {
+      background: var(--gold-light);
+      border: 2px solid var(--gold);
+      padding: 25px;
+      border-radius: 8px;
+      margin: 30px 0;
+    }
+
+    .summary-box h3 {
+      color: var(--gold);
+      margin-top: 0;
+    }
+
+    .course-footer {
+      background: var(--navy-2);
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid var(--gold-medium);
+      margin-top: 60px;
+    }
+
+    .nav-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      padding-top: 30px;
+      border-top: 1px solid var(--gold-medium);
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .nav-bottom a {
+      color: var(--gold);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--gold);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .nav-bottom a:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    @media (max-width: 768px) {
+      .course-header h1 { font-size: 1.6em; }
+      .course-container { padding: 0 15px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="course-nav">
+    <a href="amso2026.html">← Retour à AMSO 2026</a>
+    <a href="index.html">Accueil NBProf</a>
+  </nav>
+
+  <!-- Header -->
+  <header class="course-header">
+    <span class="course-module-badge">Module 1</span>
+    <h1>Méthodologie en Sciences de Gestion</h1>
+    <p class="meta">Master AMSO 2026 | Par Noamane Boulahcen</p>
+  </header>
+
+  <!-- Content -->
+  <article class="course-container">
+    
+    <!-- INTRODUCTION -->
+    <h2>📖 Introduction</h2>
+    <p>
+      [Écrivez ici une introduction au cours - présentation générale du module, 
+      importance de la méthodologie en sciences de gestion, etc.]
+    </p>
+
+    <div class="summary-box">
+      <h3>🎯 Objectifs du module</h3>
+      <ul>
+        <li>Comprendre les fondements épistémologiques des sciences de gestion</li>
+        <li>Maîtriser les méthodes de recherche qualitatives et quantitatives</li>
+        <li>Savoir concevoir et mener un projet de recherche</li>
+        <li>[Autre objectif à compléter]</li>
+      </ul>
+    </div>
+
+    <!-- CHAPITRE 1 -->
+    <h2>1️⃣ Les fondements de la recherche en sciences de gestion</h2>
+    
+    <h3>1.1 Définition et enjeux</h3>
+    <p>
+      [Contenu de la section]
+    </p>
+
+    <div class="key-concept">
+      <h4>💡 Concept clé : Sciences de gestion</h4>
+      <p>
+        [Définition à compléter]
+      </p>
+    </div>
+
+    <h3>1.2 Les paradigmes de recherche</h3>
+    <p>
+      [Positivisme, interprétativisme, constructivisme...]
+    </p>
+
+    <ul>
+      <li><strong>Positivisme</strong> : [Explication]</li>
+      <li><strong>Interprétativisme</strong> : [Explication]</li>
+      <li><strong>Constructivisme</strong> : [Explication]</li>
+    </ul>
+
+    <!-- CHAPITRE 2 -->
+    <h2>2️⃣ Les méthodes de recherche</h2>
+    
+    <h3>2.1 Méthodes quantitatives</h3>
+    <p>
+      [Enquêtes, questionnaires, statistiques...]
+    </p>
+
+    <h3>2.2 Méthodes qualitatives</h3>
+    <p>
+      [Entretiens, observations, études de cas...]
+    </p>
+
+    <h3>2.3 Méthodes mixtes</h3>
+    <p>
+      [Combinaison qualitatif/quantitatif]
+    </p>
+
+    <!-- CHAPITRE 3 -->
+    <h2>3️⃣ La démarche de recherche</h2>
+    
+    <ol>
+      <li><strong>Identification du problème</strong> : [Explication]</li>
+      <li><strong>Revue de littérature</strong> : [Explication]</li>
+      <li><strong>Formulation des hypothèses</strong> : [Explication]</li>
+      <li><strong>Collecte des données</strong> : [Explication]</li>
+      <li><strong>Analyse des données</strong> : [Explication]</li>
+      <li><strong>Interprétation et discussion</strong> : [Explication]</li>
+    </ol>
+
+    <blockquote>
+      "Une méthode est un ensemble d'opérations intellectuelles par lesquelles 
+      une discipline cherche à atteindre les vérités qu'elle poursuit, les démontre 
+      et les vérifie."
+      <br>— Madeleine Grawitz
+    </blockquote>
+
+    <!-- CONCLUSION -->
+    <h2>✅ Synthèse et points clés</h2>
+    
+    <div class="summary-box">
+      <h3>📌 À retenir</h3>
+      <ol>
+        <li>La méthodologie est essentielle pour produire des connaissances scientifiques fiables</li>
+        <li>Le choix du paradigme oriente toute la démarche de recherche</li>
+        <li>Les méthodes qualitatives et quantitatives sont complémentaires</li>
+        <li>Une bonne recherche suit une démarche rigoureuse et structurée</li>
+      </ol>
+    </div>
+
+    <!-- QUESTIONS DE RÉVISION -->
+    <h2>❓ Questions de révision</h2>
+    <ol>
+      <li>Quels sont les principaux paradigmes de recherche en sciences de gestion ?</li>
+      <li>Quelle est la différence entre méthodes qualitatives et quantitatives ?</li>
+      <li>Quelles sont les étapes d'une démarche de recherche scientifique ?</li>
+      <li>[Autre question à ajouter]</li>
+    </ol>
+
+    <!-- RÉFÉRENCES -->
+    <h2>📚 Références bibliographiques</h2>
+    <ul>
+      <li>Thiétart, R-A. (2014). <em>Méthodes de recherche en management</em>. Dunod.</li>
+      <li>Grawitz, M. (2001). <em>Méthodes des sciences sociales</em>. Dalloz.</li>
+      <li>[Ajoutez vos références]</li>
+    </ul>
+
+    <!-- Navigation -->
+    <div class="nav-bottom">
+      <a href="amso2026.html">← Tous les modules</a>
+      <a href="amso-module2.html">Module 2 : Diagnostic Stratégique →</a>
+    </div>
+
+  </article>
+
+  <!-- Footer -->
+  <footer class="course-footer">
+    <p>© 2026 NBProf - Noamane Boulahcen | <a href="confidentialite.html" style="color: var(--gold);">Politique de confidentialité</a></p>
+  </footer>
+
+</body>
+</html>
