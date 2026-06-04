@@ -530,22 +530,71 @@ body.rtl .pub-badge{align-self:flex-end}
   </div>
 </nav>
 
-<section class="hero" id="hero">
-  <div class="hero-content reveal">
-    <span class="hero-tag" data-i18n="hero_tag">Professeur au primaire Etudiant-chercheur · Futur Auditeur</span>
-    <h1>Noamane <span class="gold">Boulahcen</span></h1>
-    <p class="hero-subtitle" data-i18n="hero_subtitle">Expert en IA, Management Stratégique &amp; Audit</p>
-    <p class="hero-sub" data-i18n="hero_sub">23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.</p>
-    <div class="hero-cta">
-      <button class="btn-primary" onclick="scrollToSection('services')" data-i18n="hero_btn1">Mes Services</button>
-      <button class="btn-secondary" onclick="scrollToSection('publications')" data-i18n="hero_btn2">Mes Publications</button>
+<!-- ============================================
+     HERO MAGAZINE PREMIUM
+     ============================================ -->
+<section class="hero-magazine" id="hero">
+  
+  <!-- Badges flottants décoratifs -->
+  <div class="floating-badge badge-top-right">
+    <span class="badge-number">23 ans</span>
+    <span class="badge-label">d'expérience</span>
+  </div>
+  
+  <div class="floating-badge badge-middle-right">
+    <span class="badge-number">PRISMA 2020</span>
+    <span class="badge-label">Publication</span>
+  </div>
+
+  <div class="hero-magazine-container">
+    
+    <!-- Badge supérieur -->
+    <div class="hero-mag-badge">
+      ENSEIGNANT · ÉTUDIANT-CHERCHEUR · MASTER AMSO 2026
     </div>
-    <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-num">23</div><div class="hero-stat-label" data-i18n="stat1">Ans d'expérience</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label" data-i18n="stat2">Niveaux enseignés</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">1</div><div class="hero-stat-label" data-i18n="stat3">Publication int'l</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label" data-i18n="stat4">Langues</div></div>
+
+    <!-- Titre Magazine Premium -->
+    <h1 class="hero-mag-title">
+      L'IA peut-elle vraiment <span class="accent-word">changer</span><br>
+      <span class="grey-text">l'école marocaine ?</span>
+    </h1>
+
+    <!-- Citation en blockquote -->
+    <div class="hero-mag-quote">
+      <p>
+        Et si l'intelligence artificielle n'était pas une menace pour 
+        l'enseignant, mais son <span class="highlight-gold">levier de transformation</span> 
+        le plus puissant ?
+      </p>
+      <p>
+        Ce que dit la <span class="highlight-blue">recherche scientifique</span> 
+        va vous surprendre…
+      </p>
     </div>
+
+    <!-- Tags colorés -->
+    <div class="hero-mag-tags">
+      <span class="hero-tag tag-blue" onclick="filterAndScroll('management')">Management scolaire</span>
+      <span class="hero-tag tag-purple" onclick="filterAndScroll('digital')">Transformation digitale</span>
+      <span class="hero-tag tag-orange" onclick="filterAndScroll('pedagogie')">Pratiques pédagogiques</span>
+      <span class="hero-tag tag-green" onclick="filterAndScroll('methodologie')">Recherche scientifique</span>
+      <span class="hero-tag tag-cyan" onclick="filterAndScroll('ia')">IA & Éducation</span>
+    </div>
+
+    <!-- Carte Auteur -->
+    <div class="hero-mag-author">
+      <div class="hero-author-info">
+        <div class="hero-author-avatar">NB</div>
+        <div class="hero-author-details">
+          <h4>Noamane Boulahcen</h4>
+          <p>Enseignant-Chercheur · Futur Auditeur · Master AMSO 2026</p>
+        </div>
+      </div>
+      <a href="#publications" class="hero-author-cta" onclick="scrollToSection('publications'); return false;">
+        Découvrir la recherche →
+      </a>
+    </div>
+
   </div>
 </section>
 
