@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMSO 2026 | nbprof.com</title>
+<style>
+  :root {
+    --bg-primary: #0f1419;
+    --bg-secondary: #1a2028;
+    --bg-tertiary: #232b36;
+    --accent-gold: #d4a55a;
+    --accent-gold-light: #e8c585;
+    --text-primary: #e8eaed;
+    --text-secondary: #b0b6bf;
+    --text-muted: #7a828c;
+    --border-subtle: #2d3641;
+    --success: #6ab187;
+    --danger: #c97064;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Georgia', serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    padding: 40px 20px;
+  }
+  
+  .container { max-width: 1100px; margin: 0 auto; }
+  
+  /* ===== HEADER AVEC CLOCHE ===== */
+  .header {
+    position: relative;
+    text-align: center;
+    padding: 40px 20px 50px;
+    border-bottom: 2px solid var(--accent-gold);
+    margin-bottom: 40px;
+  }
+  
+  .header .site-name {
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  
+  .header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+  }
+  
+  .header .subtitle {
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+  
+  /* ===== CLOCHE DE NOTIFICATION ===== */
+  .notification-wrapper {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    z-index: 999;
+  }
+  
+  .notification-bell {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--accent-gold);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  
+  .notification-bell:hover {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    transform: scale(1.08);
+  }
+  
+  .notification-bell.has-new {
+    animation: bell-shake 2.5s ease-in-out infinite;
+  }
+  
+  @keyframes bell-shake {
+    0%, 50%, 100% { transform: rotate(0); }
+    5%, 15% { transform: rotate(-12deg); }
+    10%, 20% { transform: rotate(12deg); }
+    25% { transform: rotate(0); }
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--danger);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--bg-primary);
+    padding: 0 6px;
+    animation: badge-pulse 2s infinite;
+  }
+  
+  @keyframes badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(201, 112, 100, 0.7); }
+    50% { box-shadow: 0 0 0 8px rgba(201, 112, 100, 0); }
+  }
+  
+  .notification-panel {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    width: 380px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.6);
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+  }
+  
+  .notification-panel.active {
+    display: block;
+    animation: slideDown 0.3s ease;
+  }
+  
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .notif-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .notif-header h3 {
+    color: var(--accent-gold-light);
+    margin: 0;
+    font-size: 1.05rem;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+  
+  .close-btn:hover { color: var(--accent-gold); }
+  
+  .notif-list {
+    list-style: none;
+    max-height: 420px;
+    overflow-y: auto;
+  }
+  
+  .notif-item {
+    display: flex;
+    gap: 15px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .notif-item:hover {
+    background: var(--bg-tertiary);
+    padding-left: 25px;
+  }
+  
+  .notif-item.new { border-left: 3px solid var(--accent-gold); }
+  .notif-item.update { border-left: 3px solid var(--success); }
+  .notif-item.info { border-left: 3px solid var(--text-muted); }
+  
+  .notif-icon { font-size: 1.5rem; }
+  
+  .notif-content strong {
+    display: block;
+    color: var(--accent-gold-light);
+    margin-bottom: 4px;
+    font-size: 0.95rem;
+  }
+  
+  .notif-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin: 0 0 6px;
+  }
+  
+  .notif-content small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+  }
+  
+  .notif-footer {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    color: var(--accent-gold);
+    text-decoration: none;
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  
+  .notif-footer:hover {
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+  }
+  
+  /* ===== GRILLE DES MODULES ===== */
+  .modules-section h2 {
+    color: var(--accent-gold-light);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+  }
+  
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .module-card {
+    background: var(--bg-secondary);
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 4px solid var(--accent-gold);
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s;
+  }
+  
+  .module-card:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-3px);
+  }
+  
+  .module-card h3 {
+    color: var(--accent-gold);
+    margin-bottom: 8px;
+  }
+  
+  .module-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+  
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .notification-wrapper { top: 15px; right: 15px; }
+    .notification-bell { width: 42px; height: 42px; font-size: 1.2rem; }
+    .notification-panel { 
+      width: calc(100vw - 30px); 
+      position: fixed;
+      right: 15px;
+    }
+    .header h1 { font-size: 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HEADER AVEC CLOCHE INTÉGRÉE ===== -->
+  <header class="header">
+    
+    <!-- 🔔 Cloche de notification -->
+    <div class="notification-wrapper">
+      <button class="notification-bell has-new" onclick="toggleNotifications(event)" aria-label="Notifications">
+        🔔
+        <span class="notification-badge">3</span>
+      </button>
+      
+      <div class="notification-panel" id="notifPanel">
+        <div class="notif-header">
+          <h3>🔔 Dernières nouveautés</h3>
+          <button class="close-btn" onclick="toggleNotifications(event)">✕</button>
+        </div>
+        
+        <ul class="notif-list">
+          <li class="notif-item new" onclick="window.location.href='amso-module5.html'">
+            <span class="notif-icon">🆕</span>
+            <div class="notif-content">
+              <strong>Nouvel article publié</strong>
+              <p>Méthodes de calcul des coûts — MCV, seuil de rentabilité, coût cible [1]</p>
+              <small>📂 Module 5 · Il y a 2 jours</small>
+            </div>
+          </li>
+          
+          <li class="notif-item update" onclick="window.location.href='amso-module6.html'">
+            <span class="notif-icon">✅</span>
+            <div class="notif-content">
+              <strong>Module 6 complété</strong>
+              <p>Tous les articles du module Audit sont désormais disponibles</p>
+              <small>📂 Module 6 · Il y a 5 jours</small>
+            </div>
+          </li>
+          
+          <li class="notif-item info" onclick="window.location.href='amso-module5.html'">
+            <span class="notif-icon">📚</span>
+            <div class="notif-content">
+              <strong>Module 5 en construction</strong>
+              <p>4 nouveaux articles à venir prochainement</p>
+              <small>📂 Module 5 · Il y a 1 semaine</small>
+            </div>
+          </li>
+        </ul>
+        
+        <a href="#actualites" class="notif-footer">Voir toutes les actualités →</a>
+      </div>
+    </div>
+    
+    <!-- Contenu du header -->
+    <div class="site-name">nbprof.com</div>
+    <h1>AMSO 2026</h1>
+    <p class="subtitle">Master AMSO · Université Cadi Ayyad de Kelaa Des Sraghna</p>
+  </header>
+
+  <!-- ===== SECTION MODULES ===== -->
+  <section class="modules-section">
+    <h2>📚 Modules du programme</h2>
+    
+    <div class="modules-grid">
+      <a href="amso-module1.html" class="module-card">
+        <h3>Module 1</h3>
+        <p>Comptabilité générale</p>
+      </a>
+      <a href="amso-module2.html" class="module-card">
+        <h3>Module 2</h3>
+        <p>Fiscalité</p>
+      </a>
+      <a href="amso-module3.html" class="module-card">
+        <h3>Module 3</h3>
+        <p>Droit des affaires</p>
+      </a>
+      <a href="amso-module4.html" class="module-card">
+        <h3>Module 4</h3>
+        <p>Management</p>
+      </a>
+      <a href="amso-module5.html" class="module-card">
+        <h3>Module 5</h3>
+        <p>Contrôle de gestion [1]</p>
+      </a>
+      <a href="amso-module6.html" class="module-card">
+        <h3>Module 6</h3>
+        <p>Audit</p>
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== JAVASCRIPT ===== -->
+<script>
+function toggleNotifications(event) {
+  if (event) event.stopPropagation();
+  const panel = document.getElementById('notifPanel');
+  const bell = document.querySelector('.notification-bell');
+  panel.classList.toggle('active');
+  if (panel.classList.contains('active')) {
+    bell.classList.remove('has-new');
+  }
+}
+
+document.addEventListener('click', function(e) {
+  const wrapper = document.querySelector('.notification-wrapper');
+  const panel = document.getElementById('notifPanel');
+  if (wrapper && !wrapper.contains(e.target) && panel.classList.contains('active')) {
+    panel.classList.remove('active');
+  }
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    const panel = document.getElementById('notifPanel');
+    if (panel) panel.classList.remove('active');
+  }
+});
+</script>
+
+</body>
+</html>
