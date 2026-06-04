@@ -2,6 +2,10 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
+    <!-- Polices Premium Magazine -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NBProf · Noamane Boulahcen · Professeur au primaire Etudiant-chercheur</title>
 <meta name="description" content="NBProf - Noamane Boulahcen, Professeur au primaire Etudiant-chercheur, Master AMSO. Expert en IA, Management Stratégique, Audit et Méthodologie PRISMA 2020." />
@@ -189,6 +193,317 @@ body.rtl .pub-badge{align-self:flex-end}
 .btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+}
+  /* ============================================
+   HERO MAGAZINE PREMIUM - NBProf
+   ============================================ */
+
+.hero-magazine {
+  background: linear-gradient(135deg, #0a1628 0%, #0f1e35 100%);
+  padding: 100px 20px 120px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+
+.hero-magazine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(201,168,76,0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(59,130,246,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-magazine-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Badge supérieur */
+.hero-mag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(201,168,76,0.1);
+  color: #C9A84C;
+  padding: 8px 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(201,168,76,0.4);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 35px;
+}
+
+.hero-mag-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #C9A84C;
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+
+/* Titre Magazine - Très grand et élégant */
+.hero-mag-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.5em, 6vw, 5em);
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 35px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.hero-mag-title .accent-word {
+  font-style: italic;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.hero-mag-title .accent-word::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  opacity: 0.5;
+}
+
+.hero-mag-title .grey-text {
+  color: rgba(255,255,255,0.3);
+}
+
+/* Citation en blockquote */
+.hero-mag-quote {
+  border-left: 3px solid #C9A84C;
+  padding: 20px 0 20px 30px;
+  margin: 40px 0;
+  max-width: 700px;
+}
+
+.hero-mag-quote p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.15em;
+  line-height: 1.7;
+  color: #e0e0e0;
+  margin-bottom: 18px;
+}
+
+.hero-mag-quote .highlight-gold {
+  color: #C9A84C;
+  font-weight: 600;
+}
+
+.hero-mag-quote .highlight-blue {
+  color: #60a5fa;
+  font-weight: 600;
+}
+
+/* Tags colorés */
+.hero-mag-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 40px 0;
+  max-width: 800px;
+}
+
+.hero-tag {
+  display: inline-block;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  border: 1px solid;
+  background: rgba(255,255,255,0.02);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.hero-tag:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+}
+
+.hero-tag.tag-blue { color: #60a5fa; border-color: rgba(96,165,250,0.4); }
+.hero-tag.tag-purple { color: #a78bfa; border-color: rgba(167,139,250,0.4); }
+.hero-tag.tag-orange { color: #fb923c; border-color: rgba(251,146,60,0.4); }
+.hero-tag.tag-green { color: #4ade80; border-color: rgba(74,222,128,0.4); }
+.hero-tag.tag-cyan { color: #22d3ee; border-color: rgba(34,211,238,0.4); }
+
+/* Carte Auteur en bas */
+.hero-mag-author {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 60px;
+  padding: 25px 30px;
+  background: rgba(15,30,53,0.6);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hero-author-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.hero-author-avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.hero-author-details h4 {
+  font-family: 'Inter', sans-serif;
+  color: #ffffff;
+  font-size: 1.05em;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hero-author-details p {
+  font-family: 'Inter', sans-serif;
+  color: #a0a0a0;
+  font-size: 0.88em;
+}
+
+.hero-author-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  background: transparent;
+  color: #C9A84C;
+  border: 1px solid #C9A84C;
+  border-radius: 30px;
+  text-decoration: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.hero-author-cta:hover {
+  background: #C9A84C;
+  color: #0a1628;
+  transform: translateX(3px);
+}
+
+/* Badges flottants décoratifs */
+.floating-badge {
+  position: absolute;
+  background: rgba(15,30,53,0.8);
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 12px 18px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  font-family: 'Inter', sans-serif;
+  z-index: 2;
+  animation: float-badge 6s ease-in-out infinite;
+}
+
+.floating-badge .badge-number {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: #C9A84C;
+  display: block;
+}
+
+.floating-badge .badge-label {
+  font-size: 0.75em;
+  color: #a0a0a0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.floating-badge.badge-top-right {
+  top: 80px;
+  right: 60px;
+  animation-delay: 0s;
+}
+
+.floating-badge.badge-middle-right {
+  top: 280px;
+  right: 100px;
+  animation-delay: 2s;
+}
+
+@keyframes float-badge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .floating-badge {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-magazine {
+    padding: 60px 20px 80px;
+  }
+  
+  .hero-mag-title {
+    font-size: 2.2em;
+  }
+  
+  .hero-mag-quote {
+    padding: 15px 0 15px 20px;
+    margin: 30px 0;
+  }
+  
+  .hero-mag-quote p {
+    font-size: 1em;
+  }
+  
+  .hero-mag-author {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .hero-author-cta {
+    width: 100%;
+    justify-content: center;
+  }
 }
 </style>
 
