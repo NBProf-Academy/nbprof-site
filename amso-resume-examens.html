@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumés AMSO — Révisions Examens</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --blue: #1b4f8a;
+    --sky: #3d8bcd;
+    --gold: #c9a84c;
+    --cream: #f8f5ef;
+    --red: #c0392b;
+    --green: #1a7a4a;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--navy);
+    color: white;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(61,139,205,0.15);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; right: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+  }
+  header .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+  header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+  }
+
+  /* NAV TABS */
+  .tabs {
+    display: flex;
+    background: white;
+    border-bottom: 3px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    overflow-x: auto;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 160px;
+    padding: 1rem 1.5rem;
+    border: none;
+    background: none;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+  .tab-btn:hover:not(.active) {
+    color: var(--navy);
+    background: #f9fafb;
+  }
+
+  /* SECTIONS */
+  .section { display: none; padding: 2.5rem 1.5rem; max-width: 900px; margin: 0 auto; }
+  .section.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.8rem;
+    margin-bottom: 1.5rem;
+    border-left: 5px solid var(--blue);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .card.gold { border-left-color: var(--gold); }
+  .card.green { border-left-color: var(--green); }
+  .card.red { border-left-color: var(--red); }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .card-title .icon { font-size: 1.2rem; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--navy);
+    margin-bottom: 0.4rem;
+  }
+  .section-subtitle {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  /* GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  @media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* KEY POINT */
+  .key { display: flex; gap: 0.8rem; margin-bottom: 0.7rem; align-items: flex-start; }
+  .key-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); margin-top: 0.55rem; flex-shrink: 0; }
+  .key-text { font-size: 0.95rem; }
+  .key-text strong { color: var(--navy); }
+
+  /* THEORY BLOCK */
+  .theorist {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    margin-bottom: 0.8rem;
+    border: 1px solid #e5e7eb;
+  }
+  .theorist-name {
+    font-weight: 700;
+    color: var(--blue);
+    font-size: 0.88rem;
+    min-width: 110px;
+  }
+  .theorist-idea { font-size: 0.9rem; }
+
+  /* TYPE BADGES */
+  .types-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+  .type-badge {
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .type-badge.navy { background: var(--navy); color: white; }
+  .type-badge.blue { background: var(--sky); color: white; }
+  .type-badge.gold { background: var(--gold); color: white; }
+  .type-badge.green { background: var(--green); color: white; }
+  .type-badge.red { background: var(--red); color: white; }
+
+  /* IMPACT BOX */
+  .impact-box {
+    border-radius: 8px;
+    padding: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+  .impact-box.positive { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .impact-box.negative { background: #fff5f5; border: 1px solid #fecaca; }
+  .impact-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  .impact-label.pos { color: var(--green); }
+  .impact-label.neg { color: var(--red); }
+
+  /* STRATEGIES GRID */
+  .strat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  @media (max-width: 560px) { .strat-grid { grid-template-columns: 1fr; } }
+  .strat-item {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 0.9rem;
+    font-size: 0.88rem;
+  }
+  .strat-num {
+    display: inline-block;
+    width: 22px; height: 22px;
+    background: var(--navy);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 22px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .strat-title { font-weight: 700; color: var(--navy); font-size: 0.82rem; display: block; margin-bottom: 0.2rem; }
+
+  /* CHALLENGE LIST */
+  .challenge-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .challenge-item:last-child { border-bottom: none; }
+  .ch-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+
+  /* QUIZ */
+  .quiz-q {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .quiz-question {
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .quiz-options { display: grid; gap: 0.5rem; }
+  .quiz-option {
+    padding: 0.65rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    background: #fafafa;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .quiz-option:hover { border-color: var(--sky); background: #f0f7ff; }
+  .quiz-option.correct { border-color: var(--green); background: #f0fdf4; color: var(--green); font-weight: 600; }
+  .quiz-option.wrong { border-color: var(--red); background: #fff5f5; color: var(--red); }
+  .quiz-feedback { margin-top: 0.8rem; font-size: 0.85rem; padding: 0.6rem 0.9rem; border-radius: 5px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { background: #f0fdf4; color: var(--green); }
+  .quiz-feedback.ko { background: #fff5f5; color: var(--red); }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="badge">Master AMSO — FSJES KS UCA • 2025/2026</div>
+  <h1>📚 Fiches de Révision</h1>
+  <p>Deux exposés · Culture d'entreprise · Entrepreneuriat des jeunes</p>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showTab('culture')">🏢 Culture & Motivation</button>
+  <button class="tab-btn" onclick="showTab('entrepreneuriat')">🚀 Entrepreneuriat des jeunes</button>
+  <button class="tab-btn" onclick="showTab('quiz')">🎯 Quiz de révision</button>
+</nav>
+
+<!-- ===================== TAB 1 : CULTURE ===================== -->
+<div id="culture" class="section active">
+
+  <div class="section-title">La culture d'entreprise et la motivation des employés</div>
+  <div class="section-subtitle">Elouabani · Ouzaoua · Arbaoui — Encadrée par Dr. Hanane El Anssari</div>
+
+  <!-- Def -->
+  <div class="card">
+    <div class="card-title"><span class="icon">💡</span> I. Définition de la culture d'entreprise</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>C'est quoi ?</strong> L'ensemble des valeurs, croyances, règles et comportements partagés par tous les membres d'une organisation. C'est la « personnalité » de l'entreprise.</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Comment se construit-elle ?</strong> Progressivement, à travers l'histoire de l'entreprise, les fondateurs, les dirigeants et les relations entre employés.</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Elle se manifeste dans :</strong> le style de management, les valeurs défendues, les traditions internes, les méthodes de travail, les comportements et la communication.</div></div>
+  </div>
+
+  <!-- Composantes -->
+  <div class="card gold">
+    <div class="card-title"><span class="icon">🧩</span> I.2 Les 5 composantes clés</div>
+    <div class="grid-2">
+      <div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Valeurs :</strong> respect, innovation, qualité, transparence, esprit d'équipe</div></div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Normes & règles :</strong> horaires, tenue, hiérarchie, procédures</div></div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Symboles & traditions :</strong> logo, uniformes, cérémonies de récompense</div></div>
+      </div>
+      <div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Style de management :</strong> autoritaire / participatif / démocratique / délégatif</div></div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Communication interne :</strong> coopération, réduction des conflits, motivation</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Types -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🗂️</span> I.3 Les 5 types de culture d'entreprise</div>
+    <div class="types-row">
+      <span class="type-badge navy">A — Pouvoir : décisions centralisées, rapides</span>
+      <span class="type-badge blue">B — Rôle : règles & hiérarchie, stabilité</span>
+      <span class="type-badge gold">C — Tâche : travail d'équipe, résultats</span>
+      <span class="type-badge green">D — Personne : bien-être, épanouissement</span>
+      <span class="type-badge red">E — Innovante : créativité, compétitivité</span>
+    </div>
+    <p style="margin-top:0.8rem; font-size:0.85rem; color:var(--muted)">⚠️ Astuce examen : chaque type correspond à un contexte d'entreprise différent. Sachez les distinguer par leurs priorités.</p>
+  </div>
+
+  <!-- Motivation def -->
+  <div class="card green">
+    <div class="card-title"><span class="icon">⚡</span> II. La motivation — Définition</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Sandra Bellier-Michel (2010) :</strong> la motivation est un moteur intérieur, fait de désirs et d'aspirations, qui pousse l'individu à agir et à se projeter, surtout dans le champ professionnel.</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">En résumé : c'est une <strong>force interne</strong> qui pousse à agir, s'investir et persévérer.</div></div>
+  </div>
+
+  <!-- 2 types motivation -->
+  <div class="grid-2">
+    <div class="card" style="border-left-color: var(--green); margin-bottom:0;">
+      <div class="card-title" style="font-size:1rem;">💚 Motivation Intrinsèque</div>
+      <div class="key"><div class="key-dot"></div><div class="key-text">Vient de <strong>l'intérieur</strong> — désirs personnels, non imposés</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text">Satisfaction personnelle, développement des compétences, accomplissement de soi</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Plus durable</strong> car alimentée par des valeurs profondes</div></div>
+    </div>
+    <div class="card" style="border-left-color: var(--gold); margin-bottom:0;">
+      <div class="card-title" style="font-size:1rem;">💛 Motivation Extrinsèque</div>
+      <div class="key"><div class="key-dot"></div><div class="key-text">Vient de <strong>l'extérieur</strong> — facteurs environnementaux</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text">Rémunération, reconnaissance, avantages matériels</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Efficace à court terme</strong> pour atteindre des objectifs précis</div></div>
+    </div>
+  </div>
+  <br>
+
+  <!-- Impact culture -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🔗</span> III. Lien entre culture d'entreprise et motivation</div>
+    <div class="impact-box positive">
+      <div class="impact-label pos">✅ Culture POSITIVE → Impact direct</div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Jouer :</strong> travail agréable → motivation naturelle</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Objectif :</strong> employés comprennent leur utilité → engagement fort</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Potentiel :</strong> opportunités d'évolution → développement et motivation</div></div>
+    </div>
+    <div class="impact-box negative">
+      <div class="impact-label neg">❌ Culture NÉGATIVE → Impact indirect</div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Pression émotionnelle :</strong> peur, anxiété → stress et burnout</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Pression économique :</strong> trop de récompenses financières → motivation temporaire</div></div>
+      <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Inertie :</strong> manque de clarté → désengagement et baisse de productivité</div></div>
+    </div>
+  </div>
+
+  <!-- Avantages -->
+  <div class="card gold">
+    <div class="card-title"><span class="icon">🏆</span> III.2 Avantages d'une culture positive</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>1. Productivité accrue :</strong> employés plus créatifs, innovants, de meilleure qualité</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>2. Moins de turnover :</strong> employés valorisés restent → réduit les coûts de rotation</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>3. Attirer des talents :</strong> culture forte améliore l'image → candidats qualifiés, ambassadeurs</div></div>
+  </div>
+
+  <!-- 8 stratégies -->
+  <div class="card green">
+    <div class="card-title"><span class="icon">🧭</span> III.3 Les 8 stratégies à long terme (à retenir !)</div>
+    <div class="strat-grid">
+      <div class="strat-item"><div class="strat-num">1</div><span class="strat-title">Leadership inspirant</span>Écoute, vision claire, confiance</div>
+      <div class="strat-item"><div class="strat-num">2</div><span class="strat-title">Reconnaissance continue</span>Régulière, sincère, personnalisée</div>
+      <div class="strat-item"><div class="strat-num">3</div><span class="strat-title">Développement professionnel</span>Formations, apprentissage continu</div>
+      <div class="strat-item"><div class="strat-num">4</div><span class="strat-title">Environnement inclusif</span>Respect, égalité, diversité</div>
+      <div class="strat-item"><div class="strat-num">5</div><span class="strat-title">Bien-être des employés</span>Santé mentale/physique, anti-burnout</div>
+      <div class="strat-item"><div class="strat-num">6</div><span class="strat-title">Donner du sens</span>Mission, valeurs, utilité du travail</div>
+      <div class="strat-item"><div class="strat-num">7</div><span class="strat-title">Communication & transparence</span>Partage, feedback, confiance</div>
+      <div class="strat-item"><div class="strat-num">8</div><span class="strat-title">Innovation & autonomie</span>Idées, erreurs = apprentissage</div>
+    </div>
+  </div>
+
+  <!-- Conclusion -->
+  <div class="card red">
+    <div class="card-title"><span class="icon">📌</span> Conclusion — À retenir pour l'examen</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Une culture <strong>forte et positive</strong> = employés valorisés → engagement → performance</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">La culture agit comme un <strong>levier fondamental</strong> sur la perception et l'investissement des employés</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Culture positive → <strong>collaboration + innovation + fidélité + développement durable</strong> de l'entreprise</div></div>
+  </div>
+
+</div>
+
+<!-- ===================== TAB 2 : ENTREPRENEURIAT ===================== -->
+<div id="entrepreneuriat" class="section">
+
+  <div class="section-title">L'entrepreneuriat des jeunes et le développement économique</div>
+  <div class="section-subtitle">Elaasraoui · El Jardy · Bloul — Encadré par Pr. Hanane Elaansary</div>
+
+  <!-- Intro -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🌍</span> Introduction — Le contexte marocain</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Le Maroc fait face à un <strong>chômage élevé chez les jeunes</strong>, surtout les diplômés → l'entrepreneuriat devient une réponse stratégique.</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Entreprendre = plus seulement une alternative à l'emploi salarié, mais un <strong>moyen d'innovation, de création de richesse</strong> et d'intégration sociale.</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Dans un monde numérique et mondialisé, les jeunes jouent un rôle essentiel dans la <strong>modernisation de l'économie</strong>.</div></div>
+  </div>
+
+  <!-- Théoriciens -->
+  <div class="card gold">
+    <div class="card-title"><span class="icon">📖</span> Fondements théoriques — Les grands auteurs (à connaître !)</div>
+    <div class="theorist"><div class="theorist-name">Cantillon</div><div class="theorist-idea">L'entrepreneur prend des <strong>risques face à l'incertitude</strong> : il achète à prix connu, revend à prix incertain.</div></div>
+    <div class="theorist"><div class="theorist-name">J.-B. Say</div><div class="theorist-idea">L'entrepreneur <strong>organise et combine</strong> les facteurs de production (travail, capital, ressources) pour créer de la valeur.</div></div>
+    <div class="theorist"><div class="theorist-name">Schumpeter</div><div class="theorist-idea">L'entrepreneur est un <strong>innovateur</strong>. Il transforme l'économie par la <strong>« destruction créatrice »</strong> (nouvelles méthodes remplacent les anciennes).</div></div>
+    <div class="theorist"><div class="theorist-name">Kirzner</div><div class="theorist-idea">L'entrepreneur <strong>identifie des opportunités</strong> de profit et corrige les déséquilibres du marché.</div></div>
+    <div class="theorist"><div class="theorist-name">Approche comportementale</div><div class="theorist-idea">Traits personnels : <strong>besoin de réalisation, autonomie, capacité à gérer des problèmes</strong>.</div></div>
+  </div>
+
+  <!-- Typologie -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🗂️</span> Typologie — Les formes d'entrepreneuriat</div>
+    <div class="grid-2">
+      <div>
+        <p style="font-weight:700; color:var(--navy); margin-bottom:0.5rem; font-size:0.88rem;">PAR MOTIVATION</p>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Nécessité (Push) :</strong> création par manque d'alternatives → souvent informel, peu rémunérateur</div></div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Opportunité (Pull) :</strong> détection d'un créneau, volonté d'autonomie → plus innovant</div></div>
+      </div>
+      <div>
+        <p style="font-weight:700; color:var(--navy); margin-bottom:0.5rem; font-size:0.88rem;">PAR OBJECTIF</p>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Classique :</strong> création de richesse et profit</div></div>
+        <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Social :</strong> résoudre des problèmes sociaux (éducation, santé, environnement)</div></div>
+      </div>
+    </div>
+    <hr style="margin: 1rem 0; border-color: #f0f0f0;">
+    <p style="font-weight:700; color:var(--navy); margin-bottom:0.5rem; font-size:0.88rem;">PAR CADRE ORGANISATIONNEL</p>
+    <div style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+      <span class="type-badge navy">Création nouvelle</span>
+      <span class="type-badge blue">Intrapreneuriat</span>
+      <span class="type-badge gold">Repreneuriat</span>
+      <span class="type-badge green">Auto-entrepreneuriat</span>
+      <span class="type-badge red">Essaimage</span>
+    </div>
+    <p style="margin-top:0.8rem; font-size:0.85rem; color:var(--muted)">Au Maroc : 90 % des auto-entrepreneurs travaillent seuls. L'entrepreneuriat informel est très répandu.</p>
+  </div>
+
+  <!-- Rôle -->
+  <div class="card green">
+    <div class="card-title"><span class="icon">📈</span> Rôle de l'entrepreneuriat des jeunes dans l'économie</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Croissance économique :</strong> nouvelles entreprises + innovations dans divers secteurs</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Création d'emplois :</strong> PME des jeunes → réduction du chômage, dynamisation du marché</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Inclusion sociale & territoriale :</strong> zones rurales → amélioration des conditions de vie, réduction des inégalités</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Transition numérique :</strong> commerce en ligne, services numériques, technologies vertes</div></div>
+  </div>
+
+  <!-- Situation Maroc -->
+  <div class="card">
+    <div class="card-title"><span class="icon">🇲🇦</span> Situation économique des jeunes au Maroc</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>+46,2 %</strong> de créations d'entreprises entre 2013 et 2022</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">L'<strong>auto-emploi</strong> (personnes physiques) devient la forme dominante</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Axe <strong>Casablanca-Settat</strong> : 31,8 % du PIB national</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Problèmes : inadéquation formation/marché · inégalités régionales · secteur informel dominant</div></div>
+  </div>
+
+  <!-- Défis -->
+  <div class="card red">
+    <div class="card-title"><span class="icon">⚠️</span> Les défis de l'entrepreneuriat des jeunes au Maroc</div>
+    <div class="challenge-item"><div class="ch-icon">💰</div><div><strong>Accès au financement :</strong> pas de garanties → difficultés à obtenir des crédits bancaires</div></div>
+    <div class="challenge-item"><div class="ch-icon">📋</div><div><strong>Complexité administrative :</strong> procédures de création lourdes → découragement</div></div>
+    <div class="challenge-item"><div class="ch-icon">🌀</div><div><strong>Économie informelle :</strong> freine le développement d'entreprises structurées</div></div>
+    <div class="challenge-item"><div class="ch-icon">📚</div><div><strong>Manque de compétences :</strong> gestion, marketing, planification stratégique insuffisants</div></div>
+  </div>
+
+  <!-- Leviers -->
+  <div class="card gold">
+    <div class="card-title"><span class="icon">🔑</span> Les leviers de réussite entrepreneuriale</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Éducation entrepreneuriale :</strong> universités et centres de formation → esprit d'initiative</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Écosystème de soutien :</strong> incubateurs, technoparks, espaces de coworking</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Programmes publics :</strong> INDH · FORSA · Intelaka · Moussada (financement + appui technique)</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Mentorat & coaching :</strong> développement des compétences, suivi personnalisé</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Digitalisation :</strong> technologies numériques → accès à de nouveaux marchés</div></div>
+  </div>
+
+  <!-- Cas INDH -->
+  <div class="card green">
+    <div class="card-title"><span class="icon">🏛️</span> Cas pratique : Programme 3 de l'INDH</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Cible :</strong> jeunes de 18 à 45 ans — inclusion économique et amélioration des revenus</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Phase 1 — Pré-création :</strong> 40h de formation intensive (bootcamps, design thinking, stratégie commerciale)</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Phase 2 — Post-création :</strong> suivi individualisé par des mentors spécialisés</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Résultat :</strong> approche inclusive, tous niveaux de formation → prouve que l'entrepreneuriat s'apprend</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text"><strong>Impact :</strong> création d'activités économiques locales + amélioration des conditions de vie</div></div>
+  </div>
+
+  <!-- Conclusion -->
+  <div class="card red">
+    <div class="card-title"><span class="icon">📌</span> Conclusion — À retenir pour l'examen</div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">L'entrepreneuriat des jeunes = levier essentiel pour l'emploi, l'innovation et la réduction des inégalités</div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">Pour exploiter ce potentiel : <strong>financement + simplification administrative + compétences</strong></div></div>
+    <div class="key"><div class="key-dot"></div><div class="key-text">La collaboration <strong>État + Universités + Entreprises + structures d'accompagnement</strong> est indispensable à long terme</div></div>
+  </div>
+
+</div>
+
+<!-- ===================== TAB 3 : QUIZ ===================== -->
+<div id="quiz" class="section">
+
+  <div class="section-title">🎯 Quiz de révision</div>
+  <div class="section-subtitle">Testez vos connaissances sur les deux exposés — cliquez sur la bonne réponse</div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">1. Selon Sandra Bellier-Michel, la motivation est avant tout…</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Un système de récompenses externes mis en place par l'entreprise</button>
+      <button class="quiz-option" onclick="answer(this, true)">B. Un moteur intérieur fait de désirs et d'aspirations personnelles</button>
+      <button class="quiz-option" onclick="answer(this, false)">C. Une contrainte imposée par le management</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Un objectif chiffré fixé par les dirigeants</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! Bellier-Michel insiste sur le caractère <em>interne et inconscient</em> de la motivation, liée aux buts et projets personnels.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">2. Quel type de culture d'entreprise met l'employé au centre, valorisant son bien-être et son épanouissement ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Culture de pouvoir</button>
+      <button class="quiz-option" onclick="answer(this, false)">B. Culture de tâche</button>
+      <button class="quiz-option" onclick="answer(this, true)">C. Culture de personne</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Culture de rôle</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! La culture de personne place l'individu au cœur de l'organisation : bien-être, épanouissement personnel et relations humaines.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">3. Schumpeter décrit l'entrepreneur comme…</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Un individu qui accepte le risque économique de marché</button>
+      <button class="quiz-option" onclick="answer(this, false)">B. Un organisateur des facteurs de production</button>
+      <button class="quiz-option" onclick="answer(this, true)">C. Un innovateur qui opère la destruction créatrice</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Un détecteur d'opportunités de profit</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! Schumpeter est célèbre pour le concept de <em>destruction créatrice</em> : les nouvelles innovations remplacent les anciennes méthodes.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">4. La motivation intrinsèque se distingue de la motivation extrinsèque parce qu'elle est…</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Liée à la rémunération et aux primes</button>
+      <button class="quiz-option" onclick="answer(this, true)">B. Plus durable car alimentée par des valeurs et désirs personnels</button>
+      <button class="quiz-option" onclick="answer(this, false)">C. Imposée par les règles de l'entreprise</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Efficace uniquement pour les objectifs à court terme</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! L'intrinsèque est plus durable (valeurs, accomplissement). L'extrinsèque (salaire, reconnaissance) est efficace à court terme.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">5. Le Programme 3 de l'INDH cible les jeunes de…</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. 15 à 30 ans</button>
+      <button class="quiz-option" onclick="answer(this, false)">B. 20 à 40 ans</button>
+      <button class="quiz-option" onclick="answer(this, true)">C. 18 à 45 ans</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. 25 à 50 ans</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! L'INDH Programme 3 cible les 18-45 ans pour favoriser leur inclusion économique.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">6. L'entrepreneuriat par nécessité au Maroc est surtout associé à…</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Des startups technologiques innovantes</button>
+      <button class="quiz-option" onclick="answer(this, false)">B. Des entreprises exportatrices</button>
+      <button class="quiz-option" onclick="answer(this, true)">C. Des activités informelles de subsistance par manque d'alternatives</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Des reprises d'entreprises existantes</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! L'effet "Push" : on crée son propre emploi faute de mieux → souvent informel et peu rémunérateur dans les pays en développement.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">7. Quelle composante de la culture d'entreprise inclut les logos, uniformes et cérémonies de récompense ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Les valeurs</button>
+      <button class="quiz-option" onclick="answer(this, false)">B. Les normes et règles</button>
+      <button class="quiz-option" onclick="answer(this, true)">C. Les symboles et les traditions</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. La communication interne</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! Les symboles (visibles) et traditions (événements réguliers) forment une composante distincte de la culture.</div>
+  </div>
+
+  <div class="quiz-q">
+    <div class="quiz-question">8. Quelle évolution majeure observe-t-on dans l'entrepreneuriat marocain entre 2013 et 2022 ?</div>
+    <div class="quiz-options">
+      <button class="quiz-option" onclick="answer(this, false)">A. Une baisse de 30 % des créations d'entreprises</button>
+      <button class="quiz-option" onclick="answer(this, true)">B. Une hausse de 46,2 % des créations d'entreprises</button>
+      <button class="quiz-option" onclick="answer(this, false)">C. Une stagnation avec prédominance des grandes entreprises</button>
+      <button class="quiz-option" onclick="answer(this, false)">D. Un recul de l'auto-emploi</button>
+    </div>
+    <div class="quiz-feedback">✅ Exact ! +46,2 % sur cette période, avec une mutation vers l'auto-emploi (personnes physiques) comme forme dominante.</div>
+  </div>
+
+</div>
+
+<footer>
+  Master AMSO — FSJES Kelaa Des Sraghna, Université Cadi Ayyad · Année 2025/2026<br>
+  Fiche de révision préparée pour les examens
+</footer>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const idx = ['culture','entrepreneuriat','quiz'].indexOf(id);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function answer(btn, correct) {
+  const container = btn.closest('.quiz-q');
+  if (container.querySelector('.correct') || container.querySelector('.wrong')) return;
+  const feedback = container.querySelector('.quiz-feedback');
+  if (correct) {
+    btn.classList.add('correct');
+    feedback.classList.add('show','ok');
+    feedback.textContent = '✅ ' + feedback.textContent.replace(/^[✅❌]\s*/,'');
+  } else {
+    btn.classList.add('wrong');
+    feedback.classList.add('show','ko');
+    feedback.textContent = '❌ Pas tout à fait. ' + feedback.textContent.replace(/^[✅❌]\s*/,'').replace(/^Exact ! /,'');
+    // show correct
+    container.querySelectorAll('.quiz-option').forEach(o => {
+      o.__onclick = o.onclick;
+    });
+  }
+}
+</script>
+</body>
+</html>
