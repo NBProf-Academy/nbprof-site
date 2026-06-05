@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrôle de Gestion — Chapitre 1 Complet | nbprof.com</title>
+  <meta name="description" content="Fiche complète : outils classiques, calcul des coûts complets, méthodes analytiques, étude de cas corrigée. Master AMSO — Université Cadi Ayyad." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --teal-50:#E1F5EE;--teal-100:#9FE1CB;--teal-600:#0F6E56;--teal-800:#085041;
+      --amber-50:#FAEEDA;--amber-100:#FAC775;--amber-600:#854F0B;--amber-800:#633806;
+      --blue-50:#E6F1FB;--blue-100:#B5D4F4;--blue-600:#185FA5;--blue-800:#0C447C;
+      --coral-50:#FAECE7;--coral-100:#F5C4B3;--coral-600:#993C1D;--coral-800:#712B13;
+      --purple-50:#F0EAFA;--purple-100:#D5C4F3;--purple-600:#5B3FA8;
+      --red-50:#FDE8E8;--red-100:#F9BBBB;--red-600:#B91C1C;
+      --gray-50:#F7F6F2;--gray-100:#ECEAE2;--gray-200:#D3D1C7;--gray-600:#5F5E5A;--gray-800:#2C2C2A;
+      --text:#1a1a18;--text-muted:#5F5E5A;--text-light:#8a8a84;
+      --border:rgba(0,0,0,0.09);--border-strong:rgba(0,0,0,0.16);
+      --bg:#FAFAF7;--bg-card:#FFFFFF;--radius:10px;--radius-sm:6px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.7;min-height:100vh;}
+
+    /* HEADER */
+    header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:0 2rem;position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:880px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:52px;}
+    .logo{font-family:'Lora',serif;font-size:17px;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.3px;}
+    .logo span{color:var(--teal-600);}
+    .header-tag{font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--text-light);}
+
+    /* HERO */
+    .hero{background:var(--bg-card);border-bottom:1px solid var(--border);padding:3.5rem 2rem 2.5rem;}
+    .hero-inner{max-width:880px;margin:0 auto;}
+    .breadcrumb{font-size:12px;color:var(--text-light);margin-bottom:1.2rem;display:flex;gap:.4rem;flex-wrap:wrap;}
+    .breadcrumb a{color:var(--teal-600);text-decoration:none;}
+    .hero h1{font-family:'Lora',serif;font-size:clamp(22px,4vw,32px);font-weight:600;line-height:1.25;color:var(--text);margin-bottom:.8rem;letter-spacing:-0.4px;}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:1.2rem;}
+    .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;letter-spacing:.03em;}
+    .b-teal{background:var(--teal-50);color:var(--teal-600);}
+    .b-amber{background:var(--amber-50);color:var(--amber-600);}
+    .b-blue{background:var(--blue-50);color:var(--blue-600);}
+    .b-coral{background:var(--coral-50);color:var(--coral-600);}
+    .b-purple{background:var(--purple-50);color:var(--purple-600);}
+    .b-gray{background:var(--gray-100);color:var(--gray-600);}
+    .hero-desc{font-size:15px;color:var(--text-muted);max-width:640px;line-height:1.7;}
+    .author-line{display:flex;align-items:center;gap:.6rem;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border);}
+    .avatar{width:36px;height:36px;border-radius:50%;background:var(--teal-50);border:1px solid var(--teal-100);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--teal-600);flex-shrink:0;}
+    .author-name{font-weight:500;color:var(--text);font-size:13px;}
+    .author-role{color:var(--text-light);font-size:12px;}
+
+    /* LAYOUT */
+    .page-body{max-width:880px;margin:0 auto;padding:2.5rem 2rem 5rem;display:grid;grid-template-columns:1fr 220px;gap:2.5rem;align-items:start;}
+    @media(max-width:680px){.page-body{grid-template-columns:1fr;}.sidebar{order:-1;}}
+
+    /* SIDEBAR */
+    .sidebar{position:sticky;top:68px;}
+    .sidebar-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;margin-bottom:1rem;}
+    .sidebar-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-light);margin-bottom:.8rem;}
+    .toc-list{list-style:none;}
+    .toc-list li{margin-bottom:.15rem;}
+    .toc-list a{font-size:12px;color:var(--text-muted);text-decoration:none;display:block;padding:.22rem .4rem;border-radius:var(--radius-sm);transition:background .15s,color .15s;}
+    .toc-list a:hover{background:var(--gray-50);color:var(--teal-600);}
+    .toc-group{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-light);margin:.6rem 0 .2rem .4rem;}
+    .formule-rapide{font-size:12px;font-family:monospace;color:var(--teal-800);margin-bottom:.4rem;background:var(--teal-50);padding:.3rem .5rem;border-radius:4px;}
+
+    /* SECTION */
+    .section{margin-bottom:3rem;}
+    .section-header{display:flex;align-items:center;gap:.7rem;margin-bottom:1.3rem;padding-bottom:.8rem;border-bottom:1px solid var(--border);}
+    .section-num{width:28px;height:28px;border-radius:50%;background:var(--teal-600);color:#fff;font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .section h2{font-family:'Lora',serif;font-size:18px;font-weight:600;color:var(--text);letter-spacing:-0.2px;}
+    .chapter-divider{background:var(--teal-600);color:#fff;border-radius:var(--radius);padding:.7rem 1.1rem;margin-bottom:1.5rem;font-size:13px;font-weight:500;letter-spacing:.02em;}
+
+    /* Cards */
+    .cards-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:1.2rem;}
+    .cards-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.2rem;}
+    .info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem;}
+    .info-card .ic-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--text-light);margin-bottom:.4rem;}
+    .info-card .ic-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:.3rem;}
+    .info-card .ic-note{font-size:12px;color:var(--text-muted);line-height:1.5;}
+
+    /* Formule box */
+    .formule-box{border-radius:var(--radius);padding:.9rem 1.1rem;margin-bottom:.9rem;}
+    .formule-box.teal{background:var(--teal-50);border:1px solid var(--teal-100);}
+    .formule-box.amber{background:var(--amber-50);border:1px solid var(--amber-100);}
+    .formule-box.blue{background:var(--blue-50);border:1px solid var(--blue-100);}
+    .formule-box.coral{background:var(--coral-50);border:1px solid var(--coral-100);}
+    .formule-box.purple{background:var(--purple-50);border:1px solid var(--purple-100);}
+    .formule-box .fb-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.35rem;}
+    .formule-box.teal .fb-label{color:var(--teal-600);}
+    .formule-box.amber .fb-label{color:var(--amber-600);}
+    .formule-box.blue .fb-label{color:var(--blue-600);}
+    .formule-box.coral .fb-label{color:var(--coral-600);}
+    .formule-box.purple .fb-label{color:var(--purple-600);}
+    .formule-box .fb-formule{font-family:monospace;font-size:14px;font-weight:600;margin-bottom:.4rem;line-height:1.5;}
+    .formule-box.teal .fb-formule{color:var(--teal-800);}
+    .formule-box.amber .fb-formule{color:var(--amber-800);}
+    .formule-box.blue .fb-formule{color:var(--blue-800);}
+    .formule-box.coral .fb-formule{color:var(--coral-800);}
+    .formule-box.purple .fb-formule{color:var(--purple-600);}
+    .formule-box .fb-interp{font-size:13px;color:var(--text-muted);line-height:1.6;}
+    .formule-box.teal .fb-interp{color:var(--teal-600);}
+    .formule-box.amber .fb-interp{color:var(--amber-600);}
+    .formule-box.blue .fb-interp{color:var(--blue-600);}
+    .formule-box.coral .fb-interp{color:var(--coral-600);}
+    .formule-box.purple .fb-interp{color:var(--purple-600);}
+
+    /* Tableau */
+    .tableau{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:.9rem;}
+    .tableau-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-light);padding:.6rem 1rem;background:var(--gray-50);border-bottom:1px solid var(--border);}
+    .tableau table{width:100%;border-collapse:collapse;font-size:13px;}
+    .tableau th{padding:.5rem .8rem;background:var(--gray-50);border-bottom:1px solid var(--border-strong);font-weight:600;color:var(--text);text-align:left;font-size:12px;}
+    .tableau td{padding:.45rem .8rem;border-bottom:1px solid var(--border);color:var(--text-muted);}
+    .tableau td:last-child,.tableau th:last-child{text-align:right;}
+    .tableau td:not(:first-child),.tableau th:not(:first-child){text-align:right;}
+    .tableau td:first-child,.tableau th:first-child{text-align:left;}
+    .tableau tr:last-child td{border-bottom:none;}
+    .tableau .t-total td{font-weight:600;color:var(--text);border-top:1px solid var(--border-strong);}
+    .tableau .t-result td{background:var(--teal-50);color:var(--teal-800);font-weight:600;}
+    .tableau .t-perte td{background:var(--red-50);color:var(--red-600);font-weight:600;}
+    .tableau .t-header td{background:var(--gray-50);font-weight:600;color:var(--text);font-size:12px;}
+    .tableau .mono{font-family:monospace;}
+
+    /* Nota */
+    .nota{font-size:13px;color:var(--text-muted);border-left:2px solid var(--gray-200);padding:.5rem .9rem;margin-bottom:1rem;line-height:1.6;}
+    .nota strong{color:var(--text);font-weight:500;}
+    .nota.warn{border-left-color:var(--amber-100);background:var(--amber-50);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--amber-800);}
+    .nota.warn strong{color:var(--amber-800);}
+    .nota.danger{border-left-color:var(--red-100);background:var(--red-50);border-radius:0 var(--radius-sm) var(--radius-sm) 0;color:var(--red-600);}
+
+    /* Steps */
+    .steps{margin-top:.8rem;}
+    .step{display:flex;gap:.8rem;margin-bottom:.7rem;align-items:flex-start;}
+    .step-num{min-width:24px;height:24px;border-radius:50%;background:var(--teal-50);border:1px solid var(--teal-100);color:var(--teal-600);font-size:12px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+    .step-body{font-size:13px;color:var(--text-muted);line-height:1.6;padding-top:2px;}
+    .step-body strong{color:var(--text);font-weight:500;}
+
+    /* Comparaison */
+    .comparaison{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+    @media(max-width:500px){.comparaison{grid-template-columns:1fr;}}
+    .cmp-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:.9rem 1rem;}
+    .cmp-card .cc-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:.6rem;}
+    .cmp-card ul{font-size:13px;color:var(--text-muted);padding-left:1.2rem;line-height:1.8;}
+
+    /* Timeline */
+    .timeline{margin:.8rem 0 1.2rem;}
+    .tl-item{display:flex;gap:1rem;margin-bottom:.7rem;align-items:flex-start;}
+    .tl-date{min-width:80px;font-size:11px;font-weight:600;color:var(--teal-600);background:var(--teal-50);border:1px solid var(--teal-100);border-radius:var(--radius-sm);padding:.25rem .5rem;text-align:center;margin-top:2px;}
+    .tl-body{font-size:13px;color:var(--text-muted);line-height:1.5;}
+    .tl-body strong{color:var(--text);font-weight:500;}
+
+    /* Recap */
+    .recap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;margin-top:2.5rem;}
+    .recap-title{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--text-light);margin-bottom:.9rem;}
+    .recap-grid{display:flex;flex-wrap:wrap;gap:.5rem;}
+    .recap-item{font-size:12px;font-weight:500;font-family:monospace;padding:.3rem .8rem;border-radius:20px;}
+
+    /* Alerte résultat */
+    .result-alert{border-radius:var(--radius);padding:1rem 1.2rem;margin:1rem 0;border:1px solid;}
+    .result-alert.perte{background:var(--red-50);border-color:var(--red-100);color:var(--red-600);}
+    .result-alert .ra-title{font-size:13px;font-weight:600;margin-bottom:.3rem;}
+    .result-alert .ra-body{font-size:13px;line-height:1.6;}
+    .result-alert.perte .ra-title{color:var(--red-600);}
+
+    @media print{header{position:static;}.sidebar{display:none;}.page-body{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="https://nbprof.com">nb<span>prof</span>.com</a>
+    <span class="header-tag">Contrôle de gestion — Chapitre 1</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="breadcrumb">
+      <a href="https://nbprof.com">Accueil</a> › <a href="#">Master AMSO</a> › <span>Contrôle de gestion</span>
+    </div>
+    <h1>Gestion des coûts &amp; approche orientée marché<br><em style="font-style:italic;color:var(--text-muted);font-size:.72em;">Chapitre 1 — Fiche complète avec étude de cas corrigée</em></h1>
+    <div class="hero-meta">
+      <span class="badge b-teal">Comptabilité analytique</span>
+      <span class="badge b-amber">Coûts complets</span>
+      <span class="badge b-blue">MCV &amp; Seuil</span>
+      <span class="badge b-coral">Coût cible</span>
+      <span class="badge b-purple">Étude de cas corrigée</span>
+      <span class="badge b-gray">Master AMSO · 2025/2026</span>
+    </div>
+    <p class="hero-desc">Fiche synthétique du Chapitre 1 : outils classiques du contrôle de gestion (reporting, comptabilité financière, comptabilité analytique), méthodes de calcul des coûts, analyse des marges, coût cible et étude de cas complètement corrigée étape par étape.</p>
+    <div class="author-line">
+      <div class="avatar">NB</div>
+      <div>
+        <div class="author-name">Noamane Boulahcen</div>
+        <div class="author-role">Professeur au Primaire · Étudiant en Master AMSO · Futur Auditeur — Pr. TOUICHER Ouardia, 2025/2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="page-body">
+<main class="content">
+
+<!-- ── INTRODUCTION ── -->
+<section class="section" id="intro">
+  <div class="section-header"><div class="section-num">0</div><h2>Introduction : qu'est-ce que le contrôle de gestion ?</h2></div>
+
+  <div class="cards-3">
+    <div class="info-card">
+      <div class="ic-label">Sens 1</div>
+      <div class="ic-title">Vérifier</div>
+      <div class="ic-note">Comparer les réalisations aux objectifs fixés. Détecter les écarts.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Sens 2</div>
+      <div class="ic-title">Maîtriser</div>
+      <div class="ic-note">Piloter activement pour assurer la stabilité et l'adaptation.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-label">Sens 3</div>
+      <div class="ic-title">Influencer</div>
+      <div class="ic-note">Orienter les comportements vers les buts stratégiques.</div>
+    </div>
+  </div>
+
+  <div class="nota"><strong>Définition — R.N. Anthony :</strong> processus par lequel les managers influencent d'autres membres de l'organisation pour mettre en œuvre les stratégies.</div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.6rem;">Le cycle de contrôle en 4 phases :</p>
+  <div class="cards-4">
+    <div class="info-card"><div class="ic-label">Phase 1</div><div class="ic-title">Planification</div><div class="ic-note">Fixer les objectifs, traduire en budgets chiffrés.</div></div>
+    <div class="info-card"><div class="ic-label">Phase 2</div><div class="ic-title">Exécution</div><div class="ic-note">Mise en œuvre par les centres de responsabilité.</div></div>
+    <div class="info-card"><div class="ic-label">Phase 3</div><div class="ic-title">Suivi &amp; Mesure</div><div class="ic-note">Analyse des réalisations vs prévisions. Identification des écarts.</div></div>
+    <div class="info-card"><div class="ic-label">Phase 4</div><div class="ic-title">Correction</div><div class="ic-note">Ajustement des trajectoires et amélioration continue.</div></div>
+  </div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin:.8rem 0 .5rem;">Évolution historique du contrôle de gestion :</p>
+  <div class="tableau">
+    <div class="tableau-title">Tableau d'évolution</div>
+    <table>
+      <tr><th>Période</th><th>Orientation</th><th>Objectif principal</th><th>Rôle du contrôleur</th></tr>
+      <tr><td>1920–1960</td><td>Comptable &amp; Budgétaire</td><td>Maîtriser les coûts</td><td>Contrôleur financier</td></tr>
+      <tr><td>1980–1990</td><td>Stratégique</td><td>Soutenir la planification</td><td>Conseiller de direction</td></tr>
+      <tr><td>2010–2020</td><td>Numérique &amp; Participative</td><td>Anticiper et piloter via Data</td><td>Business Partner</td></tr>
+      <tr><td>2020–2030</td><td>Durable &amp; Intelligente</td><td>Valeur responsable (ESG)</td><td>Coach stratégique</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ── REPORTING ── -->
+<section class="section" id="reporting">
+  <div class="section-header"><div class="section-num">1</div><h2>Le reporting — outil fondamental du contrôle de gestion</h2></div>
+
+  <div class="nota"><strong>Modèle Sloan-Brown (General Motors, années 1920) :</strong> premier grand système structuré de contrôle, mis en place pour maîtriser l'incertitude dans un groupe pluridivisionnel (structure en « forme M »).</div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.6rem;">Les 4 piliers du modèle Sloan-Brown :</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Centralisation de la trésorerie</strong> — système consolidé géré par le siège.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Réduction des stocks</strong> — meilleure articulation entre prévisions et approvisionnements.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Reporting prévisionnel</strong> — couvrant stocks, trésorerie, investissements et fonds de roulement.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Reporting historique standardisé</strong> — manuel comptable commun à toutes les divisions dès 1921.</div></div>
+  </div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin:.8rem 0 .6rem;">3 principes clés du reporting :</p>
+  <div class="cards-3">
+    <div class="info-card"><div class="ic-label">Principe 1</div><div class="ic-title">Exception</div><div class="ic-note">Focalisation sur les écarts significatifs uniquement.</div></div>
+    <div class="info-card"><div class="ic-label">Principe 2</div><div class="ic-title">Contrôlabilité</div><div class="ic-note">Évaluer les responsables uniquement sur ce qu'ils maîtrisent.</div></div>
+    <div class="info-card"><div class="ic-label">Principe 3</div><div class="ic-title">Correction</div><div class="ic-note">Obligation de proposer des actions correctives en cas d'écart.</div></div>
+  </div>
+</section>
+
+<!-- ── COMPTA GENERALE ── -->
+<section class="section" id="compta-generale">
+  <div class="section-header"><div class="section-num">2</div><h2>La comptabilité générale — outil d'information externe</h2></div>
+
+  <div class="nota">La comptabilité générale est la <strong>première source d'information économique standardisée</strong> de l'entreprise. Elle joue un rôle central dans la validation des comptes publiés.</div>
+
+  <div class="cards-3">
+    <div class="info-card"><div class="ic-label">Objectif 1</div><div class="ic-title">Constater</div><div class="ic-note">Produits, charges et résultats de la période.</div></div>
+    <div class="info-card"><div class="ic-label">Objectif 2</div><div class="ic-title">Synthétiser</div><div class="ic-note">CPC et bilan périodiques pour les parties prenantes.</div></div>
+    <div class="info-card"><div class="ic-label">Objectif 3</div><div class="ic-title">Comparer</div><div class="ic-note">Performances réelles vs prévisionnelles.</div></div>
+  </div>
+  <div class="nota"><strong>Limite :</strong> la comptabilité générale donne une vision globale externe (obligations légales et fiscales) mais ne permet pas d'analyser la rentabilité par produit ou par activité → c'est le rôle de la comptabilité de gestion.</div>
+</section>
+
+<!-- ── COMPTA ANALYTIQUE ── -->
+<section class="section" id="compta-analytique">
+  <div class="section-header"><div class="section-num">3</div><h2>La comptabilité de gestion — pilotage interne des coûts</h2></div>
+
+  <div class="nota">Développée après la comptabilité financière, la comptabilité de gestion fournit une information interne détaillée pour <strong>calculer les coûts et aider à la décision</strong>. Elle repose sur la méthode des sections homogènes (PCG 1982).</div>
+
+  <div class="tableau">
+    <div class="tableau-title">Tableau comparatif des 3 méthodes de calcul des coûts</div>
+    <table>
+      <tr><th>Méthode</th><th style="text-align:left;">Principe</th><th style="text-align:left;">Caractéristiques</th><th style="text-align:left;">Utilisations</th></tr>
+      <tr>
+        <td><strong>Coûts complets</strong></td>
+        <td style="text-align:left;">Intègre toutes les charges (directes + indirectes)</td>
+        <td style="text-align:left;">Répartition via centres d'analyse, valorisation stocks</td>
+        <td style="text-align:left;">Coût de revient global, résultat analytique, prix de vente</td>
+      </tr>
+      <tr>
+        <td><strong>Coûts partiels (MCV)</strong></td>
+        <td style="text-align:left;">Distingue charges variables et fixes</td>
+        <td style="text-align:left;">Marges sur coût variable, analyse partielle des CF</td>
+        <td style="text-align:left;">Seuil de rentabilité, make or buy, arbitrages court terme</td>
+      </tr>
+      <tr>
+        <td><strong>Coûts préétablis</strong></td>
+        <td style="text-align:left;">Coûts théoriques calculés à l'avance</td>
+        <td style="text-align:left;">Analyse des écarts (prix, quantité, rendement)</td>
+        <td style="text-align:left;">Contrôle budgétaire, responsabilisation des centres</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ── MCV ── -->
+<section class="section" id="mcv">
+  <div class="section-header"><div class="section-num">4</div><h2>Marge sur coût variable (MCV) — méthode des coûts partiels</h2></div>
+
+  <div class="formule-box teal">
+    <div class="fb-label">Formule de base</div>
+    <div class="fb-formule">MCV = CA − Charges variables</div>
+    <div class="fb-interp">La MCV couvre d'abord les charges fixes, puis génère le bénéfice. On peut aussi calculer de bas en haut : MCV = Résultat + Charges fixes.</div>
+  </div>
+
+  <div class="tableau">
+    <div class="tableau-title">Tableau différentiel de résultats — exemple chiffré</div>
+    <table>
+      <tr><td>Chiffre d'affaires (CA)</td><td class="mono">500 000 MAD</td></tr>
+      <tr><td>− Charges variables</td><td class="mono">300 000 MAD</td></tr>
+      <tr class="t-total"><td>= Marge sur coût variable (MCV)</td><td class="mono">200 000 MAD</td></tr>
+      <tr><td>− Charges fixes</td><td class="mono">150 000 MAD</td></tr>
+      <tr class="t-result"><td>= Résultat net</td><td class="mono">50 000 MAD ✓</td></tr>
+    </table>
+  </div>
+
+  <div class="formule-box amber">
+    <div class="fb-label">Seuil de rentabilité (SR)</div>
+    <div class="fb-formule">SR = Charges fixes ÷ Taux de MCV<br>Taux MCV = MCV ÷ CA</div>
+    <div class="fb-interp">Exemple : CF = 150 000 / Taux MCV = 40 % → SR = 375 000 MAD<br>Au seuil, le résultat est exactement égal à 0.</div>
+  </div>
+
+  <div class="formule-box blue">
+    <div class="fb-label">Point mort — date d'atteinte du seuil</div>
+    <div class="fb-formule">Point mort = SR × 12 ÷ CA</div>
+    <div class="fb-interp">Exemple : 375 000 × 12 ÷ 500 000 = 9 mois → l'entreprise devient rentable à partir de fin septembre.</div>
+  </div>
+
+  <div class="formule-box coral">
+    <div class="fb-label">Marge de sécurité &amp; indice de sécurité</div>
+    <div class="fb-formule">Marge sécurité = CA − SR &nbsp;|&nbsp; Indice = Marge ÷ CA</div>
+    <div class="fb-interp">Exemple : 500 000 − 375 000 = 125 000 MAD → montant maximal de baisse du CA sans entrer en perte. Indice = 25 %.</div>
+  </div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin:.5rem 0 .5rem;">Types de charges à distinguer :</p>
+  <div class="cards-3">
+    <div class="info-card"><div class="ic-label" style="color:var(--blue-600);">Charges fixes</div><div class="ic-title">Constantes</div><div class="ic-note">Indépendantes du volume de production.<br><em>Ex : loyer, assurance, amortissements</em></div></div>
+    <div class="info-card"><div class="ic-label" style="color:var(--teal-600);">Charges variables</div><div class="ic-title">Proportionnelles</div><div class="ic-note">Varient avec le volume produit.<br><em>Ex : matières premières, commissions de vente</em></div></div>
+    <div class="info-card"><div class="ic-label" style="color:var(--amber-600);">Charges semi-variables</div><div class="ic-title">Partie fixe + variable</div><div class="ic-note">Ex : téléphone = abonnement fixe + consommation variable selon l'activité</div></div>
+  </div>
+</section>
+
+<!-- ── COUT CIBLE ── -->
+<section class="section" id="cout-cible">
+  <div class="section-header"><div class="section-num">5</div><h2>Coût cible (Target Costing) — approche orientée marché</h2></div>
+
+  <div class="nota">Méthode d'origine <strong>japonaise</strong>, elle inverse la logique classique. Le prix n'est plus le résultat du calcul : il est imposé par le marché concurrentiel. L'entreprise cible alors un coût à ne pas dépasser.</div>
+
+  <div class="comparaison">
+    <div class="cmp-card">
+      <div class="cc-title">⬆ Méthode classique</div>
+      <ul>
+        <li>On accumule les charges</li>
+        <li>On calcule le coût de revient</li>
+        <li>On ajoute une marge souhaitée</li>
+        <li>→ <strong>On obtient un prix de vente</strong></li>
+      </ul>
+    </div>
+    <div class="cmp-card">
+      <div class="cc-title">⬇ Coût cible (inversé)</div>
+      <ul>
+        <li>Le marché impose le prix</li>
+        <li>L'entreprise fixe sa marge cible</li>
+        <li>On soustrait la marge du prix</li>
+        <li>→ <strong>On obtient le coût à ne pas dépasser</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="formule-box purple">
+    <div class="fb-label">Formule du coût cible</div>
+    <div class="fb-formule">Coût cible = Prix de marché − Marge souhaitée</div>
+    <div class="fb-interp">Exemple : Prix marché = 120 DH | Marge voulue = 40 DH → Coût cible = 80 DH<br>Le gestionnaire doit maîtriser tous les coûts pour ne pas dépasser 80 DH par unité.</div>
+  </div>
+
+  <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:.6rem;">Les 4 étapes de la méthode :</p>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><div class="step-body"><strong>Étude de marché</strong> — identifier le prix acceptable par les clients, analyser la concurrence.</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-body"><strong>Fixer la marge cible</strong> — selon la rentabilité souhaitée et la stratégie concurrentielle.</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-body"><strong>Calculer le coût cible</strong> — Prix marché − Marge = coût maximum autorisé.</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-body"><strong>Piloter la conception</strong> — tous les services (achat, production, marketing) collaborent pour rester dans le coût cible sans sacrifier la qualité.</div></div>
+  </div>
+
+  <div class="nota warn"><strong>Limites :</strong> méthode difficile à appliquer. Risque sur la qualité si on comprime trop les coûts. Coordination complexe entre services. Difficile à contextualiser dans des environnements à marché imparfait ou avec des pratiques culturelles différentes (contexte marocain vs modèle japonais zéro stock, zéro papier).</div>
+</section>
+
+<!-- ── ETUDE DE CAS ── -->
+<section class="section" id="etude-de-cas">
+  <div class="section-header"><div class="section-num">6</div><h2>Étude de cas corrigée — Produit A &amp; Matière X</h2></div>
+
+  <div class="nota"><strong>Contexte :</strong> une entreprise fabrique le produit A à partir de la matière première X. Consommation standard : 1 kg de X pour 1 unité de A. Mois étudié : mai.</div>
+
+  <div class="tableau">
+    <div class="tableau-title">Données de l'énoncé</div>
+    <table>
+      <tr class="t-header"><td colspan="2">Stocks initiaux (SI)</td></tr>
+      <tr><td>Matière première X</td><td class="mono">30 000 kg à 30 DH/kg = 900 000 DH</td></tr>
+      <tr><td>Produit fini A</td><td class="mono">4 500 unités à 110 DH/unité = 495 000 DH</td></tr>
+      <tr class="t-header"><td colspan="2">Achats du mois</td></tr>
+      <tr><td>Matière première X achetée</td><td class="mono">20 000 kg à 35 DH/kg = 700 000 DH</td></tr>
+      <tr class="t-header"><td colspan="2">Charges directes du mois</td></tr>
+      <tr><td>Approvisionnement (direct)</td><td class="mono">64 000 DH</td></tr>
+      <tr><td>Main d'œuvre directe (MOD)</td><td class="mono">650 heures × 140 DH = 91 000 DH</td></tr>
+      <tr><td>Distribution (direct)</td><td class="mono">77 DH / unité vendue</td></tr>
+      <tr class="t-header"><td colspan="2">Activité de la période</td></tr>
+      <tr><td>Production</td><td class="mono">27 000 unités de A</td></tr>
+      <tr><td>Ventes</td><td class="mono">24 000 unités à 200 DH/unité</td></tr>
+    </table>
+  </div>
+
+  <!-- Étape 1 -->
+  <p style="font-size:14px;font-weight:600;color:var(--teal-600);margin:1.5rem 0 .6rem;">Étape 1 — Tableau de répartition des charges indirectes (TRCI)</p>
+  <div class="formule-box teal">
+    <div class="fb-label">Formule</div>
+    <div class="fb-formule">Coût de l'Unité d'Œuvre (CUO) = TRS ÷ Nombre d'UO</div>
+    <div class="fb-interp">Le TRS (Total Répartition Secondaire) est divisé par le volume d'activité du centre pour obtenir le coût d'imputation indirecte.</div>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">TRCI complété</div>
+    <table>
+      <tr><th>Centre</th><th>TRS (DH)</th><th>Nature de l'UO</th><th>Nb d'UO</th><th>CUO (DH)</th></tr>
+      <tr><td>Approvisionnement</td><td class="mono">950 000</td><td>1 kg de MP achetée</td><td class="mono">20 000</td><td class="mono"><strong>47,50</strong></td></tr>
+      <tr><td>Production</td><td class="mono">1 000 000</td><td>1 unité produite</td><td class="mono">27 000</td><td class="mono"><strong>37,04</strong></td></tr>
+      <tr><td>Distribution</td><td class="mono">870 000</td><td>1 unité vendue</td><td class="mono">24 000</td><td class="mono"><strong>36,25</strong></td></tr>
+    </table>
+  </div>
+
+  <!-- Étape 2 -->
+  <p style="font-size:14px;font-weight:600;color:var(--teal-600);margin:1.5rem 0 .6rem;">Étape 2 — Coût d'achat de la matière X &amp; CMUP</p>
+  <div class="tableau">
+    <div class="tableau-title">Calcul du coût d'achat de la MP X</div>
+    <table>
+      <tr><th>Éléments</th><th>Qté (kg)</th><th>PU (DH)</th><th>Montant (DH)</th></tr>
+      <tr><td>Prix d'achat brut</td><td class="mono">20 000</td><td class="mono">35,00</td><td class="mono">700 000</td></tr>
+      <tr><td>Charges directes d'approv.</td><td>—</td><td>—</td><td class="mono">64 000</td></tr>
+      <tr><td>Charges indirectes (CUO × Qté)</td><td class="mono">20 000</td><td class="mono">47,50</td><td class="mono">950 000</td></tr>
+      <tr class="t-total"><td>Total coût d'achat (entrées)</td><td class="mono">20 000</td><td class="mono">85,70</td><td class="mono">1 714 000</td></tr>
+    </table>
+  </div>
+  <div class="formule-box teal">
+    <div class="fb-label">Calcul du CMUP de la matière X</div>
+    <div class="fb-formule">CMUP = (Valeur SI + Valeur entrées) ÷ (Qté SI + Qté entrées)<br>= (900 000 + 1 714 000) ÷ (30 000 + 20 000) = 52,28 DH/kg</div>
+    <div class="fb-interp">Ce CMUP de 52,28 DH/kg valorise les 27 000 kg consommés pour fabriquer le produit A.</div>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">Fiche de stock — Matière X (Inventaire permanent)</div>
+    <table>
+      <tr><th>Entrées</th><th>Qté</th><th>PU</th><th>Montant</th><th>Sorties</th><th>Qté</th><th>PU</th><th>Montant</th></tr>
+      <tr><td>Stock initial</td><td class="mono">30 000</td><td class="mono">30,00</td><td class="mono">900 000</td><td>Consommation prod.</td><td class="mono">27 000</td><td class="mono">52,28</td><td class="mono">1 411 560</td></tr>
+      <tr><td>Achats</td><td class="mono">20 000</td><td class="mono">85,70</td><td class="mono">1 714 000</td><td>Stock final</td><td class="mono">23 000</td><td class="mono">52,28</td><td class="mono">1 202 440</td></tr>
+      <tr class="t-total"><td>Total</td><td class="mono">50 000</td><td class="mono">52,28</td><td class="mono">2 614 000</td><td>Total</td><td class="mono">50 000</td><td class="mono">52,28</td><td class="mono">2 614 000</td></tr>
+    </table>
+  </div>
+
+  <!-- Étape 3 -->
+  <p style="font-size:14px;font-weight:600;color:var(--teal-600);margin:1.5rem 0 .6rem;">Étape 3 — Coût de production du produit A</p>
+  <div class="formule-box amber">
+    <div class="fb-label">Formule</div>
+    <div class="fb-formule">Coût de production = MP consommées (CMUP) + MOD + Charges indirectes de production</div>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">Calcul du coût de production — Produit A (27 000 unités)</div>
+    <table>
+      <tr><th>Éléments</th><th>Qté</th><th>PU (DH)</th><th>Montant (DH)</th></tr>
+      <tr><td>Matières premières X (CMUP)</td><td class="mono">27 000 kg</td><td class="mono">52,28</td><td class="mono">1 411 560</td></tr>
+      <tr><td>Main d'œuvre directe (MOD)</td><td class="mono">650 h</td><td class="mono">140,00</td><td class="mono">91 000</td></tr>
+      <tr><td>Charges indirectes production (CUO)</td><td class="mono">27 000</td><td class="mono">37,04</td><td class="mono">1 000 000</td></tr>
+      <tr class="t-total"><td>Coût de production total</td><td class="mono">27 000 u</td><td class="mono">92,69</td><td class="mono">2 502 560</td></tr>
+    </table>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">Fiche de stock — Produit A (Inventaire permanent)</div>
+    <table>
+      <tr><th>Entrées</th><th>Qté</th><th>PU</th><th>Montant</th><th>Sorties</th><th>Qté</th><th>PU</th><th>Montant</th></tr>
+      <tr><td>Stock initial</td><td class="mono">4 500</td><td class="mono">110,00</td><td class="mono">495 000</td><td>Ventes</td><td class="mono">24 000</td><td class="mono">95,16</td><td class="mono">2 283 840</td></tr>
+      <tr><td>Production</td><td class="mono">27 000</td><td class="mono">92,69</td><td class="mono">2 502 560</td><td>Stock final</td><td class="mono">7 500</td><td class="mono">95,16</td><td class="mono">713 720</td></tr>
+      <tr class="t-total"><td>Total</td><td class="mono">31 500</td><td class="mono">95,16</td><td class="mono">2 997 560</td><td>Total</td><td class="mono">31 500</td><td class="mono">95,16</td><td class="mono">2 997 560</td></tr>
+    </table>
+  </div>
+  <div class="nota"><strong>CMUP Produit A</strong> = (495 000 + 2 502 560) ÷ 31 500 = <strong>95,16 DH/unité</strong>. Ce coût valorise les 24 000 unités vendues.</div>
+
+  <!-- Étape 4 -->
+  <p style="font-size:14px;font-weight:600;color:var(--teal-600);margin:1.5rem 0 .6rem;">Étape 4 — Coût de revient des unités vendues</p>
+  <div class="formule-box blue">
+    <div class="fb-label">Formule</div>
+    <div class="fb-formule">Coût de revient = Coût de production des unités vendues + Charges directes distribution + Charges indirectes distribution</div>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">Coût de revient — 24 000 unités de A</div>
+    <table>
+      <tr><th>Éléments</th><th>Qté</th><th>PU (DH)</th><th>Montant (DH)</th></tr>
+      <tr><td>Coût de production (CMUP PF)</td><td class="mono">24 000</td><td class="mono">95,16</td><td class="mono">2 283 840</td></tr>
+      <tr><td>Charges directes de distribution</td><td class="mono">24 000</td><td class="mono">77,00</td><td class="mono">1 848 000</td></tr>
+      <tr><td>Charges indirectes distribution (CUO)</td><td class="mono">24 000</td><td class="mono">36,25</td><td class="mono">870 000</td></tr>
+      <tr class="t-total"><td>Coût de revient global</td><td class="mono">24 000</td><td class="mono">208,41</td><td class="mono">5 001 840</td></tr>
+    </table>
+  </div>
+
+  <!-- Étape 5 -->
+  <p style="font-size:14px;font-weight:600;color:var(--teal-600);margin:1.5rem 0 .6rem;">Étape 5 — Résultat analytique</p>
+  <div class="formule-box coral">
+    <div class="fb-label">Formule</div>
+    <div class="fb-formule">Résultat analytique = CA − Coût de revient total</div>
+  </div>
+  <div class="tableau">
+    <div class="tableau-title">Résultat analytique — Produit A (mai)</div>
+    <table>
+      <tr><th>Éléments</th><th>Qté</th><th>PU (DH)</th><th>Montant (DH)</th></tr>
+      <tr><td>Chiffre d'affaires (CA)</td><td class="mono">24 000</td><td class="mono">200,00</td><td class="mono">4 800 000</td></tr>
+      <tr><td>(−) Coût de revient global</td><td class="mono">24 000</td><td class="mono">208,41</td><td class="mono">5 001 840</td></tr>
+      <tr class="t-perte"><td>= Résultat analytique</td><td class="mono">24 000</td><td class="mono">−8,41</td><td class="mono">−201 840 DH (PERTE)</td></tr>
+    </table>
+  </div>
+
+  <div class="result-alert perte">
+    <div class="ra-title">⚠ Diagnostic — le produit A est vendu à perte !</div>
+    <div class="ra-body">
+      Le produit A est vendu à 200 DH alors que son coût de revient est de 208,41 DH par unité. La marge par unité est négative (−8,41 DH).<br><br>
+      <strong>Causes principales :</strong><br>
+      — Les frais de distribution directe (77 DH/u) sont extrêmement élevés.<br>
+      — Les charges indirectes de production sont importantes (CUO = 37,04 DH/u).<br>
+      — La hausse du coût de la matière première (de 30 à 35 DH/kg) a augmenté le CMUP.<br><br>
+      <strong>Leviers d'action :</strong> réduire les charges indirectes de production (1 000 000 DH), revoir les frais de distribution (77 DH/u), ou augmenter le prix de vente au-delà de 208 DH.
+    </div>
+  </div>
+</section>
+
+<!-- ── RECAP ── -->
+<div class="recap">
+  <div class="recap-title">Toutes les formules clés</div>
+  <div class="recap-grid">
+    <span class="recap-item b-teal">MCV = CA − Charges variables</span>
+    <span class="recap-item b-amber">Taux MCV = MCV ÷ CA</span>
+    <span class="recap-item b-amber">Seuil rentab. = CF ÷ Taux MCV</span>
+    <span class="recap-item b-blue">Point mort = SR × 12 ÷ CA</span>
+    <span class="recap-item b-blue">Marge sécu. = CA − SR</span>
+    <span class="recap-item b-coral">Coût cible = Prix marché − Marge</span>
+    <span class="recap-item b-purple">CUO = TRS ÷ Nb d'UO</span>
+    <span class="recap-item b-teal">CMUP = (SI + Entrées) ÷ (Qté SI + Qté)</span>
+    <span class="recap-item b-amber">Coût achat = Prix + CD appro + CI appro</span>
+    <span class="recap-item b-blue">Coût prod. = MP + MOD + CI prod.</span>
+    <span class="recap-item b-coral">Résultat = CA − Coût de revient</span>
+  </div>
+</div>
+
+</main>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-card">
+    <div class="sidebar-title">Sommaire</div>
+    <ul class="toc-list">
+      <div class="toc-group">Théorie</div>
+      <li><a href="#intro">0 — Introduction &amp; cycle</a></li>
+      <li><a href="#reporting">1 — Reporting (Sloan-Brown)</a></li>
+      <li><a href="#compta-generale">2 — Comptabilité générale</a></li>
+      <li><a href="#compta-analytique">3 — Comptabilité de gestion</a></li>
+      <li><a href="#mcv">4 — MCV &amp; Seuil</a></li>
+      <li><a href="#cout-cible">5 — Coût cible</a></li>
+      <div class="toc-group">Pratique</div>
+      <li><a href="#etude-de-cas">6 — Étude de cas corrigée</a></li>
+    </ul>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">Formules essentielles</div>
+    <div class="formule-rapide">MCV = CA − CV</div>
+    <div class="formule-rapide">SR = CF ÷ Taux MCV</div>
+    <div class="formule-rapide">PM = SR × 12 ÷ CA</div>
+    <div class="formule-rapide">CC = Prix − Marge</div>
+    <div class="formule-rapide">CUO = TRS ÷ Nb UO</div>
+    <div class="formule-rapide">CMUP = (SI+E) ÷ (QSI+QE)</div>
+    <div class="formule-rapide">Résultat = CA − CR</div>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">Informations</div>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.8;">
+      <div><strong style="color:var(--text);">Module :</strong> Contrôle de gestion</div>
+      <div><strong style="color:var(--text);">Chapitre :</strong> 1 — Gestion des coûts</div>
+      <div><strong style="color:var(--text);">Programme :</strong> Master AMSO</div>
+      <div><strong style="color:var(--text);">Université :</strong> Cadi Ayyad, Kelaa Des Sraghna</div>
+      <div><strong style="color:var(--text);">Enseignante :</strong> Pr. TOUICHER Ouardia</div>
+      <div><strong style="color:var(--text);">Année :</strong> 2025/2026</div>
+      <div style="margin-top:.5rem;padding-top:.5rem;border-top:1px solid var(--border);"><strong style="color:var(--text);">Auteur :</strong> Noamane Boulahcen</div>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <div class="sidebar-title">Plan du cours complet</div>
+    <div style="font-size:12px;color:var(--text-muted);line-height:1.8;">
+      <div style="color:var(--teal-600);font-weight:500;">✓ Chapitre 1 (ce document)</div>
+      <div>Gestion des coûts &amp; approche marché</div>
+      <div style="margin-top:.4rem;">☐ Chapitre 2</div>
+      <div>Gestion budgétaire &amp; méthode ABC</div>
+      <div style="margin-top:.4rem;">☐ Chapitre 3</div>
+      <div>Pilotage &amp; tableaux de bord</div>
+    </div>
+  </div>
+</aside>
+</div>
+
+<footer style="background:var(--bg-card);border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;">
+  <div style="max-width:880px;margin:0 auto;font-size:12px;color:var(--text-light);">
+    <a href="https://nbprof.com" style="color:var(--teal-600);text-decoration:none;font-weight:500;">nbprof.com</a>
+    · Ressources pédagogiques · Noamane Boulahcen · Master AMSO — Université Cadi Ayyad · Pr. TOUICHER Ouardia 2025/2026
+  </div>
+</footer>
+
+</body>
+</html>
