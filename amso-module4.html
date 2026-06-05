@@ -1,757 +1,490 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Méthodes de calcul des coûts — Comptabilité analytique | nbprof.com</title>
-  <meta name="description" content="Fiche de cours : marge sur coût variable, seuil de rentabilité, point mort, coût cible. Master AMSO — Université Cadi Ayyad." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-    :root {
-      --teal-50: #E1F5EE;
-      --teal-100: #9FE1CB;
-      --teal-600: #0F6E56;
-      --teal-800: #085041;
-      --amber-50: #FAEEDA;
-      --amber-100: #FAC775;
-      --amber-600: #854F0B;
-      --amber-800: #633806;
-      --blue-50: #E6F1FB;
-      --blue-100: #B5D4F4;
-      --blue-600: #185FA5;
-      --blue-800: #0C447C;
-      --coral-50: #FAECE7;
-      --coral-100: #F5C4B3;
-      --coral-600: #993C1D;
-      --coral-800: #712B13;
-      --gray-50: #F7F6F2;
-      --gray-100: #ECEAE2;
-      --gray-200: #D3D1C7;
-      --gray-600: #5F5E5A;
-      --gray-800: #2C2C2A;
-      --text: #1a1a18;
-      --text-muted: #5F5E5A;
-      --text-light: #8a8a84;
-      --border: rgba(0,0,0,0.1);
-      --border-strong: rgba(0,0,0,0.18);
-      --bg: #FAFAF7;
-      --bg-card: #FFFFFF;
-      --radius: 10px;
-      --radius-sm: 6px;
-    }
- 
-    html { scroll-behavior: smooth; }
- 
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 15px;
-      line-height: 1.7;
-      min-height: 100vh;
-    }
- 
-    /* ── HEADER ── */
-    header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      padding: 0 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .header-inner {
-      max-width: 860px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 52px;
-    }
-    .logo {
-      font-family: 'Lora', serif;
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.3px;
-    }
-    .logo span { color: var(--teal-600); }
-    .header-tag {
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--text-light);
-    }
- 
-    /* ── HERO ── */
-    .hero {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      padding: 3.5rem 2rem 2.5rem;
-    }
-    .hero-inner { max-width: 860px; margin: 0 auto; }
-    .breadcrumb {
-      font-size: 12px;
-      color: var(--text-light);
-      margin-bottom: 1.2rem;
-      display: flex;
-      gap: .4rem;
-      flex-wrap: wrap;
-    }
-    .breadcrumb a { color: var(--teal-600); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-    .hero h1 {
-      font-family: 'Lora', serif;
-      font-size: clamp(24px, 4vw, 34px);
-      font-weight: 600;
-      line-height: 1.25;
-      color: var(--text);
-      margin-bottom: .8rem;
-      letter-spacing: -0.4px;
-    }
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-      align-items: center;
-      margin-bottom: 1.2rem;
-    }
-    .badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 10px;
-      border-radius: 20px;
-      letter-spacing: .03em;
-    }
-    .b-teal  { background: var(--teal-50);  color: var(--teal-600);  }
-    .b-amber { background: var(--amber-50); color: var(--amber-600); }
-    .b-blue  { background: var(--blue-50);  color: var(--blue-600);  }
-    .b-coral { background: var(--coral-50); color: var(--coral-600); }
-    .b-gray  { background: var(--gray-100); color: var(--gray-600);  }
-    .hero-desc {
-      font-size: 15px;
-      color: var(--text-muted);
-      max-width: 620px;
-      line-height: 1.7;
-    }
-    .author-line {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      margin-top: 1.5rem;
-      padding-top: 1.2rem;
-      border-top: 1px solid var(--border);
-    }
-    .avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--teal-50);
-      border: 1px solid var(--teal-100);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--teal-600);
-      flex-shrink: 0;
-    }
-    .author-info { font-size: 13px; }
-    .author-name { font-weight: 500; color: var(--text); }
-    .author-role { color: var(--text-light); font-size: 12px; }
- 
-    /* ── LAYOUT ── */
-    .page-body {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 2.5rem 2rem 5rem;
-      display: grid;
-      grid-template-columns: 1fr 220px;
-      gap: 2.5rem;
-      align-items: start;
-    }
-    @media (max-width: 680px) {
-      .page-body { grid-template-columns: 1fr; }
-      .sidebar { order: -1; }
-    }
- 
-    /* ── SIDEBAR ── */
-    .sidebar { position: sticky; top: 68px; }
-    .sidebar-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1rem 1.1rem;
-      margin-bottom: 1rem;
-    }
-    .sidebar-title {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--text-light);
-      margin-bottom: .8rem;
-    }
-    .toc-list { list-style: none; }
-    .toc-list li { margin-bottom: .2rem; }
-    .toc-list a {
-      font-size: 13px;
-      color: var(--text-muted);
-      text-decoration: none;
-      display: block;
-      padding: .25rem .4rem;
-      border-radius: var(--radius-sm);
-      transition: background .15s, color .15s;
-    }
-    .toc-list a:hover { background: var(--gray-50); color: var(--teal-600); }
-    .formule-rapide { font-size: 12px; font-family: monospace; color: var(--teal-800); margin-bottom: .4rem; background: var(--teal-50); padding: .3rem .5rem; border-radius: 4px; }
- 
-    /* ── CONTENT ── */
-    .content {}
-    .section { margin-bottom: 3rem; }
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-      margin-bottom: 1.2rem;
-    }
-    .section-num {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: var(--teal-600);
-      color: #fff;
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .section h2 {
-      font-family: 'Lora', serif;
-      font-size: 19px;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -0.2px;
-    }
- 
-    /* Cards grid */
-    .cards-3 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 1.2rem;
-    }
-    .info-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .9rem 1rem;
-    }
-    .info-card .ic-label {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      color: var(--text-light);
-      margin-bottom: .4rem;
-    }
-    .info-card .ic-title {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: .3rem;
-    }
-    .info-card .ic-note {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
- 
-    /* Formule box */
-    .formule-box {
-      border-radius: var(--radius);
-      padding: .9rem 1.1rem;
-      margin-bottom: .9rem;
-    }
-    .formule-box.teal   { background: var(--teal-50);  border: 1px solid var(--teal-100); }
-    .formule-box.amber  { background: var(--amber-50); border: 1px solid var(--amber-100); }
-    .formule-box.blue   { background: var(--blue-50);  border: 1px solid var(--blue-100); }
-    .formule-box.coral  { background: var(--coral-50); border: 1px solid var(--coral-100); }
-    .formule-box .fb-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-bottom: .35rem; }
-    .formule-box.teal  .fb-label { color: var(--teal-600); }
-    .formule-box.amber .fb-label { color: var(--amber-600); }
-    .formule-box.blue  .fb-label { color: var(--blue-600); }
-    .formule-box.coral .fb-label { color: var(--coral-600); }
-    .formule-box .fb-formule { font-family: monospace; font-size: 15px; font-weight: 600; margin-bottom: .4rem; }
-    .formule-box.teal  .fb-formule { color: var(--teal-800); }
-    .formule-box.amber .fb-formule { color: var(--amber-800); }
-    .formule-box.blue  .fb-formule { color: var(--blue-800); }
-    .formule-box.coral .fb-formule { color: var(--coral-800); }
-    .formule-box .fb-interp { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-    .formule-box.teal  .fb-interp { color: var(--teal-600); }
-    .formule-box.amber .fb-interp { color: var(--amber-600); }
-    .formule-box.blue  .fb-interp { color: var(--blue-600); }
-    .formule-box.coral .fb-interp { color: var(--coral-600); }
- 
-    /* Tableau chiffré */
-    .tableau {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      margin-bottom: .9rem;
-    }
-    .tableau-title {
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--text-light);
-      padding: .6rem 1rem;
-      background: var(--gray-50);
-      border-bottom: 1px solid var(--border);
-    }
-    .tableau table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
-    .tableau td {
-      padding: .5rem 1rem;
-      border-bottom: 1px solid var(--border);
-      color: var(--text-muted);
-    }
-    .tableau td:last-child { text-align: right; font-family: monospace; }
-    .tableau tr:last-child td { border-bottom: none; }
-    .tableau .t-total td { font-weight: 600; color: var(--text); border-top: 1px solid var(--border-strong); }
-    .tableau .t-result td { background: var(--teal-50); color: var(--teal-800); font-weight: 600; }
- 
-    /* Nota bene */
-    .nota {
-      font-size: 13px;
-      color: var(--text-muted);
-      border-left: 2px solid var(--gray-200);
-      padding: .5rem .9rem;
-      margin-bottom: 1rem;
-      line-height: 1.6;
-    }
-    .nota strong { color: var(--text); font-weight: 500; }
- 
-    /* Comparaison */
-    .comparaison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    @media (max-width: 500px) { .comparaison { grid-template-columns: 1fr; } }
-    .cmp-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .9rem 1rem;
-    }
-    .cmp-card .cc-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: .6rem;
-      display: flex;
-      align-items: center;
-      gap: .4rem;
-    }
-    .cmp-card ul {
-      font-size: 13px;
-      color: var(--text-muted);
-      padding-left: 1.2rem;
-      line-height: 1.8;
-    }
- 
-    /* Steps */
-    .steps { margin-top: .8rem; }
-    .step {
-      display: flex;
-      gap: .8rem;
-      margin-bottom: .7rem;
-      align-items: flex-start;
-    }
-    .step-num {
-      min-width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: var(--teal-50);
-      border: 1px solid var(--teal-100);
-      color: var(--teal-600);
-      font-size: 12px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .step-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-top: 2px; }
-    .step-body strong { color: var(--text); font-weight: 500; }
- 
-    /* Charges grid */
-    .charges-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 10px;
-      margin-bottom: 1rem;
-    }
-    .charge-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: .9rem 1rem;
-    }
-    .charge-card .ch-type { font-size: 12px; font-weight: 600; margin-bottom: .3rem; }
-    .charge-card .ch-def { font-size: 13px; color: var(--text-muted); margin-bottom: .4rem; line-height: 1.5; }
-    .charge-card .ch-ex { font-size: 12px; font-style: italic; color: var(--text-light); }
-    .charge-card.cv .ch-type { color: var(--teal-600); }
-    .charge-card.cf .ch-type { color: var(--blue-600); }
-    .charge-card.cs .ch-type { color: var(--amber-600); }
- 
-    /* Récap footer */
-    .recap {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.2rem 1.4rem;
-      margin-top: 2.5rem;
-    }
-    .recap-title {
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--text-light);
-      margin-bottom: .9rem;
-    }
-    .recap-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-    }
-    .recap-item {
-      font-size: 12px;
-      font-weight: 500;
-      font-family: monospace;
-      padding: .3rem .8rem;
-      border-radius: 20px;
-    }
- 
-    /* Print */
-    @media print {
-      header { position: static; }
-      .sidebar { display: none; }
-      .page-body { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Séance — Modélisation Conceptuelle des Données (MCD / MLD / MPD)</title>
+<style>
+  :root{
+    --primary:#4F46E5;
+    --primary-dark:#3730A3;
+    --secondary:#06B6D4;
+    --accent:#F59E0B;
+    --success:#10B981;
+    --bg:#F9FAFB;
+    --card:#FFFFFF;
+    --text:#1F2937;
+    --muted:#6B7280;
+    --border:#E5E7EB;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:'Segoe UI', Tahoma, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    margin:0;
+    padding:20px;
+    line-height:1.6;
+  }
+  .container{max-width:1100px;margin:auto}
+  .hero{
+    background:linear-gradient(135deg,var(--primary) 0%,var(--secondary) 100%);
+    color:white;
+    padding:40px 30px;
+    border-radius:16px;
+    text-align:center;
+    margin-bottom:30px;
+    box-shadow:0 10px 30px rgba(79,70,229,.25);
+  }
+  .hero h1{margin:0 0 10px;font-size:2.2em}
+  .hero p{margin:0;font-size:1.1em;opacity:.95}
+  .objectif{
+    background:var(--card);
+    border-left:6px solid var(--accent);
+    padding:20px 25px;
+    border-radius:10px;
+    margin-bottom:30px;
+    box-shadow:0 4px 12px rgba(0,0,0,.05);
+  }
+  .objectif h2{margin-top:0;color:var(--primary-dark)}
+  .section{
+    background:var(--card);
+    padding:25px 30px;
+    border-radius:12px;
+    margin-bottom:25px;
+    box-shadow:0 4px 12px rgba(0,0,0,.06);
+    border-top:4px solid var(--primary);
+  }
+  .section h2{
+    color:var(--primary-dark);
+    margin-top:0;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .section h2 .num{
+    background:var(--primary);
+    color:white;
+    width:36px;height:36px;
+    border-radius:50%;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9em;
+  }
+  .levels{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:15px;
+    margin-top:15px;
+  }
+  .level-card{
+    padding:20px;
+    border-radius:10px;
+    color:white;
+    text-align:center;
+    transition:transform .2s;
+  }
+  .level-card:hover{transform:translateY(-5px)}
+  .level-card h3{margin:0 0 8px}
+  .level-card.mcd{background:linear-gradient(135deg,#4F46E5,#7C3AED)}
+  .level-card.mld{background:linear-gradient(135deg,#06B6D4,#0891B2)}
+  .level-card.mpd{background:linear-gradient(135deg,#10B981,#059669)}
+
+  /* Diagramme entité-association SVG style */
+  .svg-wrap{
+    background:#F3F4F6;
+    border-radius:10px;
+    padding:20px;
+    margin-top:15px;
+    text-align:center;
+    overflow-x:auto;
+  }
+
+  /* Tableau cardinalités */
+  table.card-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
+    background:white;
+    border-radius:8px;
+    overflow:hidden;
+  }
+  table.card-table th{
+    background:var(--primary);
+    color:white;
+    padding:12px;
+    text-align:left;
+  }
+  table.card-table td{
+    padding:12px;
+    border-bottom:1px solid var(--border);
+  }
+  table.card-table tr:hover{background:#F9FAFB}
+  .badge{
+    display:inline-block;
+    padding:4px 10px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:.9em;
+    color:white;
+  }
+  .b01{background:#EF4444}
+  .b11{background:#10B981}
+  .b0n{background:#F59E0B}
+  .b1n{background:#3B82F6}
+
+  .example-box{
+    background:linear-gradient(135deg,#FEF3C7,#FDE68A);
+    border-left:5px solid var(--accent);
+    padding:15px 20px;
+    border-radius:8px;
+    margin-top:15px;
+  }
+  .example-box strong{color:#92400E}
+
+  .concept-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-top:15px;
+  }
+  .concept{
+    background:#EEF2FF;
+    padding:18px;
+    border-radius:10px;
+    border-left:4px solid var(--primary);
+  }
+  .concept h4{margin:0 0 8px;color:var(--primary-dark)}
+  .concept p{margin:0;font-size:.95em;color:var(--muted)}
+
+  .conclusion{
+    background:linear-gradient(135deg,#10B981,#059669);
+    color:white;
+    padding:30px;
+    border-radius:12px;
+    margin-top:20px;
+  }
+  .conclusion h2{margin-top:0}
+  .tags{margin-top:15px}
+  .tag{
+    display:inline-block;
+    background:rgba(255,255,255,.2);
+    padding:6px 14px;
+    border-radius:20px;
+    margin:4px;
+    font-size:.9em;
+  }
+  .footer-note{
+    text-align:center;
+    color:var(--muted);
+    margin-top:30px;
+    font-size:.9em;
+  }
+  /* === Ajouts NBProf : disclaimer + badge statut === */
+.disclaimer{
+  background:#1a2744;
+  border-left:5px solid #D4AF37;
+  color:#E5E7EB;
+  padding:18px 25px;
+  border-radius:10px;
+  margin-bottom:25px;
+  font-style:italic;
+  font-size:.98em;
+  line-height:1.7;
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.disclaimer .icon{
+  font-style:normal;
+  margin-right:8px;
+}
+.status-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#D4AF37,#B8941F);
+  color:#0f1a33;
+  padding:10px 22px;
+  border-radius:30px;
+  font-weight:bold;
+  font-size:1em;
+  margin-bottom:20px;
+  box-shadow:0 4px 12px rgba(212,175,55,.35);
+  letter-spacing:.3px;
+}
+</style>
 </head>
 <body>
- 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <a class="logo" href="https://nbprof.com">nb<span>prof</span>.com</a>
-    <span class="header-tag">Contrôle de gestion</span>
+<div class="container">
+
+  <!-- HERO -->
+    <!-- Badge de statut -->
+  <div style="text-align:center">
+    <span class="status-badge">✅ Résumé disponible</span>
   </div>
-</header>
- 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="breadcrumb">
-      <a href="https://nbprof.com">Accueil</a> › <a href="#">Master AMSO</a> › <span>Contrôle de gestion</span>
-    </div>
-    <h1>Méthodes de calcul des coûts<br><em style="font-style:italic; color:var(--text-muted); font-size:0.75em;">Comptabilité analytique</em></h1>
-    <div class="hero-meta">
-      <span class="badge b-teal">Comptabilité analytique</span>
-      <span class="badge b-amber">Contrôle de gestion</span>
-      <span class="badge b-blue">Master AMSO</span>
-      <span class="badge b-gray">Université Cadi Ayyad</span>
-    </div>
-    <p class="hero-desc">
-      Fiche de cours complète : marge sur coût variable, seuil de rentabilité, point mort, marge de sécurité et méthode du coût cible (Target Costing). Avec exemples chiffrés et formules prêtes à utiliser.
+
+  <!-- Disclaimer académique -->
+  <div class="disclaimer">
+    <span class="icon">📚</span>
+    <em>Ce document est un résumé élaboré à partir des supports de cours du Master AMSO 2026. 
+    Il constitue un outil de révision complémentaire et ne remplace pas le cours magistral.</em>
+  </div>
+  <div class="hero">
+    <h1>📊 Modélisation Conceptuelle des Données</h1>
+    <p>Séance pédagogique — MCD, MLD, MPD : entités, attributs, associations &amp; cardinalités</p>
+  </div>
+
+  <!-- OBJECTIF -->
+  <div class="objectif">
+    <h2>🎯 Objectif de la séance</h2>
+    <p>
+      Cette séance a pour but de poser les <strong>bases solides de la conception d'une base de données</strong>
+      en maîtrisant la démarche qui va du <em>monde réel</em> (objets, processus métier) vers une
+      <em>structure exploitable informatiquement</em>. L'apprenant doit être capable, à la fin, d'identifier
+      les <strong>entités</strong>, leurs <strong>attributs</strong>, les <strong>associations</strong> qui les relient,
+      et de définir correctement les <strong>cardinalités</strong> pour traduire les règles de gestion (ex : un client passe plusieurs commandes,
+      une commande contient plusieurs produits, etc.) [1].
     </p>
-    <div class="author-line">
-      <div class="avatar">NB</div>
-      <div class="author-info">
-        <div class="author-name">Noamane Boulahcen</div>
-        <div class="author-role">Professeur au Primaire · Étudiant en Master AMSO · Futur Auditeur</div>
+  </div>
+
+  <!-- SECTION 1 : Niveaux -->
+  <div class="section">
+    <h2><span class="num">1</span> Les 3 niveaux d'abstraction</h2>
+    <p>La conception d'une base de données suit une démarche progressive en trois étapes complémentaires :</p>
+    <div class="levels">
+      <div class="level-card mcd">
+        <h3>🧠 MCD</h3>
+        <strong>Modèle Conceptuel</strong>
+        <p>Vision métier abstraite : QUOI représenter ? Indépendant de toute technologie.</p>
+      </div>
+      <div class="level-card mld">
+        <h3>⚙️ MLD</h3>
+        <strong>Modèle Logique</strong>
+        <p>Traduction en tables relationnelles avec clés primaires et étrangères.</p>
+      </div>
+      <div class="level-card mpd">
+        <h3>💾 MPD</h3>
+        <strong>Modèle Physique</strong>
+        <p>Implémentation réelle dans un SGBD (MySQL, Oracle, PostgreSQL…).</p>
       </div>
     </div>
   </div>
-</section>
- 
-<!-- BODY -->
-<div class="page-body">
- 
-  <!-- MAIN CONTENT -->
-  <main class="content">
- 
-    <!-- SECTION 1 -->
-    <section class="section" id="methodes">
-      <div class="section-header">
-        <div class="section-num">1</div>
-        <h2>Les 3 méthodes principales</h2>
+
+  <!-- SECTION 2 : Entités & attributs -->
+  <div class="section">
+    <h2><span class="num">2</span> Entités &amp; Attributs</h2>
+    <p>
+      Une <strong>entité</strong> représente un objet du monde réel (concret ou abstrait) qu'on souhaite modéliser :
+      un <em>Client</em>, une <em>Commande</em>, un <em>Produit</em>… Chaque entité possède des <strong>attributs</strong>
+      qui sont ses propriétés caractéristiques (nom, adresse, prix…). Un attribut particulier, appelé <strong>identifiant</strong>
+      (ou clé), permet de distinguer chaque occurrence de manière unique.
+    </p>
+
+    <div class="svg-wrap">
+      <svg viewBox="0 0 600 220" width="100%" style="max-width:600px">
+        <!-- Entité Client -->
+        <rect x="50" y="60" width="180" height="100" rx="10" fill="#4F46E5" stroke="#3730A3" stroke-width="2"/>
+        <text x="140" y="90" text-anchor="middle" fill="white" font-size="18" font-weight="bold">CLIENT</text>
+        <line x1="70" y1="100" x2="210" y2="100" stroke="white"/>
+        <text x="140" y="120" text-anchor="middle" fill="white" font-size="12">🔑 id_client</text>
+        <text x="140" y="138" text-anchor="middle" fill="white" font-size="12">nom, adresse</text>
+        <text x="140" y="154" text-anchor="middle" fill="white" font-size="12">téléphone</text>
+
+        <!-- Entité Commande -->
+        <rect x="370" y="60" width="180" height="100" rx="10" fill="#06B6D4" stroke="#0891B2" stroke-width="2"/>
+        <text x="460" y="90" text-anchor="middle" fill="white" font-size="18" font-weight="bold">COMMANDE</text>
+        <line x1="390" y1="100" x2="530" y2="100" stroke="white"/>
+        <text x="460" y="120" text-anchor="middle" fill="white" font-size="12">🔑 num_commande</text>
+        <text x="460" y="138" text-anchor="middle" fill="white" font-size="12">date_commande</text>
+        <text x="460" y="154" text-anchor="middle" fill="white" font-size="12">montant_total</text>
+
+        <!-- Association -->
+        <polygon points="270,110 320,90 370,110 320,130" fill="#F59E0B" stroke="#92400E" stroke-width="2"/>
+        <text x="320" y="115" text-anchor="middle" fill="white" font-size="12" font-weight="bold">PASSER</text>
+
+        <!-- Lignes -->
+        <line x1="230" y1="110" x2="270" y2="110" stroke="#374151" stroke-width="2"/>
+        <line x1="370" y1="110" x2="370" y2="110" stroke="#374151" stroke-width="2"/>
+
+        <!-- Cardinalités -->
+        <text x="245" y="100" font-size="13" fill="#1F2937" font-weight="bold">1,n</text>
+        <text x="345" y="100" font-size="13" fill="#1F2937" font-weight="bold">1,1</text>
+      </svg>
+      <p style="color:var(--muted);font-size:.9em;margin:8px 0 0">Exemple visuel : 2 entités reliées par une association</p>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept">
+        <h4>Entité</h4>
+        <p>Objet identifiable (Client, Produit…)</p>
       </div>
-      <div class="cards-3">
-        <div class="info-card">
-          <div class="ic-label">Méthode classique</div>
-          <div class="ic-title">Coût complet</div>
-          <div class="ic-note">Prend en compte toutes les charges : directes + indirectes, fixes + variables.</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">Analyse différentielle</div>
-          <div class="ic-title">Marge sur coût variable</div>
-          <div class="ic-note">Ne retient que les charges variables. Permet de calculer le seuil de rentabilité.</div>
-        </div>
-        <div class="info-card">
-          <div class="ic-label">Méthode japonaise</div>
-          <div class="ic-title">Coût cible (Target Costing)</div>
-          <div class="ic-note">Part du prix fixé par le marché pour cibler un coût de revient maximum.</div>
-        </div>
+      <div class="concept">
+        <h4>Attribut</h4>
+        <p>Propriété décrivant l'entité (nom, prix…)</p>
       </div>
-      <p class="nota">
-        <strong>Pourquoi plusieurs méthodes ?</strong> Chacune répond à un besoin différent. Le coût complet donne une vision globale, la MCV aide à la décision opérationnelle, et le coût cible s'adapte aux marchés concurrentiels.
-      </p>
-    </section>
- 
-    <!-- SECTION 2 -->
-    <section class="section" id="mcv">
-      <div class="section-header">
-        <div class="section-num">2</div>
-        <h2>Marge sur coût variable (MCV)</h2>
+      <div class="concept">
+        <h4>Identifiant</h4>
+        <p>Attribut unique distinguant chaque occurrence</p>
       </div>
- 
-      <div class="formule-box teal">
-        <div class="fb-label">Formule — de haut en bas</div>
-        <div class="fb-formule">MCV = CA − Charges variables</div>
-        <div class="fb-interp">La MCV représente ce qui reste après avoir couvert les charges variables. Elle sert à absorber les charges fixes, puis à générer un bénéfice.</div>
-      </div>
- 
-      <div class="nota">
-        <strong>Méthode inverse (de bas en haut) :</strong> si on connaît le résultat mais pas les charges variables, on peut calculer → MCV = Résultat + Charges fixes.
-      </div>
- 
-      <div class="tableau">
-        <div class="tableau-title">Exemple chiffré — Tableau différentiel de résultats</div>
-        <table>
-          <tr><td>Chiffre d'affaires (CA)</td><td>500 000 MAD</td></tr>
-          <tr><td>− Charges variables</td><td>300 000 MAD</td></tr>
-          <tr class="t-total"><td>= Marge sur coût variable (MCV)</td><td>200 000 MAD</td></tr>
-          <tr><td>− Charges fixes</td><td>150 000 MAD</td></tr>
-          <tr class="t-result"><td>= Résultat net</td><td>50 000 MAD ✓</td></tr>
-        </table>
-      </div>
- 
-      <p class="nota">
-        <strong>Interprétation :</strong> une MCV de 200 000 MAD signifie que l'entreprise a couvert ses charges variables et dispose de cette marge pour couvrir ses charges fixes (150 000 MAD) et dégager un bénéfice de 50 000 MAD.
-      </p>
-    </section>
- 
-    <!-- SECTION 3 -->
-    <section class="section" id="seuil">
-      <div class="section-header">
-        <div class="section-num">3</div>
-        <h2>Seuil de rentabilité &amp; point mort</h2>
-      </div>
- 
-      <div class="formule-box amber">
-        <div class="fb-label">Seuil de rentabilité (SR)</div>
-        <div class="fb-formule">SR = Charges fixes ÷ Taux de MCV</div>
-        <div class="fb-interp">Le taux de MCV = MCV ÷ CA. Dans notre exemple : 200 000 ÷ 500 000 = 40 %</div>
-      </div>
- 
-      <div class="tableau">
-        <div class="tableau-title">Calcul du seuil de rentabilité</div>
-        <table>
-          <tr><td>Charges fixes</td><td>150 000 MAD</td></tr>
-          <tr><td>Taux de MCV</td><td>40 %</td></tr>
-          <tr class="t-total"><td>= Seuil de rentabilité</td><td>375 000 MAD</td></tr>
-        </table>
-      </div>
- 
-      <p class="nota">
-        <strong>Interprétation :</strong> l'entreprise doit réaliser au minimum 375 000 MAD de CA pour que son résultat soit égal à zéro. En dessous, elle est en perte ; au-dessus, elle génère des bénéfices.
-      </p>
- 
-      <div class="formule-box blue">
-        <div class="fb-label">Point mort — date d'atteinte du seuil</div>
-        <div class="fb-formule">Point mort = SR × 12 ÷ CA</div>
-        <div class="fb-interp">Exemple : 375 000 × 12 ÷ 500 000 = 9 mois → fin septembre. L'entreprise commence à être rentable à partir du 1er octobre.</div>
-      </div>
- 
-      <div class="formule-box coral">
-        <div class="fb-label">Marge de sécurité &amp; indice de sécurité</div>
-        <div class="fb-formule">Marge = CA − SR &nbsp;|&nbsp; Indice = Marge ÷ CA</div>
-        <div class="fb-interp">
-          Exemple : 500 000 − 375 000 = 125 000 MAD<br>
-          L'entreprise peut perdre jusqu'à 125 000 MAD de CA sans entrer en zone de perte.<br>
-          Indice de sécurité = 125 000 ÷ 500 000 = 25 %
-        </div>
-      </div>
-    </section>
- 
-    <!-- SECTION 4 -->
-    <section class="section" id="charges">
-      <div class="section-header">
-        <div class="section-num">4</div>
-        <h2>Les types de charges</h2>
-      </div>
- 
-      <div class="charges-grid">
-        <div class="charge-card cf">
-          <div class="ch-type">Charges fixes</div>
-          <div class="ch-def">Restent constantes quel que soit le niveau de production.</div>
-          <div class="ch-ex">Ex : loyer, salaires fixes, assurances, amortissements</div>
-        </div>
-        <div class="charge-card cv">
-          <div class="ch-type">Charges variables</div>
-          <div class="ch-def">Varient proportionnellement au volume produit.</div>
-          <div class="ch-ex">Ex : matières premières, énergie liée à la production, commissions de vente</div>
-        </div>
-        <div class="charge-card cs">
-          <div class="ch-type">Charges semi-variables</div>
-          <div class="ch-def">Comportent une partie fixe et une partie variable.</div>
-          <div class="ch-ex">Ex : téléphone (abonnement mensuel fixe + consommation variable selon l'activité)</div>
-        </div>
-      </div>
- 
-      <p class="nota">
-        <strong>Distinction charges fixes directes / indirectes :</strong> les charges fixes directes sont liées à un seul produit (spécifiques), les charges fixes indirectes concernent l'ensemble de l'activité de l'entreprise (communes).
-      </p>
-    </section>
- 
-    <!-- SECTION 5 -->
-    <section class="section" id="cout-cible">
-      <div class="section-header">
-        <div class="section-num">5</div>
-        <h2>Méthode du coût cible (Target Costing)</h2>
-      </div>
- 
-      <div class="comparaison">
-        <div class="cmp-card">
-          <div class="cc-title">⬆ Méthode classique</div>
-          <ul>
-            <li>On accumule les charges</li>
-            <li>On calcule le coût de revient</li>
-            <li>On ajoute la marge souhaitée</li>
-            <li>→ On obtient un prix de vente</li>
-          </ul>
-        </div>
-        <div class="cmp-card">
-          <div class="cc-title">⬇ Coût cible (inversé)</div>
-          <ul>
-            <li>Le marché impose le prix</li>
-            <li>L'entreprise fixe sa marge cible</li>
-            <li>On calcule le coût à ne pas dépasser</li>
-            <li>→ On maîtrise les charges</li>
-          </ul>
-        </div>
-      </div>
- 
-      <div class="tableau">
-        <div class="tableau-title">Exemple chiffré</div>
-        <table>
-          <tr><td>Prix imposé par le marché</td><td>120 MAD</td></tr>
-          <tr><td>− Marge bénéficiaire souhaitée</td><td>40 MAD</td></tr>
-          <tr class="t-result"><td>= Coût cible à ne pas dépasser</td><td>80 MAD !</td></tr>
-        </table>
-      </div>
- 
-      <p class="nota" style="margin-bottom:1rem;">
-        <strong>Formule :</strong> Coût cible = Prix de marché − Marge souhaitée. Le gestionnaire doit s'assurer que l'ensemble des coûts de production, conception et distribution reste dans cette limite de 80 MAD.
-      </p>
- 
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-body"><strong>Étude de marché</strong> — identifier le prix acceptable par les clients et analyser la concurrence.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-body"><strong>Fixer la marge cible</strong> — selon la rentabilité souhaitée par l'entreprise et sa stratégie concurrentielle.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-body"><strong>Calculer le coût cible</strong> — Prix de marché − Marge = coût maximum autorisé pour rester compétitif.</div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-body"><strong>Piloter la conception</strong> — impliquer tous les services (achat, production, marketing) pour ne pas dépasser le coût cible, sans sacrifier la qualité.</div>
-        </div>
-      </div>
- 
-      <div class="nota" style="margin-top:1rem;">
-        <strong>Limites à retenir :</strong> méthode difficile à appliquer (risque sur la qualité, coordination complexe entre services, imprévus). D'origine japonaise, elle nécessite une forte maîtrise des processus et une culture d'entreprise orientée vers l'optimisation continue.
-      </div>
-    </section>
- 
-    <!-- RECAP -->
-    <div class="recap">
-      <div class="recap-title">Formules clés à retenir</div>
-      <div class="recap-grid">
-        <span class="recap-item b-teal">MCV = CA − Charges variables</span>
-        <span class="recap-item b-amber">Taux MCV = MCV ÷ CA</span>
-        <span class="recap-item b-amber">Seuil = CF ÷ Taux MCV</span>
-        <span class="recap-item b-blue">Point mort = SR × 12 ÷ CA</span>
-        <span class="recap-item b-blue">Marge sécurité = CA − SR</span>
-        <span class="recap-item b-coral">Coût cible = Prix marché − Marge</span>
+      <div class="concept">
+        <h4>Occurrence</h4>
+        <p>Instance concrète d'une entité (ex : Client n°42)</p>
       </div>
     </div>
- 
-  </main>
- 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-card">
-      <div class="sidebar-title">Sommaire</div>
-      <ul class="toc-list">
-        <li><a href="#methodes">1 — Les 3 méthodes</a></li>
-        <li><a href="#mcv">2 — Marge sur coût variable</a></li>
-        <li><a href="#seuil">3 — Seuil de rentabilité</a></li>
-        <li><a href="#charges">4 — Types de charges</a></li>
-        <li><a href="#cout-cible">5 — Coût cible</a></li>
+  </div>
+
+  <!-- SECTION 3 : Associations -->
+  <div class="section">
+    <h2><span class="num">3</span> Les Associations</h2>
+    <p>
+      Une <strong>association</strong> exprime un lien logique ou fonctionnel entre deux ou plusieurs entités.
+      Par exemple : un <em>Client</em> <strong>passe</strong> une <em>Commande</em>, une <em>Commande</em>
+      <strong>contient</strong> des <em>Produits</em>. Les associations peuvent elles-mêmes porter des attributs
+      (ex : la quantité commandée).
+    </p>
+    <div class="example-box">
+      <strong>💡 Exemple concret :</strong> Dans une boutique en ligne, l'association
+      « COMMANDE — contient — PRODUIT » porte un attribut <em>quantité</em>, car une même commande
+      peut contenir plusieurs produits en quantités différentes.
+    </div>
+  </div>
+
+  <!-- SECTION 4 : Cardinalités -->
+  <div class="section">
+    <h2><span class="num">4</span> Les Cardinalités</h2>
+    <p>
+      La <strong>cardinalité</strong> précise le nombre <em>minimum</em> et <em>maximum</em> de fois
+      qu'une occurrence d'une entité peut participer à une association. C'est l'élément clé qui traduit
+      les <strong>règles de gestion</strong> de l'entreprise.
+    </p>
+
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th>Cardinalité</th>
+          <th>Signification</th>
+          <th>Exemple métier</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge b01">0,1</span></td>
+          <td>Optionnelle, au plus une fois</td>
+          <td>Un employé <em>peut</em> diriger au plus 1 service</td>
+        </tr>
+        <tr>
+          <td><span class="badge b11">1,1</span></td>
+          <td>Obligatoire, exactement une fois</td>
+          <td>Une facture concerne 1 et 1 seule commande</td>
+        </tr>
+        <tr>
+          <td><span class="badge b0n">0,n</span></td>
+          <td>Optionnelle, plusieurs fois possibles</td>
+          <td>Un client peut avoir passé 0 ou plusieurs commandes</td>
+        </tr>
+        <tr>
+          <td><span class="badge b1n">1,n</span></td>
+          <td>Au moins une fois, plusieurs possibles</td>
+          <td>Une commande contient au moins 1 produit</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECTION 5 : Cas pratique -->
+  <div class="section">
+    <h2><span class="num">5</span> Cas pratique : Commande / Produit / Facture</h2>
+    <p>
+      Modélisons un système simplifié de gestion commerciale qui illustre tous les concepts vus :
+    </p>
+
+    <div class="svg-wrap">
+      <svg viewBox="0 0 700 380" width="100%" style="max-width:700px">
+        <!-- CLIENT -->
+        <rect x="20" y="20" width="140" height="80" rx="8" fill="#4F46E5"/>
+        <text x="90" y="45" text-anchor="middle" fill="white" font-weight="bold">CLIENT</text>
+        <line x1="35" y1="55" x2="145" y2="55" stroke="white"/>
+        <text x="90" y="73" text-anchor="middle" fill="white" font-size="11">🔑 id_client</text>
+        <text x="90" y="90" text-anchor="middle" fill="white" font-size="11">nom, email</text>
+
+        <!-- PASSER -->
+        <polygon points="200,40 250,25 300,40 250,55" fill="#F59E0B"/>
+        <text x="250" y="45" text-anchor="middle" fill="white" font-size="11" font-weight="bold">PASSER</text>
+        <line x1="160" y1="50" x2="200" y2="42" stroke="#374151" stroke-width="2"/>
+        <text x="170" y="38" font-size="11" font-weight="bold">1,n</text>
+
+        <!-- COMMANDE -->
+        <rect x="340" y="10" width="140" height="80" rx="8" fill="#06B6D4"/>
+        <text x="410" y="35" text-anchor="middle" fill="white" font-weight="bold">COMMANDE</text>
+        <line x1="355" y1="45" x2="465" y2="45" stroke="white"/>
+        <text x="410" y="63" text-anchor="middle" fill="white" font-size="11">🔑 num_cmd</text>
+        <text x="410" y="80" text-anchor="middle" fill="white" font-size="11">date</text>
+        <line x1="300" y1="40" x2="340" y2="48" stroke="#374151" stroke-width="2"/>
+        <text x="310" y="38" font-size="11" font-weight="bold">1,1</text>
+
+        <!-- CONTENIR -->
+        <polygon points="380,160 430,145 480,160 430,175" fill="#F59E0B"/>
+        <text x="430" y="165" text-anchor="middle" fill="white" font-size="11" font-weight="bold">CONTENIR</text>
+        <text x="490" y="155" font-size="10" fill="#92400E">(quantité)</text>
+        <line x1="410" y1="90" x2="430" y2="145" stroke="#374151" stroke-width="2"/>
+        <text x="395" y="120" font-size="11" font-weight="bold">1,n</text>
+
+        <!-- PRODUIT -->
+        <rect x="340" y="220" width="140" height="80" rx="8" fill="#10B981"/>
+        <text x="410" y="245" text-anchor="middle" fill="white" font-weight="bold">PRODUIT</text>
+        <line x1="355" y1="255" x2="465" y2="255" stroke="white"/>
+        <text x="410" y="273" text-anchor="middle" fill="white" font-size="11">🔑 id_produit</text>
+        <text x="410" y="290" text-anchor="middle" fill="white" font-size="11">libellé, prix</text>
+        <line x1="430" y1="175" x2="410" y2="220" stroke="#374151" stroke-width="2"/>
+        <text x="435" y="200" font-size="11" font-weight="bold">0,n</text>
+
+        <!-- GENERER -->
+        <polygon points="200,200 250,185 300,200 250,215" fill="#F59E0B"/>
+        <text x="250" y="205" text-anchor="middle" fill="white" font-size="11" font-weight="bold">GÉNÉRER</text>
+        <line x1="340" y1="80" x2="300" y2="200" stroke="#374151" stroke-width="2"/>
+        <text x="305" y="140" font-size="11" font-weight="bold">1,1</text>
+
+        <!-- FACTURE -->
+        <rect x="40" y="240" width="140" height="80" rx="8" fill="#7C3AED"/>
+        <text x="110" y="265" text-anchor="middle" fill="white" font-weight="bold">FACTURE</text>
+        <line x1="55" y1="275" x2="165" y2="275" stroke="white"/>
+        <text x="110" y="293" text-anchor="middle" fill="white" font-size="11">🔑 num_facture</text>
+        <text x="110" y="310" text-anchor="middle" fill="white" font-size="11">montant, date</text>
+        <line x1="200" y1="205" x2="150" y2="240" stroke="#374151" stroke-width="2"/>
+        <text x="155" y="225" font-size="11" font-weight="bold">1,1</text>
+      </svg>
+      <p style="color:var(--muted);font-size:.9em;margin:8px 0 0">MCD complet : Client – Commande – Produit – Facture</p>
+    </div>
+
+    <div class="example-box">
+      <strong>📌 Lecture des règles de gestion :</strong>
+      <ul style="margin:8px 0 0 20px">
+        <li>Un client passe <strong>1 ou plusieurs</strong> commandes.</li>
+        <li>Une commande appartient à <strong>1 seul</strong> client.</li>
+        <li>Une commande contient <strong>au moins 1</strong> produit (avec une quantité).</li>
+        <li>Une commande génère <strong>exactement 1</strong> facture.</li>
       </ul>
     </div>
-    <div class="sidebar-card">
-      <div class="sidebar-title">Formules rapides</div>
-      <div class="formule-rapide">MCV = CA − CV</div>
-      <div class="formule-rapide">SR = CF ÷ Taux MCV</div>
-      <div class="formule-rapide">PM = SR × 12 ÷ CA</div>
-      <div class="formule-rapide">CC = Prix − Marge</div>
-    </div>
-    <div class="sidebar-card">
-      <div class="sidebar-title">Informations</div>
-      <div style="font-size:12px; color:var(--text-muted); line-height:1.7;">
-        <div><strong style="color:var(--text);">Cours :</strong> Contrôle de gestion</div>
-        <div><strong style="color:var(--text);">Programme :</strong> Master AMSO</div>
-        <div><strong style="color:var(--text);">Université :</strong> Cadi Ayyad, Kelaa Des Sraghna</div>
-        <div style="margin-top:.5rem; padding-top:.5rem; border-top:1px solid var(--border);"><strong style="color:var(--text);">Auteur :</strong> Noamane Boulahcen</div>
-      </div>
-    </div>
-  </aside>
- 
-</div>
- 
-<!-- FOOTER -->
-<footer style="background:var(--bg-card); border-top:1px solid var(--border); padding:1.5rem 2rem; text-align:center;">
-  <div style="max-width:860px; margin:0 auto; font-size:12px; color:var(--text-light);">
-    <a href="https://nbprof.com" style="color:var(--teal-600); text-decoration:none; font-weight:500;">nbprof.com</a>
-    · Ressources pédagogiques · Noamane Boulahcen · Master AMSO — Université Cadi Ayyad
   </div>
-</footer>
- 
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <h2>✅ À retenir</h2>
+    <p>
+      La modélisation conceptuelle est <strong>l'étape fondatrice</strong> de toute base de données réussie.
+      Une bonne identification des entités, attributs, associations et cardinalités garantit un système
+      d'information cohérent, évolutif et fidèle aux règles métier de l'entreprise [1].
+    </p>
+    <div class="tags">
+      <span class="tag">#MCD</span>
+      <span class="tag">#MLD</span>
+      <span class="tag">#MPD</span>
+      <span class="tag">#Entité</span>
+      <span class="tag">#Attribut</span>
+      <span class="tag">#Association</span>
+      <span class="tag">#Cardinalité</span>
+      <span class="tag">#BaseDeDonnées</span>
+    </div>
+  </div>
+
+  <p class="footer-note">📘 Contenu pédagogique préparé pour <strong>nbprof</strong> — Conception de bases de données</p>
+</div>
 </body>
 </html>
