@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chapitre 2 - Calcul des coûts | Module 5 Contrôle de Gestion | NBProf</title>
-<meta name="description" content="Chapitre 2 - Comptabilité analytique et méthodes de calcul des coûts. Master AMSO 2026.">
+<meta name="description" content="Chapitre 2 - Comptabilité analytique, formules et étude de cas complète. Master AMSO 2026.">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   
@@ -17,6 +17,8 @@
     --gold-soft: rgba(212, 168, 87, 0.15);
     --text-light: #e8e8e8;
     --text-muted: #a0a8b8;
+    --red-alert: #e74c3c;
+    --green-success: #27ae60;
   }
   
   body {
@@ -117,13 +119,173 @@
   
   h3 {
     color: var(--gold-light);
-    font-size: 1.35em;
-    margin: 25px 0 12px;
+    font-size: 1.4em;
+    margin: 30px 0 15px;
+  }
+  
+  h4 {
+    color: var(--gold-light);
+    font-size: 1.15em;
+    margin: 20px 0 10px;
   }
   
   p { margin-bottom: 15px; color: var(--text-light); }
   strong { color: var(--gold-light); }
   
+  /* Boîte formule */
+  .formula-box {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 20px 0;
+    font-family: 'Courier New', monospace;
+    text-align: center;
+    font-size: 1.2em;
+    border: 2px solid var(--gold);
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(212, 168, 87, 0.15);
+  }
+  
+  .formula-box .formula-label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85em;
+    font-family: 'Georgia', serif;
+    font-weight: normal;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  /* Boîte exemple */
+  .example-box {
+    background: linear-gradient(135deg, var(--navy-card) 0%, var(--navy-light) 100%);
+    border: 1px solid var(--gold);
+    border-left: 5px solid var(--gold);
+    padding: 28px;
+    border-radius: 12px;
+    margin: 25px 0;
+  }
+  
+  .example-box .example-title {
+    color: var(--gold);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Étape numérotée */
+  .step-section {
+    background: var(--navy-card);
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    border-radius: 12px;
+    padding: 30px;
+    margin: 25px 0;
+    position: relative;
+  }
+  
+  .step-section .step-number {
+    position: absolute;
+    top: -20px;
+    left: 25px;
+    background: var(--gold);
+    color: var(--navy);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    border: 4px solid var(--navy-light);
+  }
+  
+  .step-section h3 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  
+  /* Tableaux */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--navy-card);
+    font-size: 0.95em;
+  }
+  
+  th {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 0.95em;
+  }
+  
+  td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
+    color: var(--text-light);
+  }
+  
+  tr:hover td { background: rgba(212, 168, 87, 0.05); }
+  
+  td.highlight {
+    background: var(--gold-soft);
+    color: var(--gold);
+    font-weight: bold;
+  }
+  
+  td.total {
+    background: rgba(212, 168, 87, 0.2);
+    color: var(--gold);
+    font-weight: bold;
+    border-top: 2px solid var(--gold);
+  }
+  
+  td.deficit {
+    color: var(--red-alert);
+    font-weight: bold;
+  }
+  
+  /* Diagnostic */
+  .diagnostic-box {
+    background: rgba(231, 76, 60, 0.1);
+    border: 1px solid var(--red-alert);
+    border-left: 5px solid var(--red-alert);
+    padding: 25px;
+    border-radius: 10px;
+    margin: 25px 0;
+  }
+  
+  .diagnostic-box.success {
+    background: rgba(39, 174, 96, 0.1);
+    border-color: var(--green-success);
+    border-left-color: var(--green-success);
+  }
+  
+  .diagnostic-box .diag-title {
+    color: var(--red-alert);
+    font-weight: bold;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .diagnostic-box.success .diag-title {
+    color: var(--green-success);
+  }
+  
+  /* Méthodes grid */
   .method-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -157,86 +319,8 @@
     font-size: 1.2em;
   }
   
-  .method-card p {
-    color: var(--text-muted);
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 25px 0;
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--navy-card);
-  }
-  
-  th {
-    background: var(--gold);
-    color: var(--navy);
-    padding: 15px;
-    text-align: left;
-    font-weight: bold;
-  }
-  
-  td {
-    padding: 15px;
-    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
-    color: var(--text-light);
-  }
-  
-  tr:hover td { background: rgba(212, 168, 87, 0.05); }
-  
   ul, ol { margin: 15px 0 15px 25px; }
   ul li, ol li { margin-bottom: 10px; }
-  
-  .step-list {
-    counter-reset: step;
-    list-style: none;
-    margin: 25px 0;
-  }
-  
-  .step-list li {
-    counter-increment: step;
-    background: var(--navy-card);
-    border: 1px solid rgba(212, 168, 87, 0.2);
-    padding: 20px 20px 20px 75px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    position: relative;
-    border-left: 3px solid var(--gold);
-  }
-  
-  .step-list li::before {
-    content: counter(step);
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--gold);
-    color: var(--navy);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.2em;
-  }
-  
-  .highlight-box {
-    background: linear-gradient(135deg, var(--navy-card) 0%, var(--navy-light) 100%);
-    border: 1px solid var(--gold);
-    padding: 35px;
-    border-radius: 15px;
-    margin: 30px 0;
-  }
-  
-  .highlight-box h2 {
-    color: var(--gold);
-    border-bottom-color: rgba(212, 168, 87, 0.3);
-    margin-top: 0;
-  }
   
   .faq-item {
     background: var(--navy-card);
@@ -264,19 +348,6 @@
   .conclusion h3 {
     color: var(--gold);
     margin-bottom: 15px;
-  }
-  
-  .formula-box {
-    background: var(--navy);
-    color: var(--gold);
-    padding: 25px;
-    border-radius: 10px;
-    margin: 20px 0;
-    font-family: 'Courier New', monospace;
-    text-align: center;
-    font-size: 1.15em;
-    border: 1px solid var(--gold);
-    font-weight: bold;
   }
   
   .info-tag {
@@ -346,6 +417,8 @@
     .content { padding: 20px 25px 40px; }
     .disclaimer { margin: 20px 25px; padding: 18px 22px; }
     h2 { font-size: 1.5em; }
+    table { font-size: 0.85em; }
+    th, td { padding: 8px; }
   }
 </style>
 </head>
@@ -355,7 +428,7 @@
   
   <header class="header">
     <span class="badge">📚 Module 5 • Chapitre 2</span>
-    <h1>Les Outils de Calcul des Coûts</h1>
+    <h1>Calcul des Coûts & Méthode des Coûts Complets</h1>
     <p class="subtitle">Master AMSO 2026 | Par Noamane Boulahcen</p>
   </header>
   
@@ -367,45 +440,17 @@
     
     <div class="intro">
       <strong>📖 Introduction</strong>
-      Après avoir posé les fondations du contrôle de gestion dans le Chapitre 1, ce second chapitre explore les <strong>outils essentiels de calcul des coûts</strong>. La comptabilité analytique et ses différentes méthodes permettent au contrôleur de gestion d'analyser finement la rentabilité des activités, produits et services de l'entreprise.
+      Ce chapitre présente la <strong>méthode des coûts complets</strong>, l'outil fondamental de la comptabilité analytique. À travers une <strong>étude de cas concrète (Produit A)</strong>, vous découvrirez toutes les formules essentielles : calcul du TRS, des coûts d'unité d'œuvre (CUO), du CMUP, du coût de revient et du résultat analytique [1].
     </div>
     
-    <h2>1. Définition et Utilité de la Comptabilité Analytique</h2>
+    <h2>1. Notion de Coût et Typologie des Charges</h2>
     
-    <h3>A. Qu'est-ce que la comptabilité analytique ?</h3>
-    <p>La <strong>comptabilité analytique</strong> est un mode de traitement des données financières ayant pour objectif d'<strong>expliquer les résultats financiers</strong> [1].</p>
-    
-    <p>📌 La distinction fondamentale :</p>
-    <ul>
-      <li><strong>Comptabilité générale</strong> : donne une vue globale des comptes de l'entreprise [1].</li>
-      <li><strong>Comptabilité analytique</strong> : présente une vision détaillée de chaque activité [1].</li>
-    </ul>
-    
-    <h3>B. À quoi sert-elle ?</h3>
-    <p>Cette technique permet d'<strong>identifier les coûts des différentes fonctions</strong> assumées par l'entreprise [1] :</p>
-    
-    <div>
-      <span class="info-tag">🏭 Production</span>
-      <span class="info-tag">🛒 Commercialisation</span>
-      <span class="info-tag">🛠️ Service après-vente</span>
-      <span class="info-tag">📦 Logistique</span>
-      <span class="info-tag">📣 Marketing</span>
-    </div>
-    
-    <p style="margin-top:15px;">Elle est <strong>propre à chaque entreprise</strong> et constitue un système de mesure neutre et objectif. Elle permet également de déterminer les bases d'évaluation de certains éléments du bilan comptable, comme l'<strong>évaluation des stocks</strong> [1].</p>
-    
-    <h3>C. En pratique</h3>
-    <p>La comptabilité analytique s'appuie sur la comptabilité financière générale. Dans la plupart des logiciels de gestion comptable, il est possible de définir des <strong>axes analytiques</strong>. Toutes les charges et tous les produits comptabilisés dans des comptes de gestion (classe 6 et 7) doivent être ventilés sur ces axes [1].</p>
-    
-    <h2>2. Notion de Coût et Typologie des Charges</h2>
-    
-    <p>Un <strong>coût</strong> est défini comme une <strong>accumulation de charges sur un produit</strong> [1].</p>
+    <p>Un <strong>coût</strong> est défini comme une <strong>accumulation de charges sur un produit</strong>.</p>
     
     <div class="formula-box">
-      💡 Coût = Accumulation de charges sur un produit
+      <span class="formula-label">Définition fondamentale</span>
+      Coût = Accumulation de charges sur un produit
     </div>
-    
-    <p>Une charge issue de la comptabilité générale peut être classée selon deux critères principaux [1] :</p>
     
     <table>
       <thead>
@@ -415,128 +460,323 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>📈 <strong>Coût variable</strong></td><td>Son montant dépend du volume de l'activité</td></tr>
-        <tr><td>📊 <strong>Coût fixe</strong></td><td>Son montant est stable, peu importe le niveau d'activité</td></tr>
+        <tr><td>📈 <strong>Charge variable</strong></td><td>Son montant dépend du volume de l'activité</td></tr>
+        <tr><td>📊 <strong>Charge fixe</strong></td><td>Son montant est stable, peu importe le niveau d'activité</td></tr>
         <tr><td>🎯 <strong>Charge directe</strong></td><td>Affectée sans calcul intermédiaire à un produit</td></tr>
         <tr><td>🔀 <strong>Charge indirecte</strong></td><td>Nécessite une répartition entre plusieurs produits</td></tr>
       </tbody>
     </table>
     
-    <h2>3. Les Principales Méthodes de Calcul des Coûts</h2>
-    
-    <p>Il existe de nombreuses méthodes permettant de calculer des coûts en comptabilité analytique. Voici les <strong>cinq principales</strong> [1] :</p>
+    <h2>2. Les Principales Méthodes de Calcul des Coûts</h2>
     
     <div class="method-grid">
       
       <div class="method-card">
         <div class="icon">🎯</div>
-        <h4>1. Méthode des coûts complets</h4>
-        <p>Intègre <strong>toutes les charges</strong> (directes et indirectes) pour déterminer le coût de revient total d'un produit.</p>
-      </div>
-      
-      <div class="method-card">
-        <div class="icon">✂️</div>
-        <h4>2. Méthode des coûts partiels</h4>
-        <p>Ne retient qu'une <strong>partie des charges</strong> (variables ou directes) pour faciliter l'analyse de rentabilité.</p>
+        <h4>Coûts Complets</h4>
+        <p>Intègre <strong>toutes les charges</strong> (directes + indirectes) pour le coût de revient total. Méthode classique du PCG [2].</p>
       </div>
       
       <div class="method-card">
         <div class="icon">💰</div>
-        <h4>3. Direct Costing</h4>
-        <p>Méthode basée sur les <strong>coûts variables</strong> uniquement, permettant de calculer la marge sur coût variable.</p>
+        <h4>Direct Costing</h4>
+        <p>Méthode basée sur les <strong>coûts variables</strong> uniquement. Permet de calculer la marge sur coût variable [2].</p>
       </div>
       
       <div class="method-card">
         <div class="icon">🔄</div>
-        <h4>4. Méthode ABC</h4>
-        <p>(<em>Activity Based Costing</em>) : Allocation des charges indirectes selon les <strong>activités réellement consommées</strong>.</p>
-      </div>
-      
-      <div class="method-card">
-        <div class="icon">🎯</div>
-        <h4>5. Méthode des coûts cibles</h4>
-        <p>(<em>Target Costing</em>) : Détermine le coût maximal acceptable à partir du <strong>prix de vente cible</strong>.</p>
+        <h4>Méthode ABC</h4>
+        <p><em>Activity Based Costing</em> : allocation des charges indirectes selon les <strong>activités consommées</strong> [2].</p>
       </div>
       
     </div>
     
-    <h2>4. Focus sur la Méthode des Coûts Cibles</h2>
+    <h2>📊 Étude de Cas Complète : Le Produit A</h2>
     
-    <p>Cette méthode repose sur le principe fondamental d'<strong>analyse de la valeur</strong>. L'objectif est de <strong>maximiser la satisfaction du client</strong> (rapport qualité/prix) tout en <strong>minimisant les coûts</strong> [1].</p>
+    <p>Pour illustrer la <strong>méthode des coûts complets</strong>, suivons l'analyse d'un produit A sur la période Mars/Mai à travers 5 étapes méthodiques [1].</p>
     
-    <div class="formula-box">
-      💡 Coût Cible = Prix de Vente Cible − Marge Souhaitée
+    <div class="example-box">
+      <div class="example-title">📋 Données de l'étude</div>
+      <ul>
+        <li><strong>Production</strong> : 27 000 unités</li>
+        <li><strong>Ventes</strong> : 24 000 unités</li>
+        <li><strong>Prix de vente</strong> : 200 DH/unité</li>
+        <li><strong>Matière première</strong> : 20 000 kg achetés (35 DH/kg)</li>
+      </ul>
     </div>
     
-    <p>Dans cette approche :</p>
-    <ul>
-      <li>Les <strong>marges</strong> sont imposées par les actionnaires [1].</li>
-      <li>Les <strong>coûts</strong> deviennent la variable d'ajustement [1].</li>
-    </ul>
-    
-    <h3>📋 Les étapes de la méthode des coûts cibles</h3>
-    
-    <ol class="step-list">
-      <li><strong>Recenser les fonctions</strong> remplies par un produit [1].</li>
-      <li><strong>Mesurer le coût</strong> de chaque fonction [1].</li>
-      <li><strong>Déterminer les fonctions essentielles</strong> attendues par le client et supprimer celles peu utiles voire inutiles [1].</li>
-      <li><strong>Répondre aux nouvelles fonctions</strong> attendues par le client [1].</li>
-      <li><strong>Calculer le coût minimum</strong> des fonctions attendues [1].</li>
-    </ol>
-    
-    <div class="highlight-box">
-      <h2>💡 Vision Stratégique</h2>
-      <p>La méthode des coûts cibles est une <strong>démarche globale d'optimisation</strong> du processus de développement d'un produit tout au long de son cycle de vie [1].</p>
-      <p style="margin-top:15px;">Elle place le client au centre des décisions et oblige l'entreprise à innover en permanence pour rester compétitive.</p>
+    <!-- ÉTAPE 1 -->
+    <div class="step-section">
+      <div class="step-number">1</div>
+      <h3>Répartition des Charges Indirectes & Calcul des CUO</h3>
+      
+      <p>Le traitement des charges indirectes passe par le <strong>Tableau de Répartition des Charges Indirectes (TRCI)</strong>, finalisé par le calcul du <strong>coût d'unité d'œuvre (CUO)</strong> de chaque centre principal [1].</p>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule du Coût d'Unité d'Œuvre</span>
+        CUO = Total Répartition Secondaire (TRS) ÷ Nombre d'Unités d'Œuvre
+      </div>
+      
+      <h4>📊 Tableau de Répartition (TRS) – Étude Produit A [1]</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Éléments</th>
+            <th>Pers. & Admin.</th>
+            <th>Approvisionnement</th>
+            <th>Production</th>
+            <th>Distribution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>T.R.S</strong></td>
+            <td>0 DH</td>
+            <td>950 000 DH</td>
+            <td>1 000 000 DH</td>
+            <td>870 000 DH</td>
+          </tr>
+          <tr>
+            <td><strong>Nature des UO</strong></td>
+            <td>—</td>
+            <td>1 kg matière achetée</td>
+            <td>1 unité produite</td>
+            <td>1 unité vendue</td>
+          </tr>
+          <tr>
+            <td><strong>Nombre d'UO</strong></td>
+            <td>—</td>
+            <td>20 000</td>
+            <td>27 000</td>
+            <td>24 000</td>
+          </tr>
+          <tr>
+            <td class="highlight"><strong>CUO</strong></td>
+            <td>—</td>
+            <td class="highlight">47,50 DH</td>
+            <td class="highlight">37,037 DH</td>
+            <td class="highlight">36,25 DH</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p style="margin-top:15px;"><strong>Détail des calculs :</strong></p>
+      <ul>
+        <li>CUO Approvisionnement = 950 000 ÷ 20 000 = <strong>47,50 DH/kg</strong> [1]</li>
+        <li>CUO Production = 1 000 000 ÷ 27 000 = <strong>37,037 DH/unité</strong> [1]</li>
+        <li>CUO Distribution = 870 000 ÷ 24 000 = <strong>36,25 DH/unité</strong> [1]</li>
+      </ul>
     </div>
     
-    <h2>5. Liens entre Comptabilité Générale et Comptabilité Analytique</h2>
+    <!-- ÉTAPE 2 -->
+    <div class="step-section">
+      <div class="step-number">2</div>
+      <h3>Coût d'Achat des Matières Premières</h3>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule</span>
+        Coût d'Achat = Prix d'Achat + Charges Directes d'Achat + Charges Indirectes d'Approvisionnement
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Éléments</th>
+            <th>Quantité</th>
+            <th>PU (DH)</th>
+            <th>Montant (DH)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Prix d'achat MP</td><td>20 000 kg</td><td>35,00</td><td>700 000</td></tr>
+          <tr><td>Charges indirectes (Appro.)</td><td>20 000 kg</td><td>47,50</td><td>950 000</td></tr>
+          <tr><td class="total"><strong>Coût d'achat global</strong></td><td class="total">20 000</td><td class="total">82,50</td><td class="total">1 650 000</td></tr>
+        </tbody>
+      </table>
+    </div>
     
-    <p>La comptabilité analytique <strong>complète</strong> la comptabilité générale [1]. Voici une synthèse comparative :</p>
+    <!-- ÉTAPE 3 -->
+    <div class="step-section">
+      <div class="step-number">3</div>
+      <h3>Coût de Production & CMUP</h3>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule du Coût de Production</span>
+        Coût Production = Coût MP Consommée + MOD + Charges Indirectes de Production
+      </div>
+      
+      <p>Le <strong>CMUP (Coût Moyen Unitaire Pondéré)</strong> est utilisé pour valoriser les sorties de stock :</p>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule du CMUP</span>
+        CMUP = (Stock Initial Valorisé + Entrées Valorisées) ÷ (Quantité SI + Quantité Entrées)
+      </div>
+      
+      <div class="example-box">
+        <div class="example-title">💡 Application au Produit A</div>
+        <p>Pour le produit A, le CMUP des unités produites s'établit à <strong>95,16 DH/unité</strong> [1].</p>
+        <p>Ce coût intègre :</p>
+        <ul>
+          <li>Le coût de la matière première consommée</li>
+          <li>La main-d'œuvre directe (MOD)</li>
+          <li>Les charges indirectes de production (37,037 DH × 27 000 unités)</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- ÉTAPE 4 -->
+    <div class="step-section">
+      <div class="step-number">4</div>
+      <h3>Coût de Revient des Unités Vendues</h3>
+      
+      <p>Le coût de revient correspond au <strong>stade ultime du calcul des coûts</strong>. Il englobe le coût de production des seuls produits vendus, complété par l'ensemble des frais de distribution [1].</p>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule du Coût de Revient</span>
+        Coût Revient = Coût Production Vendu + Charges Directes Distribution + Charges Indirectes Distribution
+      </div>
+      
+      <h4>📊 Calcul détaillé – Produit A [1]</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Éléments</th>
+            <th>Quantité</th>
+            <th>PU (DH)</th>
+            <th>Montant (DH)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Coût production des unités vendues (CMUP)</td>
+            <td>24 000</td>
+            <td>95,16</td>
+            <td>2 283 840</td>
+          </tr>
+          <tr>
+            <td>Charges directes de distribution</td>
+            <td>24 000</td>
+            <td>77,00</td>
+            <td>1 848 000</td>
+          </tr>
+          <tr>
+            <td>Charges indirectes (Centre Distribution)</td>
+            <td>24 000</td>
+            <td>36,25</td>
+            <td>870 000</td>
+          </tr>
+          <tr>
+            <td class="total"><strong>Coût de Revient Global</strong></td>
+            <td class="total">24 000</td>
+            <td class="total">208,41</td>
+            <td class="total">5 001 840</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- ÉTAPE 5 -->
+    <div class="step-section">
+      <div class="step-number">5</div>
+      <h3>Résultat Analytique & Diagnostic Commercial</h3>
+      
+      <p>Le résultat analytique exprime la <strong>performance ou la rentabilité nette</strong> dégagée par le produit sur la période [1].</p>
+      
+      <div class="formula-box">
+        <span class="formula-label">Formule du Résultat Analytique</span>
+        Résultat Analytique = Chiffre d'Affaires − Coût de Revient Total
+      </div>
+      
+      <h4>📊 Calcul du Résultat Analytique – Produit A [1]</h4>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Éléments</th>
+            <th>Quantité</th>
+            <th>PU (DH)</th>
+            <th>Montant (DH)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Chiffre d'Affaires (ventes réelles)</td>
+            <td>24 000</td>
+            <td>200,00</td>
+            <td>4 800 000</td>
+          </tr>
+          <tr>
+            <td>(−) Coût de Revient Global</td>
+            <td>24 000</td>
+            <td>208,41</td>
+            <td>5 001 840</td>
+          </tr>
+          <tr>
+            <td class="total"><strong>Résultat Analytique</strong></td>
+            <td class="total">24 000</td>
+            <td class="deficit">−8,41 DH</td>
+            <td class="deficit">−201 840 DH</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div class="diagnostic-box">
+        <div class="diag-title">⚠️ Diagnostic de l'Expert</div>
+        <p>Le produit A est <strong>vendu à perte</strong> (−8,41 DH par unité). Cette contre-performance s'explique par [1] :</p>
+        <ul>
+          <li>Des <strong>frais de distribution extrêmement lourds</strong> (frais fixes + commissions directes + CUO élevé).</li>
+          <li>Une <strong>hausse du coût de la matière première</strong> à l'achat (passant de 30 DH à 35 DH).</li>
+          <li>Une pression cumulative sur le coût de revient final.</li>
+        </ul>
+      </div>
+    </div>
+    
+    <h2>📋 Récapitulatif des 5 Formules Clés</h2>
     
     <table>
       <thead>
         <tr>
-          <th>Critère</th>
-          <th>Comptabilité Générale</th>
-          <th>Comptabilité Analytique</th>
+          <th>Étape</th>
+          <th>Formule</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td><strong>Obligation</strong></td><td>Légale</td><td>Facultative</td></tr>
-        <tr><td><strong>Vision</strong></td><td>Globale</td><td>Détaillée par activité</td></tr>
-        <tr><td><strong>Utilisateurs</strong></td><td>Externes (fisc, banques…)</td><td>Internes (dirigeants)</td></tr>
-        <tr><td><strong>Objectif</strong></td><td>Patrimoine et résultat</td><td>Performance par fonction</td></tr>
-        <tr><td><strong>Fréquence</strong></td><td>Annuelle</td><td>Continue / mensuelle</td></tr>
+        <tr><td><strong>1. CUO</strong></td><td>TRS ÷ Nombre d'Unités d'Œuvre</td></tr>
+        <tr><td><strong>2. Coût d'achat</strong></td><td>Prix d'achat + Charges directes + Charges indirectes appro.</td></tr>
+        <tr><td><strong>3. CMUP</strong></td><td>(SI valorisé + Entrées) ÷ (Quantité SI + Quantité Entrées)</td></tr>
+        <tr><td><strong>4. Coût de revient</strong></td><td>Coût production vendu + Charges directes + indirectes distrib.</td></tr>
+        <tr><td><strong>5. Résultat analytique</strong></td><td>CA − Coût de revient total</td></tr>
       </tbody>
     </table>
     
     <h2>❓ FAQ – Calcul des Coûts</h2>
     
     <div class="faq-item">
-      <strong>Quelle est la différence entre comptabilité générale et analytique ?</strong>
-      La comptabilité générale donne une vue globale des comptes de l'entreprise, tandis que la comptabilité analytique présente une vision détaillée de chaque activité [1].
+      <strong>Comment calcule-t-on le CUO ?</strong>
+      Le CUO se calcule en divisant le Total de Répartition Secondaire (TRS) d'un centre par son nombre d'unités d'œuvre [1]. Exemple : CUO Approvisionnement = 950 000 ÷ 20 000 = 47,50 DH/kg.
     </div>
     
     <div class="faq-item">
-      <strong>Qu'est-ce qu'un coût en comptabilité analytique ?</strong>
-      Un coût est défini comme une accumulation de charges sur un produit [1].
+      <strong>Quelle est la différence entre coût de production et coût de revient ?</strong>
+      Le coût de production concerne les unités produites (MP + MOD + charges indirectes de production). Le coût de revient ajoute les charges de distribution pour les seules unités vendues [1].
+    </div>
+    
+    <div class="faq-item">
+      <strong>Comment interpréter un résultat analytique négatif ?</strong>
+      Un résultat négatif signifie que le produit est vendu à perte. Les causes peuvent être : coûts d'achat élevés, charges de distribution lourdes, ou prix de vente insuffisant [1].
     </div>
     
     <div class="faq-item">
       <strong>Quelles sont les principales méthodes de calcul des coûts ?</strong>
-      Les cinq méthodes principales sont : les coûts complets, les coûts partiels, le direct costing, la méthode ABC et la méthode des coûts cibles [1].
-    </div>
-    
-    <div class="faq-item">
-      <strong>Quel est l'objectif de la méthode des coûts cibles ?</strong>
-      Maximiser la satisfaction du client (rapport qualité/prix) tout en minimisant les coûts. Les marges étant imposées par les actionnaires, les coûts deviennent la variable d'ajustement [1].
+      Les trois principales méthodes sont : la méthode des coûts complets, la méthode ABC (Activity-Based Costing) et la méthode des coûts variables (Direct Costing) [2].
     </div>
     
     <div class="conclusion">
       <h3>✍️ Conclusion</h3>
-      <p>La maîtrise des <strong>outils de calcul des coûts</strong> est indispensable au contrôleur de gestion. Chaque méthode a ses forces et ses limites : le choix dépend du <strong>type d'entreprise</strong>, de son <strong>secteur</strong> et des <strong>décisions à éclairer</strong>.</p>
-      <p style="margin-top:10px;">Dans le prochain chapitre, nous explorerons les <strong>budgets et le pilotage budgétaire</strong>, qui s'appuient directement sur ces calculs de coûts.</p>
+      <p>La <strong>méthode des coûts complets</strong> est l'outil de référence du contrôleur de gestion. Elle permet de remonter du coût d'achat jusqu'au résultat analytique en passant par le coût de production. Maîtriser les formules de <strong>CUO, CMUP, coût de revient et résultat analytique</strong> est indispensable pour diagnostiquer la rentabilité d'un produit [1].</p>
+      <p style="margin-top:15px;">Dans le prochain chapitre, nous aborderons les <strong>budgets et le pilotage budgétaire</strong>, qui s'appuient directement sur ces calculs de coûts.</p>
     </div>
     
     <div class="nav-buttons">
