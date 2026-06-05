@@ -3,405 +3,490 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Module 5 — Contrôle de Gestion | nbprof.com</title>
+<title>Module 5 - Contrôle de Gestion | NBProf</title>
+<meta name="description" content="Module 5 - Contrôle de Gestion : Sommaire complet des chapitres. Master AMSO 2026.">
 <style>
-  /* ============================================
-     CHARTE GRAPHIQUE nbprof.com
-     - Fond sombre élégant
-     - Accents dorés / ambrés
-     - Typographie académique
-     ============================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
   :root {
-    --bg-primary: #0f1419;        /* Fond principal très sombre */
-    --bg-secondary: #1a2028;      /* Cartes / sections */
-    --bg-tertiary: #232b36;       /* Encadrés internes */
-    --accent-gold: #d4a55a;       /* Or principal (titres, accents) */
-    --accent-gold-light: #e8c585; /* Or clair (hover, highlights) */
-    --accent-amber: #c89456;      /* Ambre (boutons, badges) */
-    --text-primary: #e8eaed;      /* Texte principal */
-    --text-secondary: #b0b6bf;    /* Texte secondaire */
-    --text-muted: #7a828c;        /* Texte discret */
-    --border-subtle: #2d3641;     /* Bordures discrètes */
-    --success: #6ab187;           /* Vert pour valeurs positives */
-    --danger: #c97064;            /* Rouge pour alertes */
+    --navy: #0f1a2e;
+    --navy-light: #1a2a47;
+    --navy-card: #1e2d4a;
+    --gold: #d4a857;
+    --gold-light: #e6c478;
+    --gold-soft: rgba(212, 168, 87, 0.15);
+    --text-light: #e8e8e8;
+    --text-muted: #a0a8b8;
   }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-
+  
   body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
     line-height: 1.7;
-    padding: 40px 20px;
+    color: var(--text-light);
+    background: var(--navy);
+    min-height: 100vh;
   }
-
+  
   .container {
-    max-width: 960px;
-    margin: 0 auto;
+    max-width: 1100px;
+    margin: 40px auto;
+    background: var(--navy-light);
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    overflow: hidden;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
   }
-
-  /* ===== EN-TÊTE ===== */
+  
   .header {
+    background: var(--navy);
+    padding: 60px 40px 40px;
     text-align: center;
-    padding: 40px 20px;
-    border-bottom: 2px solid var(--accent-gold);
-    margin-bottom: 50px;
+    border-bottom: 2px solid var(--gold);
+    position: relative;
   }
-  .header .site-name {
-    color: var(--accent-gold);
-    font-size: 0.95rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
+  
+  .header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gold);
   }
+  
+  .header .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: 'Georgia', serif;
+  }
+  
   .header h1 {
-    font-size: 2.4rem;
-    color: var(--text-primary);
-    margin-bottom: 10px;
+    font-size: 3em;
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-family: 'Georgia', serif;
   }
+  
   .header .subtitle {
-    color: var(--text-secondary);
+    color: var(--text-muted);
+    font-size: 1.1em;
     font-style: italic;
   }
-  .breadcrumb {
+  
+  .disclaimer {
+    background: rgba(0,0,0,0.25);
+    border-left: 4px solid var(--gold);
+    padding: 22px 28px;
+    margin: 30px 40px;
+    border-radius: 8px;
+    font-style: italic;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-top: 20px;
+    font-size: 1em;
+    line-height: 1.7;
   }
-  .breadcrumb a { color: var(--accent-gold); text-decoration: none; }
-
-  /* ===== AUTEUR ===== */
-  .author-card {
+  
+  .content {
+    padding: 30px 40px 50px;
+  }
+  
+  .back-btn {
+    display: inline-block;
+    margin-bottom: 25px;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+  }
+  
+  .back-btn:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  
+  h2 {
+    color: var(--gold);
+    font-size: 2em;
+    margin: 40px 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.3);
+    font-family: 'Georgia', serif;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .stat-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    color: var(--gold);
+    padding: 28px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+  }
+  
+  .stat-card .number {
+    font-size: 2.8em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: var(--gold);
+    font-family: 'Georgia', serif;
+  }
+  
+  .stat-card .label {
+    font-size: 0.95em;
+    color: var(--text-muted);
+  }
+  
+  .chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .chapter-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    border-top: 3px solid var(--gold);
+    border-radius: 12px;
+    padding: 30px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
-    gap: 15px;
-    background: var(--bg-secondary);
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid var(--accent-gold);
-    margin-bottom: 40px;
+    gap: 25px;
+    flex-wrap: wrap;
+    text-decoration: none;
+    color: inherit;
   }
-  .author-avatar {
-    width: 50px; height: 50px;
-    background: var(--accent-gold);
-    color: var(--bg-primary);
+  
+  .chapter-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(212, 168, 87, 0.15);
+  }
+  
+  .chapter-card.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .chapter-card.disabled:hover {
+    transform: none;
+    border-color: rgba(212, 168, 87, 0.3);
+    box-shadow: none;
+  }
+  
+  .chapter-number {
+    background: var(--gold);
+    color: var(--navy);
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
     font-weight: bold;
+    flex-shrink: 0;
+    font-family: 'Georgia', serif;
   }
-  .author-info strong { color: var(--accent-gold-light); }
-  .author-info small { color: var(--text-muted); display: block; }
-
-  /* ===== SECTIONS NUMÉROTÉES ===== */
-  .section {
-    background: var(--bg-secondary);
-    border-radius: 10px;
-    padding: 35px;
-    margin-bottom: 30px;
-    border: 1px solid var(--border-subtle);
+  
+  .chapter-info {
+    flex: 1;
+    min-width: 250px;
   }
-  .section-number {
-    display: inline-block;
-    width: 40px; height: 40px;
-    background: var(--accent-gold);
-    color: var(--bg-primary);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 15px;
+  
+  .chapter-info h3 {
+    color: var(--gold);
+    font-size: 1.4em;
+    margin-bottom: 8px;
+    font-family: 'Georgia', serif;
   }
-  .section h2 {
-    color: var(--accent-gold-light);
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 10px;
-  }
-  .section h3 {
-    color: var(--accent-gold);
-    font-size: 1.2rem;
-    margin: 20px 0 10px;
-  }
-
-  /* ===== CARTES MÉTHODES ===== */
-  .methods-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-  }
-  .method-card {
-    background: var(--bg-tertiary);
-    padding: 25px;
-    border-radius: 8px;
-    border-top: 3px solid var(--accent-gold);
-  }
-  .method-card .tag {
-    display: inline-block;
-    background: var(--accent-amber);
-    color: var(--bg-primary);
-    padding: 3px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  .method-card h4 {
-    color: var(--accent-gold-light);
-    margin-bottom: 10px;
-  }
-
-  /* ===== ENCADRÉ FORMULE ===== */
-  .formula-box {
-    background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
-    border-left: 4px solid var(--accent-gold);
-    padding: 20px 25px;
-    margin: 20px 0;
-    border-radius: 6px;
-    font-family: 'Courier New', monospace;
-  }
-  .formula-box strong { color: var(--accent-gold-light); }
-
-  /* ===== TABLEAU EXEMPLE CHIFFRÉ ===== */
-  .example-table {
-    width: 100%;
-    margin: 20px 0;
-    border-collapse: collapse;
-    background: var(--bg-tertiary);
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  .example-table tr { border-bottom: 1px solid var(--border-subtle); }
-  .example-table tr:last-child { border-bottom: none; background: var(--bg-primary); }
-  .example-table td {
-    padding: 12px 18px;
-  }
-  .example-table td:last-child {
-    text-align: right;
-    color: var(--accent-gold-light);
-    font-weight: bold;
-  }
-  .example-table tr:last-child td { color: var(--success); font-size: 1.1rem; }
-
-  /* ===== ÉTAPES ===== */
-  .steps {
-    counter-reset: step;
-    list-style: none;
-    margin: 20px 0;
-  }
-  .steps li {
-    counter-increment: step;
-    padding: 15px 15px 15px 60px;
-    position: relative;
-    margin-bottom: 12px;
-    background: var(--bg-tertiary);
-    border-radius: 6px;
-  }
-  .steps li::before {
-    content: counter(step);
-    position: absolute;
-    left: 15px; top: 50%;
-    transform: translateY(-50%);
-    width: 32px; height: 32px;
-    background: var(--accent-gold);
-    color: var(--bg-primary);
-    border-radius: 50%;
-    text-align: center;
-    line-height: 32px;
-    font-weight: bold;
-  }
-
-  /* ===== COMPARAISON FLÈCHES ===== */
-  .compare-block {
-    background: var(--bg-tertiary);
-    padding: 20px;
-    border-radius: 8px;
-    margin: 15px 0;
-  }
-  .compare-block .arrow {
-    color: var(--accent-gold);
-    font-weight: bold;
-    font-size: 1.1rem;
-  }
-
-  /* ===== PIED DE PAGE ===== */
-  .footer {
-    text-align: center;
-    padding: 30px 20px;
+  
+  .chapter-info p {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-subtle);
-    margin-top: 50px;
+    margin-bottom: 12px;
   }
-  .footer .site { color: var(--accent-gold); font-weight: bold; }
-
-  /* ===== INFOS COURS ===== */
-  .course-info {
-    background: var(--bg-secondary);
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid var(--border-subtle);
-    margin-top: 30px;
+  
+  .chapter-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
   }
-  .course-info p { margin: 8px 0; color: var(--text-secondary); }
-  .course-info strong { color: var(--accent-gold-light); }
+  
+  .tag {
+    background: var(--gold-soft);
+    color: var(--gold);
+    padding: 5px 14px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: 500;
+    border: 1px solid rgba(212, 168, 87, 0.3);
+  }
+  
+  .tag.soon {
+    background: rgba(160, 168, 184, 0.1);
+    color: var(--text-muted);
+    border-color: rgba(160, 168, 184, 0.3);
+  }
+  
+  .chapter-arrow {
+    color: var(--gold);
+    font-size: 2em;
+    font-weight: bold;
+  }
+  
+  .objectives {
+    background: var(--navy-card);
+    padding: 35px;
+    border-radius: 12px;
+    margin: 30px 0;
+    border-left: 4px solid var(--gold);
+  }
+  
+  .objectives ul {
+    margin: 15px 0 0 25px;
+    list-style: none;
+  }
+  
+  .objectives li {
+    margin-bottom: 12px;
+    color: var(--text-light);
+    position: relative;
+    padding-left: 25px;
+  }
+  
+  .objectives li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 1.2em;
+  }
+  
+  .cta-section {
+    background: linear-gradient(135deg, var(--navy-card) 0%, var(--navy-light) 100%);
+    border: 1px solid var(--gold);
+    padding: 45px;
+    border-radius: 12px;
+    text-align: center;
+    margin: 30px 0;
+  }
+  
+  .cta-section h3 {
+    color: var(--gold);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    font-family: 'Georgia', serif;
+  }
+  
+  .cta-section p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  
+  .cta-btn {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+  }
+  
+  .cta-btn:hover {
+    background: var(--gold-light);
+    transform: scale(1.05);
+  }
+  
+  .footer {
+    background: var(--navy);
+    color: var(--text-muted);
+    padding: 30px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 168, 87, 0.2);
+  }
+  
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  
+  .footer a:hover { text-decoration: underline; }
+  
+  @media (max-width: 768px) {
+    .container { margin: 20px 10px; }
+    .header { padding: 40px 20px; }
+    .header h1 { font-size: 2em; }
+    .content { padding: 20px 25px 40px; }
+    .disclaimer { margin: 20px 25px; padding: 18px 22px; }
+    .chapter-card { padding: 22px; }
+    .chapter-number { width: 60px; height: 60px; font-size: 1.5em; }
+  }
 </style>
 </head>
 <body>
 
 <div class="container">
-
-  <!-- EN-TÊTE -->
+  
   <header class="header">
-    <div class="site-name">nbprof.com</div>
-    <h1>Contrôle de Gestion — Module 5</h1>
-    <p class="subtitle">Méthodes de Calcul des Coûts · Comptabilité Analytique</p>
-    <p class="breadcrumb">
-      <a href="#">Accueil</a> › <a href="#">Master AMSO</a> › Contrôle de gestion
-    </p>
+    <span class="badge">📚 Module 5</span>
+    <h1>Contrôle de Gestion</h1>
+    <p class="subtitle">Master AMSO 2026 | Par Noamane Boulahcen</p>
   </header>
-
-  <!-- AUTEUR -->
-  <div class="author-card">
-    <div class="author-avatar">NB</div>
-    <div class="author-info">
-      <strong>Noamane Boulahcen</strong>
-      <small>Professeur au Primaire · Étudiant en Master AMSO · Futur Auditeur</small>
-    </div>
+  
+  <div class="disclaimer">
+    📚 <em>Ce document est un résumé élaboré à partir des supports de cours du Master AMSO 2026. Il constitue un outil de révision complémentaire et ne remplace pas le cours magistral.</em>
   </div>
-
-  <!-- SECTION 1 : LES 3 MÉTHODES -->
-  <section class="section">
-    <span class="section-number">1</span>
-    <h2>Les 3 méthodes principales</h2>
-    <div class="methods-grid">
-
-      <div class="method-card">
-        <span class="tag">Méthode classique</span>
-        <h4>Coût complet</h4>
-        <p>Prend en compte toutes les charges : directes + indirectes, fixes + variables [1].</p>
+  
+  <main class="content">
+    
+    <a href="index.html" class="back-btn">⬅️ Retour à l'accueil</a>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="number">5</span>
+        <span class="label">Chapitres</span>
       </div>
-
-      <div class="method-card">
-        <span class="tag">Analyse différentielle</span>
-        <h4>Marge sur coût variable</h4>
-        <p>Ne retient que les charges variables. Permet de calculer le seuil de rentabilité [1].</p>
+      <div class="stat-card">
+        <span class="number">20h</span>
+        <span class="label">de cours</span>
       </div>
-
-      <div class="method-card">
-        <span class="tag">Méthode japonaise</span>
-        <h4>Coût cible (Target Costing)</h4>
-        <p>Part du prix fixé par le marché pour cibler un coût de revient maximum [1].</p>
+      <div class="stat-card">
+        <span class="number">15+</span>
+        <span class="label">Exercices</span>
       </div>
-
+      <div class="stat-card">
+        <span class="number">100%</span>
+        <span class="label">En ligne</span>
+      </div>
     </div>
-  </section>
-
-  <!-- SECTION 2 : MARGE SUR COÛT VARIABLE -->
-  <section class="section">
-    <span class="section-number">2</span>
-    <h2>Marge sur coût variable & Seuil de rentabilité</h2>
-    <p>La <strong>marge sur coût variable (MCV)</strong> est la différence entre le chiffre d'affaires et les charges variables. Elle permet de couvrir les charges fixes puis de dégager un bénéfice.</p>
-
-    <div class="formula-box">
-      <strong>MCV</strong> = Chiffre d'affaires − Charges variables<br>
-      <strong>Taux de MCV</strong> = MCV / CA<br>
-      <strong>Seuil de rentabilité (SR)</strong> = Charges fixes / Taux de MCV
+    
+    <h2>📋 Sommaire des Chapitres</h2>
+    
+    <div class="chapters-list">
+      
+      <a href="amso-module5-ch1.html" class="chapter-card">
+        <div class="chapter-number">1</div>
+        <div class="chapter-info">
+          <h3>Introduction au Contrôle de Gestion</h3>
+          <p>Définitions, objectifs, principes fondamentaux et outils du contrôleur de gestion.</p>
+          <div class="chapter-tags">
+            <span class="tag">📖 Cours</span>
+            <span class="tag">⏱️ 4h</span>
+            <span class="tag">🎯 Débutant</span>
+          </div>
+        </div>
+        <div class="chapter-arrow">→</div>
+      </a>
+      
+      <a href="amso-module5-ch2.html" class="chapter-card">
+        <div class="chapter-number">2</div>
+        <div class="chapter-info">
+          <h3>Les Outils de Calcul des Coûts</h3>
+          <p>Comptabilité analytique, typologie des charges et méthodes de calcul des coûts.</p>
+          <div class="chapter-tags">
+            <span class="tag">📖 Cours</span>
+            <span class="tag">⏱️ 5h</span>
+            <span class="tag">🎯 Intermédiaire</span>
+          </div>
+        </div>
+        <div class="chapter-arrow">→</div>
+      </a>
+      
+      <div class="chapter-card disabled">
+        <div class="chapter-number">3</div>
+        <div class="chapter-info">
+          <h3>Budgets et Pilotage Budgétaire</h3>
+          <p>Construction des budgets, contrôle budgétaire et analyse des écarts.</p>
+          <div class="chapter-tags">
+            <span class="tag soon">🔜 Bientôt disponible</span>
+          </div>
+        </div>
+        <div class="chapter-arrow">🔒</div>
+      </div>
+      
+      <div class="chapter-card disabled">
+        <div class="chapter-number">4</div>
+        <div class="chapter-info">
+          <h3>Tableaux de Bord et Indicateurs</h3>
+          <p>Conception de tableaux de bord, KPI et reporting de performance.</p>
+          <div class="chapter-tags">
+            <span class="tag soon">🔜 Bientôt disponible</span>
+          </div>
+        </div>
+        <div class="chapter-arrow">🔒</div>
+      </div>
+      
+      <div class="chapter-card disabled">
+        <div class="chapter-number">5</div>
+        <div class="chapter-info">
+          <h3>Performance et Stratégie</h3>
+          <p>Mesure de la performance, balanced scorecard et pilotage stratégique.</p>
+          <div class="chapter-tags">
+            <span class="tag soon">🔜 Bientôt disponible</span>
+          </div>
+        </div>
+        <div class="chapter-arrow">🔒</div>
+      </div>
+      
     </div>
-  </section>
-
-  <!-- SECTION 3 : POINT MORT & MARGE DE SÉCURITÉ -->
-  <section class="section">
-    <span class="section-number">3</span>
-    <h2>Point mort & Marge de sécurité</h2>
-    <p>Le <strong>point mort</strong> indique la date à laquelle l'entreprise atteint son seuil de rentabilité dans l'année. La <strong>marge de sécurité</strong> mesure de combien le CA peut baisser avant de devenir déficitaire.</p>
-
-    <div class="formula-box">
-      <strong>Point mort</strong> = (SR / CA annuel) × 360 jours<br>
-      <strong>Marge de sécurité</strong> = CA − SR<br>
-      <strong>Indice de sécurité</strong> = (Marge de sécurité / CA) × 100
+    
+    <div class="objectives">
+      <h2 style="margin-top:0; border:none; padding:0;">🎯 Objectifs Pédagogiques</h2>
+      <p style="color: var(--text-muted); margin-top:10px;">À la fin de ce module, vous serez capable de :</p>
+      <ul>
+        <li><strong>Comprendre</strong> le rôle stratégique du contrôle de gestion en entreprise</li>
+        <li><strong>Maîtriser</strong> les principales méthodes de calcul des coûts</li>
+        <li><strong>Construire</strong> et analyser un budget prévisionnel</li>
+        <li><strong>Concevoir</strong> des tableaux de bord pertinents</li>
+        <li><strong>Mesurer</strong> la performance et proposer des axes d'amélioration</li>
+      </ul>
     </div>
-  </section>
-
-  <!-- SECTION 4 : COÛT COMPLET -->
-  <section class="section">
-    <span class="section-number">4</span>
-    <h2>Méthode du coût complet</h2>
-    <p>La méthode du coût complet additionne <strong>toutes les charges</strong> liées à un produit pour déterminer le prix de vente.</p>
-
-    <div class="compare-block">
-      <p><span class="arrow">⬆</span> <strong>Logique classique :</strong></p>
-      <p>On accumule les charges → on calcule le coût de revient → on ajoute la marge → on obtient le prix de vente.</p>
+    
+    <div class="cta-section">
+      <h3>🚀 Prêt à commencer ?</h3>
+      <p>Démarrez votre parcours avec le premier chapitre dès maintenant !</p>
+      <a href="amso-module5-ch1.html" class="cta-btn">Commencer le Chapitre 1 →</a>
     </div>
-  </section>
-
-  <!-- SECTION 5 : COÛT CIBLE -->
-  <section class="section">
-    <span class="section-number">5</span>
-    <h2>Méthode du coût cible (Target Costing)</h2>
-
-    <div class="compare-block">
-      <p><span class="arrow">⬆</span> <strong>Méthode classique</strong></p>
-      <p>Charges → Coût de revient → + Marge → Prix de vente [1]</p>
-    </div>
-
-    <div class="compare-block">
-      <p><span class="arrow">⬇</span> <strong>Coût cible (inversé)</strong></p>
-      <p>Le marché impose le prix → l'entreprise fixe sa marge cible → on calcule le coût à ne pas dépasser → on maîtrise les charges [1].</p>
-    </div>
-
-    <h3>Exemple chiffré</h3>
-    <table class="example-table">
-      <tr>
-        <td>Prix imposé par le marché</td>
-        <td>120 MAD</td>
-      </tr>
-      <tr>
-        <td>− Marge bénéficiaire souhaitée</td>
-        <td>40 MAD</td>
-      </tr>
-      <tr>
-        <td>= Coût cible à ne pas dépasser</td>
-        <td>80 MAD ✓</td>
-      </tr>
-    </table>
-
-    <div class="formula-box">
-      <strong>Coût cible</strong> = Prix de marché − Marge souhaitée [1]
-    </div>
-
-    <p>Le gestionnaire doit s'assurer que l'ensemble des coûts de production, conception et distribution reste dans cette limite de 80 MAD [1].</p>
-
-    <h3>Étapes du Target Costing</h3>
-    <ol class="steps">
-      <li><strong>Étude de marché</strong> — identifier le prix acceptable par les clients et analyser la concurrence [1].</li>
-      <li><strong>Fixer la marge cible</strong> — selon la rentabilité souhaitée et la stratégie concurrentielle [1].</li>
-      <li><strong>Calculer le coût cible</strong> — Prix de marché − Marge = coût maximum autorisé [1].</li>
-      <li><strong>Maîtriser les coûts</strong> — agir sur conception, production et distribution pour rester dans la limite.</li>
-    </ol>
-
-    <div class="formula-box" style="text-align:center; font-size:1.3rem;">
-      <strong>CC = Prix − Marge</strong> [1]
-    </div>
-  </section>
-
-  <!-- INFOS COURS -->
-  <div class="course-info">
-    <p><strong>Cours :</strong> Contrôle de gestion</p>
-    <p><strong>Programme :</strong> Master AMSO</p>
-    <p><strong>Université :</strong> Cadi Ayyad, Kelaa Des Sraghna</p>
-    <p><strong>Auteur :</strong> Noamane Boulahcen</p>
-  </div>
-
-  <!-- PIED DE PAGE -->
+    
+  </main>
+  
   <footer class="footer">
-    <p class="site">nbprof.com</p>
-    <p>Ressources pédagogiques · Noamane Boulahcen · Master AMSO — Université Cadi Ayyad</p>
+    <p>📌 Module proposé sur <a href="index.html"><strong>NBProf</strong></a> – Master AMSO 2026.</p>
+    <p style="margin-top:10px; opacity:0.7;">© 2025 NBProf. Tous droits réservés.</p>
   </footer>
-
+  
 </div>
 
 </body>
