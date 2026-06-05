@@ -259,6 +259,171 @@
       .amso-nav { padding: 15px 20px; }
       .amso-nav-links a { margin-left: 15px; font-size: 0.9em; }
     }
+    /* ============================================
+   🆕 SECTION NOUVELLES PUBLICATIONS
+   Style nbprof.com - Palette dorée
+============================================ */
+
+.new-publications {
+  background: var(--bg-secondary, #1a2028);
+  padding: 50px 40px;
+  border-radius: 12px;
+  margin: 50px 0;
+  border-left: 4px solid var(--accent-gold, #d4a55a);
+}
+
+/* En-tête */
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--border-subtle, #2d3641);
+}
+
+.section-tag {
+  display: inline-block;
+  background: var(--accent-gold, #d4a55a);
+  color: var(--bg-primary, #0f1419);
+  padding: 5px 14px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  color: var(--accent-gold-light, #e8c585);
+  font-size: 2rem;
+  margin-bottom: 12px;
+  font-family: 'Georgia', serif;
+}
+
+.section-subtitle {
+  color: var(--text-secondary, #b0b6bf);
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* Grille */
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Carte */
+.pub-card {
+  position: relative;
+  background: var(--bg-tertiary, #232b36);
+  padding: 25px 22px;
+  border-radius: 10px;
+  border-top: 3px solid var(--accent-gold, #d4a55a);
+  text-decoration: none;
+  color: var(--text-primary, #e8eaed);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pub-card:hover {
+  background: var(--bg-primary, #0f1419);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(212, 165, 90, 0.15);
+}
+
+.pub-card.featured {
+  border-top: 3px solid var(--accent-gold-light, #e8c585);
+  box-shadow: 0 0 0 1px var(--accent-gold, #d4a55a);
+}
+
+/* Icône */
+.pub-icon {
+  font-size: 2.2rem;
+}
+
+/* Statut */
+.pub-status {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--bg-primary, #0f1419);
+  color: var(--success, #6ab187);
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.pub-status.status-new {
+  background: var(--accent-gold, #d4a55a);
+  color: var(--bg-primary, #0f1419);
+  animation: pulse-tag 2s infinite;
+}
+
+@keyframes pulse-tag {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+/* Titre et texte */
+.pub-card h3 {
+  color: var(--accent-gold-light, #e8c585);
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.pub-card p {
+  color: var(--text-secondary, #b0b6bf);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+/* Flèche */
+.pub-arrow {
+  color: var(--accent-gold, #d4a55a);
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-subtle, #2d3641);
+}
+
+.pub-card:hover .pub-arrow {
+  color: var(--accent-gold-light, #e8c585);
+  letter-spacing: 1px;
+}
+
+/* Note */
+.section-note {
+  margin-top: 30px;
+  padding: 15px 20px;
+  background: var(--bg-tertiary, #232b36);
+  border-radius: 8px;
+  color: var(--text-secondary, #b0b6bf);
+  font-size: 0.9rem;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .new-publications {
+    padding: 30px 20px;
+  }
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+  .publications-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 <body>
@@ -406,6 +571,97 @@
 
     </div>
 
+            </div>
+      </div>
+
+      <!-- ============================================
+           🆕 SECTION NOUVELLES PUBLICATIONS
+           Modules du semestre précédent
+      ============================================ -->
+      <h2 class="amso-section-title" style="margin-top: 80px;">🆕 Nouvelles publications</h2>
+      
+      <p class="amso-section-subtitle">
+        Découvrez les modules du semestre précédent désormais disponibles en ligne. 
+        Des ressources complètes pour réviser et approfondir vos connaissances.
+      </p>
+      
+      <div class="amso-courses-grid">
+        
+        <div class="amso-course-card">
+          <h3 class="amso-course-title">📊 Comptabilité générale</h3>
+          <p class="amso-course-desc">
+            Bilan, compte de résultat, écritures comptables et principes fondamentaux de la comptabilité.
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-available">✓ Disponible</span>
+            <a href="amso-module1.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+        <div class="amso-course-card">
+          <h3 class="amso-course-title">💼 Fiscalité</h3>
+          <p class="amso-course-desc">
+            IS, IR, TVA, taxes professionnelles et régime fiscal marocain.
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-available">✓ Disponible</span>
+            <a href="amso-module2.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+        <div class="amso-course-card">
+          <h3 class="amso-course-title">⚖️ Droit des affaires</h3>
+          <p class="amso-course-desc">
+            Sociétés commerciales, contrats, droit des obligations et procédures juridiques.
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-available">✓ Disponible</span>
+            <a href="amso-module3.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+        <div class="amso-course-card">
+          <h3 class="amso-course-title">🎯 Management</h3>
+          <p class="amso-course-desc">
+            Théories du management, leadership, gestion d'équipe et stratégie d'entreprise.
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-available">✓ Disponible</span>
+            <a href="amso-module4.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+        <div class="amso-course-card amso-card-featured">
+          <h3 class="amso-course-title">📈 Contrôle de gestion</h3>
+          <p class="amso-course-desc">
+            Méthodes de calcul des coûts, marge sur coût variable, seuil de rentabilité et méthode du coût cible [1].
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-new">🆕 Nouveau</span>
+            <a href="amso-module5.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+        <div class="amso-course-card">
+          <h3 class="amso-course-title">🔍 Audit</h3>
+          <p class="amso-course-desc">
+            Audit interne, audit externe, méthodologie et normes professionnelles.
+          </p>
+          <div class="amso-course-meta">
+            <span class="status-available">✓ Disponible</span>
+            <a href="amso-module6.html" class="amso-course-link">Voir le module →</a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <p class="amso-section-note">
+        💡 Ces modules correspondent au programme du semestre précédent et restent disponibles comme ressources de révision.
+      </p>
+      <!-- ============ FIN NOUVELLES PUBLICATIONS ============ -->
+
+      <!-- Section Ressources -->
+      <h2 class="amso-section-title" style="margin-top: 80px;">📜 Conseils d'utilisation</h2>
     <!-- Section Ressources -->
     <h2 class="amso-section-title" style="margin-top: 80px;">🎓 Conseils d'utilisation</h2>
 
