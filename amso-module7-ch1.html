@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapitre 1 - Culture, Innovation et Entrepreneuriat | Module 7 | NBProf</title>
+<meta name="description" content="Culture, innovation et entrepreneuriat - Article bilingue FR/EN avec exemples concrets. Master AMSO 2026.">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --navy: #0f1a2e;
+    --navy-light: #1a2a47;
+    --navy-card: #1e2d4a;
+    --gold: #d4a857;
+    --gold-light: #e6c478;
+    --gold-soft: rgba(212, 168, 87, 0.15);
+    --text-light: #e8e8e8;
+    --text-muted: #a0a8b8;
+    --fr-color: #4a90e2;
+    --en-color: #e74c3c;
+  }
+  
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.8;
+    color: var(--text-light);
+    background: var(--navy);
+    min-height: 100vh;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: var(--navy-light);
+    border-radius: 15px;
+    border: 1px solid var(--gold);
+    overflow: hidden;
+    box-shadow: 0 10px 50px rgba(0,0,0,0.3);
+  }
+  
+  .header {
+    background: var(--navy);
+    padding: 60px 40px 40px;
+    text-align: center;
+    border-bottom: 2px solid var(--gold);
+    position: relative;
+  }
+  
+  .header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--gold);
+  }
+  
+  .header .badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .header h1 {
+    font-size: 2.6em;
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .header .subtitle {
+    color: var(--text-muted);
+    font-size: 1.1em;
+    font-style: italic;
+  }
+  
+  .header .languages {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .header .lang-tag {
+    background: rgba(212, 168, 87, 0.2);
+    color: var(--gold);
+    padding: 4px 14px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    border: 1px solid var(--gold);
+  }
+  
+  .disclaimer {
+    background: rgba(0,0,0,0.25);
+    border-left: 4px solid var(--gold);
+    padding: 22px 28px;
+    margin: 30px 40px;
+    border-radius: 8px;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1em;
+  }
+  
+  .content { padding: 30px 40px 50px; }
+  
+  .intro {
+    background: var(--navy-card);
+    border-left: 4px solid var(--gold);
+    padding: 28px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+  
+  .intro strong {
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.15em;
+  }
+  
+  h2 {
+    color: var(--gold);
+    font-size: 2em;
+    margin: 50px 0 25px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.3);
+  }
+  
+  h3 {
+    color: var(--gold-light);
+    font-size: 1.4em;
+    margin: 30px 0 15px;
+  }
+  
+  h4 {
+    color: var(--gold-light);
+    font-size: 1.15em;
+    margin: 20px 0 10px;
+  }
+  
+  p { margin-bottom: 15px; color: var(--text-light); }
+  strong { color: var(--gold-light); }
+  
+  /* Bloc bilingue FR/EN */
+  .bilingual-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 25px 0;
+  }
+  
+  .lang-card {
+    background: var(--navy-card);
+    border-radius: 12px;
+    padding: 25px;
+    border-top: 3px solid var(--gold);
+    transition: all 0.3s ease;
+  }
+  
+  .lang-card.fr {
+    border-top-color: var(--fr-color);
+  }
+  
+  .lang-card.en {
+    border-top-color: var(--en-color);
+  }
+  
+  .lang-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(212, 168, 87, 0.1);
+  }
+  
+  .lang-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.2);
+  }
+  
+  .lang-flag {
+    font-size: 1.6em;
+  }
+  
+  .lang-label {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.95em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .lang-card.fr .lang-label { color: var(--fr-color); }
+  .lang-card.en .lang-label { color: var(--en-color); }
+  
+  .lang-card p {
+    margin-bottom: 10px;
+  }
+  
+  /* Encadré exemple */
+  .example-box {
+    background: linear-gradient(135deg, var(--navy-card) 0%, var(--navy-light) 100%);
+    border: 1px solid var(--gold);
+    border-left: 5px solid var(--gold);
+    padding: 28px;
+    border-radius: 12px;
+    margin: 25px 0;
+  }
+  
+  .example-box .example-title {
+    color: var(--gold);
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Citation */
+  .quote-box {
+    background: rgba(212, 168, 87, 0.08);
+    border-left: 4px solid var(--gold);
+    padding: 22px 28px;
+    margin: 25px 0;
+    border-radius: 8px;
+    font-style: italic;
+    color: var(--text-light);
+    position: relative;
+  }
+  
+  .quote-box::before {
+    content: '"';
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    font-size: 3.5em;
+    color: var(--gold);
+    opacity: 0.3;
+    font-family: Georgia, serif;
+  }
+  
+  /* Concepts grid */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+  }
+  
+  .concept-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(212, 168, 87, 0.3);
+    border-top: 3px solid var(--gold);
+    padding: 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .concept-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 25px rgba(212, 168, 87, 0.15);
+  }
+  
+  .concept-card .icon {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+  }
+  
+  .concept-card h4 {
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  
+  .concept-card p {
+    color: var(--text-muted);
+    font-size: 0.95em;
+  }
+  
+  /* Tableaux */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--navy-card);
+    font-size: 0.95em;
+  }
+  
+  th {
+    background: var(--gold);
+    color: var(--navy);
+    padding: 14px 12px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(212, 168, 87, 0.15);
+    color: var(--text-light);
+  }
+  
+  tr:hover td { background: rgba(212, 168, 87, 0.05); }
+  
+  ul, ol { margin: 15px 0 15px 25px; }
+  ul li, ol li { margin-bottom: 10px; }
+  
+  .faq-item {
+    background: var(--navy-card);
+    padding: 22px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border-left: 3px solid var(--gold);
+  }
+  
+  .faq-item strong {
+    color: var(--gold);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  
+  .key-points {
+    background: var(--navy-card);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+    border: 2px solid var(--gold);
+  }
+  
+  .key-points h3 {
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .key-points ol {
+    list-style: none;
+    counter-reset: kp;
+    margin-left: 0;
+  }
+  
+  .key-points li {
+    counter-increment: kp;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: rgba(212, 168, 87, 0.05);
+    border-radius: 8px;
+  }
+  
+  .key-points li::before {
+    content: counter(kp);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--gold);
+    color: var(--navy);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+  
+  .conclusion {
+    background: var(--navy-card);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+    border: 2px dashed var(--gold);
+  }
+  
+  .conclusion h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: 15px 24px;
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    font-size: 1em;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-family: 'Georgia', serif;
+    font-weight: 500;
+  }
+  
+  .nav-btn:hover {
+    background: var(--gold);
+    color: var(--navy);
+    transform: translateY(-3px);
+  }
+  
+  .nav-btn.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  
+  .footer {
+    background: var(--navy);
+    color: var(--text-muted);
+    padding: 30px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(212, 168, 87, 0.2);
+  }
+  
+  .footer a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+  
+  @media (max-width: 768px) {
+    .container { margin: 20px 10px; }
+    .header { padding: 40px 20px; }
+    .header h1 { font-size: 1.8em; }
+    .content { padding: 20px 25px 40px; }
+    .disclaimer { margin: 20px 25px; padding: 18px 22px; }
+    h2 { font-size: 1.5em; }
+    .bilingual-block { grid-template-columns: 1fr; }
+    table { font-size: 0.85em; }
+    th, td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  
+  <header class="header">
+    <span class="badge">📚 Module 7 • Chapitre 1</span>
+    <h1>Culture, Innovation & Entrepreneuriat</h1>
+    <p class="subtitle">Master AMSO 2026 | Par Noamane Boulahcen</p>
+    <div class="languages">
+      <span class="lang-tag">🇫🇷 Français</span>
+      <span class="lang-tag">🇬🇧 English</span>
+    </div>
+  </header>
+  
+  <div class="disclaimer">
+    📚 <em>Ce document est un résumé bilingue élaboré à partir des supports de cours du Master AMSO 2026. Il constitue un outil de révision complémentaire et ne remplace pas le cours magistral. / This bilingual summary is a complementary revision tool from AMSO Master 2026 course materials.</em>
+  </div>
+  
+  <main class="content">
+    
+    <div class="intro">
+      <strong>📖 Introduction</strong>
+      Ce chapitre explore les liens fondamentaux entre <strong>culture, innovation et entrepreneuriat</strong>. Il met en lumière comment les ressources culturelles influencent les processus entrepreneuriaux et comment l'esthétique des produits façonne notre compréhension du monde [1].
+      <br><br>
+      <em>This chapter explores the fundamental links between <strong>culture, innovation and entrepreneurship</strong>. It highlights how cultural resources influence entrepreneurial processes and how product aesthetics shape our understanding of the world [1].</em>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- PARTIE 1 : ENTREPRENEURIAT CULTUREL -->
+    <!-- ============================================= -->
+    
+    <h2>🎯 Partie 1 : L'Entrepreneuriat Culturel / Cultural Entrepreneurship</h2>
+    
+    <h3>1.1 Définition contextuelle / Contextual Definition</h3>
+    
+    <div class="bilingual-block">
+      <div class="lang-card fr">
+        <div class="lang-header">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-label">Français</span>
+        </div>
+        <p>L'entrepreneuriat culturel est étudié comme un phénomène <strong>situé dans son contexte</strong>. Par exemple, observer les situations où un entrepreneur positionne son entreprise ou ses produits en utilisant des <strong>étiquettes et un langage particuliers</strong> permet de comprendre les contextes dans lesquels la construction du sens se produit [1].</p>
+      </div>
+      
+      <div class="lang-card en">
+        <div class="lang-header">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-label">English</span>
+        </div>
+        <p>Cultural entrepreneurship is studied as a phenomenon <strong>situated in context</strong>. For instance, observing situations where an entrepreneur positions the firm or products using <strong>particular labels and language</strong> sheds light on the contexts in and interactions through which labelling and meaning construction occur [1].</p>
+      </div>
+    </div>
+    
+    <div class="example-box">
+      <div class="example-title">💡 Exemple concret / Concrete Example</div>
+      <p><strong>🇫🇷 FR :</strong> Une start-up marocaine de cosmétiques bio à base d'huile d'argan utilise le label <em>"savoir-faire ancestral berbère"</em> pour donner du sens et de la valeur à ses produits sur le marché international.</p>
+      <p style="margin-top:10px;"><strong>🇬🇧 EN :</strong> A Moroccan organic cosmetics start-up using argan oil leverages the label <em>"ancestral Berber craftsmanship"</em> to give meaning and value to its products on the international market.</p>
+    </div>
+    
+    <h3>1.2 Le rôle de la matérialité / The Role of Materiality</h3>
+    
+    <div class="bilingual-block">
+      <div class="lang-card fr">
+        <div class="lang-header">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-label">Français</span>
+        </div>
+        <p>Concernant la matérialité, les ethnographes pourraient étudier comment <strong>certains espaces, lieux et objets fournissent des ressources</strong> et limitent l'action [1]. Il est utile de considérer les approches d'analyse de terrain comme un moyen de bien contextualiser ces processus liés à l'entrepreneuriat culturel.</p>
+      </div>
+      
+      <div class="lang-card en">
+        <div class="lang-header">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-label">English</span>
+        </div>
+        <p>Regarding materiality, ethnographers could further study how <strong>particular spaces, places and objects provide resources for and limit action</strong> [1]. It is useful to consider field analytical approaches as a way to properly contextualise such processes related to cultural entrepreneurship.</p>
+      </div>
+    </div>
+    
+    <div class="example-box">
+      <div class="example-title">💡 Exemple concret / Concrete Example</div>
+      <p><strong>🇫🇷 FR :</strong> Un café-concept à Casablanca utilise l'architecture traditionnelle de la médina et des objets d'artisanat marocain pour créer une expérience unique qui devient une ressource culturelle pour sa marque.</p>
+      <p style="margin-top:10px;"><strong>🇬🇧 EN :</strong> A concept café in Casablanca uses traditional medina architecture and Moroccan craft objects to create a unique experience that becomes a cultural resource for its brand.</p>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- PARTIE 2 : ESTHÉTIQUE & INNOVATION -->
+    <!-- ============================================= -->
+    
+    <h2>🎨 Partie 2 : Esthétique des produits & Innovation / Product Aesthetics & Innovation</h2>
+    
+    <h3>2.1 Le lien entre esthétique et culture / The Aesthetics-Culture Link</h3>
+    
+    <div class="bilingual-block">
+      <div class="lang-card fr">
+        <div class="lang-header">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-label">Français</span>
+        </div>
+        <p>L'<strong>esthétique des produits technologiques</strong> reflète à la fois les tendances socioculturelles et crée de nouvelles compréhensions culturelles [1]. La recherche future pourrait examiner cette relation entre les compréhensions socioculturelles et l'esthétique des produits technologiques.</p>
+      </div>
+      
+      <div class="lang-card en">
+        <div class="lang-header">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-label">English</span>
+        </div>
+        <p>The <strong>aesthetics of technology products</strong> both reflect sociocultural trends and create new cultural understandings [1]. Future research could examine the relationship between sociocultural understandings and the aesthetics of technology products in more detail.</p>
+      </div>
+    </div>
+    
+    <div class="example-box">
+      <div class="example-title">💡 Exemple emblématique / Iconic Example : Apple</div>
+      <p><strong>🇫🇷 FR :</strong> Le design minimaliste de l'iPhone reflète une <em>culture moderne du dépouillement et de la simplicité</em>, tout en créant une nouvelle norme culturelle : "moins, c'est plus".</p>
+      <p style="margin-top:10px;"><strong>🇬🇧 EN :</strong> The minimalist design of the iPhone reflects a <em>modern culture of simplicity and refinement</em>, while creating a new cultural standard: "less is more".</p>
+    </div>
+    
+    <h3>2.2 Design comme dispositif narratif / Design as a Narrative Device</h3>
+    
+    <div class="bilingual-block">
+      <div class="lang-card fr">
+        <div class="lang-header">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-label">Français</span>
+        </div>
+        <p>Le <strong>design fonctionne comme un dispositif narratif</strong> qui confère sens et valeur à des objets artisanaux peu familiers ou sous-estimés [1]. Le design est une manifestation matérielle du storytelling, imprégnant les produits de la signification nécessaire pour que les consommateurs perçoivent et acceptent leur valeur économique.</p>
+      </div>
+      
+      <div class="lang-card en">
+        <div class="lang-header">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-label">English</span>
+        </div>
+        <p><strong>Design functions as a narrative device</strong> to confer meaning and value on unfamiliar and underappreciated craft objects [1]. Design is a material manifestation of storytelling, imbuing products with the necessary meaning and relevant attributes that contribute to consumers' perception and acceptance of their economic value.</p>
+      </div>
+    </div>
+    
+    <div class="example-box">
+      <div class="example-title">💡 Exemple concret / Concrete Example : Artisanat indien</div>
+      <p><strong>🇫🇷 FR :</strong> En Inde, Khaire montre comment le design transforme des objets artisanaux traditionnels en produits désirables sur les marchés internationaux, grâce à une narration soigneusement construite autour du savoir-faire local [1].</p>
+      <p style="margin-top:10px;"><strong>🇬🇧 EN :</strong> In India, Khaire shows how design transforms traditional craft objects into desirable products on international markets, through a carefully crafted storytelling around local know-how [1].</p>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- PARTIE 3 : LOGIQUES INSTITUTIONNELLES -->
+    <!-- ============================================= -->
+    
+    <h2>🏛️ Partie 3 : Logiques institutionnelles / Institutional Logics</h2>
+    
+    <h3>3.1 Le symbolique et le matériel / The Symbolic and the Material</h3>
+    
+    <div class="bilingual-block">
+      <div class="lang-card fr">
+        <div class="lang-header">
+          <span class="lang-flag">🇫🇷</span>
+          <span class="lang-label">Français</span>
+        </div>
+        <p>La relation entre le <strong>symbolique et le matériel</strong> est centrale dans l'analyse culturelle [1]. L'article de Friedland sur Frank Lloyd Wright explore comment les créations architecturales sont façonnées par diverses <strong>logiques institutionnelles</strong> auxquelles l'artiste est exposé.</p>
+      </div>
+      
+      <div class="lang-card en">
+        <div class="lang-header">
+          <span class="lang-flag">🇬🇧</span>
+          <span class="lang-label">English</span>
+        </div>
+        <p>The relationship between the <strong>symbolic and the material</strong> is central to cultural analysis [1]. Friedland's article on Frank Lloyd Wright explores how architectural creations are shaped by various <strong>institutional logics</strong> the artist is exposed to.</p>
+      </div>
+    </div>
+    
+    <div class="quote-box">
+      <strong>🇫🇷</strong> "Taking Sigmund Freud to the Guggenheim: The religio-erotic productions of Frank Lloyd Wright" – Une exploration de comment l'architecture exprime des logiques culturelles profondes [1].
+      <br><br>
+      <strong>🇬🇧</strong> "Taking Sigmund Freud to the Guggenheim: The religio-erotic productions of Frank Lloyd Wright" – An exploration of how architecture expresses deep cultural logics [1].
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- PARTIE 4 : CONCEPTS CLÉS -->
+    <!-- ============================================= -->
+    
+    <h2>🧠 Partie 4 : Concepts clés / Key Concepts</h2>
+    
+    <div class="concepts-grid">
+      <div class="concept-card">
+        <div class="icon">🏷️</div>
+        <h4>Labelling / Étiquetage</h4>
+        <p><strong>FR :</strong> Stratégie de positionnement.<br>
+        <strong>EN :</strong> Positioning strategy [1].</p>
+      </div>
+      
+      <div class="concept-card">
+        <div class="icon">📖</div>
+        <h4>Storytelling</h4>
+        <p><strong>FR :</strong> Narration commerciale.<br>
+        <strong>EN :</strong> Commercial narrative [1].</p>
+      </div>
+      
+      <div class="concept-card">
+        <div class="icon">🎨</div>
+        <h4>Aesthetics / Esthétique</h4>
+        <p><strong>FR :</strong> Apparence comme vecteur culturel.<br>
+        <strong>EN :</strong> Appearance as cultural vector [1].</p>
+      </div>
+      
+      <div class="concept-card">
+        <div class="icon">✅</div>
+        <h4>Legitimation / Légitimation</h4>
+        <p><strong>FR :</strong> Processus de reconnaissance.<br>
+        <strong>EN :</strong> Recognition process [1].</p>
+      </div>
+      
+      <div class="concept-card">
+        <div class="icon">📦</div>
+        <h4>Materiality / Matérialité</h4>
+        <p><strong>FR :</strong> Dimension physique des produits.<br>
+        <strong>EN :</strong> Physical dimension of products [1].</p>
+      </div>
+      
+      <div class="concept-card">
+        <div class="icon">🏛️</div>
+        <h4>Institutional Logics</h4>
+        <p><strong>FR :</strong> Logiques institutionnelles structurant l'action.<br>
+        <strong>EN :</strong> Logics structuring action [1].</p>
+      </div>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- TABLEAU SYNTHESE -->
+    <!-- ============================================= -->
+    
+    <h2>📊 Tableau de synthèse bilingue / Bilingual Summary Table</h2>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Concept FR</th>
+          <th>Concept EN</th>
+          <th>Application</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Entrepreneuriat culturel</td>
+          <td>Cultural entrepreneurship</td>
+          <td>Création de sens à travers le contexte [1]</td>
+        </tr>
+        <tr>
+          <td>Étiquetage</td>
+          <td>Labelling</td>
+          <td>Positionnement par le langage [1]</td>
+        </tr>
+        <tr>
+          <td>Esthétique</td>
+          <td>Aesthetics</td>
+          <td>Reflet et création de culture [1]</td>
+        </tr>
+        <tr>
+          <td>Design narratif</td>
+          <td>Narrative design</td>
+          <td>Valorisation des produits [1]</td>
+        </tr>
+        <tr>
+          <td>Légitimation</td>
+          <td>Legitimation</td>
+          <td>Acceptation économique [1]</td>
+        </tr>
+        <tr>
+          <td>Logiques institutionnelles</td>
+          <td>Institutional logics</td>
+          <td>Cadrage des créations [1]</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <!-- ============================================= -->
+    <!-- POINTS CLÉS -->
+    <!-- ============================================= -->
+    
+    <div class="key-points">
+      <h3>🎯 Points clés à retenir / Key Takeaways</h3>
+      <ol>
+        <li><strong>FR :</strong> L'entrepreneuriat culturel est toujours <strong>situé dans son contexte</strong>. / <strong>EN :</strong> Cultural entrepreneurship is always <strong>contextually situated</strong> [1].</li>
+        <li><strong>FR :</strong> Le <strong>langage et l'étiquetage</strong> sont des outils stratégiques. / <strong>EN :</strong> <strong>Language and labelling</strong> are strategic tools [1].</li>
+        <li><strong>FR :</strong> L'<strong>esthétique</strong> reflète ET crée de la culture. / <strong>EN :</strong> <strong>Aesthetics</strong> both reflect AND create culture [1].</li>
+        <li><strong>FR :</strong> Le <strong>design</strong> agit comme dispositif narratif de valeur. / <strong>EN :</strong> <strong>Design</strong> acts as a narrative value device [1].</li>
+        <li><strong>FR :</strong> Les <strong>logiques institutionnelles</strong> structurent l'innovation. / <strong>EN :</strong> <strong>Institutional logics</strong> structure innovation [1].</li>
+      </ol>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- FAQ -->
+    <!-- ============================================= -->
+    
+    <h2>❓ FAQ Bilingue / Bilingual FAQ</h2>
+    
+    <div class="faq-item">
+      <strong>🇫🇷 Qu'est-ce que l'entrepreneuriat culturel ? / What is cultural entrepreneurship?</strong>
+      <strong>FR :</strong> C'est un phénomène toujours situé dans un contexte, où l'entrepreneur utilise des étiquettes et un langage spécifique pour construire du sens [1].<br>
+      <strong>EN :</strong> It is a phenomenon always situated in context, where entrepreneurs use specific labels and language to construct meaning [1].
+    </div>
+    
+    <div class="faq-item">
+      <strong>🇫🇷 Pourquoi l'esthétique compte-t-elle ? / Why does aesthetics matter?</strong>
+      <strong>FR :</strong> Parce qu'elle reflète les tendances socioculturelles et en crée de nouvelles [1].<br>
+      <strong>EN :</strong> Because it reflects sociocultural trends and creates new ones [1].
+    </div>
+    
+    <div class="faq-item">
+      <strong>🇫🇷 Quel rôle joue le design ? / What role does design play?</strong>
+      <strong>FR :</strong> Le design est une manifestation matérielle du storytelling qui confère sens et valeur aux produits [1].<br>
+      <strong>EN :</strong> Design is a material manifestation of storytelling that confers meaning and value to products [1].
+    </div>
+    
+    <div class="faq-item">
+      <strong>🇫🇷 Que sont les logiques institutionnelles ? / What are institutional logics?</strong>
+      <strong>FR :</strong> Ce sont des cadres culturels qui structurent et influencent les créations entrepreneuriales [1].<br>
+      <strong>EN :</strong> They are cultural frameworks that structure and influence entrepreneurial creations [1].
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- CONCLUSION -->
+    <!-- ============================================= -->
+    
+    <div class="conclusion">
+      <h3>✍️ Conclusion bilingue / Bilingual Conclusion</h3>
+      <p><strong>🇫🇷 FR :</strong> Ce chapitre établit la valeur d'une <strong>analyse culturelle renouvelée</strong> des activités entrepreneuriales et de l'innovation. Une telle analyse met la <strong>culture au centre</strong> de la compréhension de l'entrepreneuriat moderne [1].</p>
+      <p style="margin-top:15px;"><strong>🇬🇧 EN :</strong> This chapter establishes the value of a <strong>renewed cultural analysis</strong> of entrepreneurial activities and innovation. Such analysis puts <strong>culture at the centre</strong> of understanding modern entrepreneurship [1].</p>
+    </div>
+    
+    <div class="nav-buttons">
+      <a href="amso-module7.html" class="nav-btn">📋 Sommaire Module 7</a>
+      <a href="amso-resume-examens.html" class="nav-btn">📚 Résumé Examens</a>
+      <a href="#" class="nav-btn disabled">Chapitre 2 (bientôt)</a>
+    </div>
+    
+  </main>
+  
+  <footer class="footer">
+    <p>📌 Article publié sur <a href="index.html"><strong>NBProf</strong></a> – Master AMSO 2026.</p>
+    <p style="margin-top:10px; opacity:0.7;">© 2025 NBProf. Tous droits réservés.</p>
+  </footer>
+  
+</div>
+
+</body>
+</html>
