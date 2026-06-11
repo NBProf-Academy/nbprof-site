@@ -47,15 +47,52 @@ body { font-family: Arial; background:#EEF2F7; margin:0; }
 
 table { width:100%; border-collapse:collapse; }
 td, th { border:1px solid #ddd; padding:6px; text-align:center; }
+  :root {
+  --navy:#1B2A4A;
+  --gold:#C8922A;
+  --teal:#0D7377;
+}
+
+.card {
+  border-left:4px solid var(--gold);
+}
+
+h3 {
+  color: var(--navy);
+}
+  canvas {
+  max-height: 250px !important;
+}
 </style>
 </head>
 
 <body>
+<header style="background:#1B2A4A;color:#C8922A;padding:20px;">
+  <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
+  <p style="color:#94A3B8">
+    Management • Audit • Contrôle de Gestion • Performance Organisationnelle
+  </p>
+
+  <h2 style="color:white;margin-top:10px">
+    Tableau de bord de performance — saisie des données et visualisation automatique
+  </h2>
+</header>
 
 <div class="container">
 
 <!-- ✅ SAISIE -->
-<div class="card">
+  <div class="card">
+<h3>Secteur</h3>
+
+<select id="secteur">
+  <option>Commerce / Ventes</option>
+  <option>Banque / Finance</option>
+  <option>Éducation</option>
+  <option>Santé</option>
+  <option>Industrie</option>
+</select>
+
+</div>
 <h3>Saisie des données</h3>
 <input id="nom" placeholder="Indicateur">
 <input id="obj" type="number" placeholder="Objectif">
@@ -155,7 +192,9 @@ function renderDataInputs(){
 }
 
 // ✅ CALCUL GLOBAL
+  
 function compute(){
+  let secteur = document.getElementById("secteur").value;
 
  renderDataInputs();
 
@@ -212,8 +251,12 @@ function compute(){
   diag+=`<div class="diag warn">📊 Performance satisfaisante</div>`;
  else
   diag+=`<div class="diag bad">🚨 Plan d’action urgent</div>`;
-
- document.getElementById("diag").innerHTML=diag;
+  
+diag += `
+<div class="diag warn">
+🌐 Secteur sélectionné : ${secteur}
+</div>`;
+  document.getElementById("diag").innerHTML=diag;
 
  // ✅ JAUGE
  new Chart(document.getElementById("gauge"), {
@@ -269,6 +312,10 @@ function compute(){
 window.onload=compute;
 
 </script>
-
+<footer style="background:#1B2A4A;color:#94A3B8;text-align:center;padding:20px;margin-top:30px">
+  <h3 style="color:#C8922A">NBProf®</h3>
+  <p>Plateforme de Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  <p>🌐 www.nbprof.com</p>
+</footer>
 </body>
 </html>
