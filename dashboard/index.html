@@ -2,328 +2,226 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NBProf Ultra Dashboard</title>
+<title>NBProf SaaS Dashboard</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body { font-family: 'Segoe UI'; background:#EEF2F7; margin:0; }
-
-header {
-  background:#1B2A4A;
-  color:#C8922A;
-  padding:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.btn {
-  padding:8px 15px;
-  margin:5px;
-  border:none;
-  cursor:pointer;
-  border-radius:6px;
-  color:white;
-}
-.pdf { background:#DC2626; }
-.excel { background:#16A34A; }
-.print { background:#0D7377; }
-
+body { font-family:Arial; background:#EEF2F7; margin:0; }
 .container { padding:20px; }
-
 .card {
   background:white;
   padding:20px;
   border-radius:12px;
   margin-bottom:20px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
-
-/* KPI */
 .kpi-grid {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:15px;
 }
+.kpi-card { padding:15px; border-radius:10px; background:white; }
+.bar { height:6px; background:#ddd; border-radius:5px; }
+.fill { height:100%; border-radius:5px; }
 
-.kpi {
-  padding:20px;
-  border-radius:12px;
-  background:white;
-  transition:0.3s;
-}
-.kpi:hover { transform:translateY(-5px); }
+.diag { padding:12px; border-radius:8px; margin:8px 0; }
+.good { background:#DCFCE7; }
+.warn { background:#FEF3C7; }
+.bad { background:#FEE2E2; }
 
-.bar {
-  height:6px;
-  background:#ddd;
-  border-radius:4px;
-  margin-top:10px;
-}
-.fill {
-  height:100%;
-  border-radius:4px;
-}
-
-/* progress */
-.progress {
-  height:8px;
-  background:#ddd;
-  border-radius:5px;
-}
-.progress div {
-  height:100%;
-  border-radius:5px;
-}
-
-/* diag */
-.diag { padding:15px; border-radius:10px; margin:10px 0; }
-.good { background:#DCFCE7; color:#166534; }
-.warn { background:#FEF3C7; color:#92400E; }
-.bad  { background:#FEE2E2; color:#991B1B; }
-
-table {
-  width:100%;
-  border-collapse:collapse;
-}
-th, td {
-  border:1px solid #ddd;
-  padding:8px;
-  text-align:center;
-}
+.swot { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.swot div { padding:10px; border-radius:8px; }
+.f { background:#EFF6FF; }
+.w { background:#FEF3C7; }
+.o { background:#DCFCE7; }
+.t { background:#FEE2E2; }
 </style>
 </head>
 
 <body>
-
-<header>
-  <div>🎯 NBProf Dashboard</div>
-  <div>
-    <button class="btn pdf" onclick="exportPDF()">PDF</button>
-    <button class="btn excel" onclick="exportExcel()">Excel</button>
-    <button class="btn print" onclick="window.print()">🖨 Print</button>
-    <input type="file" onchange="importExcel(event)">
-  </div>
-</header>
-
 <div class="container">
 
+<!-- ✅ SAISIE -->
 <div class="card">
 <h3>Saisie</h3>
-  <!-- ✅ CARD 1 : SAISIE -->
+<input id="nom" placeholder="Indicateur">
+<input id="obj" type="number" placeholder="Objectif">
+<input id="real" type="number" placeholder="Réalisé">
+<button onclick="add()">Ajouter</button>
+<button onclick="compute()">⚡ Générer</button>
+</div>
+
+<!-- ✅ DONNÉES -->
 <div class="card">
-  <h3>Saisie</h3>
-
-  <input id="nom" placeholder="Indicateur">
-  <input id="obj" type="number" placeholder="Objectif">
-  <input id="real" type="number" placeholder="Réalisé">
-
-  <button onclick="add()">Ajouter</button>
-  <button onclick="compute()">⚡ Générer</button>
+<h3>Données modifiables</h3>
+<div id="data-list"></div>
 </div>
 
-<!-- ✅ CARD 2 : DONNÉES MODIFIABLES -->
-<div class="card">
-  <h3>📊 Données actuelles (modifiables)</h3>
-
-  <p style="color:#64748B">
-    💡 Modifiez les valeurs pour simuler la performance
-  </p>
-
-  <div id="data-list"></div>
-</div>
-
-</div>
-
-<!-- KPI -->
+<!-- ✅ KPI -->
 <div class="kpi-grid" id="kpi"></div>
 
-<!-- Score -->
+<!-- ✅ SCORE -->
 <div class="card">
 <h3>Score global</h3>
-<h1 id="score">—</h1>
+<h1 id="score"></h1>
+<canvas id="gauge"></canvas>
 </div>
 
-<!-- Progress -->
-<div class="card">
-<h3>Taux de réalisation</h3>
-<div id="progress"></div>
-</div>
-
-<!-- Table -->
-<div class="card">
-<h3>Analyse</h3>
-<table>
-<thead>
-<tr><th>Indicateur</th><th>Obj</th><th>Réel</th><th>Taux</th></tr>
-</thead>
-<tbody id="table"></tbody>
-</table>
-</div>
-
-<!-- Chart -->
+<!-- ✅ GRAPH -->
 <div class="card">
 <canvas id="chart"></canvas>
 </div>
 
-<!-- Diagnostic -->
+<!-- ✅ RADAR -->
 <div class="card">
-<h3>Diagnostic</h3>
+<canvas id="radar"></canvas>
+</div>
+
+<!-- ✅ RISK -->
+<div class="card">
+<div id="risk"></div>
+</div>
+
+<!-- ✅ SWOT -->
+<div class="card">
+<div id="swot"></div>
+</div>
+
+<!-- ✅ DIAGNOSTIC -->
+<div class="card">
 <div id="diag"></div>
 </div>
 
 </div>
 
 <script>
-  window.onload = function(){
-  compute();
-}
-  
+
 let data = [
-  { n: "CA (MDH)", o: 320, r: 308 },
-  { n: "Satisfaction", o: 80, r: 78 },
-  { n: "Productivité", o: 100, r: 84 },
-  { n: "Clients", o: 4500, r: 4820 }
+ {n:"CA",o:320,r:308},
+ {n:"Satisfaction",o:80,r:78},
+ {n:"Productivité",o:100,r:84},
+ {n:"Clients",o:4500,r:4820}
 ];
-let chart;
 
 function add(){
-  let n=document.getElementById("nom").value;
-  let o=parseFloat(obj.value);
-  let r=parseFloat(real.value);
-  if(!n||isNaN(o)||isNaN(r)) return alert("Erreur");
-  data.push({n,o,r});
+ let n=nom.value;
+ let o=parseFloat(obj.value);
+ let r=parseFloat(real.value);
+ if(!n||isNaN(o)||isNaN(r)) return;
+ data.push({n,o,r});
+ compute();
 }
+
+function renderDataInputs(){
+ let html="";
+ data.forEach((d,i)=>{
+  html+=`
+  <div>
+  ${d.n}
+  <input value="${d.o}" onchange="data[${i}].o=this.value;compute()">
+  <input value="${d.r}" onchange="data[${i}].r=this.value;compute()">
+  </div>`;
+ });
+ data-list.innerHTML=html;
+}
+
 function compute(){
-  renderDataInputs();
 
-  let kpi="", table="", prog="", diag="";
-  let total=0;
+ renderDataInputs();
 
-  data.forEach(d=>{
-    let p=(d.r/d.o)*100;
-    total+=p;
+ let kpi="", total=0, diag="";
 
-    let color = p>=100?"green":p>=80?"orange":"red";
+ data.forEach(d=>{
+  let p=(d.r/d.o)*100;
+  total+=p;
 
-    kpi += `
-    <div class="kpi">
-      <h3>${d.n}</h3>
-      <h1>${d.r}</h1>
-      <div>${p.toFixed(1)}%</div>
-      <div class="bar"><div class="fill" style="width:${p}%;background:${color}"></div></div>
-    </div>`;
+  let color=p>=100?"green":p>=80?"orange":"red";
 
-    table += `<tr>
-      <td>${d.n}</td>
-      <td>${d.o}</td>
-      <td>${d.r}</td>
-      <td>${p.toFixed(1)}%</td>
-    </tr>`;
+  kpi+=`
+  <div class="kpi-card">
+  ${d.n}
+  <h2>${d.r}</h2>
+  ${p.toFixed(1)}%
+  <div class="bar"><div class="fill" style="width:${p}%;background:${color}"></div></div>
+  </div>`;
 
-    prog += `
-    <div>${d.n}
-      <div class="progress">
-        <div style="width:${p}%;background:${color}"></div>
-      </div>
-    </div>`;
+  // IA recommandations
+  if(p>=100) diag+=`<div class="diag good">✅ ${d.n} excellent</div>`;
+  else if(p>=90) diag+=`<div class="diag warn">⚠ ${d.n} à optimiser</div>`;
+  else diag+=`<div class="diag bad">❌ ${d.n} critique</div>`;
 
-    if(p>=100) diag += `<div class="diag good">✅ ${d.n} OK</div>`;
-    else if(p>=80) diag += `<div class="diag warn">⚠ ${d.n} Moyen</div>`;
-    else diag += `<div class="diag bad">❌ ${d.n} Faible</div>`;
-  });
+  // alertes
+  if(p<70) diag+=`<div class="diag bad">🚨 ALERTE ${d.n}</div>`;
+ });
 
-  let score=total/data.length;
+ let score=total/data.length;
 
-  document.getElementById("score").innerText=score.toFixed(1)+"%";
-  document.getElementById("kpi").innerHTML=kpi;
-  document.getElementById("table").innerHTML=table;
-  document.getElementById("progress").innerHTML=prog;
-  document.getElementById("diag").innerHTML=diag;
+ score.innerText=score.toFixed(1)+"%";
+ kpi.innerHTML=kpi;
 
-  if(chart) chart.destroy();
+ // ✅ JAUGE
+ new Chart(gauge,{
+  type:"doughnut",
+  data:{datasets:[{data:[score,100-score],backgroundColor:["orange","#ddd"]}]}
+ });
 
-  chart = new Chart(document.getElementById("chart"), {
-    type:"bar",
-    data:{
-      labels:data.map(d=>d.n),
-      datasets:[{
-        label:"Performance",
-        data:data.map(d=>d.r),
-        backgroundColor:"#0D7377"
-      }]
-    }
-  });
+ // ✅ BAR + FORECAST
+ new Chart(chart,{
+  type:"line",
+  data:{
+   labels:data.map(d=>d.n),
+   datasets:[
+    {label:"Actuel",data:data.map(d=>d.r)},
+    {label:"Prévision",data:data.map(d=>d.r*1.1),borderDash:[5,5]}
+   ]
+  }
+ });
+
+ // ✅ RADAR
+ new Chart(radar,{
+  type:"radar",
+  data:{
+   labels:data.map(d=>d.n),
+   datasets:[{data:data.map(d=>(d.r/d.o)*100)}]
+  }
+ });
+
+ // ✅ RISK
+ let riskHTML="<table border='1'>";
+ for(let i=5;i>=1;i--){
+  riskHTML+="<tr>";
+  for(let j=1;j<=5;j++){
+   let val=i*j;
+   let color=val<6?"#DCFCE7":val<12?"#FEF3C7":"#FEE2E2";
+   riskHTML+=`<td style="background:${color}">${val}</td>`;
+  }
+  riskHTML+="</tr>";
+ }
+ riskHTML+="</table>";
+ risk.innerHTML=riskHTML;
+
+ // ✅ SWOT
+ swot.innerHTML=`
+ <div class="swot">
+ <div class="f">Forces ✔ bonne perf</div>
+ <div class="w">Faiblesses ⚠ productivité</div>
+ <div class="o">Opportunités 📈 marché</div>
+ <div class="t">Menaces ⚡ concurrence</div>
+ </div>`;
+
+ // ✅ IA globale
+ if(score>=100)
+  diag+=`<div class="diag good">🏆 Excellente performance</div>`;
+ else if(score>=90)
+  diag+=`<div class="diag warn">📊 Bonne performance</div>`;
+ else
+  diag+=`<div class="diag bad">🚨 Plan d'action requis</div>`;
+
+ document.getElementById("diag").innerHTML=diag;
 }
 
-// Excel import
-function importExcel(e){
-  let file=e.target.files[0];
-  let reader=new FileReader();
-  reader.onload=function(evt){
-    let wb=XLSX.read(evt.target.result,{type:'binary'});
-    let sheet=wb.Sheets[wb.SheetNames[0]];
-    let rows=XLSX.utils.sheet_to_json(sheet);
+window.onload=compute;
 
-    data=[];
-    rows.forEach(r=>{
-      data.push({
-        n:r.Indicateur,
-        o:r.Objectif,
-        r:r.Realise
-      });
-    });
-    compute();
-  };
-  reader.readAsBinaryString(file);
-}
-
-// Export Excel
-function exportExcel(){
-  let ws=XLSX.utils.json_to_sheet(data);
-  let wb=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,ws,"data");
-  XLSX.writeFile(wb,"NBProf.xlsx");
-}
-
-// Export PDF
-function exportPDF(){
-  const { jsPDF } = window.jspdf;
-  let pdf=new jsPDF();
-  pdf.text("NBProf Dashboard",10,10);
-  let y=20;
-  data.forEach(d=>{
-    pdf.text(`${d.n} : ${d.r}`,10,y);
-    y+=10;
-  });
-  pdf.save("NBProf.pdf");
-}
-  function renderDataInputs(){
-  let html = "";
-
-  data.forEach((d,i)=>{
-    html += `
-      <div style="margin-bottom:10px">
-        <b>${d.n}</b><br>
-
-        Objectif :
-        <input value="${d.o}" 
-        onchange="data[${i}].o=parseFloat(this.value); compute();">
-
-        Réalisé :
-        <input value="${d.r}" 
-        onchange="data[${i}].r=parseFloat(this.value); compute();">
-      </div>
-    `;
-  });
-
-  document.getElementById("data-list").innerHTML = html;
-}
 </script>
-
 </body>
 </html>
