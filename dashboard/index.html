@@ -3,214 +3,264 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NBProf Dashboard</title>
+<title>NBProf Ultra Dashboard</title>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <style>
-body {
-  font-family: 'Segoe UI';
-  background: #F1F5F9;
-  margin: 0;
-}
+body { font-family: 'Segoe UI'; background:#EEF2F7; margin:0; }
 
 header {
-  background: #1B2A4A;
-  color: #C8922A;
-  padding: 15px 30px;
-  font-weight: bold;
+  background:#1B2A4A;
+  color:#C8922A;
+  padding:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.container {
-  padding: 30px;
+.btn {
+  padding:8px 15px;
+  margin:5px;
+  border:none;
+  cursor:pointer;
+  border-radius:6px;
+  color:white;
 }
+.pdf { background:#DC2626; }
+.excel { background:#16A34A; }
+.print { background:#0D7377; }
+
+.container { padding:20px; }
 
 .card {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  margin-bottom:20px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.05);
 }
 
-input, select {
-  padding: 8px;
-  margin: 5px;
-  width: 160px;
-}
-
-button {
-  padding: 10px;
-  background: #1B2A4A;
-  color: white;
-  border: none;
-  cursor: pointer;
+/* KPI */
+.kpi-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
 .kpi {
-  font-size: 28px;
-  font-weight: bold;
-  color: #1B2A4A;
+  padding:20px;
+  border-radius:12px;
+  background:white;
+  transition:0.3s;
+}
+.kpi:hover { transform:translateY(-5px); }
+
+.bar {
+  height:6px;
+  background:#ddd;
+  border-radius:4px;
+  margin-top:10px;
+}
+.fill {
+  height:100%;
+  border-radius:4px;
 }
 
-.good { color: green; }
-.mid { color: orange; }
-.bad { color: red; }
+/* progress */
+.progress {
+  height:8px;
+  background:#ddd;
+  border-radius:5px;
+}
+.progress div {
+  height:100%;
+  border-radius:5px;
+}
+
+/* diag */
+.diag { padding:15px; border-radius:10px; margin:10px 0; }
+.good { background:#DCFCE7; color:#166534; }
+.warn { background:#FEF3C7; color:#92400E; }
+.bad  { background:#FEE2E2; color:#991B1B; }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+  width:100%;
+  border-collapse:collapse;
 }
-
 th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
+  border:1px solid #ddd;
+  padding:8px;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
-<header>🎯 NBProf Performance Dashboard</header>
+<header>
+  <div>🎯 NBProf Dashboard</div>
+  <div>
+    <button class="btn pdf" onclick="exportPDF()">PDF</button>
+    <button class="btn excel" onclick="exportExcel()">Excel</button>
+    <button class="btn print" onclick="window.print()">🖨 Print</button>
+    <input type="file" onchange="importExcel(event)">
+  </div>
+</header>
 
 <div class="container">
 
 <div class="card">
-<h3>Saisie des données</h3>
-
-<select id="secteur">
-<option>Commerce / Ventes</option>
-<option>Banque / Finance</option>
-<option>Éducation</option>
-<option>Santé</option>
-<option>Industrie</option>
-</select>
-
+<h3>Saisie</h3>
 <input id="nom" placeholder="Indicateur">
 <input id="obj" type="number" placeholder="Objectif">
 <input id="real" type="number" placeholder="Réalisé">
-
-<br><br>
-<button onclick="ajouter()">Ajouter</button>
-<button onclick="generer()">⚡ Générer</button>
+<button onclick="add()">Ajouter</button>
+<button onclick="compute()">⚡ Générer</button>
 </div>
 
+<!-- KPI -->
+<div class="kpi-grid" id="kpi"></div>
+
+<!-- Score -->
 <div class="card">
 <h3>Score global</h3>
-<div id="score" class="kpi">—</div>
+<h1 id="score">—</h1>
 </div>
 
+<!-- Progress -->
 <div class="card">
-<h3>Analyse des écarts</h3>
+<h3>Taux de réalisation</h3>
+<div id="progress"></div>
+</div>
+
+<!-- Table -->
+<div class="card">
+<h3>Analyse</h3>
 <table>
 <thead>
-<tr>
-<th>Indicateur</th>
-<th>Objectif</th>
-<th>Réalisé</th>
-<th>Écart</th>
-<th>Taux</th>
-<th>Statut</th>
-</tr>
+<tr><th>Indicateur</th><th>Obj</th><th>Réel</th><th>Taux</th></tr>
 </thead>
 <tbody id="table"></tbody>
 </table>
 </div>
 
+<!-- Chart -->
 <div class="card">
-<h3>Graphique</h3>
 <canvas id="chart"></canvas>
 </div>
 
+<!-- Diagnostic -->
 <div class="card">
-<h3>Recommandations automatiques</h3>
-<p id="reco">—</p>
+<h3>Diagnostic</h3>
+<div id="diag"></div>
 </div>
 
 </div>
 
 <script>
-let data = [];
+let data=[];
 let chart;
 
-function ajouter(){
-  let nom = document.getElementById("nom").value;
-  let obj = parseFloat(document.getElementById("obj").value);
-  let real = parseFloat(document.getElementById("real").value);
-
-  if(!nom || isNaN(obj) || isNaN(real)){
-    alert("Veuillez remplir les champs");
-    return;
-  }
-
-  data.push({nom, obj, real});
-
-  document.getElementById("nom").value="";
-  document.getElementById("obj").value="";
-  document.getElementById("real").value="";
+function add(){
+  let n=document.getElementById("nom").value;
+  let o=parseFloat(obj.value);
+  let r=parseFloat(real.value);
+  if(!n||isNaN(o)||isNaN(r)) return alert("Erreur");
+  data.push({n,o,r});
 }
 
-function generer(){
-  let table = document.getElementById("table");
-  table.innerHTML = "";
-
-  let total = 0;
+function compute(){
+  let kpi="", table="", prog="", diag="";
+  let total=0;
 
   data.forEach(d=>{
-    let ecart = d.real - d.obj;
-    let taux = (d.real / d.obj) * 100;
-    total += taux;
+    let p=(d.r/d.o)*100;
+    total+=p;
 
-    let statut, cls;
+    let color = p>=100?"green":p>=80?"orange":"red";
 
-    if(taux >= 100){
-      statut = "✅";
-      cls = "good";
-    } else if(taux >= 80){
-      statut = "⚠️";
-      cls = "mid";
-    } else {
-      statut = "❌";
-      cls = "bad";
-    }
+    kpi += `
+    <div class="kpi">
+      <h3>${d.n}</h3>
+      <h1>${d.r}</h1>
+      <div>${p.toFixed(1)}%</div>
+      <div class="bar"><div class="fill" style="width:${p}%;background:${color}"></div></div>
+    </div>`;
 
-    table.innerHTML += `
-    <tr>
-      <td>${d.nom}</td>
-      <td>${d.obj}</td>
-      <td>${d.real}</td>
-      <td>${ecart}</td>
-      <td class="${cls}">${taux.toFixed(1)}%</td>
-      <td>${statut}</td>
-    </tr>`;
+    table += `<tr><td>${d.n}</td><td>${d.o}</td><td>${d.r}</td><td>${p.toFixed(1)}%</td></tr>`;
+
+    prog += `
+    <div>${d.n}
+      <div class="progress"><div style="width:${p}%;background:${color}"></div></div>
+    </div>`;
+
+    if(p>=100) diag+=`<div class="diag good">✅ ${d.n} OK</div>`;
+    else if(p>=80) diag+=`<div class="diag warn">⚠ ${d.n} Moyen</div>`;
+    else diag+=`<div class="diag bad">❌ ${d.n} Faible</div>`;
   });
 
-  let score = total / data.length;
-  document.getElementById("score").innerText = score.toFixed(1) + "%";
+  let score=total/data.length;
+  document.getElementById("score").innerText=score.toFixed(1)+"%";
 
-  let reco = "";
-  if(score >= 100) reco = "✅ Excellente performance";
-  else if(score >= 80) reco = "⚠️ Performance acceptable";
-  else reco = "❌ Performance faible";
-
-  document.getElementById("reco").innerText = reco;
-
-  let labels = data.map(d=>d.nom);
-  let values = data.map(d=>d.real);
+  document.getElementById("kpi").innerHTML=kpi;
+  document.getElementById("table").innerHTML=table;
+  document.getElementById("progress").innerHTML=prog;
+  document.getElementById("diag").innerHTML=diag;
 
   if(chart) chart.destroy();
-
-  chart = new Chart(document.getElementById("chart"), {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "Performance",
-        data: values,
-        backgroundColor: "#0D7377"
-      }]
+  chart=new Chart(chartCanvas,{
+    type:"bar",
+    data:{
+      labels:data.map(d=>d.n),
+      datasets:[{data:data.map(d=>d.r)}]
     }
   });
+}
+
+// Excel import
+function importExcel(e){
+  let file=e.target.files[0];
+  let reader=new FileReader();
+  reader.onload=function(evt){
+    let wb=XLSX.read(evt.target.result,{type:'binary'});
+    let sheet=wb.Sheets[wb.SheetNames[0]];
+    let rows=XLSX.utils.sheet_to_json(sheet);
+
+    data=[];
+    rows.forEach(r=>{
+      data.push({
+        n:r.Indicateur,
+        o:r.Objectif,
+        r:r.Realise
+      });
+    });
+    compute();
+  };
+  reader.readAsBinaryString(file);
+}
+
+// Export Excel
+function exportExcel(){
+  let ws=XLSX.utils.json_to_sheet(data);
+  let wb=XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb,ws,"data");
+  XLSX.writeFile(wb,"NBProf.xlsx");
+}
+
+// Export PDF
+function exportPDF(){
+  const { jsPDF } = window.jspdf;
+  let pdf=new jsPDF();
+  pdf.text("NBProf Dashboard",10,10);
+  let y=20;
+  data.forEach(d=>{
+    pdf.text(`${d.n} : ${d.r}`,10,y);
+    y+=10;
+  });
+  pdf.save("NBProf.pdf");
 }
 </script>
 
