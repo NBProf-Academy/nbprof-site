@@ -114,11 +114,26 @@ th, td {
 
 <div class="card">
 <h3>Saisie</h3>
-  <div class="card">
+  <!-- ✅ CARD 1 : SAISIE -->
+<div class="card">
+  <h3>Saisie</h3>
+
+  <input id="nom" placeholder="Indicateur">
+  <input id="obj" type="number" placeholder="Objectif">
+  <input id="real" type="number" placeholder="Réalisé">
+
+  <button onclick="add()">Ajouter</button>
+  <button onclick="compute()">⚡ Générer</button>
+</div>
+
+<!-- ✅ CARD 2 : DONNÉES MODIFIABLES -->
+<div class="card">
   <h3>📊 Données actuelles (modifiables)</h3>
+
   <p style="color:#64748B">
     💡 Modifiez les valeurs pour simuler la performance
   </p>
+
   <div id="data-list"></div>
 </div>
 <input id="nom" placeholder="Indicateur">
@@ -171,12 +186,7 @@ th, td {
   window.onload = function(){
   compute();
 }
-  let data = [
-  { n: "CA (MDH)", o: 320, r: 308 },
-  { n: "Satisfaction", o: 80, r: 78 },
-  { n: "Productivité", o: 100, r: 84 },
-  { n: "Clients", o: 4500, r: 4820 }
-];
+  
 let data = [
   { n: "CA (MDH)", o: 320, r: 308 },
   { n: "Satisfaction", o: 80, r: 78 },
@@ -194,7 +204,7 @@ function add(){
 }
 function compute(){
   renderDataInputs();
-function compute(){
+
   let kpi="", table="", prog="", diag="";
   let total=0;
 
@@ -212,32 +222,44 @@ function compute(){
       <div class="bar"><div class="fill" style="width:${p}%;background:${color}"></div></div>
     </div>`;
 
-    table += `<tr><td>${d.n}</td><td>${d.o}</td><td>${d.r}</td><td>${p.toFixed(1)}%</td></tr>`;
+    table += `<tr>
+      <td>${d.n}</td>
+      <td>${d.o}</td>
+      <td>${d.r}</td>
+      <td>${p.toFixed(1)}%</td>
+    </tr>`;
 
     prog += `
     <div>${d.n}
-      <div class="progress"><div style="width:${p}%;background:${color}"></div></div>
+      <div class="progress">
+        <div style="width:${p}%;background:${color}"></div>
+      </div>
     </div>`;
 
-    if(p>=100) diag+=`<div class="diag good">✅ ${d.n} OK</div>`;
-    else if(p>=80) diag+=`<div class="diag warn">⚠ ${d.n} Moyen</div>`;
-    else diag+=`<div class="diag bad">❌ ${d.n} Faible</div>`;
+    if(p>=100) diag += `<div class="diag good">✅ ${d.n} OK</div>`;
+    else if(p>=80) diag += `<div class="diag warn">⚠ ${d.n} Moyen</div>`;
+    else diag += `<div class="diag bad">❌ ${d.n} Faible</div>`;
   });
 
   let score=total/data.length;
-  document.getElementById("score").innerText=score.toFixed(1)+"%";
 
+  document.getElementById("score").innerText=score.toFixed(1)+"%";
   document.getElementById("kpi").innerHTML=kpi;
   document.getElementById("table").innerHTML=table;
   document.getElementById("progress").innerHTML=prog;
   document.getElementById("diag").innerHTML=diag;
 
   if(chart) chart.destroy();
-  chart=new Chart(chartCanvas,{
+
+  chart = new Chart(document.getElementById("chart"), {
     type:"bar",
     data:{
       labels:data.map(d=>d.n),
-      datasets:[{data:data.map(d=>d.r)}]
+      datasets:[{
+        label:"Performance",
+        data:data.map(d=>d.r),
+        backgroundColor:"#0D7377"
+      }]
     }
   });
 }
