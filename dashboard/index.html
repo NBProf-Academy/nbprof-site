@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBProf Performance Intelligence Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  :root {
+    --navy:   #1B2A4A;
+    --teal:   #0D7377;
+    --gold:   #C8922A;
+    --light:  #EDF2F7;
+    --white:  #FFFFFF;
+    --slate:  #475569;
+    --green:  #16A34A;
+    --red:    #DC2626;
+    --orange: #EA580C;
+    --card-bg:#FFFFFF;
+    --bg:     #F1F5F9;
+    --border: #E2E8F0;
+    --text:   #1E293B;
+    --muted:  #64748B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); }
+
+  /* ── HEADER ── */
+  .executive-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #0f1e38 100%);
+    padding: 18px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 14px;
+    border-bottom: 3px solid var(--gold);
+    box-shadow: 0 4px 20px rgba(0,0,0,.25);
+  }
+  .brand h1 { color: var(--gold); font-size: 22px; font-weight: 700; letter-spacing: .5px; }
+  .brand p  { color: #94A3B8; font-size: 12px; margin-top: 3px; }
+  .tools { display: flex; align-items: center; gap: 12px; }
+  #clock { color: #94A3B8; font-size: 14px; font-family: monospace; min-width: 90px; }
+  .btn {
+    padding: 8px 18px; border: none; border-radius: 6px; cursor: pointer;
+    font-size: 13px; font-weight: 600; transition: .15s;
+  }
+  .btn-pdf   { background: var(--red);   color: #fff; }
+  .btn-xl    { background: var(--green); color: #fff; }
+  .btn-reset { background: var(--slate); color: #fff; }
+  .btn:hover { opacity: .85; transform: translateY(-1px); }
+
+  /* ── LAYOUT ── */
+  .main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+  .section-title {
+    font-size: 11px; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; color: var(--muted); margin: 28px 0 12px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+  /* ── INPUT ZONE ── */
+  .input-zone {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;
+  }
+  .inp-group { display: flex; flex-direction: column; gap: 5px; }
+  .inp-group label { font-size: 12px; color: var(--muted); font-weight: 500; }
+  .inp-group input {
+    padding: 9px 12px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; color: var(--text); background: #F8FAFC;
+    transition: border-color .15s;
+  }
+  .inp-group input:focus { outline: none; border-color: var(--teal); background: #fff; }
+  .inp-group .unit { font-size: 11px; color: var(--muted); }
+  .compute-btn {
+    grid-column: 1 / -1; padding: 11px; background: var(--navy);
+    color: #fff; border: none; border-radius: 8px; font-size: 14px;
+    font-weight: 600; cursor: pointer; transition: .15s; letter-spacing: .3px;
+  }
+  .compute-btn:hover { background: var(--teal); }
+
+  /* ── KPI CARDS ── */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;
+  }
+  .kpi-card {
+    background: var(--card-bg); border-radius: 12px; padding: 18px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06); border: 1px solid var(--border);
+    position: relative; overflow: hidden; transition: transform .2s;
+  }
+  .kpi-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+  .kpi-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .kpi-card.c-navy::before { background: var(--navy); }
+  .kpi-card.c-teal::before { background: var(--teal); }
+  .kpi-card.c-gold::before { background: var(--gold); }
+  .kpi-card.c-green::before{ background: var(--green); }
+  .kpi-icon { font-size: 22px; margin-bottom: 8px; }
+  .kpi-card h3 { font-size: 12px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: .05em; }
+  .kpi-val { font-size: 32px; font-weight: 700; margin: 6px 0 4px; line-height: 1; }
+  .kpi-sub { font-size: 12px; color: var(--muted); }
+  .kpi-trend { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+  .trend-up   { background: #DCFCE7; color: var(--green); }
+  .trend-down { background: #FEE2E2; color: var(--red); }
+  .trend-flat { background: #F1F5F9; color: var(--slate); }
+  .kpi-bar { height: 4px; border-radius: 2px; background: var(--border); margin-top: 10px; }
+  .kpi-fill { height: 100%; border-radius: 2px; transition: width 1s ease; }
+
+  /* ── BSC GRID ── */
+  .bsc-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px;
+  }
+  .bsc-card {
+    background: var(--card-bg); border-radius: 10px; padding: 16px 18px;
+    border: 1px solid var(--border); box-shadow: 0 1px 6px rgba(0,0,0,.05);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .bsc-card h3 { font-size: 13px; color: var(--slate); font-weight: 600; }
+  .bsc-score { font-size: 24px; font-weight: 700; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card-bg); border-radius: 12px; padding: 20px 24px;
+    border: 1px solid var(--border); box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  }
+  .card h2 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px; }
+  .card h2 span { font-size: 18px; }
+
+  /* ── TWO-COL GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width:900px){ .grid2,.grid3 { grid-template-columns: 1fr; } }
+
+  /* ── RISK MATRIX ── */
+  .risk-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+  .risk-table td, .risk-table th { border: 1px solid var(--border); width: 48px; height: 40px; text-align: center; font-weight: 600; }
+  .risk-label { color: var(--muted); font-size: 11px; }
+  .risk-high   { background: #FEE2E2; color: #991B1B; }
+  .risk-med    { background: #FEF3C7; color: #92400E; }
+  .risk-low    { background: #DCFCE7; color: #166534; }
+  .risk-badge  { padding: 3px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .r-high { background:#FEE2E2;color:#991B1B; }
+  .r-med  { background:#FEF3C7;color:#92400E; }
+  .r-low  { background:#DCFCE7;color:#166534; }
+
+  /* ── SWOT ── */
+  .swot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .swot-box { border-radius: 8px; padding: 14px 16px; }
+  .swot-box h4 { font-size: 12px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .05em; }
+  .swot-box p  { font-size: 12px; line-height: 1.7; }
+  .swot-f { background:#EFF6FF; color:#1E3A5F; border-left: 3px solid #3B82F6; }
+  .swot-w { background:#FEF9EC; color:#7C3B00; border-left: 3px solid var(--gold); }
+  .swot-o { background:#F0FDF4; color:#14532D; border-left: 3px solid var(--green); }
+  .swot-t { background:#FFF1F2; color:#881337; border-left: 3px solid var(--red); }
+
+  /* ── DIAGNOSTIC ── */
+  .diag-badge {
+    padding: 14px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;
+  }
+  .diag-icon { font-size: 20px; flex-shrink: 0; }
+  .diag-green  { background: #F0FDF4; color: #166534; border: 1px solid #86EFAC; }
+  .diag-orange { background: #FFFBEB; color: #92400E; border: 1px solid #FCD34D; }
+  .diag-red    { background: #FFF1F2; color: #881337; border: 1px solid #FDA4AF; }
+
+  /* ── TABLE ── */
+  .data-table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  .data-table th { background: var(--navy); color: #fff; padding: 10px 12px; text-align: left; font-size: 12px; }
+  .data-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  .data-table tr:hover td { background: #F8FAFC; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .p-g { background:#DCFCE7;color:#166534; }
+  .p-o { background:#FEF3C7;color:#92400E; }
+  .p-r { background:#FEE2E2;color:#991B1B; }
+
+  /* ── GAUGE ── */
+  .gauge-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+  /* ── PROGRESS ── */
+  .prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .prog-name { font-size: 13px; width: 130px; flex-shrink: 0; color: var(--text); }
+  .prog-track { flex:1; height:8px; border-radius:4px; background:var(--border); overflow:hidden; }
+  .prog-fill  { height:100%; border-radius:4px; transition: width 1s ease; }
+  .prog-pct   { font-size:12px; font-weight:600; width:40px; text-align:right; flex-shrink:0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: #94A3B8; text-align: center;
+    padding: 20px; margin-top: 40px; font-size: 12px;
+    border-top: 3px solid var(--gold);
+  }
+  footer h3 { color: var(--gold); font-size: 18px; margin-bottom: 4px; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+  .fade-in { animation: fadeIn .4s ease forwards; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header class="executive-header">
+  <div class="brand">
+    <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
+    <p>Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  </div>
+  <div class="tools">
+    <div id="clock"></div>
+    <button class="btn btn-pdf"   onclick="exportPDF()">⬇ PDF</button>
+    <button class="btn btn-xl"    onclick="exportExcel()">📊 Excel</button>
+    <button class="btn btn-reset" onclick="resetAll()">↺ Reset</button>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════ MAIN ════════════════════════════════ -->
+<div class="main">
+
+  <!-- ── SAISIE ── -->
+  <p class="section-title">✏️ Saisie des données</p>
+  <div class="input-zone">
+    <div class="inp-group">
+      <label>Organisation</label>
+      <input type="text" id="i-org" placeholder="Ex : BPR Marrakech-Safi" value="BPR Marrakech-Safi">
+    </div>
+    <div class="inp-group">
+      <label>Période</label>
+      <input type="text" id="i-period" placeholder="Ex : T2 2025" value="T2 2025">
+    </div>
+    <div class="inp-group">
+      <label>CA Objectif <span class="unit">(MDH)</span></label>
+      <input type="number" id="i-ca-obj" placeholder="320" value="320">
+    </div>
+    <div class="inp-group">
+      <label>CA Réalisé <span class="unit">(MDH)</span></label>
+      <input type="number" id="i-ca-real" placeholder="308" value="308">
+    </div>
+    <div class="inp-group">
+      <label>Satisfaction Obj <span class="unit">(%)</span></label>
+      <input type="number" id="i-sat-obj" placeholder="80" value="80">
+    </div>
+    <div class="inp-group">
+      <label>Satisfaction Réel <span class="unit">(%)</span></label>
+      <input type="number" id="i-sat-real" placeholder="78" value="78">
+    </div>
+    <div class="inp-group">
+      <label>Productivité Obj <span class="unit">(%)</span></label>
+      <input type="number" id="i-prod-obj" placeholder="100" value="100">
+    </div>
+    <div class="inp-group">
+      <label>Productivité Réel <span class="unit">(%)</span></label>
+      <input type="number" id="i-prod-real" placeholder="84" value="84">
+    </div>
+    <div class="inp-group">
+      <label>Clients Obj</label>
+      <input type="number" id="i-cli-obj" placeholder="4500" value="4500">
+    </div>
+    <div class="inp-group">
+      <label>Clients Réalisé</label>
+      <input type="number" id="i-cli-real" placeholder="4820" value="4820">
+    </div>
+    <div class="inp-group">
+      <label>Risque principal (1–5)</label>
+      <input type="number" id="i-risk" min="1" max="5" placeholder="3" value="3">
+    </div>
+    <div class="inp-group">
+      <label>Score Axe Processus <span class="unit">(%)</span></label>
+      <input type="number" id="i-proc" placeholder="95" value="95">
+    </div>
+    <button class="compute-btn" onclick="compute()">⚡ Générer le tableau de bord</button>
+  </div>
+
+  <!-- ══════════════ KPI CARDS ══════════════ -->
+  <p class="section-title" id="s-kpi" style="display:none">📊 Indicateurs clés de performance</p>
+  <div class="kpi-grid" id="kpi-zone" style="display:none"></div>
+
+  <!-- ══════════════ BSC ══════════════ -->
+  <p class="section-title" id="s-bsc" style="display:none">⚖️ Tableau de Bord Prospectif — 4 Axes</p>
+  <div class="bsc-grid" id="bsc-zone" style="display:none"></div>
+
+  <!-- ══════════════ CHARTS ROW ══════════════ -->
+  <div class="grid2" id="charts-row" style="display:none; margin-top:16px">
+    <div class="card">
+      <h2><span>🕸️</span> Radar de Performance</h2>
+      <canvas id="radarChart" height="230"></canvas>
+    </div>
+    <div class="card">
+      <h2><span>📈</span> Évolution & Prévisions</h2>
+      <canvas id="forecastChart" height="230"></canvas>
+    </div>
+  </div>
+
+  <!-- ══════════════ PROGRESS + GAUGE ══════════════ -->
+  <div class="grid2" id="prog-row" style="display:none; margin-top:16px">
+    <div class="card">
+      <h2><span>📏</span> Taux de réalisation</h2>
+      <div id="prog-zone"></div>
+    </div>
+    <div class="card">
+      <h2><span>🎯</span> Score global</h2>
+      <div class="gauge-wrap">
+        <svg id="gauge-svg" viewBox="0 0 200 120" width="100%" aria-label="Jauge score global"></svg>
+        <div id="gauge-pct" style="font-size:32px;font-weight:700;color:var(--navy)">—</div>
+        <div id="gauge-lbl" style="font-size:13px;color:var(--muted)">—</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ANALYSIS TABLE + BAR CHART ══════════════ -->
+  <div class="grid2" id="table-row" style="display:none; margin-top:16px">
+    <div class="card">
+      <h2><span>🔍</span> Analyse des écarts</h2>
+      <div style="overflow-x:auto"><table class="data-table" id="ecart-table">
+        <thead><tr><th>Indicateur</th><th>Objectif</th><th>Réalisé</th><th>Écart</th><th>Taux</th><th>Statut</th></tr></thead>
+        <tbody id="ecart-body"></tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <h2><span>📊</span> Comparaison Obj / Réalisé</h2>
+      <canvas id="barChart" height="200"></canvas>
+    </div>
+  </div>
+
+  <!-- ══════════════ RISK + SWOT ══════════════ -->
+  <div class="grid2" id="risk-row" style="display:none; margin-top:16px">
+    <div class="card">
+      <h2><span>⚠️</span> Cartographie des risques</h2>
+      <div id="risk-zone"></div>
+    </div>
+    <div class="card">
+      <h2><span>🔲</span> Analyse SWOT</h2>
+      <div id="swot-zone"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ DIAGNOSTIC ══════════════ -->
+  <div id="diag-row" style="display:none; margin-top:16px">
+    <div class="card">
+      <h2><span>🤖</span> Diagnostic automatique & Recommandations</h2>
+      <div id="diag-zone"></div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <h3>NBProf®️</h3>
+  <p>Plateforme de Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  <p style="margin-top:4px">🌐 www.nbprof.com</p>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ══════════════════════════════ -->
+<script>
+// ── Clock ─────────────────────────────────────────────────────────────────
+function updateClock(){
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleDateString('fr-FR') + '  ' +
+    now.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+updateClock(); setInterval(updateClock, 1000);
+
+// ── Charts ────────────────────────────────────────────────────────────────
+let radarInst=null, forecastInst=null, barInst=null;
+
+function fmt(v, unit) {
+  if (v===null||v===undefined) return '—';
+  return parseFloat(v).toLocaleString('fr-FR') + (unit?' '+unit:'');
+}
+
+function pct(real, obj, lower=false) {
+  if (!obj || !real) return null;
+  return lower ? (obj/real)*100 : (real/obj)*100;
+}
+
+function statusOf(p) {
+  if (p===null) return 'neutral';
+  if (p>=100) return 'over';
+  if (p>=90)  return 'near';
+  return 'under';
+}
+
+// ── COMPUTE ───────────────────────────────────────────────────────────────
+function compute() {
+  const g  = id => parseFloat(document.getElementById(id).value)||0;
+  const gs = id => document.getElementById(id).value||'';
+
+  const org    = gs('i-org')    || 'Organisation';
+  const period = gs('i-period') || '—';
+  const caObj  = g('i-ca-obj'); const caReal  = g('i-ca-real');
+  const satObj = g('i-sat-obj');const satReal = g('i-sat-real');
+  const prObj  = g('i-prod-obj');const prReal = g('i-prod-real');
+  const cliObj = g('i-cli-obj'); const cliReal= g('i-cli-real');
+  const risk   = g('i-risk');
+  const proc   = g('i-proc');
+
+  const data = [
+    { name:'CA (MDH)',       obj:caObj,  real:caReal,  unit:'MDH', lower:false },
+    { name:'Satisfaction',   obj:satObj, real:satReal, unit:'%',   lower:false },
+    { name:'Productivité',   obj:prObj,  real:prReal,  unit:'%',   lower:false },
+    { name:'Clients',        obj:cliObj, real:cliReal, unit:'',    lower:false },
+  ];
+
+  data.forEach(d => { d.pct = pct(d.real, d.obj, d.lower); d.status = statusOf(d.pct); });
+  const avg = data.filter(d=>d.pct!==null).reduce((s,d)=>s+d.pct,0) /
+              data.filter(d=>d.pct!==null).length;
+
+  // BSC scores
+  const bscFinancier  = caReal&&caObj ? Math.round((caReal/caObj)*100) : 92;
+  const bscClient     = satReal&&satObj? Math.round((satReal/satObj)*100): 87;
+  const bscProcessus  = Math.round(proc)||95;
+  const bscInnovation = cliReal&&cliObj? Math.min(Math.round((cliReal/cliObj)*100),100):82;
+
+  show('s-kpi'); show('kpi-zone');
+  renderKPIs(data, caReal, satReal, prReal, cliReal, org, period);
+
+  show('s-bsc'); show('bsc-zone');
+  renderBSC(bscFinancier, bscClient, bscProcessus, bscInnovation);
+
+  show('charts-row'); show('prog-row'); show('table-row'); show('risk-row'); show('diag-row');
+
+  renderProgress(data);
+  renderGauge(avg);
+  renderRadar(bscFinancier, bscClient, bscProcessus, bscInnovation, Math.round(avg));
+  renderForecast(caReal);
+  renderBar(data);
+  renderTable(data);
+  renderRisk(risk);
+  renderSWOT(avg);
+  renderDiag(avg, data, org);
+
+  // Smooth scroll
+  document.getElementById('s-kpi').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function show(id){ document.getElementById(id).style.display=''; }
+
+// ── KPI CARDS ─────────────────────────────────────────────────────────────
+function renderKPIs(data, ca, sat, prod, cli, org, period) {
+  const items = [
+    { label:'Chiffre d\'affaires', val:fmt(ca,'MDH'), sub:'Période : '+period, pct:data[0].pct, color:'c-navy', icon:'💰', trend:data[0].status },
+    { label:'Satisfaction client',  val:fmt(sat,'%'),  sub:'Objectif : '+fmt(data[1].obj,'%'), pct:data[1].pct, color:'c-teal',  icon:'😊', trend:data[1].status },
+    { label:'Productivité',         val:fmt(prod,'%'), sub:'Objectif : '+fmt(data[2].obj,'%'), pct:data[2].pct, color:'c-gold',  icon:'⚡', trend:data[2].status },
+    { label:'Nouveaux clients',     val:fmt(cli,''),   sub:'Objectif : '+fmt(data[3].obj,''),  pct:data[3].pct, color:'c-green', icon:'👥', trend:data[3].status },
+  ];
+  const z = document.getElementById('kpi-zone');
+  z.innerHTML = items.map(k => {
+    const fillColor = k.trend==='over'?'#16A34A':k.trend==='near'?'#EA580C':'#DC2626';
+    const fillW     = k.pct!==null?Math.min(Math.round(k.pct),100):0;
+    const trendCls  = k.trend==='over'?'trend-up':k.trend==='near'?'trend-flat':'trend-down';
+    const trendIcon = k.trend==='over'?'▲':k.trend==='near'?'→':'▼';
+    const trendVal  = k.pct!==null?Math.round(k.pct)+'%':'—';
+    return `<div class="kpi-card ${k.color} fade-in">
+      <div class="kpi-icon">${k.icon}</div>
+      <h3>${k.label}</h3>
+      <div class="kpi-val">${k.val}</div>
+      <div class="kpi-sub">${k.sub}</div>
+      <span class="kpi-trend ${trendCls}">${trendIcon} ${trendVal}</span>
+      <div class="kpi-bar"><div class="kpi-fill" style="width:${fillW}%;background:${fillColor}"></div></div>
+    </div>`;
+  }).join('');
+}
+
+// ── BSC ───────────────────────────────────────────────────────────────────
+function renderBSC(fin, cli, proc, innov) {
+  const axes = [
+    { name:'💹 Financier',    score:fin,   color:'var(--navy)'  },
+    { name:'🤝 Client',       score:cli,   color:'var(--teal)'  },
+    { name:'⚙️ Processus',   score:proc,  color:'var(--gold)'  },
+    { name:'🚀 Innovation',   score:innov, color:'var(--green)' },
+  ];
+  document.getElementById('bsc-zone').innerHTML = axes.map(a => {
+    const col = a.score>=100?'var(--green)':a.score>=90?'var(--gold)':'var(--red)';
+    return `<div class="bsc-card fade-in">
+      <h3>${a.name}</h3>
+      <span class="bsc-score" style="color:${col}">${a.score}%</span>
+    </div>`;
+  }).join('');
+}
+
+// ── PROGRESS ──────────────────────────────────────────────────────────────
+function renderProgress(data) {
+  document.getElementById('prog-zone').innerHTML = data.map(d => {
+    if (d.pct===null) return '';
+    const p = Math.round(d.pct), fw = Math.min(p,100);
+    const col = p>=100?'#16A34A':p>=90?'#EA580C':'#DC2626';
+    const tc  = p>=100?'#16A34A':p>=90?'#92400E':'#DC2626';
+    return `<div class="prog-row">
+      <div class="prog-name">${d.name}</div>
+      <div class="prog-track"><div class="prog-fill" style="width:${fw}%;background:${col}"></div></div>
+      <div class="prog-pct" style="color:${tc}">${p}%</div>
+    </div>`;
+  }).join('');
+}
+
+// ── GAUGE ─────────────────────────────────────────────────────────────────
+function renderGauge(avg) {
+  const pctV = avg!==null?Math.min(Math.max(avg,0),130):null;
+  const angle = pctV!==null?(pctV/130)*180-90:-90;
+  const col = pctV===null?'#888':pctV>=100?'#16A34A':pctV>=90?'#EA580C':'#DC2626';
+  const svg = document.getElementById('gauge-svg');
+  svg.innerHTML = `
+    <path d="M22,100 A78,78 0 0,1 100,22" fill="none" stroke="#FEE2E2" stroke-width="18" stroke-linecap="round"/>
+    <path d="M100,22 A78,78 0 0,1 160,65" fill="none" stroke="#FEF3C7" stroke-width="18" stroke-linecap="round"/>
+    <path d="M160,65 A78,78 0 0,1 178,100" fill="none" stroke="#DCFCE7" stroke-width="18" stroke-linecap="round"/>
+    ${pctV!==null?`
+    <line x1="100" y1="100"
+          x2="${100+62*Math.cos((angle-90)*Math.PI/180)}"
+          y2="${100+62*Math.sin((angle-90)*Math.PI/180)}"
+          stroke="${col}" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="100" cy="100" r="6" fill="${col}"/>`:''}
+    <text x="20"  y="115" font-size="10" fill="#991B1B" text-anchor="middle">0</text>
+    <text x="100" y="16"  font-size="10" fill="#92400E" text-anchor="middle">90%</text>
+    <text x="182" y="98"  font-size="10" fill="#166534" text-anchor="middle">130%</text>`;
+
+  document.getElementById('gauge-pct').textContent = avg!==null?Math.round(avg)+'%':'—';
+  document.getElementById('gauge-pct').style.color = col;
+  const lbl = avg===null?'—':avg>=100?'✅ Objectifs atteints':avg>=90?'⚠️ Proche des objectifs':'❌ Écarts à corriger';
+  document.getElementById('gauge-lbl').textContent = lbl;
+}
+
+// ── RADAR ─────────────────────────────────────────────────────────────────
+function renderRadar(fin, cli, proc, innov, global) {
+  if (radarInst) { radarInst.destroy(); radarInst=null; }
+  radarInst = new Chart(document.getElementById('radarChart'), {
+    type: 'radar',
+    data: {
+      labels: ['Financier','Clients','Processus','Innovation','Performance\nglobale'],
+      datasets: [{
+        label: 'Score (%)',
+        data: [fin, cli, proc, innov, global],
+        backgroundColor: 'rgba(13,115,119,0.18)',
+        borderColor: '#0D7377',
+        borderWidth: 2,
+        pointBackgroundColor: '#C8922A',
+        pointRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { r: { min:50, max:120, ticks:{ stepSize:10, font:{size:10} }, grid:{ color:'#E2E8F0' } } },
+      plugins: { legend:{ display:false } },
+      animation: { duration:1200 }
+    }
+  });
+}
+
+// ── FORECAST ──────────────────────────────────────────────────────────────
+function renderForecast(caReal) {
+  if (forecastInst) { forecastInst.destroy(); forecastInst=null; }
+  const base = caReal||100;
+  forecastInst = new Chart(document.getElementById('forecastChart'), {
+    type: 'line',
+    data: {
+      labels: ['T1','T2','T3','T4 (Prév)','T1+1 (Prév)'],
+      datasets: [
+        {
+          label:'Réalisé', data:[Math.round(base*.75), Math.round(base*.88), base, null, null],
+          borderColor:'#0D7377', backgroundColor:'rgba(13,115,119,.1)',
+          tension:.4, fill:true, pointRadius:5,
+        },
+        {
+          label:'Prévision', data:[null, null, base, Math.round(base*1.08), Math.round(base*1.16)],
+          borderColor:'#C8922A', borderDash:[6,4],
+          backgroundColor:'rgba(200,146,42,.08)', tension:.4, fill:true, pointRadius:5,
+        }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins:{ legend:{ position:'bottom', labels:{ font:{size:11} } } },
+      scales:{ y:{ grid:{ color:'#E2E8F0' } }, x:{ grid:{ display:false } } },
+      animation:{ duration:1000 }
+    }
+  });
+}
+
+// ── BAR CHART ─────────────────────────────────────────────────────────────
+function renderBar(data) {
+  if (barInst) { barInst.destroy(); barInst=null; }
+  barInst = new Chart(document.getElementById('barChart'), {
+    type: 'bar',
+    data: {
+      labels: data.map(d=>d.name),
+      datasets: [
+        { label:'Objectif', data:data.map(d=>d.obj), backgroundColor:'#94A3B8', borderRadius:4 },
+        { label:'Réalisé',  data:data.map(d=>d.real),
+          backgroundColor: data.map(d=>d.status==='over'?'#16A34A':d.status==='near'?'#EA580C':'#DC2626'),
+          borderRadius:4 }
+      ]
+    },
+    options: {
+      responsive:true,
+      plugins:{ legend:{ position:'bottom', labels:{font:{size:11}} } },
+      scales:{ y:{ grid:{color:'#E2E8F0'} }, x:{ grid:{display:false} } },
+      animation:{ duration:900 }
+    }
+  });
+}
+
+// ── TABLE ─────────────────────────────────────────────────────────────────
+function renderTable(data) {
+  document.getElementById('ecart-body').innerHTML = data.map(d => {
+    const p = d.pct!==null?Math.round(d.pct):null;
+    const ecart = d.real-d.obj;
+    const pillC = d.status==='over'?'p-g':d.status==='near'?'p-o':'p-r';
+    const statusT = d.status==='over'?'✅ Dépassé':d.status==='near'?'⚠️ Proche':'❌ Écart';
+    return `<tr>
+      <td><b>${d.name}</b></td>
+      <td>${fmt(d.obj, d.unit)}</td>
+      <td style="font-weight:600">${fmt(d.real, d.unit)}</td>
+      <td style="color:${ecart>=0?'#16A34A':'#DC2626'};font-weight:600">${ecart>=0?'+':''}${fmt(ecart, d.unit)}</td>
+      <td>${p!==null?p+'%':'—'}</td>
+      <td><span class="pill ${pillC}">${statusT}</span></td>
+    </tr>`;
+  }).join('');
+}
+
+// ── RISK MATRIX ───────────────────────────────────────────────────────────
+function renderRisk(riskLevel) {
+  const rl = Math.round(riskLevel)||3;
+  const matrix = [
+    [1,1,2,3,4],[1,2,3,4,5],[2,3,3,4,5],[3,3,4,5,5],[4,4,5,5,5]
+  ];
+  const colorOf = v => v<=2?'risk-low':v<=3?'risk-med':'risk-high';
+
+  let html = `<table class="risk-table">
+    <tr><td class="risk-label"></td>${[1,2,3,4,5].map(i=>⁠ <td class="risk-label">Impact ${i}</td> ⁠).join('')}</tr>`;
+  for(let row=4;row>=0;row--){
+    html += ⁠ <tr><td class="risk-label">Prob. ${row+1}</td> ⁠;
+    for(let col=0;col<5;col++){
+      const v = matrix[row][col];
+      const cls = colorOf(v);
+      // Highlight the current risk position
+      const isActive = (row+1===rl && col+1===rl);
+      html += `<td class="${cls}" ${isActive?'style="border:2px solid #1B2A4A;font-weight:800"':''}>
+        ${isActive?⁠ <span class="risk-badge r-${v<=2?'low':v<=3?'med':'high'}">R1</span> ⁠:v}
+      </td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</table>';
+
+  const riskNames = ['','Très faible','Faible','Modéré','Élevé','Critique'];
+  const riskCols  = ['','#166534','#16A34A','#92400E','#EA580C','#DC2626'];
+  html += `<div style="margin-top:12px;font-size:13px;color:${riskCols[rl]}">
+    <b>Niveau de risque actuel : ${riskNames[rl]}</b><br>
+    <span style="font-size:12px;color:var(--muted)">
+      ${rl<=2?'Risques maîtrisés — continuer la surveillance.':
+        rl===3?'Risques modérés — renforcer les contrôles.':
+        'Risques élevés — plan d\'action immédiat requis.'}
+    </span>
+  </div>`;
+  document.getElementById('risk-zone').innerHTML = html;
+}
+
+// ── SWOT ──────────────────────────────────────────────────────────────────
+function renderSWOT(avg) {
+  const isGood = avg >= 100, isMed = avg >= 90;
+  document.getElementById('swot-zone').innerHTML = `
+  <div class="swot-grid">
+    <div class="swot-box swot-f">
+      <h4>💪 Forces</h4>
+      <p>✔ ${isGood?'Rentabilité solide':'Dynamisme commercial'}<br>
+         ✔ Réseau d'agences dense<br>
+         ✔ Portefeuille clients en croissance</p>
+    </div>
+    <div class="swot-box swot-w">
+      <h4>⚠️ Faiblesses</h4>
+      <p>⚠ ${isMed?'Satisfaction à consolider':'Satisfaction client insuffisante'}<br>
+         ⚠ ${isGood?'Processus à optimiser':'Productivité à améliorer'}<br>
+         ⚠ Digitalisation à accélérer</p>
+    </div>
+    <div class="swot-box swot-o">
+      <h4>🌱 Opportunités</h4>
+      <p>▶️ Croissance du marché local<br>
+         ▶️ Inclusion financière rurale<br>
+         ▶️ Nouveaux produits digitaux</p>
+    </div>
+    <div class="swot-box swot-t">
+      <h4>⚡ Menaces</h4>
+      <p>▼ Concurrence bancaire accrue<br>
+         ▼ Évolution réglementaire (Bâle III)<br>
+         ▼ Volatilité macroéconomique</p>
+    </div>
+  </div>`;
+}
+
+// ── DIAGNOSTIC ────────────────────────────────────────────────────────────
+function renderDiag(avg, data, org) {
+  const p = Math.round(avg);
+  let items = [];
+
+  data.forEach(d => {
+    if (d.pct===null) return;
+    const r = Math.round(d.pct);
+    if (r >= 100) items.push({ cls:'diag-green',  icon:'✅', msg:⁠ <b>${d.name}</b> : Objectif dépassé (${r}%) — maintenir la stratégie en place. ⁠ });
+    else if (r>=90) items.push({ cls:'diag-orange', icon:'⚠️', msg:⁠ <b>${d.name}</b> : Légèrement en dessous (${r}%) — un ajustement ciblé suffit. ⁠ });
+    else            items.push({ cls:'diag-red',    icon:'❌', msg:⁠ <b>${d.name}</b> : Écart significatif (${r}%) — déclencher un plan d'action correctif immédiat. ⁠ });
+  });
+
+  // Global verdict
+  const verdict = p>=100
+    ? { cls:'diag-green',  icon:'🏆', msg:⁠ <b>Performance globale ${p}%</b> : Excellente. ${org} atteint et dépasse ses objectifs. Maintenir la dynamique actuelle et investir dans l'innovation. ⁠ }
+    : p>=90
+    ? { cls:'diag-orange', icon:'📋', msg:⁠ <b>Performance globale ${p}%</b> : Satisfaisante mais perfectible. Des améliorations ciblées sur 1 à 2 axes permettront d'atteindre les objectifs. ⁠ }
+    : { cls:'diag-red',    icon:'🚨', msg:⁠ <b>Performance globale ${p}%</b> : Des actions correctives urgentes sont requises. Réviser le plan stratégique et renforcer le pilotage opérationnel. ⁠ };
+
+  items.push(verdict);
+
+  document.getElementById('diag-zone').innerHTML = items.map(i =>
+    ⁠ <div class="diag-badge ${i.cls} fade-in"><div class="diag-icon">${i.icon}</div><div>${i.msg}</div></div> ⁠
+  ).join('');
+}
+
+// ── EXPORT PDF ────────────────────────────────────────────────────────────
+function exportPDF() {
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation:'landscape', unit:'mm', format:'a4' });
+  const org = document.getElementById('i-org').value || 'Dashboard';
+  const per = document.getElementById('i-period').value || '';
+
+  pdf.setFillColor(27,42,74); pdf.rect(0,0,297,22,'F');
+  pdf.setTextColor(200,146,42); pdf.setFontSize(16); pdf.setFont('helvetica','bold');
+  pdf.text('NBProf Performance Dashboard', 10, 14);
+  pdf.setTextColor(148,163,184); pdf.setFontSize(10); pdf.setFont('helvetica','normal');
+  pdf.text(⁠ ${org}  —  ${per} ⁠, 200, 14);
+
+  pdf.setTextColor(30,41,59); pdf.setFontSize(11); pdf.setFont('helvetica','bold');
+  pdf.text('Indicateurs clés :', 10, 32);
+
+  const rows = [];
+  document.querySelectorAll('#ecart-body tr').forEach(tr => {
+    rows.push([...tr.querySelectorAll('td')].map(td => td.textContent.trim()));
+  });
+  rows.forEach((r,i) => {
+    pdf.setFont('helvetica','normal'); pdf.setFontSize(10);
+    pdf.text(r.join('   |   '), 10, 42 + i*8);
+  });
+
+  pdf.setFontSize(9); pdf.setTextColor(100,116,139);
+  pdf.text('www.nbprof.com', 10, 195);
+  pdf.text(⁠ Généré le ${new Date().toLocaleDateString('fr-FR')} ⁠, 230, 195);
+  pdf.save(⁠ NBProf_Dashboard_${org.replace(/\s/g,'_')}.pdf ⁠);
+}
+
+// ── EXPORT EXCEL ──────────────────────────────────────────────────────────
+function exportExcel() {
+  const org = document.getElementById('i-org').value || 'Dashboard';
+  const per = document.getElementById('i-period').value || '';
+  const rows = [['Indicateur','Objectif','Réalisé','Écart','Taux (%)','Statut']];
+  document.querySelectorAll('#ecart-body tr').forEach(tr => {
+    rows.push([...tr.querySelectorAll('td')].map(td => td.textContent.trim()));
+  });
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols'] = [{wch:22},{wch:14},{wch:14},{wch:14},{wch:10},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, ws, 'Dashboard');
+  XLSX.writeFile(wb, ⁠ NBProf_${org.replace(/\s/g,'_')}_${per}.xlsx ⁠);
+}
+
+// ── RESET ─────────────────────────────────────────────────────────────────
+function resetAll() {
+  ['s-kpi','kpi-zone','s-bsc','bsc-zone','charts-row','prog-row','table-row','risk-row','diag-row']
+    .forEach(id => document.getElementById(id).style.display='none');
+  if (radarInst)   { radarInst.destroy();   radarInst=null;   }
+  if (forecastInst){ forecastInst.destroy();forecastInst=null;}
+  if (barInst)     { barInst.destroy();     barInst=null;     }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── AUTO-LAUNCH with preloaded values ─────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => compute());
+</script>
+</body>
+</html>
