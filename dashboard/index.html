@@ -114,6 +114,13 @@ th, td {
 
 <div class="card">
 <h3>Saisie</h3>
+  <div class="card">
+  <h3>📊 Données actuelles (modifiables)</h3>
+  <p style="color:#64748B">
+    💡 Modifiez les valeurs pour simuler la performance
+  </p>
+  <div id="data-list"></div>
+</div>
 <input id="nom" placeholder="Indicateur">
 <input id="obj" type="number" placeholder="Objectif">
 <input id="real" type="number" placeholder="Réalisé">
@@ -161,7 +168,21 @@ th, td {
 </div>
 
 <script>
-let data=[];
+  window.onload = function(){
+  compute();
+}
+  let data = [
+  { n: "CA (MDH)", o: 320, r: 308 },
+  { n: "Satisfaction", o: 80, r: 78 },
+  { n: "Productivité", o: 100, r: 84 },
+  { n: "Clients", o: 4500, r: 4820 }
+];
+let data = [
+  { n: "CA (MDH)", o: 320, r: 308 },
+  { n: "Satisfaction", o: 80, r: 78 },
+  { n: "Productivité", o: 100, r: 84 },
+  { n: "Clients", o: 4500, r: 4820 }
+];
 let chart;
 
 function add(){
@@ -171,7 +192,8 @@ function add(){
   if(!n||isNaN(o)||isNaN(r)) return alert("Erreur");
   data.push({n,o,r});
 }
-
+function compute(){
+  renderDataInputs();
 function compute(){
   let kpi="", table="", prog="", diag="";
   let total=0;
@@ -261,6 +283,27 @@ function exportPDF(){
     y+=10;
   });
   pdf.save("NBProf.pdf");
+}
+  function renderDataInputs(){
+  let html = "";
+
+  data.forEach((d,i)=>{
+    html += `
+      <div style="margin-bottom:10px">
+        <b>${d.n}</b><br>
+
+        Objectif :
+        <input value="${d.o}" 
+        onchange="data[${i}].o=parseFloat(this.value); compute();">
+
+        Réalisé :
+        <input value="${d.r}" 
+        onchange="data[${i}].r=parseFloat(this.value); compute();">
+      </div>
+    `;
+  });
+
+  document.getElementById("data-list").innerHTML = html;
 }
 </script>
 
