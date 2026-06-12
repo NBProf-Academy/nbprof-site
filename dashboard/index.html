@@ -2,365 +2,587 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NBProf Dashboard SaaS</title>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
-body { font-family: Arial; background:#EEF2F7; margin:0; }
-.container { padding:20px; }
-
-.card {
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  margin-bottom:20px;
-}
-
-.kpi-grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-
-.kpi-card {
-  padding:15px;
-  border-radius:10px;
-  background:white;
-  box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-.bar { height:6px; background:#ddd; border-radius:5px; }
-.fill { height:100%; border-radius:5px; }
-
-.diag { padding:12px; border-radius:8px; margin:8px 0; }
-.good { background:#DCFCE7; }
-.warn { background:#FEF3C7; }
-.bad  { background:#FEE2E2; }
-
-.swot { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.swot div { padding:10px; border-radius:8px; }
-.f { background:#EFF6FF; }
-.w { background:#FEF3C7; }
-.o { background:#DCFCE7; }
-.t { background:#FEE2E2; }
-
-table { width:100%; border-collapse:collapse; }
-td, th { border:1px solid #ddd; padding:6px; text-align:center; }
   :root {
-  --navy:#1B2A4A;
-  --gold:#C8922A;
-  --teal:#0D7377;
-}
+    --navy: #1B2A4A;
+    --gold: #C8922A;
+    --teal: #0D7377;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Arial, sans-serif; background: #EEF2F7; }
 
-.card {
-  border-left:4px solid var(--gold);
-}
+  /* ── HEADER ── */
+  header {
+    background: var(--navy);
+    color: var(--gold);
+    padding: 20px 28px;
+    border-bottom: 3px solid var(--gold);
+  }
+  header h1 { font-size: 22px; }
+  header p  { color: #94A3B8; margin-top: 4px; font-size: 13px; }
+  header h2 { color: white; margin-top: 8px; font-size: 15px; font-weight: 400; }
 
-h3 {
-  color: var(--navy);
-}
-  canvas {
-  max-height: 250px !important;
-}
+  /* ── LAYOUT ── */
+  .container { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+
+  /* ── CARDS ── */
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  }
+  h3 { color: var(--navy); margin-bottom: 12px; font-size: 15px; }
+
+  /* ── SAISIE ── */
+  .saisie-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto auto;
+    gap: 10px;
+    align-items: end;
+    flex-wrap: wrap;
+  }
+  .saisie-grid label { font-size: 12px; color: #64748B; display: block; margin-bottom: 4px; }
+  .saisie-grid input, .saisie-grid select {
+    width: 100%; padding: 8px 10px;
+    border: 1px solid #CBD5E1; border-radius: 8px;
+    font-size: 13px; color: var(--navy);
+  }
+  select { width: 100%; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13px; }
+  .btn {
+    padding: 9px 16px; border: none; border-radius: 8px;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: .15s; white-space: nowrap;
+  }
+  .btn-add     { background: var(--teal);  color: white; }
+  .btn-compute { background: var(--navy);  color: white; }
+  .btn-reset   { background: #94A3B8;      color: white; }
+  .btn:hover { opacity: .85; }
+
+  /* ── DATA LIST ── */
+  .data-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid #F1F5F9; flex-wrap: wrap;
+  }
+  .data-row b   { width: 140px; font-size: 13px; color: var(--navy); }
+  .data-row input {
+    width: 90px; padding: 5px 8px; border: 1px solid #CBD5E1;
+    border-radius: 6px; font-size: 13px;
+  }
+  .data-row label { font-size: 12px; color: #64748B; }
+  .btn-del { background: #FEE2E2; color: #DC2626; border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+
+  /* ── KPI GRID ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .kpi-card {
+    padding: 16px; border-radius: 10px; background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-top: 3px solid var(--teal);
+  }
+  .kpi-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: .05em; }
+  .kpi-val   { font-size: 28px; font-weight: 700; color: var(--navy); margin: 6px 0 4px; }
+  .kpi-pct   { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+  .bar  { height: 6px; background: #E2E8F0; border-radius: 5px; overflow: hidden; }
+  .fill { height: 100%; border-radius: 5px; transition: width .6s ease; }
+
+  /* ── SCORE ── */
+  #score { font-size: 48px; font-weight: 700; color: var(--navy); text-align: center; margin: 10px 0; }
+
+  /* ── TABLE ── */
+  table   { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th      { background: var(--navy); color: white; padding: 9px 10px; text-align: center; font-size: 12px; }
+  td      { border: 1px solid #E2E8F0; padding: 8px 10px; text-align: center; }
+  tr:hover td { background: #F8FAFC; }
+  .pill   { padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .p-g    { background: #DCFCE7; color: #166534; }
+  .p-o    { background: #FEF3C7; color: #92400E; }
+  .p-r    { background: #FEE2E2; color: #991B1B; }
+
+  /* ── DIAG ── */
+  .diag   { padding: 12px 14px; border-radius: 8px; margin: 7px 0; font-size: 13px; font-weight: 500; }
+  .good   { background: #DCFCE7; color: #166534; }
+  .warn   { background: #FEF3C7; color: #92400E; }
+  .bad    { background: #FEE2E2; color: #991B1B; }
+
+  /* ── SWOT ── */
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .swot div { padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.7; }
+  .f { background: #EFF6FF; color: #1E3A5F; border-left: 3px solid #3B82F6; }
+  .w { background: #FEF3C7; color: #7C3B00; border-left: 3px solid var(--gold); }
+  .o { background: #DCFCE7; color: #14532D; border-left: 3px solid #16A34A; }
+  .t { background: #FEE2E2; color: #881337; border-left: 3px solid #DC2626; }
+  .swot h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+
+  /* ── GRID 2 ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media(max-width: 768px) { .grid2 { grid-template-columns: 1fr; } .saisie-grid { grid-template-columns: 1fr 1fr; } }
+
+  canvas { max-height: 260px !important; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: #94A3B8;
+    text-align: center; padding: 20px; margin-top: 30px;
+    border-top: 3px solid var(--gold);
+  }
+  footer h3 { color: var(--gold); font-size: 18px; margin-bottom: 4px; }
+  footer a   { color: var(--gold); text-decoration: none; }
 </style>
 </head>
-
 <body>
-<header style="background:#1B2A4A;color:#C8922A;padding:20px;">
-  <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
-  <p style="color:#94A3B8">
-    Management • Audit • Contrôle de Gestion • Performance Organisationnelle
-  </p>
 
-  <h2 style="color:white;margin-top:10px">
-    Tableau de bord de performance — saisie des données et visualisation automatique
-  </h2>
+<!-- ══ HEADER ══════════════════════════════════════════════════════════ -->
+<header>
+  <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
+  <p>Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  <h2>Tableau de bord de performance — saisie des données et visualisation automatique</h2>
 </header>
 
 <div class="container">
 
-<!-- ✅ SAISIE -->
+  <!-- ══ SAISIE ══════════════════════════════════════════════════════════ -->
   <div class="card">
-<h3>Secteur</h3>
+    <h3>⚙️ Configuration & Saisie</h3>
+    <!-- Secteur -->
+    <div style="margin-bottom:14px">
+      <label style="font-size:12px;color:#64748B;display:block;margin-bottom:4px">Secteur d'activité</label>
+      <select id="secteur" onchange="compute()" style="padding:8px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px;color:#1B2A4A;width:280px">
+        <option>Commerce / Ventes</option>
+        <option>Banque / Finance</option>
+        <option>Éducation</option>
+        <option>Santé</option>
+        <option>Industrie</option>
+      </select>
+    </div>
+    <!-- Ajout indicateur -->
+    <div class="saisie-grid">
+      <div>
+        <label>Nom de l'indicateur</label>
+        <input id="i-nom" placeholder="Ex: Chiffre d'affaires">
+      </div>
+      <div>
+        <label>Objectif</label>
+        <input id="i-obj" type="number" placeholder="Ex: 320">
+      </div>
+      <div>
+        <label>Réalisé</label>
+        <input id="i-real" type="number" placeholder="Ex: 308">
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button class="btn btn-add" onclick="addRow()">+ Ajouter</button>
+      </div>
+      <div>
+        <label>&nbsp;</label>
+        <button class="btn btn-compute" onclick="compute()">⚡ Générer</button>
+      </div>
+    </div>
+  </div>
 
-<select id="secteur">
-  <option>Commerce / Ventes</option>
-  <option>Banque / Finance</option>
-  <option>Éducation</option>
-  <option>Santé</option>
-  <option>Industrie</option>
-</select>
+  <!-- ══ DONNÉES MODIFIABLES ══════════════════════════════════════════════ -->
+  <div class="card">
+    <h3>📋 Données modifiables</h3>
+    <div id="data-list"></div>
+    <button class="btn btn-reset" style="margin-top:10px" onclick="resetData()">↺ Réinitialiser les données</button>
+  </div>
 
-</div>
-<h3>Saisie des données</h3>
-<input id="nom" placeholder="Indicateur">
-<input id="obj" type="number" placeholder="Objectif">
-<input id="real" type="number" placeholder="Réalisé">
-<button onclick="add()">Ajouter</button>
-<button onclick="compute()">⚡ Générer le tableau de bord</button>
-</div>
+  <!-- ══ KPI CARDS ══════════════════════════════════════════════════════════ -->
+  <div class="card">
+    <h3 id="title-kpi">📊 Indicateurs clés de performance</h3>
+    <div class="kpi-grid" id="kpi-zone"></div>
+  </div>
 
-<!-- ✅ DONNÉES -->
-<div class="card">
-<h3>Données modifiables</h3>
-<div id="data-list"></div>
-</div>
+  <!-- ══ SCORE + JAUGE ══════════════════════════════════════════════════════ -->
+  <div class="card">
+    <h3 id="title-gauge">🎯 Score global de performance</h3>
+    <div id="score">—</div>
+    <div id="score-lbl" style="text-align:center;font-size:14px;color:#64748B;margin-bottom:12px"></div>
+    <canvas id="gauge"></canvas>
+  </div>
 
-<!-- ✅ KPI -->
-<div class="card">
-  <h3 id="title-kpi">Indicateurs clés de performance</h3>
-  <div class="kpi-grid" id="kpi"></div>
-</div>
+  <!-- ══ TABLEAU ANALYSE ══════════════════════════════════════════════════ -->
+  <div class="card">
+    <h3 id="title-table">🔍 Analyse détaillée des écarts</h3>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Indicateur</th><th>Objectif</th><th>Réalisé</th>
+            <th>Écart</th><th>Taux</th><th>Statut</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
 
-<!-- ✅ SCORE -->
-<div class="card">
-<h3 id="title-gauge">Écarts à corriger</h3>
-<h1 id="score"></h1>
-<canvas id="gauge"></canvas>
-</div>
+  <!-- ══ GRAPHIQUES ══════════════════════════════════════════════════════ -->
+  <div class="grid2">
+    <div class="card">
+      <h3 id="title-chart">📈 Taux de réalisation & Prévisions</h3>
+      <canvas id="chart"></canvas>
+    </div>
+    <div class="card">
+      <h3>🕸️ Radar de performance</h3>
+      <canvas id="radar"></canvas>
+    </div>
+  </div>
 
-<!-- ✅ ANALYSE TABLE -->
-<div class="card">
-<table>
-<thead>
-<tr><th>Indicateur</th><th>Objectif</th><th>Réalisé</th><th>Taux</th></tr>
-</thead>
-<tbody id="table"></tbody>
-</table>
-</div>
+  <!-- ══ RISK + SWOT ══════════════════════════════════════════════════════ -->
+  <div class="grid2">
+    <div class="card">
+      <h3>⚠️ Matrice des risques</h3>
+      <div id="risk-zone"></div>
+    </div>
+    <div class="card">
+      <h3>🔲 Analyse SWOT</h3>
+      <div id="swot-zone"></div>
+    </div>
+  </div>
 
-<!-- ✅ GRAPH -->
-<div class="card">
-  <h3 id="title-chart">Taux de réalisation par indicateur</h3>
-  <canvas id="chart"></canvas>
-</div>
+  <!-- ══ DIAGNOSTIC ══════════════════════════════════════════════════════ -->
+  <div class="card">
+    <h3>🤖 Recommandations automatiques</h3>
+    <div id="diag-zone"></div>
+  </div>
 
-<!-- ✅ RADAR -->
-<div class="card">
-<canvas id="radar"></canvas>
-</div>
+</div><!-- /container -->
 
-<!-- ✅ RISK -->
-<div class="card">
-<h3>Matrice des risques</h3>
-<div id="risk"></div>
-</div>
+<!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+<footer>
+  <h3>NBProf®</h3>
+  <p>Plateforme de Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  <p style="margin-top:6px">🌐 <a href="https://www.nbprof.com" target="_blank">www.nbprof.com</a></p>
+</footer>
 
-<!-- ✅ SWOT -->
-<div class="card">
-<h3>Analyse SWOT</h3>
-<div id="swot"></div>
-</div>
-
-<!-- ✅ IA DIAGNOSTIC -->
-<div class="card">
-<h3>Recommandations automatiques</h3>
-<div id="diag"></div>
-</div>
-
-</div>
-
+<!-- ══════════════════════════════ SCRIPT ══════════════════════════════ -->
 <script>
-let chartInstance, gaugeInstance, radarInstance;
-// ✅ DONNÉES INITIALES (comme ton modèle [1])
+
+// ── CORRECTION 1 : instances de Chart séparées ───────────────────────────
+let chartInst = null;
+let radarInst = null;
+let gaugeInst = null;
+
+// ── CORRECTION 2 : données initiales correctement déclarées ─────────────
 let data = [
- {n:"CA (MDH)",o:320,r:308},
- {n:"Satisfaction",o:80,r:78},
- {n:"Productivité",o:100,r:84},
- {n:"Clients",o:4500,r:4820}
+  { n: "CA (MDH)",      o: 320,  r: 308  },
+  { n: "Satisfaction",  o: 80,   r: 78   },
+  { n: "Productivité",  o: 100,  r: 84   },
+  { n: "Clients",       o: 4500, r: 4820 }
 ];
 
-function add(){
- let n=nom.value;
- let o=parseFloat(obj.value);
- let r=parseFloat(real.value);
- if(!n||isNaN(o)||isNaN(r)) return alert("Erreur");
- data.push({n,o,r});
-  function getTitlesBySector(secteur){
-
-  if(secteur.includes("Banque")){
-    return {
-      kpi: "Indicateurs de performance financière",
-      chart: "Taux de réalisation des objectifs financiers",
-      gauge: "Écarts à corriger (risque & rentabilité)",
-      table: "Analyse détaillée des écarts financiers"
-    };
-  }
-
-  else if(secteur.includes("Santé")){
-    return {
-      kpi: "Indicateurs de performance médicale",
-      chart: "Taux de réalisation des soins et services",
-      gauge: "Écarts à corriger (qualité de service)",
-      table: "Analyse détaillée des écarts médicaux"
-    };
-  }
-
-  else if(secteur.includes("Éducation")){
-    return {
-      kpi: "Indicateurs de performance pédagogique",
-      chart: "Taux de réalisation des objectifs éducatifs",
-      gauge: "Écarts à corriger (résultats académiques)",
-      table: "Analyse détaillée des écarts pédagogiques"
-    };
-  }
-
-  else{
-    return {
-      kpi: "Indicateurs clés de performance",
-      chart: "Taux de réalisation par indicateur",
-      gauge: "Écarts à corriger",
-      table: "Analyse détaillée des écarts"
-    };
-  }
-}
- compute();
+// ── CORRECTION 3 : getTitlesBySector déplacée au niveau global ──────────
+function getTitlesBySector(secteur) {
+  if (secteur.includes("Banque")) return {
+    kpi:   "Indicateurs de performance financière",
+    chart: "Taux de réalisation des objectifs financiers",
+    gauge: "Score global (Risque & Rentabilité)",
+    table: "Analyse détaillée des écarts financiers"
+  };
+  if (secteur.includes("Santé")) return {
+    kpi:   "Indicateurs de performance médicale",
+    chart: "Taux de réalisation des soins et services",
+    gauge: "Score global (Qualité de service)",
+    table: "Analyse détaillée des écarts médicaux"
+  };
+  if (secteur.includes("Éducation")) return {
+    kpi:   "Indicateurs de performance pédagogique",
+    chart: "Taux de réalisation des objectifs éducatifs",
+    gauge: "Score global (Résultats académiques)",
+    table: "Analyse détaillée des écarts pédagogiques"
+  };
+  if (secteur.includes("Industrie")) return {
+    kpi:   "Indicateurs de performance industrielle",
+    chart: "Taux de réalisation de la production",
+    gauge: "Score global (Production & Qualité)",
+    table: "Analyse détaillée des écarts industriels"
+  };
+  return {
+    kpi:   "Indicateurs clés de performance",
+    chart: "Taux de réalisation par indicateur",
+    gauge: "Score global de performance",
+    table: "Analyse détaillée des écarts"
+  };
 }
 
-// ✅ DONNÉES MODIFIABLES
-function renderDataInputs(){
- let html="";
- data.forEach((d,i)=>{
-  html+=`
-  <div>
-  <b>${d.n}</b>
-  Obj <input value="${d.o}" onchange="data[${i}].o=this.value;compute()">
-  Réel <input value="${d.r}" onchange="data[${i}].r=this.value;compute()">
+// ── CORRECTION 4 : fonction add() propre, sans imbrication ──────────────
+function addRow() {
+  const n = document.getElementById("i-nom").value.trim();
+  const o = parseFloat(document.getElementById("i-obj").value);
+  const r = parseFloat(document.getElementById("i-real").value);
+  if (!n || isNaN(o) || isNaN(r)) {
+    alert("Veuillez remplir les 3 champs : nom, objectif et réalisé.");
+    return;
+  }
+  data.push({ n, o, r });
+  document.getElementById("i-nom").value  = "";
+  document.getElementById("i-obj").value  = "";
+  document.getElementById("i-real").value = "";
+  compute();
+}
+
+function resetData() {
+  data = [
+    { n: "CA (MDH)",     o: 320,  r: 308  },
+    { n: "Satisfaction", o: 80,   r: 78   },
+    { n: "Productivité", o: 100,  r: 84   },
+    { n: "Clients",      o: 4500, r: 4820 }
+  ];
+  compute();
+}
+
+// ── renderDataInputs ──────────────────────────────────────────────────────
+function renderDataInputs() {
+  let html = "";
+  data.forEach((d, i) => {
+    html += `
+    <div class="data-row">
+      <b>${d.n}</b>
+      <label>Objectif</label>
+      <input type="number" value="${d.o}"
+        onchange="data[${i}].o = parseFloat(this.value)||0; compute()">
+      <label>Réalisé</label>
+      <input type="number" value="${d.r}"
+        onchange="data[${i}].r = parseFloat(this.value)||0; compute()">
+      <button class="btn-del" onclick="data.splice(${i},1); compute()">✕</button>
+    </div>`;
+  });
+  document.getElementById("data-list").innerHTML = html;
+}
+
+// ── CORRECTION 5 : compute() sans erreurs de syntaxe ────────────────────
+function compute() {
+  const secteur = document.getElementById("secteur").value;
+  const titles  = getTitlesBySector(secteur);
+
+  // Mise à jour des titres
+  document.getElementById("title-kpi").innerText   = "📊 " + titles.kpi;
+  document.getElementById("title-chart").innerText = "📈 " + titles.chart;
+  document.getElementById("title-gauge").innerText = "🎯 " + titles.gauge;
+  document.getElementById("title-table").innerText = "🔍 " + titles.table;
+
+  renderDataInputs();
+
+  let kpiHTML = "", tableHTML = "", diagHTML = "", total = 0;
+
+  data.forEach(d => {
+    d.o = parseFloat(d.o) || 0;
+    d.r = parseFloat(d.r) || 0;
+    const p = d.o !== 0 ? (d.r / d.o) * 100 : 0;
+    total += p;
+
+    const color     = p >= 100 ? "#16A34A" : p >= 80 ? "#EA580C" : "#DC2626";
+    const pillCls   = p >= 100 ? "p-g"     : p >= 80 ? "p-o"     : "p-r";
+    const statusTxt = p >= 100 ? "✅ Dépassé" : p >= 90 ? "⚠️ Proche" : "❌ Écart";
+    const ecart     = d.r - d.o;
+
+    // ── KPI card
+    kpiHTML += `
+    <div class="kpi-card">
+      <div class="kpi-label">${d.n}</div>
+      <div class="kpi-val">${Number(d.r).toLocaleString("fr-FR")}</div>
+      <div class="kpi-pct" style="color:${color}">${p.toFixed(1)} %</div>
+      <div class="bar">
+        <div class="fill" style="width:${Math.min(p,100)}%;background:${color}"></div>
+      </div>
+    </div>`;
+
+    // ── Table row
+    tableHTML += `
+    <tr>
+      <td><b>${d.n}</b></td>
+      <td>${Number(d.o).toLocaleString("fr-FR")}</td>
+      <td><b>${Number(d.r).toLocaleString("fr-FR")}</b></td>
+      <td style="color:${ecart>=0?"#16A34A":"#DC2626"};font-weight:600">
+        ${ecart >= 0 ? "+" : ""}${Number(ecart).toLocaleString("fr-FR")}
+      </td>
+      <td><b>${p.toFixed(1)} %</b></td>
+      <td><span class="pill ${pillCls}">${statusTxt}</span></td>
+    </tr>`;
+
+    // ── Diagnostic individuel
+    if      (p >= 100) diagHTML += `<div class="diag good">✅ <b>${d.n}</b> : Excellent — objectif dépassé (${p.toFixed(0)}%). Maintenir la stratégie en place.</div>`;
+    else if (p >= 90)  diagHTML += `<div class="diag warn">⚠️ <b>${d.n}</b> : Proche de l'objectif (${p.toFixed(0)}%). Un léger ajustement suffit.</div>`;
+    else               diagHTML += `<div class="diag bad">❌ <b>${d.n}</b> : Écart significatif (${p.toFixed(0)}%). Plan d'action correctif requis.</div>`;
+    if (p < 70)        diagHTML += `<div class="diag bad">🚨 ALERTE CRITIQUE — <b>${d.n}</b> en dessous de 70%.</div>`;
+  });
+
+  const score = data.length > 0 ? total / data.length : 0;
+
+  // ── Score global
+  document.getElementById("kpi-zone").innerHTML  = kpiHTML;
+  document.getElementById("table-body").innerHTML = tableHTML;
+
+  const scoreEl = document.getElementById("score");
+  scoreEl.innerText = score.toFixed(1) + "%";
+  scoreEl.style.color = score >= 100 ? "#16A34A" : score >= 90 ? "#EA580C" : "#DC2626";
+
+  const scoreLbl = score >= 100 ? "🏆 Objectifs atteints ou dépassés"
+                 : score >= 90  ? "⚠️ Proche des objectifs — ajustements mineurs"
+                 :                "🚨 Écarts importants — plan d'action requis";
+  document.getElementById("score-lbl").innerText = scoreLbl;
+
+  // ── Diagnostic global
+  if      (score >= 100) diagHTML += `<div class="diag good">🏆 <b>Performance globale ${score.toFixed(1)}%</b> : Excellente. Objectifs atteints — maintenir la dynamique.</div>`;
+  else if (score >= 90)  diagHTML += `<div class="diag warn">📊 <b>Performance globale ${score.toFixed(1)}%</b> : Satisfaisante. Des améliorations ciblées permettront d'atteindre les objectifs.</div>`;
+  else                   diagHTML += `<div class="diag bad">🚨 <b>Performance globale ${score.toFixed(1)}%</b> : Actions correctives urgentes requises. Réviser le plan stratégique.</div>`;
+
+  diagHTML += `<div class="diag warn" style="margin-top:10px">🌐 Secteur : <b>${secteur}</b></div>`;
+  document.getElementById("diag-zone").innerHTML = diagHTML;
+
+  // ── CORRECTION 6 : Jauge (doughnut) correctement instanciée ─────────
+  if (gaugeInst) { gaugeInst.destroy(); gaugeInst = null; }
+  const gaugeCtx = document.getElementById("gauge").getContext("2d");
+  const gVal  = Math.min(score, 130);
+  const gRest = Math.max(0, 130 - gVal);
+  const gCol  = score >= 100 ? "#16A34A" : score >= 90 ? "#EA580C" : "#DC2626";
+  gaugeInst = new Chart(gaugeCtx, {
+    type: "doughnut",
+    data: {
+      datasets: [{
+        data: [gVal, gRest],
+        backgroundColor: [gCol, "#E2E8F0"],
+        borderWidth: 0,
+        circumference: 180,
+        rotation: 270
+      }]
+    },
+    options: {
+      responsive: true,
+      cutout: "75%",
+      plugins: { legend: { display: false }, tooltip: { enabled: false } },
+      animation: { duration: 800 }
+    }
+  });
+
+  // ── CORRECTION 7 : Graphique line — instance séparée ─────────────────
+  if (chartInst) { chartInst.destroy(); chartInst = null; }
+  const chartCtx = document.getElementById("chart").getContext("2d");
+  chartInst = new Chart(chartCtx, {
+    type: "bar",
+    data: {
+      labels: data.map(d => d.n),
+      datasets: [
+        {
+          label: "Objectif",
+          data: data.map(d => d.o),
+          backgroundColor: "#94A3B8",
+          borderRadius: 4
+        },
+        {
+          label: "Réalisé",
+          data: data.map(d => d.r),
+          backgroundColor: data.map(d => {
+            const p = d.o !== 0 ? (d.r / d.o) * 100 : 0;
+            return p >= 100 ? "#16A34A" : p >= 80 ? "#EA580C" : "#DC2626";
+          }),
+          borderRadius: 4
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
+      scales: { y: { grid: { color: "#F1F5F9" } }, x: { grid: { display: false } } },
+      animation: { duration: 800 }
+    }
+  });
+
+  // ── CORRECTION 8 : Radar — instance séparée ───────────────────────────
+  if (radarInst) { radarInst.destroy(); radarInst = null; }
+  const radarCtx = document.getElementById("radar").getContext("2d");
+  radarInst = new Chart(radarCtx, {
+    type: "radar",
+    data: {
+      labels: data.map(d => d.n),
+      datasets: [{
+        label: "Taux de réalisation (%)",
+        data: data.map(d => d.o !== 0 ? parseFloat(((d.r / d.o) * 100).toFixed(1)) : 0),
+        backgroundColor: "rgba(13,115,119,0.18)",
+        borderColor: "#0D7377",
+        borderWidth: 2,
+        pointBackgroundColor: "#C8922A",
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: { r: { min: 50, max: 120, ticks: { stepSize: 10 } } },
+      plugins: { legend: { position: "bottom" } },
+      animation: { duration: 800 }
+    }
+  });
+
+  // ── Matrice des risques ──────────────────────────────────────────────
+  let riskHTML = `<table style="font-size:12px">
+    <tr>
+      <th style="background:#1B2A4A;color:white">Prob↓ / Impact→</th>
+      <th style="background:#1B2A4A;color:white">1</th>
+      <th style="background:#1B2A4A;color:white">2</th>
+      <th style="background:#1B2A4A;color:white">3</th>
+      <th style="background:#1B2A4A;color:white">4</th>
+      <th style="background:#1B2A4A;color:white">5</th>
+    </tr>`;
+  for (let i = 5; i >= 1; i--) {
+    riskHTML += `<tr><td style="background:#1B2A4A;color:white;font-weight:600">${i}</td>`;
+    for (let j = 1; j <= 5; j++) {
+      const val = i * j;
+      const bg  = val <= 5 ? "#DCFCE7" : val <= 12 ? "#FEF3C7" : "#FEE2E2";
+      const fw  = val >= 15 ? "font-weight:700;" : "";
+      riskHTML += `<td style="background:${bg};${fw}">${val}</td>`;
+    }
+    riskHTML += "</tr>";
+  }
+  riskHTML += `</table>
+  <div style="margin-top:10px;display:flex;gap:12px;font-size:12px">
+    <span style="background:#DCFCE7;padding:3px 8px;border-radius:4px;color:#166534">≤5 Faible</span>
+    <span style="background:#FEF3C7;padding:3px 8px;border-radius:4px;color:#92400E">6–12 Modéré</span>
+    <span style="background:#FEE2E2;padding:3px 8px;border-radius:4px;color:#991B1B">&gt;12 Élevé</span>
   </div>`;
- });
- document.getElementById("data-list").innerHTML=html;
-}
+  document.getElementById("risk-zone").innerHTML = riskHTML;
 
-// ✅ CALCUL GLOBAL
-  let titles = getTitlesBySector(secteur);
-function compute(){
-  let secteur = document.getElementById("secteur").value;
-  
-  document.getElementById("title-kpi").innerText = titles.kpi;
-document.getElementById("title-chart").innerText = titles.chart;
-document.getElementById("title-gauge").innerText = titles.gauge;
-<h3 id="title-table">Analyse détaillée des écarts</h3>.innerText = titles.table;
-
- renderDataInputs();
-
- let kpi="", table="", diag="", total=0;
-
- data.forEach(d=>{
-  let p=(d.r/d.o)*100;
-  total+=p;
-
-  let color=p>=100?"green":p>=80?"orange":"red";
-
-  // KPI
-  kpi+=`
-  <div class="kpi-card">
-    ${d.n}
-    <h2>${d.r}</h2>
-    ${p.toFixed(1)}%
-    <div class="bar">
-      <div class="fill" style="width:${p}%;background:${color}"></div>
+  // ── SWOT dynamique selon score ──────────────────────────────────────
+  const isGood = score >= 100, isMed = score >= 90;
+  document.getElementById("swot-zone").innerHTML = `
+  <div class="swot">
+    <div class="f">
+      <h4>💪 Forces</h4>
+      ${isGood ? "✔ Performance globale solide<br>" : ""}
+      ✔ ${data.find(d=>(d.r/d.o)>=1) ? data.find(d=>(d.r/d.o)>=1).n+" : objectif dépassé" : "Données disponibles"}<br>
+      ✔ Pilotage par indicateurs en place
+    </div>
+    <div class="w">
+      <h4>⚠️ Faiblesses</h4>
+      ${!isMed ? "⚠ Performance globale insuffisante<br>" : ""}
+      ⚠ ${data.find(d=>(d.r/d.o)<0.9) ? data.find(d=>(d.r/d.o)<0.9).n+" en dessous de l'objectif" : "Surveiller les indicateurs proches du seuil"}<br>
+      ⚠ Processus à optimiser
+    </div>
+    <div class="o">
+      <h4>🌱 Opportunités</h4>
+      ▶ Secteur : ${secteur}<br>
+      ▶ Croissance et développement possible<br>
+      ▶ Digitalisation des outils de pilotage
+    </div>
+    <div class="t">
+      <h4>⚡ Menaces</h4>
+      ▼ Concurrence accrue<br>
+      ▼ Contraintes réglementaires<br>
+      ▼ Volatilité du marché
     </div>
   </div>`;
-
-  // TABLE
-  table+=`<tr>
-    <td>${d.n}</td>
-    <td>${d.o}</td>
-    <td>${d.r}</td>
-    <td>${p.toFixed(1)}%</td>
-  </tr>`;
-
-  // IA INDIVIDUELLE
-  if(p>=100)
-    diag +=`<div class="diag good">✅ ${d.n} excellent (${p.toFixed(0)}%)</div>`;
-  else if(p>=90)
-    diag +=`<div class="diag warn">⚠ ${d.n} à améliorer (${p.toFixed(0)}%)</div>`;
-  else
-    diag +=`<div class="diag bad">❌ ${d.n} critique (${p.toFixed(0)}%)</div>`;
-
-  // ALERTES
-  if(p<70)
-    diag +=`<div class="diag bad">🚨 ALERTE ${d.n}</div>`;
- });
-
- let score=total/data.length;
-
- document.getElementById("score").innerText=score.toFixed(1)+"%";
- document.getElementById("kpi").innerHTML=kpi;
- document.getElementById("table").innerHTML=table;
-
- // ✅ IA GLOBALE
- if(score>=100)
-  diag +=`<div class="diag good">🏆 Performance excellente</div>`;
- else if(score>=90)
-  diag +=`<div class="diag warn">📊 Performance satisfaisante</div>`;
- else
-  diag +=`<div class="diag bad">🚨 Plan d’action urgent</div>`;
-  
-diag += `
-<div class="diag warn">
-🌐 Secteur sélectionné : ${secteur}
-</div>`;
-  document.getElementById("diag").innerHTML=diag;
-
- // ✅ JAUGE
- if(chartInstance) chartInstance.destroy();
-chartInstance = new Chart(...);
-
- // ✅ GRAPH + FORECAST
- new Chart(document.getElementById("chart"), {
-  type:"line",
-  data:{
-   labels:data.map(d=>d.n),
-   datasets:[
-    {label:"Réel",data:data.map(d=>d.r)},
-    {label:"Prévision",data:data.map(d=>d.r*1.1),borderDash:[5,5]}
-   ]
-  }
- });
-
- // ✅ RADAR
- if(chartInstance) chartInstance.destroy();
-chartInstance = new Chart (document.getElementById("radar"), {
-  type:"radar",
-  data:{
-   labels:data.map(d=>d.n),
-   datasets:[{data:data.map(d=>(d.r/d.o)*100)}]
-  }
- });
-
- // ✅ RISK
- let riskHTML="<table>";
- for(let i=5;i>=1;i--){
-  riskHTML +="<tr>";
-  for(let j=1;j<=5;j++){
-   let val=i*j;
-   let color=val<6?"#DCFCE7":val<12?"#FEF3C7":"#FEE2E2";
-   riskHTML +=`<td style="background:${color}">${val}</td>`;
-  }
-  riskHTML +="</tr>";
- }
- riskHTML +="</table>";
- document.getElementById("risk").innerHTML=riskHTML;
-
- // ✅ SWOT
- document.getElementById("swot").innerHTML=`
- <div class="swot">
- <div class="f">Forces ✔ performance globale correcte</div>
- <div class="w">Faiblesses ⚠ productivité</div>
- <div class="o">Opportunités 📈 croissance marché</div>
- <div class="t">Menaces ⚡ concurrence</div>
- </div>`;
 }
 
-window.onload=compute;
+// ── CORRECTION 9 : appel unique au chargement ─────────────────────────
+window.addEventListener("DOMContentLoaded", compute);
 
 </script>
-<footer style="background:#1B2A4A;color:#94A3B8;text-align:center;padding:20px;margin-top:30px">
-  <h3 style="color:#C8922A">NBProf®</h3>
-  <p>Plateforme de Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
-  <p>🌐 www.nbprof.com</p>
-</footer>
 </body>
 </html>
