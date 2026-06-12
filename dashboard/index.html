@@ -3,158 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NBProf Dashboard SaaS</title>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<title>NBProf Dashboard SaaS v2</title>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<!-- SheetJS — lecture Excel -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- PDF.js — lecture PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- jsPDF + AutoTable — export PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<!-- html2canvas — capture graphiques -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
-  :root {
-    --navy: #1B2A4A;
-    --gold: #C8922A;
-    --teal: #0D7377;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: Arial, sans-serif; background: #EEF2F7; }
+:root {
+  --navy:#1B2A4A; --gold:#C8922A; --teal:#0D7377;
+  --green:#16A34A; --red:#DC2626; --orange:#EA580C;
+  --light:#EEF2F7; --white:#FFFFFF; --border:#E2E8F0;
+  --muted:#64748B; --text:#1E293B;
+}
+*{ box-sizing:border-box; margin:0; padding:0; }
+body{ font-family:Arial,sans-serif; background:var(--light); color:var(--text); }
 
-  /* ── HEADER ── */
-  header {
-    background: var(--navy);
-    color: var(--gold);
-    padding: 20px 28px;
-    border-bottom: 3px solid var(--gold);
-  }
-  header h1 { font-size: 22px; }
-  header p  { color: #94A3B8; margin-top: 4px; font-size: 13px; }
-  header h2 { color: white; margin-top: 8px; font-size: 15px; font-weight: 400; }
+/* ── HEADER ── */
+header{
+  background:var(--navy); padding:18px 28px;
+  border-bottom:3px solid var(--gold);
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+}
+.hdr-brand h1{ color:var(--gold); font-size:20px; }
+.hdr-brand p { color:#94A3B8; font-size:12px; margin-top:3px; }
+.hdr-actions{ display:flex; gap:8px; flex-wrap:wrap; }
 
-  /* ── LAYOUT ── */
-  .container { padding: 20px 24px; max-width: 1200px; margin: 0 auto; }
+/* ── BUTTONS ── */
+.btn{
+  padding:8px 16px; border:none; border-radius:8px; font-size:13px;
+  font-weight:600; cursor:pointer; transition:.15s; display:inline-flex;
+  align-items:center; gap:6px; white-space:nowrap;
+}
+.btn:hover{ opacity:.85; transform:translateY(-1px); }
+.btn-navy  { background:var(--navy);   color:#fff; }
+.btn-teal  { background:var(--teal);   color:#fff; }
+.btn-gold  { background:var(--gold);   color:#fff; }
+.btn-green { background:var(--green);  color:#fff; }
+.btn-red   { background:var(--red);    color:#fff; }
+.btn-slate { background:#64748B;       color:#fff; }
+.btn-print { background:#7C3AED;       color:#fff; }
+.btn-sm    { padding:6px 12px; font-size:12px; }
 
-  /* ── CARDS ── */
-  .card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    border-left: 4px solid var(--gold);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-  }
-  h3 { color: var(--navy); margin-bottom: 12px; font-size: 15px; }
+/* ── CONTAINER ── */
+.container{ padding:20px 24px; max-width:1200px; margin:0 auto; }
 
-  /* ── SAISIE ── */
-  .saisie-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr auto auto;
-    gap: 10px;
-    align-items: end;
-    flex-wrap: wrap;
-  }
-  .saisie-grid label { font-size: 12px; color: #64748B; display: block; margin-bottom: 4px; }
-  .saisie-grid input, .saisie-grid select {
-    width: 100%; padding: 8px 10px;
-    border: 1px solid #CBD5E1; border-radius: 8px;
-    font-size: 13px; color: var(--navy);
-  }
-  select { width: 100%; padding: 8px 10px; border: 1px solid #CBD5E1; border-radius: 8px; font-size: 13px; }
-  .btn {
-    padding: 9px 16px; border: none; border-radius: 8px;
-    font-size: 13px; font-weight: 600; cursor: pointer; transition: .15s; white-space: nowrap;
-  }
-  .btn-add     { background: var(--teal);  color: white; }
-  .btn-compute { background: var(--navy);  color: white; }
-  .btn-reset   { background: #94A3B8;      color: white; }
-  .btn:hover { opacity: .85; }
+/* ── CARD ── */
+.card{
+  background:var(--white); padding:20px; border-radius:12px;
+  margin-bottom:20px; border-left:4px solid var(--gold);
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+.card-title{ color:var(--navy); font-size:15px; font-weight:700; margin-bottom:14px; }
 
-  /* ── DATA LIST ── */
-  .data-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 0; border-bottom: 1px solid #F1F5F9; flex-wrap: wrap;
-  }
-  .data-row b   { width: 140px; font-size: 13px; color: var(--navy); }
-  .data-row input {
-    width: 90px; padding: 5px 8px; border: 1px solid #CBD5E1;
-    border-radius: 6px; font-size: 13px;
-  }
-  .data-row label { font-size: 12px; color: #64748B; }
-  .btn-del { background: #FEE2E2; color: #DC2626; border: none; border-radius: 6px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+/* ── IMPORT ZONE ── */
+.import-grid{
+  display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;
+}
+.drop-zone{
+  border:2px dashed var(--border); border-radius:10px; padding:20px;
+  text-align:center; cursor:pointer; transition:.2s; background:#F8FAFC;
+  position:relative;
+}
+.drop-zone:hover, .drop-zone.dragover{ border-color:var(--teal); background:#F0FDFA; }
+.drop-zone input[type=file]{ position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+.drop-icon{ font-size:28px; margin-bottom:6px; }
+.drop-label{ font-size:13px; font-weight:600; color:var(--navy); }
+.drop-sub  { font-size:11px; color:var(--muted); margin-top:3px; }
+.import-status{
+  font-size:12px; padding:6px 10px; border-radius:6px;
+  margin-top:8px; display:none;
+}
+.status-ok  { background:#DCFCE7; color:#166534; display:block; }
+.status-err { background:#FEE2E2; color:#991B1B; display:block; }
+.status-info{ background:#EFF6FF; color:#1E40AF; display:block; }
 
-  /* ── KPI GRID ── */
-  .kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px;
-  }
-  .kpi-card {
-    padding: 16px; border-radius: 10px; background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    border-top: 3px solid var(--teal);
-  }
-  .kpi-label { font-size: 12px; color: #64748B; text-transform: uppercase; letter-spacing: .05em; }
-  .kpi-val   { font-size: 28px; font-weight: 700; color: var(--navy); margin: 6px 0 4px; }
-  .kpi-pct   { font-size: 13px; font-weight: 600; margin-bottom: 8px; }
-  .bar  { height: 6px; background: #E2E8F0; border-radius: 5px; overflow: hidden; }
-  .fill { height: 100%; border-radius: 5px; transition: width .6s ease; }
+/* ── SAISIE GRID ── */
+.saisie-row{
+  display:grid; grid-template-columns:2fr 1fr 1fr auto auto;
+  gap:10px; align-items:end;
+}
+.inp-group label{ font-size:11px; color:var(--muted); display:block; margin-bottom:3px; }
+.inp-group input, .inp-group select{
+  width:100%; padding:8px 10px; border:1px solid var(--border);
+  border-radius:8px; font-size:13px; color:var(--text); background:#F8FAFC;
+}
+.inp-group input:focus, select:focus{
+  outline:none; border-color:var(--teal); background:#fff;
+}
 
-  /* ── SCORE ── */
-  #score { font-size: 48px; font-weight: 700; color: var(--navy); text-align: center; margin: 10px 0; }
+/* ── DATA LIST ── */
+.data-row{
+  display:flex; align-items:center; gap:10px;
+  padding:7px 0; border-bottom:1px solid #F1F5F9; flex-wrap:wrap;
+}
+.data-row b{ width:140px; font-size:13px; color:var(--navy); }
+.data-row input{
+  width:90px; padding:5px 8px; border:1px solid var(--border);
+  border-radius:6px; font-size:13px;
+}
+.data-row label{ font-size:11px; color:var(--muted); }
+.btn-del{
+  background:#FEE2E2; color:var(--red); border:none;
+  border-radius:6px; padding:4px 10px; cursor:pointer; font-size:12px;
+}
 
-  /* ── TABLE ── */
-  table   { width: 100%; border-collapse: collapse; font-size: 13px; }
-  th      { background: var(--navy); color: white; padding: 9px 10px; text-align: center; font-size: 12px; }
-  td      { border: 1px solid #E2E8F0; padding: 8px 10px; text-align: center; }
-  tr:hover td { background: #F8FAFC; }
-  .pill   { padding: 2px 9px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-  .p-g    { background: #DCFCE7; color: #166534; }
-  .p-o    { background: #FEF3C7; color: #92400E; }
-  .p-r    { background: #FEE2E2; color: #991B1B; }
+/* ── KPI GRID ── */
+.kpi-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:12px; }
+.kpi-card{
+  padding:16px; border-radius:10px; background:var(--white);
+  box-shadow:0 2px 8px rgba(0,0,0,.07); border-top:3px solid var(--teal);
+}
+.kpi-lbl{ font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+.kpi-val{ font-size:26px; font-weight:700; color:var(--navy); margin:5px 0 3px; }
+.kpi-pct{ font-size:13px; font-weight:600; margin-bottom:7px; }
+.bar    { height:5px; background:var(--border); border-radius:3px; overflow:hidden; }
+.fill   { height:100%; border-radius:3px; transition:width .6s ease; }
 
-  /* ── DIAG ── */
-  .diag   { padding: 12px 14px; border-radius: 8px; margin: 7px 0; font-size: 13px; font-weight: 500; }
-  .good   { background: #DCFCE7; color: #166534; }
-  .warn   { background: #FEF3C7; color: #92400E; }
-  .bad    { background: #FEE2E2; color: #991B1B; }
+/* ── SCORE ── */
+#score{ font-size:46px; font-weight:700; text-align:center; margin:8px 0; }
+#score-lbl{ text-align:center; font-size:13px; color:var(--muted); margin-bottom:10px; }
 
-  /* ── SWOT ── */
-  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .swot div { padding: 12px; border-radius: 8px; font-size: 13px; line-height: 1.7; }
-  .f { background: #EFF6FF; color: #1E3A5F; border-left: 3px solid #3B82F6; }
-  .w { background: #FEF3C7; color: #7C3B00; border-left: 3px solid var(--gold); }
-  .o { background: #DCFCE7; color: #14532D; border-left: 3px solid #16A34A; }
-  .t { background: #FEE2E2; color: #881337; border-left: 3px solid #DC2626; }
-  .swot h4 { font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 6px; }
+/* ── TABLE ── */
+table{ width:100%; border-collapse:collapse; font-size:13px; }
+th{ background:var(--navy); color:#fff; padding:9px 10px; text-align:center; font-size:12px; }
+td{ border:1px solid var(--border); padding:8px 10px; text-align:center; }
+tr:hover td{ background:#F8FAFC; }
+.pill{ padding:2px 9px; border-radius:20px; font-size:11px; font-weight:600; }
+.p-g{ background:#DCFCE7; color:#166534; }
+.p-o{ background:#FEF3C7; color:#92400E; }
+.p-r{ background:#FEE2E2; color:#991B1B; }
 
-  /* ── GRID 2 ── */
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media(max-width: 768px) { .grid2 { grid-template-columns: 1fr; } .saisie-grid { grid-template-columns: 1fr 1fr; } }
+/* ── DIAG ── */
+.diag{ padding:11px 14px; border-radius:8px; margin:6px 0; font-size:13px; font-weight:500; }
+.good{ background:#DCFCE7; color:#166534; }
+.warn{ background:#FEF3C7; color:#92400E; }
+.bad { background:#FEE2E2; color:#991B1B; }
 
-  canvas { max-height: 260px !important; }
+/* ── SWOT ── */
+.swot{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.swot > div{ padding:12px; border-radius:8px; font-size:13px; line-height:1.7; }
+.sf{ background:#EFF6FF; color:#1E3A5F; border-left:3px solid #3B82F6; }
+.sw{ background:#FEF3C7; color:#7C3B00; border-left:3px solid var(--gold); }
+.so{ background:#DCFCE7; color:#14532D; border-left:3px solid var(--green); }
+.st{ background:#FEE2E2; color:#881337; border-left:3px solid var(--red); }
+.swot h4{ font-size:11px; font-weight:700; text-transform:uppercase; margin-bottom:5px; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy); color: #94A3B8;
-    text-align: center; padding: 20px; margin-top: 30px;
-    border-top: 3px solid var(--gold);
-  }
-  footer h3 { color: var(--gold); font-size: 18px; margin-bottom: 4px; }
-  footer a   { color: var(--gold); text-decoration: none; }
+/* ── GRID ── */
+.grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+canvas{ max-height:260px !important; }
+
+/* ── EXPORT BAR ── */
+.export-bar{
+  background:var(--white); border-radius:12px; padding:14px 20px;
+  margin-bottom:20px; border-left:4px solid #7C3AED;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+  display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+}
+.export-bar span{ font-size:13px; font-weight:600; color:var(--navy); margin-right:4px; }
+
+/* ── PROGRESS BAR ── */
+.prog-overlay{
+  position:fixed; inset:0; background:rgba(27,42,74,.7);
+  display:none; align-items:center; justify-content:center; z-index:999;
+}
+.prog-box{
+  background:#fff; border-radius:14px; padding:28px 36px;
+  text-align:center; min-width:300px;
+}
+.prog-title{ font-size:15px; font-weight:700; color:var(--navy); margin-bottom:14px; }
+.prog-track{ height:8px; background:var(--border); border-radius:4px; overflow:hidden; margin-bottom:10px; }
+.prog-fill2{ height:100%; background:var(--teal); border-radius:4px; transition:width .3s; }
+.prog-msg{ font-size:12px; color:var(--muted); }
+
+/* ── SECTION LABEL ── */
+.sec-lbl{
+  font-size:11px; font-weight:600; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); margin:0 0 10px;
+  display:flex; align-items:center; gap:8px;
+}
+.sec-lbl::after{ content:''; flex:1; height:1px; background:var(--border); }
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy); color:#94A3B8; text-align:center;
+  padding:20px; margin-top:30px; border-top:3px solid var(--gold);
+}
+footer h3{ color:var(--gold); font-size:18px; margin-bottom:4px; }
+footer a { color:var(--gold); text-decoration:none; }
+
+/* ── PRINT STYLES ── */
+@media print{
+  header .hdr-actions, .export-bar, .drop-zone, .saisie-row,
+  .btn-slate, .btn-del, #data-list, .btn-reset-wrap,
+  .import-grid, .prog-overlay{ display:none !important; }
+  .card{ break-inside:avoid; border-left:none; box-shadow:none; border:1px solid #ddd; }
+  body{ background:#fff; }
+  .grid2{ grid-template-columns:1fr 1fr; }
+}
+
+@media(max-width:768px){
+  .grid2,.import-grid{ grid-template-columns:1fr; }
+  .saisie-row{ grid-template-columns:1fr 1fr; }
+}
 </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══════════════════════════════════════════════════════════ -->
+<!-- ══ PROGRESS OVERLAY ════════════════════════════════════════════════ -->
+<div class="prog-overlay" id="prog-overlay">
+  <div class="prog-box">
+    <div class="prog-title" id="prog-title">Génération du PDF…</div>
+    <div class="prog-track"><div class="prog-fill2" id="prog-bar" style="width:0%"></div></div>
+    <div class="prog-msg"  id="prog-msg">Initialisation…</div>
+  </div>
+</div>
+
+<!-- ══ HEADER ════════════════════════════════════════════════════════════ -->
 <header>
-  <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
-  <p>Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
-  <h2>Tableau de bord de performance — saisie des données et visualisation automatique</h2>
+  <div class="hdr-brand">
+    <h1>🎯 NBProf Performance Intelligence Dashboard</h1>
+    <p>Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
+  </div>
+  <div class="hdr-actions">
+    <button class="btn btn-green" onclick="exportPDF()">⬇ Télécharger PDF</button>
+    <button class="btn btn-print" onclick="printDashboard()">🖨️ Imprimer</button>
+    <button class="btn btn-gold"  onclick="exportExcel()">📊 Export Excel</button>
+  </div>
 </header>
 
-<div class="container">
+<div class="container" id="dashboard-content">
 
-  <!-- ══ SAISIE ══════════════════════════════════════════════════════════ -->
+  <!-- ══ IMPORT ════════════════════════════════════════════════════════════ -->
+  <p class="sec-lbl">📥 Importation de données</p>
   <div class="card">
-    <h3>⚙️ Configuration & Saisie</h3>
+    <div class="card-title">⚙️ Importer un fichier Excel ou PDF</div>
+    <div class="import-grid">
+
+      <!-- Excel -->
+      <div>
+        <div class="drop-zone" id="drop-xl"
+          ondragover="ev.preventDefault();this.classList.add('dragover')"
+          ondragleave="this.classList.remove('dragover')"
+          ondrop="handleDrop(event,'xl')">
+          <input type="file" accept=".xlsx,.xls,.csv" onchange="handleFile(this.files[0],'xl')">
+          <div class="drop-icon">📊</div>
+          <div class="drop-label">Glisser ou cliquer pour importer</div>
+          <div class="drop-sub">Excel (.xlsx, .xls) ou CSV (.csv)</div>
+          <div class="drop-sub" style="margin-top:6px;color:#0D7377;font-weight:600">
+            Format attendu : colonne A = Indicateur, B = Objectif, C = Réalisé
+          </div>
+        </div>
+        <div class="import-status" id="status-xl"></div>
+      </div>
+
+      <!-- PDF -->
+      <div>
+        <div class="drop-zone" id="drop-pdf"
+          ondragover="ev.preventDefault();this.classList.add('dragover')"
+          ondragleave="this.classList.remove('dragover')"
+          ondrop="handleDrop(event,'pdf')">
+          <input type="file" accept=".pdf" onchange="handleFile(this.files[0],'pdf')">
+          <div class="drop-icon">📄</div>
+          <div class="drop-label">Glisser ou cliquer pour importer</div>
+          <div class="drop-sub">PDF contenant un tableau de données</div>
+          <div class="drop-sub" style="margin-top:6px;color:#0D7377;font-weight:600">
+            Le PDF sera analysé pour extraire Indicateur / Objectif / Réalisé
+          </div>
+        </div>
+        <div class="import-status" id="status-pdf"></div>
+      </div>
+    </div>
+
+    <!-- Modèle téléchargeable -->
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--muted)">Pas de fichier ? Télécharger le modèle :</span>
+      <button class="btn btn-teal btn-sm" onclick="downloadTemplate()">⬇ Modèle Excel vierge</button>
+    </div>
+  </div>
+
+  <!-- ══ SAISIE MANUELLE ═══════════════════════════════════════════════════ -->
+  <p class="sec-lbl">✏️ Saisie manuelle</p>
+  <div class="card">
+    <div class="card-title">⚙️ Configuration & Saisie</div>
+
     <!-- Secteur -->
-    <div style="margin-bottom:14px">
-      <label style="font-size:12px;color:#64748B;display:block;margin-bottom:4px">Secteur d'activité</label>
-      <select id="secteur" onchange="compute()" style="padding:8px 12px;border:1px solid #CBD5E1;border-radius:8px;font-size:13px;color:#1B2A4A;width:280px">
+    <div style="margin-bottom:14px" class="inp-group">
+      <label>Secteur d'activité</label>
+      <select id="secteur" onchange="compute()" style="width:280px">
         <option>Commerce / Ventes</option>
         <option>Banque / Finance</option>
         <option>Éducation</option>
@@ -162,55 +306,67 @@
         <option>Industrie</option>
       </select>
     </div>
-    <!-- Ajout indicateur -->
-    <div class="saisie-grid">
-      <div>
+
+    <!-- Ajout -->
+    <div class="saisie-row">
+      <div class="inp-group">
         <label>Nom de l'indicateur</label>
-        <input id="i-nom" placeholder="Ex: Chiffre d'affaires">
+        <input id="i-nom" placeholder="Ex : Chiffre d'affaires">
       </div>
-      <div>
+      <div class="inp-group">
         <label>Objectif</label>
-        <input id="i-obj" type="number" placeholder="Ex: 320">
+        <input id="i-obj" type="number" placeholder="Ex : 320">
       </div>
-      <div>
+      <div class="inp-group">
         <label>Réalisé</label>
-        <input id="i-real" type="number" placeholder="Ex: 308">
+        <input id="i-real" type="number" placeholder="Ex : 308">
       </div>
-      <div>
+      <div class="inp-group">
         <label>&nbsp;</label>
-        <button class="btn btn-add" onclick="addRow()">+ Ajouter</button>
+        <button class="btn btn-teal" onclick="addRow()">+ Ajouter</button>
       </div>
-      <div>
+      <div class="inp-group">
         <label>&nbsp;</label>
-        <button class="btn btn-compute" onclick="compute()">⚡ Générer</button>
+        <button class="btn btn-navy" onclick="compute()">⚡ Générer</button>
       </div>
     </div>
   </div>
 
   <!-- ══ DONNÉES MODIFIABLES ══════════════════════════════════════════════ -->
   <div class="card">
-    <h3>📋 Données modifiables</h3>
+    <div class="card-title">📋 Données modifiables</div>
     <div id="data-list"></div>
-    <button class="btn btn-reset" style="margin-top:10px" onclick="resetData()">↺ Réinitialiser les données</button>
+    <div class="btn-reset-wrap" style="margin-top:10px">
+      <button class="btn btn-slate btn-sm" onclick="resetData()">↺ Réinitialiser</button>
+    </div>
   </div>
 
-  <!-- ══ KPI CARDS ══════════════════════════════════════════════════════════ -->
-  <div class="card">
-    <h3 id="title-kpi">📊 Indicateurs clés de performance</h3>
+  <!-- ══ EXPORT BAR ════════════════════════════════════════════════════════ -->
+  <div class="export-bar">
+    <span>📤 Exporter l'analyse :</span>
+    <button class="btn btn-green btn-sm" onclick="exportPDF()">⬇ PDF complet</button>
+    <button class="btn btn-print btn-sm" onclick="printDashboard()">🖨️ Imprimer</button>
+    <button class="btn btn-gold  btn-sm" onclick="exportExcel()">📊 Excel</button>
+    <button class="btn btn-teal  btn-sm" onclick="exportCSV()">📋 CSV</button>
+  </div>
+
+  <!-- ══ KPI ═══════════════════════════════════════════════════════════════ -->
+  <div class="card" id="section-kpi">
+    <div class="card-title" id="title-kpi">📊 Indicateurs clés de performance</div>
     <div class="kpi-grid" id="kpi-zone"></div>
   </div>
 
-  <!-- ══ SCORE + JAUGE ══════════════════════════════════════════════════════ -->
-  <div class="card">
-    <h3 id="title-gauge">🎯 Score global de performance</h3>
+  <!-- ══ SCORE ═════════════════════════════════════════════════════════════ -->
+  <div class="card" id="section-score">
+    <div class="card-title" id="title-gauge">🎯 Score global de performance</div>
     <div id="score">—</div>
-    <div id="score-lbl" style="text-align:center;font-size:14px;color:#64748B;margin-bottom:12px"></div>
+    <div id="score-lbl"></div>
     <canvas id="gauge"></canvas>
   </div>
 
-  <!-- ══ TABLEAU ANALYSE ══════════════════════════════════════════════════ -->
-  <div class="card">
-    <h3 id="title-table">🔍 Analyse détaillée des écarts</h3>
+  <!-- ══ TABLE ═════════════════════════════════════════════════════════════ -->
+  <div class="card" id="section-table">
+    <div class="card-title" id="title-table">🔍 Analyse détaillée des écarts</div>
     <div style="overflow-x:auto">
       <table>
         <thead>
@@ -224,365 +380,606 @@
     </div>
   </div>
 
-  <!-- ══ GRAPHIQUES ══════════════════════════════════════════════════════ -->
-  <div class="grid2">
+  <!-- ══ CHARTS ════════════════════════════════════════════════════════════ -->
+  <div class="grid2" id="section-charts">
     <div class="card">
-      <h3 id="title-chart">📈 Taux de réalisation & Prévisions</h3>
+      <div class="card-title" id="title-chart">📈 Comparaison Objectif / Réalisé</div>
       <canvas id="chart"></canvas>
     </div>
     <div class="card">
-      <h3>🕸️ Radar de performance</h3>
+      <div class="card-title">🕸️ Radar de performance</div>
       <canvas id="radar"></canvas>
     </div>
   </div>
 
-  <!-- ══ RISK + SWOT ══════════════════════════════════════════════════════ -->
-  <div class="grid2">
+  <!-- ══ RISK + SWOT ═══════════════════════════════════════════════════════ -->
+  <div class="grid2" id="section-riskswot">
     <div class="card">
-      <h3>⚠️ Matrice des risques</h3>
+      <div class="card-title">⚠️ Matrice des risques</div>
       <div id="risk-zone"></div>
     </div>
     <div class="card">
-      <h3>🔲 Analyse SWOT</h3>
+      <div class="card-title">🔲 Analyse SWOT</div>
       <div id="swot-zone"></div>
     </div>
   </div>
 
-  <!-- ══ DIAGNOSTIC ══════════════════════════════════════════════════════ -->
-  <div class="card">
-    <h3>🤖 Recommandations automatiques</h3>
+  <!-- ══ DIAGNOSTIC ════════════════════════════════════════════════════════ -->
+  <div class="card" id="section-diag">
+    <div class="card-title">🤖 Recommandations automatiques</div>
     <div id="diag-zone"></div>
   </div>
 
 </div><!-- /container -->
 
-<!-- ══ FOOTER ══════════════════════════════════════════════════════════ -->
+<!-- ══ FOOTER ════════════════════════════════════════════════════════════ -->
 <footer>
   <h3>NBProf®</h3>
   <p>Plateforme de Management • Audit • Contrôle de Gestion • Performance Organisationnelle</p>
-  <p style="margin-top:6px">🌐 <a href="https://www.nbprof.com" target="_blank">www.nbprof.com</a></p>
+  <p style="margin-top:5px">🌐 <a href="https://www.nbprof.com" target="_blank">www.nbprof.com</a></p>
 </footer>
 
-<!-- ══════════════════════════════ SCRIPT ══════════════════════════════ -->
+<!-- ══════════════════════════════ SCRIPT ═══════════════════════════════ -->
 <script>
+// ── PDF.js worker ────────────────────────────────────────────────────────
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-// ── CORRECTION 1 : instances de Chart séparées ───────────────────────────
-let chartInst = null;
-let radarInst = null;
-let gaugeInst = null;
+// ── Chart instances ──────────────────────────────────────────────────────
+let chartInst=null, radarInst=null, gaugeInst=null;
 
-// ── CORRECTION 2 : données initiales correctement déclarées ─────────────
+// ── Data ─────────────────────────────────────────────────────────────────
 let data = [
-  { n: "CA (MDH)",      o: 320,  r: 308  },
-  { n: "Satisfaction",  o: 80,   r: 78   },
-  { n: "Productivité",  o: 100,  r: 84   },
-  { n: "Clients",       o: 4500, r: 4820 }
+  { n:"CA (MDH)",     o:320,  r:308  },
+  { n:"Satisfaction", o:80,   r:78   },
+  { n:"Productivité", o:100,  r:84   },
+  { n:"Clients",      o:4500, r:4820 }
 ];
 
-// ── CORRECTION 3 : getTitlesBySector déplacée au niveau global ──────────
-function getTitlesBySector(secteur) {
-  if (secteur.includes("Banque")) return {
-    kpi:   "Indicateurs de performance financière",
-    chart: "Taux de réalisation des objectifs financiers",
-    gauge: "Score global (Risque & Rentabilité)",
-    table: "Analyse détaillée des écarts financiers"
-  };
-  if (secteur.includes("Santé")) return {
-    kpi:   "Indicateurs de performance médicale",
-    chart: "Taux de réalisation des soins et services",
-    gauge: "Score global (Qualité de service)",
-    table: "Analyse détaillée des écarts médicaux"
-  };
-  if (secteur.includes("Éducation")) return {
-    kpi:   "Indicateurs de performance pédagogique",
-    chart: "Taux de réalisation des objectifs éducatifs",
-    gauge: "Score global (Résultats académiques)",
-    table: "Analyse détaillée des écarts pédagogiques"
-  };
-  if (secteur.includes("Industrie")) return {
-    kpi:   "Indicateurs de performance industrielle",
-    chart: "Taux de réalisation de la production",
-    gauge: "Score global (Production & Qualité)",
-    table: "Analyse détaillée des écarts industriels"
-  };
-  return {
-    kpi:   "Indicateurs clés de performance",
-    chart: "Taux de réalisation par indicateur",
-    gauge: "Score global de performance",
-    table: "Analyse détaillée des écarts"
-  };
+// ═════════════════════════════════════════════════════════════════════════
+// IMPORT EXCEL / CSV
+// ═════════════════════════════════════════════════════════════════════════
+function handleDrop(ev, type) {
+  ev.preventDefault();
+  document.getElementById('drop-'+type).classList.remove('dragover');
+  const file = ev.dataTransfer.files[0];
+  if (file) handleFile(file, type);
 }
 
-// ── CORRECTION 4 : fonction add() propre, sans imbrication ──────────────
-function addRow() {
-  const n = document.getElementById("i-nom").value.trim();
-  const o = parseFloat(document.getElementById("i-obj").value);
-  const r = parseFloat(document.getElementById("i-real").value);
-  if (!n || isNaN(o) || isNaN(r)) {
-    alert("Veuillez remplir les 3 champs : nom, objectif et réalisé.");
-    return;
+function handleFile(file, type) {
+  if (!file) return;
+  if (type === 'xl') readExcel(file);
+  else               readPDF(file);
+}
+
+function setStatus(id, msg, cls) {
+  const el = document.getElementById('status-'+id);
+  el.className = 'import-status ' + cls;
+  el.textContent = msg;
+}
+
+// ── READ EXCEL / CSV ─────────────────────────────────────────────────────
+function readExcel(file) {
+  setStatus('xl','⏳ Lecture en cours…','status-info');
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const wb  = XLSX.read(e.target.result, { type:'binary' });
+      const ws  = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, { header:1 });
+      const imported = [];
+      // Skip header row if text
+      rows.forEach((row, i) => {
+        if (i === 0 && isNaN(parseFloat(row[1]))) return; // header
+        const n = String(row[0]||'').trim();
+        const o = parseFloat(row[1]);
+        const r = parseFloat(row[2]);
+        if (n && !isNaN(o) && !isNaN(r)) imported.push({ n, o, r });
+      });
+      if (!imported.length) {
+        setStatus('xl','❌ Aucune donnée valide trouvée. Vérifiez le format (A=Indicateur, B=Objectif, C=Réalisé).','status-err');
+        return;
+      }
+      data = imported;
+      setStatus('xl', `✅ ${imported.length} indicateur(s) importé(s) depuis "${file.name}"`, 'status-ok');
+      compute();
+    } catch(err) {
+      setStatus('xl','❌ Erreur de lecture : '+err.message,'status-err');
+    }
+  };
+  reader.readAsBinaryString(file);
+}
+
+// ── READ PDF ─────────────────────────────────────────────────────────────
+async function readPDF(file) {
+  setStatus('pdf','⏳ Extraction du texte PDF…','status-info');
+  try {
+    const arrayBuffer = await file.arrayBuffer();
+    const pdf  = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    let fullText = '';
+    for (let p = 1; p <= pdf.numPages; p++) {
+      const page    = await pdf.getPage(p);
+      const content = await page.getTextContent();
+      fullText += content.items.map(i => i.str).join(' ') + '\n';
+    }
+    const imported = parsePDFText(fullText);
+    if (!imported.length) {
+      setStatus('pdf','⚠️ Aucun tableau détecté. Le PDF sera affiché ci-dessous pour vérification. Saisissez manuellement si besoin.','status-err');
+      return;
+    }
+    data = imported;
+    setStatus('pdf', `✅ ${imported.length} indicateur(s) extrait(s) depuis "${file.name}"`, 'status-ok');
+    compute();
+  } catch(err) {
+    setStatus('pdf','❌ Erreur PDF : '+err.message,'status-err');
   }
-  data.push({ n, o, r });
-  document.getElementById("i-nom").value  = "";
-  document.getElementById("i-obj").value  = "";
-  document.getElementById("i-real").value = "";
+}
+
+// ── PARSE PDF TEXT ───────────────────────────────────────────────────────
+// Tries to find patterns: "Label  [number]  [number]"
+function parsePDFText(text) {
+  const results = [];
+  // Strategy 1: lines with 2 numbers
+  const lines = text.split(/[\n\r]+/);
+  lines.forEach(line => {
+    const nums = line.match(/[\d\s.,]+/g);
+    if (!nums || nums.length < 2) return;
+    const clean = line.replace(/[\d.,]/g,'').trim().replace(/\s+/g,' ');
+    const n  = clean.split(/\s{2,}/)[0].trim();
+    const ns = [...line.matchAll(/[\d]+(?:[.,][\d]+)?/g)].map(m=>parseFloat(m[0].replace(',','.')));
+    if (n.length>1 && ns.length>=2) results.push({ n, o:ns[0], r:ns[1] });
+  });
+  return results;
+}
+
+// ── DOWNLOAD TEMPLATE ────────────────────────────────────────────────────
+function downloadTemplate() {
+  const wb = XLSX.utils.book_new();
+  const rows = [
+    ['Indicateur','Objectif','Réalisé'],
+    ['Chiffre d\'affaires (MDH)','320','308'],
+    ['Satisfaction client (%)','80','78'],
+    ['Productivité (%)','100','84'],
+    ['Nouveaux clients','4500','4820'],
+  ];
+  const ws = XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols'] = [{wch:30},{wch:14},{wch:14}];
+  // Style header
+  ['A1','B1','C1'].forEach(c => {
+    if (!ws[c]) return;
+    ws[c].s = { fill:{ fgColor:{ rgb:"1B2A4A" } }, font:{ color:{ rgb:"C8922A" }, bold:true } };
+  });
+  XLSX.utils.book_append_sheet(wb, ws, 'Données');
+  XLSX.writeFile(wb, 'NBProf_Modele_Import.xlsx');
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// CORE — COMPUTE
+// ═════════════════════════════════════════════════════════════════════════
+function getTitlesBySector(s) {
+  if (s.includes('Banque'))    return { kpi:'Indicateurs financiers', chart:'Objectifs financiers', gauge:'Score (Risque & Rentabilité)', table:'Écarts financiers' };
+  if (s.includes('Santé'))     return { kpi:'Indicateurs médicaux',   chart:'Soins et services',    gauge:'Score (Qualité de service)',  table:'Écarts médicaux' };
+  if (s.includes('Éducation')) return { kpi:'Indicateurs pédagogiques',chart:'Objectifs éducatifs', gauge:'Score académique',            table:'Écarts pédagogiques' };
+  if (s.includes('Industrie')) return { kpi:'Indicateurs industriels', chart:'Production & Qualité', gauge:'Score industriel',           table:'Écarts industriels' };
+  return { kpi:'Indicateurs clés', chart:'Objectifs vs Réalisé', gauge:'Score global', table:'Analyse des écarts' };
+}
+
+function addRow() {
+  const n = document.getElementById('i-nom').value.trim();
+  const o = parseFloat(document.getElementById('i-obj').value);
+  const r = parseFloat(document.getElementById('i-real').value);
+  if (!n||isNaN(o)||isNaN(r)) { alert('Remplissez les 3 champs : nom, objectif, réalisé.'); return; }
+  data.push({n,o,r});
+  document.getElementById('i-nom').value='';
+  document.getElementById('i-obj').value='';
+  document.getElementById('i-real').value='';
   compute();
 }
 
 function resetData() {
-  data = [
-    { n: "CA (MDH)",     o: 320,  r: 308  },
-    { n: "Satisfaction", o: 80,   r: 78   },
-    { n: "Productivité", o: 100,  r: 84   },
-    { n: "Clients",      o: 4500, r: 4820 }
-  ];
+  data=[{n:'CA (MDH)',o:320,r:308},{n:'Satisfaction',o:80,r:78},{n:'Productivité',o:100,r:84},{n:'Clients',o:4500,r:4820}];
   compute();
 }
 
-// ── renderDataInputs ──────────────────────────────────────────────────────
 function renderDataInputs() {
-  let html = "";
-  data.forEach((d, i) => {
-    html += `
+  document.getElementById('data-list').innerHTML = data.map((d,i)=>`
     <div class="data-row">
       <b>${d.n}</b>
       <label>Objectif</label>
-      <input type="number" value="${d.o}"
-        onchange="data[${i}].o = parseFloat(this.value)||0; compute()">
+      <input type="number" value="${d.o}" onchange="data[${i}].o=parseFloat(this.value)||0;compute()">
       <label>Réalisé</label>
-      <input type="number" value="${d.r}"
-        onchange="data[${i}].r = parseFloat(this.value)||0; compute()">
-      <button class="btn-del" onclick="data.splice(${i},1); compute()">✕</button>
-    </div>`;
-  });
-  document.getElementById("data-list").innerHTML = html;
+      <input type="number" value="${d.r}" onchange="data[${i}].r=parseFloat(this.value)||0;compute()">
+      <button class="btn-del" onclick="data.splice(${i},1);compute()">✕</button>
+    </div>`).join('');
 }
 
-// ── CORRECTION 5 : compute() sans erreurs de syntaxe ────────────────────
 function compute() {
-  const secteur = document.getElementById("secteur").value;
-  const titles  = getTitlesBySector(secteur);
-
-  // Mise à jour des titres
-  document.getElementById("title-kpi").innerText   = "📊 " + titles.kpi;
-  document.getElementById("title-chart").innerText = "📈 " + titles.chart;
-  document.getElementById("title-gauge").innerText = "🎯 " + titles.gauge;
-  document.getElementById("title-table").innerText = "🔍 " + titles.table;
+  const secteur = document.getElementById('secteur').value;
+  const T = getTitlesBySector(secteur);
+  document.getElementById('title-kpi').textContent   = '📊 ' + T.kpi;
+  document.getElementById('title-chart').textContent = '📈 ' + T.chart;
+  document.getElementById('title-gauge').textContent = '🎯 ' + T.gauge;
+  document.getElementById('title-table').textContent = '🔍 ' + T.table;
 
   renderDataInputs();
 
-  let kpiHTML = "", tableHTML = "", diagHTML = "", total = 0;
+  let kpiHTML='', tableHTML='', diagHTML='', total=0;
 
   data.forEach(d => {
-    d.o = parseFloat(d.o) || 0;
-    d.r = parseFloat(d.r) || 0;
-    const p = d.o !== 0 ? (d.r / d.o) * 100 : 0;
+    d.o = parseFloat(d.o)||0;
+    d.r = parseFloat(d.r)||0;
+    const p     = d.o ? (d.r/d.o)*100 : 0;
     total += p;
+    const color   = p>=100?'#16A34A':p>=80?'#EA580C':'#DC2626';
+    const pillCls = p>=100?'p-g':p>=80?'p-o':'p-r';
+    const statTxt = p>=100?'✅ Dépassé':p>=90?'⚠️ Proche':'❌ Écart';
+    const ecart   = d.r - d.o;
 
-    const color     = p >= 100 ? "#16A34A" : p >= 80 ? "#EA580C" : "#DC2626";
-    const pillCls   = p >= 100 ? "p-g"     : p >= 80 ? "p-o"     : "p-r";
-    const statusTxt = p >= 100 ? "✅ Dépassé" : p >= 90 ? "⚠️ Proche" : "❌ Écart";
-    const ecart     = d.r - d.o;
-
-    // ── KPI card
-    kpiHTML += `
-    <div class="kpi-card">
-      <div class="kpi-label">${d.n}</div>
-      <div class="kpi-val">${Number(d.r).toLocaleString("fr-FR")}</div>
+    kpiHTML += `<div class="kpi-card">
+      <div class="kpi-lbl">${d.n}</div>
+      <div class="kpi-val">${Number(d.r).toLocaleString('fr-FR')}</div>
       <div class="kpi-pct" style="color:${color}">${p.toFixed(1)} %</div>
-      <div class="bar">
-        <div class="fill" style="width:${Math.min(p,100)}%;background:${color}"></div>
-      </div>
+      <div class="bar"><div class="fill" style="width:${Math.min(p,100)}%;background:${color}"></div></div>
     </div>`;
 
-    // ── Table row
-    tableHTML += `
-    <tr>
+    tableHTML += `<tr>
       <td><b>${d.n}</b></td>
-      <td>${Number(d.o).toLocaleString("fr-FR")}</td>
-      <td><b>${Number(d.r).toLocaleString("fr-FR")}</b></td>
-      <td style="color:${ecart>=0?"#16A34A":"#DC2626"};font-weight:600">
-        ${ecart >= 0 ? "+" : ""}${Number(ecart).toLocaleString("fr-FR")}
-      </td>
+      <td>${Number(d.o).toLocaleString('fr-FR')}</td>
+      <td><b>${Number(d.r).toLocaleString('fr-FR')}</b></td>
+      <td style="color:${ecart>=0?'#16A34A':'#DC2626'};font-weight:600">${ecart>=0?'+':''}${Number(ecart).toLocaleString('fr-FR')}</td>
       <td><b>${p.toFixed(1)} %</b></td>
-      <td><span class="pill ${pillCls}">${statusTxt}</span></td>
+      <td><span class="pill ${pillCls}">${statTxt}</span></td>
     </tr>`;
 
-    // ── Diagnostic individuel
-    if      (p >= 100) diagHTML += `<div class="diag good">✅ <b>${d.n}</b> : Excellent — objectif dépassé (${p.toFixed(0)}%). Maintenir la stratégie en place.</div>`;
-    else if (p >= 90)  diagHTML += `<div class="diag warn">⚠️ <b>${d.n}</b> : Proche de l'objectif (${p.toFixed(0)}%). Un léger ajustement suffit.</div>`;
-    else               diagHTML += `<div class="diag bad">❌ <b>${d.n}</b> : Écart significatif (${p.toFixed(0)}%). Plan d'action correctif requis.</div>`;
-    if (p < 70)        diagHTML += `<div class="diag bad">🚨 ALERTE CRITIQUE — <b>${d.n}</b> en dessous de 70%.</div>`;
+    if      (p>=100) diagHTML+=`<div class="diag good">✅ <b>${d.n}</b> : Objectif dépassé (${p.toFixed(0)}%) — maintenir la stratégie.</div>`;
+    else if (p>=90)  diagHTML+=`<div class="diag warn">⚠️ <b>${d.n}</b> : Proche de l'objectif (${p.toFixed(0)}%) — ajustement mineur.</div>`;
+    else             diagHTML+=`<div class="diag bad">❌ <b>${d.n}</b> : Écart significatif (${p.toFixed(0)}%) — plan d'action requis.</div>`;
+    if (p<70) diagHTML+=`<div class="diag bad">🚨 ALERTE CRITIQUE — <b>${d.n}</b> sous 70%.</div>`;
   });
 
-  const score = data.length > 0 ? total / data.length : 0;
+  const score = data.length ? total/data.length : 0;
+  document.getElementById('kpi-zone').innerHTML   = kpiHTML;
+  document.getElementById('table-body').innerHTML = tableHTML;
 
-  // ── Score global
-  document.getElementById("kpi-zone").innerHTML  = kpiHTML;
-  document.getElementById("table-body").innerHTML = tableHTML;
+  const sc = document.getElementById('score');
+  sc.textContent = score.toFixed(1)+'%';
+  sc.style.color = score>=100?'#16A34A':score>=90?'#EA580C':'#DC2626';
+  document.getElementById('score-lbl').textContent =
+    score>=100?'🏆 Objectifs atteints ou dépassés':
+    score>=90 ?'⚠️ Proche des objectifs — ajustements mineurs':
+               '🚨 Écarts importants — plan d\'action requis';
 
-  const scoreEl = document.getElementById("score");
-  scoreEl.innerText = score.toFixed(1) + "%";
-  scoreEl.style.color = score >= 100 ? "#16A34A" : score >= 90 ? "#EA580C" : "#DC2626";
+  if (score>=100) diagHTML+=`<div class="diag good">🏆 <b>Score global ${score.toFixed(1)}%</b> : Excellente performance — maintenir la dynamique.</div>`;
+  else if(score>=90) diagHTML+=`<div class="diag warn">📊 <b>Score global ${score.toFixed(1)}%</b> : Satisfaisante — améliorations ciblées nécessaires.</div>`;
+  else diagHTML+=`<div class="diag bad">🚨 <b>Score global ${score.toFixed(1)}%</b> : Actions correctives urgentes requises.</div>`;
+  diagHTML+=`<div class="diag warn" style="margin-top:8px">🌐 Secteur : <b>${secteur}</b></div>`;
+  document.getElementById('diag-zone').innerHTML = diagHTML;
 
-  const scoreLbl = score >= 100 ? "🏆 Objectifs atteints ou dépassés"
-                 : score >= 90  ? "⚠️ Proche des objectifs — ajustements mineurs"
-                 :                "🚨 Écarts importants — plan d'action requis";
-  document.getElementById("score-lbl").innerText = scoreLbl;
+  buildGauge(score);
+  buildBar();
+  buildRadar();
+  buildRisk();
+  buildSWOT(score, secteur);
+}
 
-  // ── Diagnostic global
-  if      (score >= 100) diagHTML += `<div class="diag good">🏆 <b>Performance globale ${score.toFixed(1)}%</b> : Excellente. Objectifs atteints — maintenir la dynamique.</div>`;
-  else if (score >= 90)  diagHTML += `<div class="diag warn">📊 <b>Performance globale ${score.toFixed(1)}%</b> : Satisfaisante. Des améliorations ciblées permettront d'atteindre les objectifs.</div>`;
-  else                   diagHTML += `<div class="diag bad">🚨 <b>Performance globale ${score.toFixed(1)}%</b> : Actions correctives urgentes requises. Réviser le plan stratégique.</div>`;
-
-  diagHTML += `<div class="diag warn" style="margin-top:10px">🌐 Secteur : <b>${secteur}</b></div>`;
-  document.getElementById("diag-zone").innerHTML = diagHTML;
-
-  // ── CORRECTION 6 : Jauge (doughnut) correctement instanciée ─────────
-  if (gaugeInst) { gaugeInst.destroy(); gaugeInst = null; }
-  const gaugeCtx = document.getElementById("gauge").getContext("2d");
-  const gVal  = Math.min(score, 130);
-  const gRest = Math.max(0, 130 - gVal);
-  const gCol  = score >= 100 ? "#16A34A" : score >= 90 ? "#EA580C" : "#DC2626";
-  gaugeInst = new Chart(gaugeCtx, {
-    type: "doughnut",
-    data: {
-      datasets: [{
-        data: [gVal, gRest],
-        backgroundColor: [gCol, "#E2E8F0"],
-        borderWidth: 0,
-        circumference: 180,
-        rotation: 270
-      }]
-    },
-    options: {
-      responsive: true,
-      cutout: "75%",
-      plugins: { legend: { display: false }, tooltip: { enabled: false } },
-      animation: { duration: 800 }
-    }
+// ── GAUGE ────────────────────────────────────────────────────────────────
+function buildGauge(score) {
+  if (gaugeInst) { gaugeInst.destroy(); gaugeInst=null; }
+  const gv=Math.min(score,130), gr=Math.max(0,130-gv);
+  const gc=score>=100?'#16A34A':score>=90?'#EA580C':'#DC2626';
+  gaugeInst = new Chart(document.getElementById('gauge').getContext('2d'),{
+    type:'doughnut',
+    data:{ datasets:[{ data:[gv,gr], backgroundColor:[gc,'#E2E8F0'], borderWidth:0, circumference:180, rotation:270 }] },
+    options:{ responsive:true, cutout:'75%', plugins:{legend:{display:false},tooltip:{enabled:false}}, animation:{duration:700} }
   });
+}
 
-  // ── CORRECTION 7 : Graphique line — instance séparée ─────────────────
-  if (chartInst) { chartInst.destroy(); chartInst = null; }
-  const chartCtx = document.getElementById("chart").getContext("2d");
-  chartInst = new Chart(chartCtx, {
-    type: "bar",
-    data: {
-      labels: data.map(d => d.n),
-      datasets: [
-        {
-          label: "Objectif",
-          data: data.map(d => d.o),
-          backgroundColor: "#94A3B8",
-          borderRadius: 4
-        },
-        {
-          label: "Réalisé",
-          data: data.map(d => d.r),
-          backgroundColor: data.map(d => {
-            const p = d.o !== 0 ? (d.r / d.o) * 100 : 0;
-            return p >= 100 ? "#16A34A" : p >= 80 ? "#EA580C" : "#DC2626";
-          }),
-          borderRadius: 4
-        }
+// ── BAR CHART ────────────────────────────────────────────────────────────
+function buildBar() {
+  if (chartInst) { chartInst.destroy(); chartInst=null; }
+  chartInst = new Chart(document.getElementById('chart').getContext('2d'),{
+    type:'bar',
+    data:{
+      labels:data.map(d=>d.n),
+      datasets:[
+        { label:'Objectif', data:data.map(d=>d.o), backgroundColor:'#94A3B8', borderRadius:4 },
+        { label:'Réalisé',  data:data.map(d=>d.r),
+          backgroundColor:data.map(d=>{ const p=d.o?(d.r/d.o)*100:0; return p>=100?'#16A34A':p>=80?'#EA580C':'#DC2626'; }),
+          borderRadius:4 }
       ]
     },
-    options: {
-      responsive: true,
-      plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } },
-      scales: { y: { grid: { color: "#F1F5F9" } }, x: { grid: { display: false } } },
-      animation: { duration: 800 }
-    }
+    options:{responsive:true, plugins:{legend:{position:'bottom'}}, scales:{y:{grid:{color:'#F1F5F9'}},x:{grid:{display:false}}}, animation:{duration:700}}
   });
+}
 
-  // ── CORRECTION 8 : Radar — instance séparée ───────────────────────────
-  if (radarInst) { radarInst.destroy(); radarInst = null; }
-  const radarCtx = document.getElementById("radar").getContext("2d");
-  radarInst = new Chart(radarCtx, {
-    type: "radar",
-    data: {
-      labels: data.map(d => d.n),
-      datasets: [{
-        label: "Taux de réalisation (%)",
-        data: data.map(d => d.o !== 0 ? parseFloat(((d.r / d.o) * 100).toFixed(1)) : 0),
-        backgroundColor: "rgba(13,115,119,0.18)",
-        borderColor: "#0D7377",
-        borderWidth: 2,
-        pointBackgroundColor: "#C8922A",
-        pointRadius: 5
-      }]
+// ── RADAR ────────────────────────────────────────────────────────────────
+function buildRadar() {
+  if (radarInst) { radarInst.destroy(); radarInst=null; }
+  radarInst = new Chart(document.getElementById('radar').getContext('2d'),{
+    type:'radar',
+    data:{
+      labels:data.map(d=>d.n),
+      datasets:[{ label:'Taux %', data:data.map(d=>d.o?parseFloat(((d.r/d.o)*100).toFixed(1)):0),
+        backgroundColor:'rgba(13,115,119,.18)', borderColor:'#0D7377', borderWidth:2, pointBackgroundColor:'#C8922A', pointRadius:5 }]
     },
-    options: {
-      responsive: true,
-      scales: { r: { min: 50, max: 120, ticks: { stepSize: 10 } } },
-      plugins: { legend: { position: "bottom" } },
-      animation: { duration: 800 }
-    }
+    options:{responsive:true, scales:{r:{min:50,max:120}}, plugins:{legend:{position:'bottom'}}, animation:{duration:700}}
   });
+}
 
-  // ── Matrice des risques ──────────────────────────────────────────────
-  let riskHTML = `<table style="font-size:12px">
-    <tr>
-      <th style="background:#1B2A4A;color:white">Prob↓ / Impact→</th>
-      <th style="background:#1B2A4A;color:white">1</th>
-      <th style="background:#1B2A4A;color:white">2</th>
-      <th style="background:#1B2A4A;color:white">3</th>
-      <th style="background:#1B2A4A;color:white">4</th>
-      <th style="background:#1B2A4A;color:white">5</th>
-    </tr>`;
-  for (let i = 5; i >= 1; i--) {
-    riskHTML += `<tr><td style="background:#1B2A4A;color:white;font-weight:600">${i}</td>`;
-    for (let j = 1; j <= 5; j++) {
-      const val = i * j;
-      const bg  = val <= 5 ? "#DCFCE7" : val <= 12 ? "#FEF3C7" : "#FEE2E2";
-      const fw  = val >= 15 ? "font-weight:700;" : "";
-      riskHTML += `<td style="background:${bg};${fw}">${val}</td>`;
+// ── RISK MATRIX ──────────────────────────────────────────────────────────
+function buildRisk() {
+  let h=`<table style="font-size:12px"><tr><th style="background:#1B2A4A;color:#fff">P↓/I→</th>`;
+  for(let j=1;j<=5;j++) h+=`<th style="background:#1B2A4A;color:#fff">${j}</th>`;
+  h+='</tr>';
+  for(let i=5;i>=1;i--){
+    h+=`<tr><td style="background:#1B2A4A;color:#fff;font-weight:600">${i}</td>`;
+    for(let j=1;j<=5;j++){
+      const v=i*j, bg=v<=5?'#DCFCE7':v<=12?'#FEF3C7':'#FEE2E2';
+      h+=`<td style="background:${bg};${v>=15?'font-weight:700':''}">${v}</td>`;
     }
-    riskHTML += "</tr>";
+    h+='</tr>';
   }
-  riskHTML += `</table>
-  <div style="margin-top:10px;display:flex;gap:12px;font-size:12px">
-    <span style="background:#DCFCE7;padding:3px 8px;border-radius:4px;color:#166534">≤5 Faible</span>
-    <span style="background:#FEF3C7;padding:3px 8px;border-radius:4px;color:#92400E">6–12 Modéré</span>
-    <span style="background:#FEE2E2;padding:3px 8px;border-radius:4px;color:#991B1B">&gt;12 Élevé</span>
+  h+=`</table><div style="margin-top:8px;display:flex;gap:10px;font-size:11px">
+    <span style="background:#DCFCE7;padding:2px 7px;border-radius:4px;color:#166534">≤5 Faible</span>
+    <span style="background:#FEF3C7;padding:2px 7px;border-radius:4px;color:#92400E">6–12 Modéré</span>
+    <span style="background:#FEE2E2;padding:2px 7px;border-radius:4px;color:#991B1B">&gt;12 Élevé</span>
   </div>`;
-  document.getElementById("risk-zone").innerHTML = riskHTML;
+  document.getElementById('risk-zone').innerHTML=h;
+}
 
-  // ── SWOT dynamique selon score ──────────────────────────────────────
-  const isGood = score >= 100, isMed = score >= 90;
-  document.getElementById("swot-zone").innerHTML = `
+// ── SWOT ─────────────────────────────────────────────────────────────────
+function buildSWOT(score, secteur) {
+  const ig=score>=100, im=score>=90;
+  const best = data.find(d=>d.o&&(d.r/d.o)>=1);
+  const worst= data.find(d=>d.o&&(d.r/d.o)<0.9);
+  document.getElementById('swot-zone').innerHTML=`
   <div class="swot">
-    <div class="f">
-      <h4>💪 Forces</h4>
-      ${isGood ? "✔ Performance globale solide<br>" : ""}
-      ✔ ${data.find(d=>(d.r/d.o)>=1) ? data.find(d=>(d.r/d.o)>=1).n+" : objectif dépassé" : "Données disponibles"}<br>
-      ✔ Pilotage par indicateurs en place
-    </div>
-    <div class="w">
-      <h4>⚠️ Faiblesses</h4>
-      ${!isMed ? "⚠ Performance globale insuffisante<br>" : ""}
-      ⚠ ${data.find(d=>(d.r/d.o)<0.9) ? data.find(d=>(d.r/d.o)<0.9).n+" en dessous de l'objectif" : "Surveiller les indicateurs proches du seuil"}<br>
-      ⚠ Processus à optimiser
-    </div>
-    <div class="o">
-      <h4>🌱 Opportunités</h4>
+    <div class="sf"><h4>💪 Forces</h4>
+      ${ig?'✔ Performance globale solide<br>':''}
+      ✔ ${best?best.n+' : objectif dépassé':'Pilotage en place'}<br>
+      ✔ Données disponibles et analysées</div>
+    <div class="sw"><h4>⚠️ Faiblesses</h4>
+      ${!im?'⚠ Performance globale insuffisante<br>':''}
+      ⚠ ${worst?worst.n+' sous objectif':'Vigilance continue requise'}<br>
+      ⚠ Processus à optimiser</div>
+    <div class="so"><h4>🌱 Opportunités</h4>
       ▶ Secteur : ${secteur}<br>
-      ▶ Croissance et développement possible<br>
-      ▶ Digitalisation des outils de pilotage
-    </div>
-    <div class="t">
-      <h4>⚡ Menaces</h4>
+      ▶ Croissance du marché<br>
+      ▶ Digitalisation du pilotage</div>
+    <div class="st"><h4>⚡ Menaces</h4>
       ▼ Concurrence accrue<br>
       ▼ Contraintes réglementaires<br>
-      ▼ Volatilité du marché
-    </div>
+      ▼ Volatilité macroéconomique</div>
   </div>`;
 }
 
-// ── CORRECTION 9 : appel unique au chargement ─────────────────────────
-window.addEventListener("DOMContentLoaded", compute);
+// ═════════════════════════════════════════════════════════════════════════
+// EXPORT PDF COMPLET
+// ═════════════════════════════════════════════════════════════════════════
+async function exportPDF() {
+  const secteur = document.getElementById('secteur').value;
+  showProgress('Génération du PDF complet…');
 
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation:'p', unit:'mm', format:'a4' });
+  const W=210, M=15;
+  let y=0;
+
+  setProgress(5,'En-tête…');
+
+  // ── PAGE 1 : COUVERTURE ──────────────────────────────────────────────
+  pdf.setFillColor(27,42,74); pdf.rect(0,0,W,45,'F');
+  pdf.setFillColor(200,146,42); pdf.rect(0,42,W,3,'F');
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(22); pdf.setTextColor(200,146,42);
+  pdf.text('NBProf Performance Dashboard',W/2,18,{align:'center'});
+  pdf.setFontSize(12); pdf.setTextColor(148,163,184);
+  pdf.text('Management • Audit • Contrôle de Gestion',W/2,27,{align:'center'});
+  pdf.setFontSize(11); pdf.setTextColor(255,255,255);
+  pdf.text(`Secteur : ${secteur}`,W/2,36,{align:'center'});
+  pdf.setFontSize(9); pdf.setTextColor(148,163,184);
+  pdf.text(`Généré le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}  |  www.nbprof.com`,W/2,41,{align:'center'});
+
+  y=55;
+
+  // ── SCORE GLOBAL ──────────────────────────────────────────────────────
+  setProgress(15,'Score global…');
+  const score = data.length ? data.reduce((s,d)=>s+(d.o?(d.r/d.o)*100:0),0)/data.length : 0;
+  const sCol  = score>=100?[22,163,74]:score>=90?[234,88,12]:[220,38,38];
+
+  pdf.setFillColor(...sCol.map(c=>c)); pdf.roundedRect(M,y,W-2*M,18,3,3,'F');
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(14); pdf.setTextColor(255,255,255);
+  pdf.text(`Score global : ${score.toFixed(1)}%`,W/2,y+7,{align:'center'});
+  const scoreLbl=score>=100?'Objectifs atteints ✓':score>=90?'Proche des objectifs':'Écarts à corriger';
+  pdf.setFontSize(10); pdf.text(scoreLbl,W/2,y+13,{align:'center'});
+  y+=24;
+
+  // ── KPI TABLE ─────────────────────────────────────────────────────────
+  setProgress(25,'Tableau KPI…');
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(12); pdf.setTextColor(27,42,74);
+  pdf.text('Indicateurs clés de performance',M,y); y+=5;
+
+  const kpiRows = data.map(d => {
+    const p = d.o?(d.r/d.o)*100:0;
+    const ecart = d.r-d.o;
+    return [d.n, Number(d.o).toLocaleString('fr-FR'), Number(d.r).toLocaleString('fr-FR'),
+      (ecart>=0?'+':'')+Number(ecart).toLocaleString('fr-FR'),
+      p.toFixed(1)+'%',
+      p>=100?'Dépassé':p>=90?'Proche':'Écart'];
+  });
+
+  pdf.autoTable({
+    startY:y,
+    head:[['Indicateur','Objectif','Réalisé','Écart','Taux','Statut']],
+    body:kpiRows,
+    styles:{ fontSize:10, cellPadding:3, halign:'center' },
+    headStyles:{ fillColor:[27,42,74], textColor:[255,255,255], fontStyle:'bold' },
+    columnStyles:{ 0:{ halign:'left' } },
+    bodyStyles:{ textColor:[30,41,59] },
+    didParseCell(data2) {
+      if (data2.section==='body' && data2.column.index===5) {
+        const v=data2.cell.raw;
+        if(v==='Dépassé') data2.cell.styles.textColor=[22,163,74];
+        else if(v==='Proche') data2.cell.styles.textColor=[234,88,12];
+        else data2.cell.styles.textColor=[220,38,38];
+      }
+    },
+    margin:{ left:M, right:M }
+  });
+  y = pdf.lastAutoTable.finalY + 8;
+
+  // ── GRAPHIQUE BARRES ─────────────────────────────────────────────────
+  setProgress(40,'Graphiques…');
+  const chartEl  = document.getElementById('chart');
+  const radarEl  = document.getElementById('radar');
+  try {
+    const chartImg = chartEl.toDataURL('image/png',1.0);
+    const radarImg = radarEl.toDataURL('image/png',1.0);
+
+    if (y+60 > 270) { pdf.addPage(); y=15; }
+    pdf.setFont('helvetica','bold'); pdf.setFontSize(11); pdf.setTextColor(27,42,74);
+    pdf.text('Comparaison Objectif / Réalisé',M,y); y+=4;
+    pdf.addImage(chartImg,'PNG',M,y,85,50);
+
+    pdf.text('Radar de performance',M+95,y-4);
+    pdf.addImage(radarImg,'PNG',M+95,y,85,50);
+    y+=56;
+  } catch(e) { console.warn('Chart capture error:',e); }
+
+  // ── SWOT ──────────────────────────────────────────────────────────────
+  setProgress(60,'SWOT…');
+  if (y+60>270) { pdf.addPage(); y=15; }
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(11); pdf.setTextColor(27,42,74);
+  pdf.text('Analyse SWOT',M,y); y+=5;
+
+  const best  = data.find(d=>d.o&&(d.r/d.o)>=1);
+  const worst = data.find(d=>d.o&&(d.r/d.o)<0.9);
+  const ig=score>=100, im=score>=90;
+
+  const swotData=[
+    { label:'Forces',      color:[239,246,255], text:'✔ '+(ig?'Performance globale solide':'Dynamisme observable')+'\n✔ '+(best?best.n+' dépassé':'Pilotage en place') },
+    { label:'Faiblesses',  color:[254,243,199], text:'⚠ '+(worst?worst.n+' sous objectif':'Vigilance requise')+'\n⚠ '+(im?'Légère amélioration':'Plan correctif nécessaire') },
+    { label:'Opportunités',color:[220,252,231], text:'▶ Croissance du marché\n▶ Secteur : '+secteur+'\n▶ Digitalisation pilotage' },
+    { label:'Menaces',     color:[254,226,226], text:'▼ Concurrence accrue\n▼ Contraintes réglementaires\n▼ Volatilité macro' },
+  ];
+  const sw=(W-2*M-5)/2;
+  swotData.forEach((s,i)=>{
+    const sx=M+(i%2)*(sw+5), sy2=y+(Math.floor(i/2)*24);
+    pdf.setFillColor(...s.color); pdf.roundedRect(sx,sy2,sw,22,2,2,'F');
+    pdf.setFont('helvetica','bold'); pdf.setFontSize(9); pdf.setTextColor(27,42,74);
+    pdf.text(s.label,sx+3,sy2+5);
+    pdf.setFont('helvetica','normal'); pdf.setFontSize(8); pdf.setTextColor(51,65,85);
+    const lines=s.text.split('\n');
+    lines.forEach((l,li)=>pdf.text(l,sx+3,sy2+10+(li*4)));
+  });
+  y+=54;
+
+  // ── RECOMMANDATIONS ───────────────────────────────────────────────────
+  setProgress(80,'Recommandations…');
+  if (y+10>270) { pdf.addPage(); y=15; }
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(11); pdf.setTextColor(27,42,74);
+  pdf.text('Recommandations automatiques',M,y); y+=5;
+
+  data.forEach(d=>{
+    if(y>270){pdf.addPage();y=15;}
+    const p=d.o?(d.r/d.o)*100:0;
+    let msg, fc;
+    if(p>=100){msg=`✅ ${d.n} (${p.toFixed(0)}%) : Objectif dépassé — maintenir la stratégie.`;fc=[22,163,74];}
+    else if(p>=90){msg=`⚠ ${d.n} (${p.toFixed(0)}%) : Proche — ajustement mineur.`;fc=[234,88,12];}
+    else{msg=`❌ ${d.n} (${p.toFixed(0)}%) : Écart — plan d'action correctif requis.`;fc=[220,38,38];}
+    pdf.setFont('helvetica','normal'); pdf.setFontSize(9); pdf.setTextColor(...fc);
+    pdf.text(msg,M,y); y+=5;
+  });
+  const verdict=score>=100?`🏆 Score global ${score.toFixed(1)}% — Performance excellente.`:
+    score>=90?`📊 Score ${score.toFixed(1)}% — Satisfaisante, améliorations ciblées.`:
+    `🚨 Score ${score.toFixed(1)}% — Actions correctives urgentes requises.`;
+  pdf.setFont('helvetica','bold'); pdf.setFontSize(10);
+  pdf.setTextColor(...(score>=100?[22,163,74]:score>=90?[234,88,12]:[220,38,38]));
+  pdf.text(verdict,M,y+3); y+=10;
+
+  // ── FOOTER ────────────────────────────────────────────────────────────
+  setProgress(95,'Finalisation…');
+  const pages=pdf.getNumberOfPages();
+  for(let p=1;p<=pages;p++){
+    pdf.setPage(p);
+    pdf.setFillColor(27,42,74); pdf.rect(0,285,W,12,'F');
+    pdf.setFont('helvetica','normal'); pdf.setFontSize(8); pdf.setTextColor(148,163,184);
+    pdf.text('NBProf® — www.nbprof.com',M,291);
+    pdf.text(`Page ${p}/${pages}`,W-M,291,{align:'right'});
+  }
+
+  pdf.save(`NBProf_Dashboard_${secteur.replace(/\W/g,'_')}_${new Date().toISOString().slice(0,10)}.pdf`);
+  hideProgress();
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// PRINT
+// ═════════════════════════════════════════════════════════════════════════
+function printDashboard() {
+  window.print();
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// EXPORT EXCEL
+// ═════════════════════════════════════════════════════════════════════════
+function exportExcel() {
+  const secteur = document.getElementById('secteur').value;
+  const score   = data.length?data.reduce((s,d)=>s+(d.o?(d.r/d.o)*100:0),0)/data.length:0;
+
+  const rows = [
+    ['NBProf Performance Dashboard'],
+    [`Secteur : ${secteur}  |  Généré le : ${new Date().toLocaleDateString('fr-FR')}`],
+    [],
+    ['Indicateur','Objectif','Réalisé','Écart','Taux (%)','Statut'],
+    ...data.map(d=>{
+      const p=d.o?(d.r/d.o)*100:0, e=d.r-d.o;
+      return [d.n,d.o,d.r,(e>=0?'+':'')+e,parseFloat(p.toFixed(1)),p>=100?'Dépassé':p>=90?'Proche':'Écart'];
+    }),
+    [],
+    ['Score global (%)', parseFloat(score.toFixed(1))],
+    ['Verdict', score>=100?'Objectifs atteints':score>=90?'Proche des objectifs':'Plan d\'action requis']
+  ];
+
+  const wb=XLSX.utils.book_new();
+  const ws=XLSX.utils.aoa_to_sheet(rows);
+  ws['!cols']=[{wch:28},{wch:12},{wch:12},{wch:10},{wch:10},{wch:16}];
+  XLSX.utils.book_append_sheet(wb,ws,'Dashboard');
+  XLSX.writeFile(wb,`NBProf_Dashboard_${secteur.replace(/\W/g,'_')}_${new Date().toISOString().slice(0,10)}.xlsx`);
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// EXPORT CSV
+// ═════════════════════════════════════════════════════════════════════════
+function exportCSV() {
+  let csv='Indicateur;Objectif;Réalisé;Écart;Taux (%);Statut\n';
+  data.forEach(d=>{
+    const p=d.o?(d.r/d.o)*100:0, e=d.r-d.o;
+    csv+=`${d.n};${d.o};${d.r};${(e>=0?'+':'')+e};${p.toFixed(1)};${p>=100?'Dépassé':p>=90?'Proche':'Écart'}\n`;
+  });
+  const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`NBProf_Dashboard_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+}
+
+// ═════════════════════════════════════════════════════════════════════════
+// PROGRESS OVERLAY
+// ═════════════════════════════════════════════════════════════════════════
+function showProgress(title) {
+  document.getElementById('prog-overlay').style.display='flex';
+  document.getElementById('prog-title').textContent=title;
+  document.getElementById('prog-bar').style.width='0%';
+}
+function setProgress(pct, msg) {
+  document.getElementById('prog-bar').style.width=pct+'%';
+  document.getElementById('prog-msg').textContent=msg;
+}
+function hideProgress() {
+  setTimeout(()=>{ document.getElementById('prog-overlay').style.display='none'; },500);
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', compute);
 </script>
 </body>
 </html>
