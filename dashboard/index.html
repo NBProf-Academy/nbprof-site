@@ -109,7 +109,7 @@ h3 {
 
 <!-- ✅ KPI -->
 <div class="card">
-  <h3>Indicateurs clés de performance</h3>
+  <h3 id="title-kpi">Indicateurs clés de performance</h3>
   <div class="kpi-grid" id="kpi"></div>
 </div>
 
@@ -122,7 +122,7 @@ h3 {
 
 <!-- ✅ ANALYSE TABLE -->
 <div class="card">
-<h3>Analyse détaillée des écarts</h3>
+<h3 id="title-gauge">Écarts à corriger</h3>
 <table>
 <thead>
 <tr><th>Indicateur</th><th>Objectif</th><th>Réalisé</th><th>Taux</th></tr>
@@ -134,7 +134,7 @@ h3 {
 <!-- ✅ GRAPH -->
 <div class="card">
 <div class="card">
-  <h3>Taux de réalisation par indicateur</h3>
+  <h3 id="title-chart">Taux de réalisation par indicateur</h3>
   <canvas id="chart"></canvas>
 </div>
 </div>
@@ -180,6 +180,44 @@ function add(){
  let r=parseFloat(real.value);
  if(!n||isNaN(o)||isNaN(r)) return alert("Erreur");
  data.push({n,o,r});
+  function getTitlesBySector(secteur){
+
+  if(secteur.includes("Banque")){
+    return {
+      kpi: "Indicateurs de performance financière",
+      chart: "Taux de réalisation des objectifs financiers",
+      gauge: "Écarts à corriger (risque & rentabilité)",
+      table: "Analyse détaillée des écarts financiers"
+    };
+  }
+
+  else if(secteur.includes("Santé")){
+    return {
+      kpi: "Indicateurs de performance médicale",
+      chart: "Taux de réalisation des soins et services",
+      gauge: "Écarts à corriger (qualité de service)",
+      table: "Analyse détaillée des écarts médicaux"
+    };
+  }
+
+  else if(secteur.includes("Éducation")){
+    return {
+      kpi: "Indicateurs de performance pédagogique",
+      chart: "Taux de réalisation des objectifs éducatifs",
+      gauge: "Écarts à corriger (résultats académiques)",
+      table: "Analyse détaillée des écarts pédagogiques"
+    };
+  }
+
+  else{
+    return {
+      kpi: "Indicateurs clés de performance",
+      chart: "Taux de réalisation par indicateur",
+      gauge: "Écarts à corriger",
+      table: "Analyse détaillée des écarts"
+    };
+  }
+}
  compute();
 }
 
@@ -201,6 +239,11 @@ function renderDataInputs(){
   
 function compute(){
   let secteur = document.getElementById("secteur").value;
+  let titles = getTitlesBySector(secteur);
+  document.getElementById("title-kpi").innerText = titles.kpi;
+document.getElementById("title-chart").innerText = titles.chart;
+document.getElementById("title-gauge").innerText = titles.gauge;
+document.getElementById("title-table").innerText = titles.table;
 
  renderDataInputs();
 
