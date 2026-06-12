@@ -115,14 +115,13 @@ h3 {
 
 <!-- ✅ SCORE -->
 <div class="card">
-<h3>Écarts à corriger</h3>
+<h3 id="title-gauge">Écarts à corriger</h3>
 <h1 id="score"></h1>
 <canvas id="gauge"></canvas>
 </div>
 
 <!-- ✅ ANALYSE TABLE -->
 <div class="card">
-<h3 id="title-gauge">Écarts à corriger</h3>
 <table>
 <thead>
 <tr><th>Indicateur</th><th>Objectif</th><th>Réalisé</th><th>Taux</th></tr>
@@ -133,10 +132,8 @@ h3 {
 
 <!-- ✅ GRAPH -->
 <div class="card">
-<div class="card">
   <h3 id="title-chart">Taux de réalisation par indicateur</h3>
   <canvas id="chart"></canvas>
-</div>
 </div>
 
 <!-- ✅ RADAR -->
@@ -165,7 +162,7 @@ h3 {
 </div>
 
 <script>
-
+let chartInstance, gaugeInstance, radarInstance;
 // ✅ DONNÉES INITIALES (comme ton modèle [1])
 let data = [
  {n:"CA (MDH)",o:320,r:308},
@@ -236,14 +233,14 @@ function renderDataInputs(){
 }
 
 // ✅ CALCUL GLOBAL
-  
+  let titles = getTitlesBySector(secteur);
 function compute(){
   let secteur = document.getElementById("secteur").value;
-  let titles = getTitlesBySector(secteur);
+  
   document.getElementById("title-kpi").innerText = titles.kpi;
 document.getElementById("title-chart").innerText = titles.chart;
 document.getElementById("title-gauge").innerText = titles.gauge;
-document.getElementById("title-table").innerText = titles.table;
+<h3 id="title-table">Analyse détaillée des écarts</h3>.innerText = titles.table;
 
  renderDataInputs();
 
@@ -276,15 +273,15 @@ document.getElementById("title-table").innerText = titles.table;
 
   // IA INDIVIDUELLE
   if(p>=100)
-    diag+=`<div class="diag good">✅ ${d.n} excellent (${p.toFixed(0)}%)</div>`;
+    diag +=`<div class="diag good">✅ ${d.n} excellent (${p.toFixed(0)}%)</div>`;
   else if(p>=90)
-    diag+=`<div class="diag warn">⚠ ${d.n} à améliorer (${p.toFixed(0)}%)</div>`;
+    diag +=`<div class="diag warn">⚠ ${d.n} à améliorer (${p.toFixed(0)}%)</div>`;
   else
-    diag+=`<div class="diag bad">❌ ${d.n} critique (${p.toFixed(0)}%)</div>`;
+    diag +=`<div class="diag bad">❌ ${d.n} critique (${p.toFixed(0)}%)</div>`;
 
   // ALERTES
   if(p<70)
-    diag+=`<div class="diag bad">🚨 ALERTE ${d.n}</div>`;
+    diag +=`<div class="diag bad">🚨 ALERTE ${d.n}</div>`;
  });
 
  let score=total/data.length;
@@ -295,11 +292,11 @@ document.getElementById("title-table").innerText = titles.table;
 
  // ✅ IA GLOBALE
  if(score>=100)
-  diag+=`<div class="diag good">🏆 Performance excellente</div>`;
+  diag +=`<div class="diag good">🏆 Performance excellente</div>`;
  else if(score>=90)
-  diag+=`<div class="diag warn">📊 Performance satisfaisante</div>`;
+  diag +=`<div class="diag warn">📊 Performance satisfaisante</div>`;
  else
-  diag+=`<div class="diag bad">🚨 Plan d’action urgent</div>`;
+  diag +=`<div class="diag bad">🚨 Plan d’action urgent</div>`;
   
 diag += `
 <div class="diag warn">
@@ -308,10 +305,8 @@ diag += `
   document.getElementById("diag").innerHTML=diag;
 
  // ✅ JAUGE
- new Chart(document.getElementById("gauge"), {
-  type:"doughnut",
-  data:{datasets:[{data:[score,100-score],backgroundColor:["orange","#ddd"]}]}
- });
+ if(chartInstance) chartInstance.destroy();
+chartInstance = new Chart(...);
 
  // ✅ GRAPH + FORECAST
  new Chart(document.getElementById("chart"), {
@@ -326,7 +321,8 @@ diag += `
  });
 
  // ✅ RADAR
- new Chart(document.getElementById("radar"), {
+ if(chartInstance) chartInstance.destroy();
+chartInstance = new Chart (document.getElementById("radar"), {
   type:"radar",
   data:{
    labels:data.map(d=>d.n),
@@ -337,15 +333,15 @@ diag += `
  // ✅ RISK
  let riskHTML="<table>";
  for(let i=5;i>=1;i--){
-  riskHTML+="<tr>";
+  riskHTML +="<tr>";
   for(let j=1;j<=5;j++){
    let val=i*j;
    let color=val<6?"#DCFCE7":val<12?"#FEF3C7":"#FEE2E2";
-   riskHTML+=`<td style="background:${color}">${val}</td>`;
+   riskHTML +=`<td style="background:${color}">${val}</td>`;
   }
-  riskHTML+="</tr>";
+  riskHTML +="</tr>";
  }
- riskHTML+="</table>";
+ riskHTML +="</table>";
  document.getElementById("risk").innerHTML=riskHTML;
 
  // ✅ SWOT
