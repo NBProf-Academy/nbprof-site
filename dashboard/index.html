@@ -108,18 +108,21 @@ h3 {
 </div>
 
 <!-- ✅ KPI -->
-<div class="kpi-grid" id="kpi"></div>
+<div class="card">
+  <h3>Indicateurs clés de performance</h3>
+  <div class="kpi-grid" id="kpi"></div>
+</div>
 
 <!-- ✅ SCORE -->
 <div class="card">
-<h3>Score global</h3>
+<h3>Écarts à corriger</h3>
 <h1 id="score"></h1>
 <canvas id="gauge"></canvas>
 </div>
 
 <!-- ✅ ANALYSE TABLE -->
 <div class="card">
-<h3>Analyse des écarts</h3>
+<h3>Analyse détaillée des écarts</h3>
 <table>
 <thead>
 <tr><th>Indicateur</th><th>Objectif</th><th>Réalisé</th><th>Taux</th></tr>
@@ -130,7 +133,10 @@ h3 {
 
 <!-- ✅ GRAPH -->
 <div class="card">
-<canvas id="chart"></canvas>
+<div class="card">
+  <h3>Taux de réalisation par indicateur</h3>
+  <canvas id="chart"></canvas>
+</div>
 </div>
 
 <!-- ✅ RADAR -->
