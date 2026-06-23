@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Comptable & Financier — Résumé & TD par Cycle</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #1A2E42;
+    --gold: #C9A84C;
+    --gold-light: #E8CC80;
+    --cream: #F5F1E8;
+    --slate: #4A6274;
+    --red-risk: #C0392B;
+    --green-ok: #1E7E4A;
+    --blue-info: #1A6EA6;
+    --border: #D4C8A8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    color: var(--navy);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    color: white;
+    padding: 52px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+  }
+  .hero-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero h1 span { color: var(--gold-light); }
+  .hero-sub {
+    color: #8BA0B2;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  /* ── NAV TABS ─────────────────────────────────────── */
+  .tab-nav {
+    background: var(--navy-mid);
+    display: flex;
+    overflow-x: auto;
+    padding: 0 48px;
+    gap: 0;
+    border-bottom: 2px solid var(--gold);
+  }
+  .tab-btn {
+    padding: 14px 22px;
+    border: none;
+    background: transparent;
+    color: #8BA0B2;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all .2s;
+  }
+  .tab-btn:hover { color: var(--gold-light); }
+  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+  /* ── CONTENT ──────────────────────────────────────── */
+  .content { display: none; padding: 40px 48px 60px; max-width: 1100px; margin: 0 auto; }
+  .content.active { display: block; }
+
+  /* ── SECTION TITLES ───────────────────────────────── */
+  .part-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy-mid);
+    margin: 32px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h3 .step-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  h4 {
+    font-weight: 600;
+    color: var(--slate);
+    margin: 20px 0 8px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* ── CARDS ────────────────────────────────────────── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+    border-top: 3px solid var(--gold);
+  }
+  .card.risk { border-top-color: var(--red-risk); }
+  .card.ok { border-top-color: var(--green-ok); }
+  .card.info { border-top-color: var(--blue-info); }
+  .card-title {
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    color: var(--slate);
+  }
+  .card.risk .card-title { color: var(--red-risk); }
+  .card.ok .card-title { color: var(--green-ok); }
+  .card.info .card-title { color: var(--blue-info); }
+  .card ul { padding-left: 16px; }
+  .card li { margin-bottom: 4px; font-size: 13.5px; }
+
+  /* ── TABLE ────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13.5px;
+    background: white;
+  }
+  th {
+    background: var(--navy);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  td { padding: 10px 14px; border-bottom: 1px solid #E8E0CC; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: #FAF8F2; }
+  td strong { color: var(--navy); }
+
+  /* ── FORMULA BOX ──────────────────────────────────── */
+  .formula {
+    background: var(--navy);
+    color: white;
+    border-left: 4px solid var(--gold);
+    padding: 18px 24px;
+    margin: 20px 0;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  .formula .label { color: var(--gold); font-size: 11px; letter-spacing: 2px; margin-bottom: 6px; }
+
+  /* ── ALERT BOX ────────────────────────────────────── */
+  .alert {
+    padding: 14px 18px;
+    border-radius: 4px;
+    margin: 16px 0;
+    font-size: 13.5px;
+    border-left: 4px solid;
+  }
+  .alert.danger { background: #FDF0EF; border-color: var(--red-risk); color: #7B1D18; }
+  .alert.success { background: #EEF8F2; border-color: var(--green-ok); color: #145F35; }
+  .alert.neutral { background: #EEF4FA; border-color: var(--blue-info); color: #0D3E63; }
+  .alert strong { display: block; margin-bottom: 4px; }
+
+  /* ── FLOW STEPS ───────────────────────────────────── */
+  .flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 20px 0;
+    align-items: center;
+  }
+  .flow-step {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy-mid);
+    min-width: 120px;
+    text-align: center;
+  }
+  .flow-arrow {
+    color: var(--gold);
+    font-size: 18px;
+    padding: 0 6px;
+    font-weight: 900;
+  }
+
+  /* ── CASE STUDY ───────────────────────────────────── */
+  .case-header {
+    background: var(--navy-mid);
+    color: white;
+    border-left: 5px solid var(--gold);
+    padding: 20px 24px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .case-header h3 { color: white; margin: 0 0 6px; font-size: 1.1rem; }
+  .case-header .case-context { color: #8BA0B2; font-size: 13px; }
+
+  .q-block {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .q-header {
+    background: #F0EBD8;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .q-num {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+  .q-title { font-weight: 600; font-size: 14px; color: var(--navy); }
+  .q-toggle { margin-left: auto; color: var(--slate); font-size: 18px; transition: transform .2s; }
+  .q-toggle.open { transform: rotate(180deg); }
+  .q-body { padding: 18px 20px; border-top: 1px solid var(--border); display: none; }
+  .q-body.open { display: block; }
+  .q-body p { margin-bottom: 10px; font-size: 13.5px; }
+  .q-body ul, .q-body ol { padding-left: 20px; margin-bottom: 10px; }
+  .q-body li { margin-bottom: 5px; font-size: 13.5px; }
+
+  /* ── SEUIL CALC ───────────────────────────────────── */
+  .calc-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border-bottom: 1px solid #E8E0CC;
+    font-size: 13.5px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-row strong { color: var(--navy); }
+  .calc-result {
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    padding: 12px 18px;
+    text-align: right;
+    font-size: 15px;
+  }
+
+  /* ── ANOMALY TABLE ────────────────────────────────── */
+  .anomaly-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .tag-red { background: #FCE8E6; color: var(--red-risk); }
+  .tag-orange { background: #FEF3E2; color: #B45309; }
+  .tag-blue { background: #EDF4FC; color: var(--blue-info); }
+
+  /* ── RESPONSIVE ───────────────────────────────────── */
+  @media (max-width: 700px) {
+    .hero, .content { padding-left: 20px; padding-right: 20px; }
+    .tab-nav { padding: 0 12px; }
+    .hero h1 { font-size: 1.7rem; }
+    h2 { font-size: 1.4rem; }
+    .flow { flex-direction: column; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Master AMSO · Université Cadi Ayyad · 2025/2026</div>
+  <h1>Audit <span>Comptable</span><br>& Financier</h1>
+  <div class="hero-sub">Pr. NOUIB Abdellah &nbsp;|&nbsp; Pr. BENNANI Otmane &nbsp;·&nbsp; Résumé complet + Cas pratiques par cycle</div>
+</div>
+
+<!-- NAV -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('resume')">📚 Résumé Démarche</button>
+  <button class="tab-btn" onclick="showTab('ventes')">🛒 Cycle Ventes-Clients</button>
+  <button class="tab-btn" onclick="showTab('achats')">📦 Cycle Achats-Fournisseurs</button>
+  <button class="tab-btn" onclick="showTab('tresorerie')">🏦 Cycle Trésorerie</button>
+  <button class="tab-btn" onclick="showTab('stocks')">📊 Cycle Stocks</button>
+  <button class="tab-btn" onclick="showTab('immo')">🏗️ Cycle Immobilisations</button>
+  <button class="tab-btn" onclick="showTab('paie')">👥 Cycle Paie-Personnel</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 1 : RÉSUMÉ DÉMARCHE
+══════════════════════════════════════════════ -->
+<div id="tab-resume" class="content active">
+  <div class="part-label">Partie I</div>
+  <h2>La Démarche Complète d'Audit Comptable & Financier</h2>
+
+  <div class="alert neutral">
+    <strong>Vue d'ensemble</strong>
+    L'audit ACF s'organise en 4 grandes phases séquentielles : (1) Prise de connaissance, (2) Évaluation du contrôle interne, (3) Contrôle des comptes, (4) Rapport d'audit.
+  </div>
+
+  <!-- PHASE 1 -->
+  <h3><span class="step-num">1</span> Prise de connaissance générale de l'entité</h3>
+
+  <h4>A — Découverte de l'activité et de l'environnement</h4>
+  <div class="card-grid">
+    <div class="card info">
+      <div class="card-title">Secteur d'activité</div>
+      <ul>
+        <li>Conditions économiques du marché (croissance / crise)</li>
+        <li>Position concurrentielle de l'entreprise</li>
+        <li>Environnement réglementaire spécifique (banques, pharma…)</li>
+      </ul>
+    </div>
+    <div class="card info">
+      <div class="card-title">Caractéristiques de l'entreprise</div>
+      <ul>
+        <li>Taille (grande / PE) → séparation des tâches possible ?</li>
+        <li>Typologies clientèle & fournisseurs</li>
+        <li>Situation financière (continuité d'exploitation)</li>
+        <li>Actionnariat & recours à l'épargne publique</li>
+      </ul>
+    </div>
+    <div class="card info">
+      <div class="card-title">Organisation interne</div>
+      <ul>
+        <li>Systèmes comptables et SI</li>
+        <li>Comportement de la direction (gouvernance)</li>
+        <li>Structure centralisée / décentralisée</li>
+        <li>Moyens informatiques en place</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Sources d'information</h4>
+  <table>
+    <tr><th>Internes</th><th>Externes</th></tr>
+    <tr>
+      <td>Entretiens direction, organigramme, rapports CAC antérieurs, budgets, statuts, PV d'assemblées, contrats</td>
+      <td>Rapports financiers d'entreprises similaires, presse financière, revues spécialisées du secteur</td>
+    </tr>
+  </table>
+
+  <h4>B — Identification des zones de risques</h4>
+  <div class="formula">
+    <div class="label">ÉQUATION DU RISQUE D'AUDIT</div>
+    Risque d'Audit = Risque Inhérent × Risque lié au Contrôle × Risque de Non-Détection
+  </div>
+
+  <div class="card-grid">
+    <div class="card risk">
+      <div class="card-title">1. Risque inhérent</div>
+      <ul>
+        <li><strong>Risques liés à l'activité :</strong> taille, marché, structure financière, fiscal, juridique</li>
+        <li><strong>Risques SI :</strong> système comptable, ERP, gestion commerciale</li>
+        <li><strong>Risques financiers :</strong> importance et variations des postes clés</li>
+      </ul>
+    </div>
+    <div class="card risk">
+      <div class="card-title">2. Risque de contrôle</div>
+      <ul>
+        <li>Le contrôle interne ne prévient pas ou ne corrige pas les erreurs</li>
+        <li>Lacunes du système de CI → types d'erreurs possibles</li>
+        <li>Mesure du risque de survenance des erreurs</li>
+      </ul>
+    </div>
+    <div class="card risk">
+      <div class="card-title">3. Risque de non-détection</div>
+      <ul>
+        <li>Les procédures de l'auditeur ne détectent pas les erreurs significatives</li>
+        <li>Lié à l'étendue du programme de contrôle des comptes</li>
+        <li>Maîtrisé par l'auditeur lui-même</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>C — Détermination du Seuil de Signification</h4>
+  <div class="alert success">
+    <strong>Définition</strong>
+    Limite en deçà de laquelle une erreur est sans incidence sur l'image fidèle. Toute information qui modifierait le jugement d'un actionnaire sur les comptes est significative.
+  </div>
+
+  <table>
+    <tr><th>Base</th><th>Taux</th><th>Cas d'utilisation</th></tr>
+    <tr><td><strong>Résultat net</strong></td><td>5 %</td><td>Entreprise rentable avec résultat positif significatif</td></tr>
+    <tr><td><strong>Chiffre d'affaires</strong></td><td>0,5 %</td><td>Activité commerciale / CA dominant</td></tr>
+    <tr><td><strong>Total bilan</strong></td><td>1 %</td><td>Entreprise patrimoniale</td></tr>
+    <tr><td><strong>Capitaux propres</strong></td><td>1 %</td><td>Résultat faible ou négatif</td></tr>
+  </table>
+
+  <div class="alert neutral">
+    <strong>Rôles du seuil de signification</strong>
+    (1) Orienter et planifier la mission sur les éléments significatifs &nbsp;·&nbsp; (2) Éviter les travaux inutiles sur les postes non significatifs &nbsp;·&nbsp; (3) Justifier l'opinion émise — l'image fidèle ≠ exactitude absolue.
+  </div>
+
+  <h4>D — Planification de la mission</h4>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Plan de mission</div>
+      <ul>
+        <li>Définition de la mission (légale / contractuelle)</li>
+        <li>Présentation de l'entreprise & stratégie</li>
+        <li>Synthèse risques par cycle + seuils</li>
+        <li>Budget heures & budget financier</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Lettre de mission</div>
+      <ul>
+        <li>Contexte général & nature des diligences</li>
+        <li>Compétences & membres de l'équipe</li>
+        <li>Calendrier d'intervention</li>
+        <li>Format des documents & honoraires prévisionnels</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <h3><span class="step-num">2</span> Évaluation du Contrôle Interne</h3>
+
+  <div class="flow">
+    <div class="flow-step">Description des procédures</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Évaluation préliminaire</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Vérification du fonctionnement</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Évaluation définitive</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Rapport CI</div>
+  </div>
+
+  <h4>Référentiel COSO (5 composantes)</h4>
+  <table>
+    <tr><th>#</th><th>Composante</th><th>Description</th></tr>
+    <tr><td>1</td><td><strong>Environnement de contrôle</strong></td><td>Ton de la direction, culture de contrôle, gouvernance</td></tr>
+    <tr><td>2</td><td><strong>Évaluation des risques</strong></td><td>Identification et analyse des risques par l'entité</td></tr>
+    <tr><td>3</td><td><strong>Activités de contrôle</strong></td><td>Politiques et procédures garantissant l'exécution des directives</td></tr>
+    <tr><td>4</td><td><strong>Information & communication</strong></td><td>Qualité et fiabilité de l'information transmise</td></tr>
+    <tr><td>5</td><td><strong>Pilotage</strong></td><td>Surveillance continue du dispositif de CI</td></tr>
+  </table>
+
+  <h4>Outils d'évaluation du CI</h4>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">1. Flow-Chart</div>
+      <ul>
+        <li>Représentation graphique de la circulation des documents</li>
+        <li>Visualise les discontinuités dans les flux</li>
+        <li>Apprécie la séparation des tâches</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">2. QCI (Questionnaire CI)</div>
+      <ul>
+        <li>Guide d'entretien avec les audités</li>
+        <li>Identification des forces & faiblesses</li>
+        <li>Outil d'auto-évaluation pour orienter les tests</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">3. Grille séparation des tâches</div>
+      <ul>
+        <li>5 fonctions incompatibles : Autorisation · Exécution · Enregistrement · Conservation · Contrôle</li>
+        <li>Détecte les cumuls de fonctions incompatibles</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">4. Tests de cheminement</div>
+      <ul>
+        <li>Suit une opération de son origine à sa comptabilisation</li>
+        <li>Confirme la compréhension du processus</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">5. Tests d'existence</div>
+      <ul>
+        <li>Vérifie que les contrôles décrits existent réellement</li>
+        <li>Observation, collecte de documents, confirmation verbale</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">6. Tests de permanence</div>
+      <ul>
+        <li>Vérifie l'application régulière des points forts du CI</li>
+        <li>Quantifie les cas de dysfonctionnement sur un échantillon</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <h3><span class="step-num">3</span> Contrôle des Comptes</h3>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">Respect des règles comptables</div>
+      <ul>
+        <li>Correcte évaluation des opérations (stocks, amortissements, provisions)</li>
+        <li>Bonne imputation des écritures comptables</li>
+        <li>Exactitude des calculs fiscaux</li>
+        <li>Respect du plan comptable</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">Respect des principes comptables</div>
+      <ul>
+        <li><strong>Continuité d'exploitation</strong></li>
+        <li><strong>Permanence des méthodes</strong></li>
+        <li><strong>Coût historique</strong></li>
+        <li><strong>Spécialisation des exercices (Cut-off)</strong></li>
+        <li><strong>Prudence</strong></li>
+        <li><strong>Clarté & importance significative</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <h4>Outils de contrôle des comptes</h4>
+  <table>
+    <tr><th>Outil</th><th>Description</th><th>Exemples d'application</th></tr>
+    <tr><td><strong>Revue analytique</strong></td><td>Comparaison, ratios, revue de vraisemblance</td><td>Évolution CA, ratio DSO, variation de charges</td></tr>
+    <tr><td><strong>Observation physique</strong></td><td>Constatation matérielle de l'existence d'actifs</td><td>Inventaire stocks, immobilisations, caisse</td></tr>
+    <tr><td><strong>Circularisation</strong></td><td>Confirmation directe par un tiers</td><td>Clients, banques, fournisseurs, avocats</td></tr>
+    <tr><td><strong>Sondage</strong></td><td>Contrôle d'un échantillon → conclusion sur la population</td><td>Sondage statistique ou empirique sur factures</td></tr>
+  </table>
+
+  <h4>Assertions d'audit à vérifier</h4>
+  <table>
+    <tr><th>Catégorie</th><th>Assertion</th><th>Question de l'auditeur</th></tr>
+    <tr><td rowspan="5"><strong>Transactions</strong></td><td>Occurrence</td><td>Les opérations enregistrées ont-elles réellement eu lieu ?</td></tr>
+    <tr><td>Exhaustivité</td><td>Toutes les opérations ont-elles été enregistrées ?</td></tr>
+    <tr><td>Exactitude</td><td>Les montants sont-ils corrects ?</td></tr>
+    <tr><td>Cut-off</td><td>Les opérations sont-elles dans le bon exercice ?</td></tr>
+    <tr><td>Imputation</td><td>Les opérations sont-elles dans les bons comptes ?</td></tr>
+    <tr><td rowspan="4"><strong>Soldes</strong></td><td>Existence</td><td>Les actifs/passifs existent-ils réellement ?</td></tr>
+    <tr><td>Droits & obligations</td><td>L'entité possède-t-elle réellement les actifs ?</td></tr>
+    <tr><td>Exhaustivité</td><td>Tous les éléments sont-ils comptabilisés ?</td></tr>
+    <tr><td>Valorisation</td><td>Les actifs/passifs sont-ils correctement évalués ?</td></tr>
+    <tr><td rowspan="4"><strong>Présentation</strong></td><td>Droits/obligations</td><td>Les informations concernent-elles réellement l'entité ?</td></tr>
+    <tr><td>Exhaustivité</td><td>Toutes les informations importantes sont-elles divulguées ?</td></tr>
+    <tr><td>Classification</td><td>Les éléments sont-ils correctement classés ?</td></tr>
+    <tr><td>Exactitude</td><td>Les montants présentés sont-ils corrects ?</td></tr>
+  </table>
+
+  <!-- PHASE 4 -->
+  <h3><span class="step-num">4</span> Rédaction et Émission du Rapport</h3>
+
+  <div class="flow">
+    <div class="flow-step">Finalisation des travaux</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Formation de l'opinion</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Rédaction du rapport</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Validation & signature</div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">Émission finale</div>
+  </div>
+
+  <table>
+    <tr><th>Type d'opinion</th><th>Condition</th></tr>
+    <tr><td><span class="anomaly-tag tag-blue">Sans réserve</span></td><td>L'auditeur est satisfait des éléments audités dans tous leurs aspects significatifs</td></tr>
+    <tr><td><span class="anomaly-tag tag-orange">Avec réserve</span></td><td>Limitation de l'étendue, incertitudes sur événements futurs, erreurs non pervasives</td></tr>
+    <tr><td><span class="anomaly-tag tag-red">Refus de certifier</span></td><td>Erreurs/irrégularités suffisamment importantes pour affecter la validité des états de synthèse</td></tr>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 2 : CYCLE VENTES-CLIENTS
+══════════════════════════════════════════════ -->
+<div id="tab-ventes" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Ventes — Clients</h2>
+
+  <div class="case-header">
+    <h3>Cas MECATECH SA — Audit du cycle Ventes-Clients · Exercice 2025</h3>
+    <div class="case-context">Fabrication de composants mécaniques · CA 130 M DH (+37%) · Créances clients 32 M DH · Cabinet AUDITEX · Mission légale</div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Analyse des risques susceptibles d'affecter le cycle Ventes-Clients</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques inhérents</div>
+          <ul>
+            <li><strong>Risque de cut-off :</strong> Comptes 711 (ventes), 342 (clients) — vente comptabilisée avant livraison</li>
+            <li><strong>Risque de concentration client :</strong> 3 clients = 55% du CA → dépendance élevée</li>
+            <li><strong>Risque sur créances douteuses :</strong> 7 M DH ancienneté >180j non provisionnés</li>
+            <li><strong>Risque de transition ERP :</strong> écarts entre BL et factures pendant migration</li>
+            <li><strong>Risque de croissance artificielle :</strong> CA +37%, pression sur les résultats</li>
+          </ul>
+        </div>
+        <div class="card risk">
+          <div class="card-title">Risques liés au contrôle interne</div>
+          <ul>
+            <li><strong>Risque de prix :</strong> modification des tarifs sans validation DG financière</li>
+            <li><strong>Risque sur avoirs :</strong> avoirs établis sans contrôle indépendant</li>
+            <li><strong>Risque de complétude :</strong> absence de rapprochement BL/factures</li>
+            <li><strong>Risque de recouvrement :</strong> relances informelles, non formalisées</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Comptes concernés</h4>
+      <table>
+        <tr><th>Compte</th><th>Libellé</th><th>Risque principal</th></tr>
+        <tr><td>711</td><td>Ventes de biens et services</td><td>Occurrence, Cut-off, Exactitude</td></tr>
+        <tr><td>342</td><td>Clients et comptes rattachés</td><td>Existence, Exhaustivité, Valorisation</td></tr>
+        <tr><td>3421</td><td>Clients - effets à recevoir</td><td>Existence, Évaluation</td></tr>
+        <tr><td>3424</td><td>Clients douteux ou litigieux</td><td>Valorisation (provision insuffisante)</td></tr>
+        <tr><td>3491</td><td>Provision pour dépréciation clients</td><td>Exhaustivité des provisions</td></tr>
+        <tr><td>4455</td><td>TVA facturée</td><td>Exactitude, Imputation</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q2</span>
+      <span class="q-title">Évaluation du dispositif de contrôle interne — Faiblesses & Recommandations</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <table>
+        <tr><th>Faiblesse constatée</th><th>Risque associé</th><th>Recommandation</th></tr>
+        <tr>
+          <td>Le responsable commercial modifie les tarifs sans validation de la DF</td>
+          <td>Sur/sous-facturation, manipulation des prix</td>
+          <td>Mettre en place un workflow de validation des prix par la DF avec signature électronique</td>
+        </tr>
+        <tr>
+          <td>Avoirs commerciaux établis sans contrôle indépendant</td>
+          <td>Avoirs fictifs, fraudes aux remises</td>
+          <td>Instaurer une double validation (service commercial + DAF) pour tout avoir >X DH</td>
+        </tr>
+        <tr>
+          <td>Aucun rapprochement systématique BL / factures</td>
+          <td>Facturation sans livraison, omission de factures</td>
+          <td>Paramétrer l'ERP pour blocage de facturation sans BL signé associé</td>
+        </tr>
+        <tr>
+          <td>Relances clients non formalisées</td>
+          <td>Créances irrécouvrables non détectées</td>
+          <td>Mettre en place une procédure de relance graduée (J+30, J+60, J+90) avec traçabilité</td>
+        </tr>
+        <tr>
+          <td>Dysfonctionnements ERP lors de la transition (retards, écarts BL/factures)</td>
+          <td>Erreurs de comptabilisation, double facturation</td>
+          <td>Effectuer un audit de la migration ERP, corriger les écarts, valider les paramétrages</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q3</span>
+      <span class="q-title">Détermination du seuil de signification</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <p><strong>Données disponibles :</strong></p>
+      <table>
+        <tr><th>Indicateur</th><th>Montant</th><th>Taux applicable</th><th>Résultat</th></tr>
+        <tr><td>Résultat net</td><td>5 000 000 DH</td><td>5 %</td><td>250 000 DH</td></tr>
+        <tr><td>Chiffre d'affaires</td><td>130 000 000 DH</td><td>0,5 %</td><td><strong>650 000 DH</strong></td></tr>
+        <tr><td>Total actif</td><td>90 000 000 DH</td><td>1 %</td><td>900 000 DH</td></tr>
+      </table>
+      <div class="formula">
+        <div class="label">DÉCISION</div>
+        Base retenue : Chiffre d'affaires (activité commerciale prédominante, indicateur stable)<br>
+        Seuil de signification = 130 000 000 × 0,5% = <strong>650 000 DH</strong><br>
+        Seuil de travail (planning materiality) ≈ 75% = 487 500 DH
+      </div>
+      <div class="alert neutral">
+        <strong>Justification</strong>
+        Le résultat net (5 M DH) est faible et peu représentatif de l'activité. Le CA est l'indicateur dominant pour une entreprise industrielle/commerciale à forte croissance. Le total actif convient mieux aux entreprises patrimoniales.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q4</span>
+      <span class="q-title">Programme de travail de l'auditeur</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <h4>A — Vérification du chiffre d'affaires</h4>
+      <ul>
+        <li>Analyse des ventes par mois → détecter les pics inhabituels (décembre 2025)</li>
+        <li>Contrôle de la séquence de facturation (continuité des numéros)</li>
+        <li>Test de cut-off : ventes comptabilisées ±15 jours de la clôture → rapprochement BL / facture / date d'expédition</li>
+        <li>Contrôle des avoirs de décembre 2025 : 2,4 M DH vs 1,33 M DH → analyse des motifs</li>
+        <li>Vérification des ristournes, remises et réductions accordées</li>
+      </ul>
+      <h4>B — Contrôle de la balance clients</h4>
+      <ul>
+        <li>Rapprochement de la balance âgée avec le GL clients</li>
+        <li>Identification des créances >180 jours (7 M DH) : analyse client par client</li>
+        <li>Circularisation des 20 clients sélectionnés : traiter les 3 écarts et les 2 non-réponses</li>
+        <li>Contrôle des confirmations directes : lettres ouvertes ou fermées selon profil</li>
+      </ul>
+      <h4>C — Évaluation des créances</h4>
+      <ul>
+        <li>Analyse du dossier AUTO-PARTS SARL (redressement judiciaire nov. 2025, créance 1,2 M DH) → provision à constituer</li>
+        <li>Revue des dossiers des 4 factures sans BL signé (850 000 DH)</li>
+        <li>Contrôle de la TVA facturée et des avoirs TVA correspondants</li>
+      </ul>
+      <h4>D — Vérification de la présentation</h4>
+      <ul>
+        <li>Classement des créances en court terme / long terme</li>
+        <li>Présentation des créances douteuses séparément</li>
+        <li>Vérification de l'annexe : méthodes de dépréciation des créances</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q5</span>
+      <span class="q-title">Analyse des anomalies — Impact et ajustements comptables</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <table>
+        <tr>
+          <th>#</th>
+          <th>Anomalie</th>
+          <th>Type</th>
+          <th>Impact financier</th>
+          <th>Ajustement proposé</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Vente de 4 M DH (expédition 03/01/2026) comptabilisée le 29/12/2025</td>
+          <td><span class="anomaly-tag tag-red">Cut-off</span></td>
+          <td>CA surévalué de 4 M DH / Résultat surévalué</td>
+          <td>
+            <strong>Extourner :</strong> D. 342 Clients / C. 711 Ventes — 4 000 000<br>
+            <strong>Reclasser en 2026 :</strong> D. 711 / C. 342 au 01/2026
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Créance AUTO-PARTS SARL (redressement judiciaire) sans provision — 1,2 M DH</td>
+          <td><span class="anomaly-tag tag-red">Valorisation</span></td>
+          <td>Créances surévaluées / Résultat surévalué</td>
+          <td>
+            <strong>Constituer provision :</strong> D. 6194 Dotation dépréciation créances / C. 3941 Prov. créances douteuses — 1 200 000<br>
+            (taux de provision à apprécier selon dossier)
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>4 factures sans BL signé — 850 000 DH</td>
+          <td><span class="anomaly-tag tag-orange">Occurrence</span></td>
+          <td>Ventes potentiellement fictives ou prématurées</td>
+          <td>Obtenir les BL ou extourner les ventes non justifiées jusqu'à régularisation</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Avoirs décembre 2025 : 2,4 M DH vs 1,33 M DH (N-1) — écart +1,07 M DH</td>
+          <td><span class="anomaly-tag tag-orange">Exhaustivité</span></td>
+          <td>Risque de CA surévalué si avoirs non comptabilisés</td>
+          <td>Analyser la nature des avoirs : si justifiés → OK ; sinon → ajustement sur 711</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>3 réponses présentant des écarts (circularisation)</td>
+          <td><span class="anomaly-tag tag-blue">Exactitude</span></td>
+          <td>Montant à déterminer après analyse des écarts</td>
+          <td>Investiguer chaque écart : erreur client ou erreur comptable → ajustement si nécessaire</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q6</span>
+      <span class="q-title">Montant total des anomalies vs seuil de signification</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <div style="background:white;border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:16px;">
+        <div class="calc-row"><span>Anomalie cut-off (vente 03/01/2026)</span><strong>4 000 000 DH</strong></div>
+        <div class="calc-row"><span>Provision créances douteuses (AUTO-PARTS)</span><strong>1 200 000 DH</strong></div>
+        <div class="calc-row"><span>Factures sans BL signé (à confirmer)</span><strong>850 000 DH</strong></div>
+        <div class="calc-result">TOTAL ANOMALIES IDENTIFIÉES : 6 050 000 DH</div>
+      </div>
+      <div class="formula">
+        <div class="label">COMPARAISON</div>
+        Anomalies totales :     6 050 000 DH<br>
+        Seuil de signification :  650 000 DH<br>
+        Ratio :              6 050 000 / 650 000 = <strong>9,3 fois le seuil</strong>
+      </div>
+      <div class="alert danger">
+        <strong>Conclusion</strong>
+        Les anomalies détectées dépassent très largement le seuil de signification (×9,3). Elles affectent de manière pervasive le CA et le résultat. Une correction des états financiers est impérative pour que l'image fidèle soit respectée.
+      </div>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q7</span>
+      <span class="q-title">Refus de correction par la direction — Conséquences sur l'opinion d'audit</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <div class="alert danger">
+        <strong>Situation : La direction refuse de procéder aux ajustements proposés.</strong>
+        Les anomalies cumulées (6 050 000 DH) représentent 9,3× le seuil de signification et affectent directement le résultat net (5 M DH) et les créances clients (32 M DH). Ces anomalies sont à la fois significatives et pervasives.
+      </div>
+      <h4>Conséquences sur le cycle</h4>
+      <ul>
+        <li>Le CA est surévalué d'au moins 4 M DH (principe cut-off violé)</li>
+        <li>Les créances sont surévaluées de 1,2 M DH (principe de prudence violé)</li>
+        <li>Le résultat net (5 M DH) est donc largement surévalué — voire artificiellement positif</li>
+        <li>L'image fidèle des états financiers n'est pas respectée</li>
+      </ul>
+      <h4>Opinion d'audit résultante</h4>
+      <table>
+        <tr><th>Option</th><th>Condition</th><th>Application ici</th></tr>
+        <tr>
+          <td><span class="anomaly-tag tag-orange">Opinion avec réserve</span></td>
+          <td>Anomalies significatives mais non pervasives — isolées</td>
+          <td>Insuffisant ici : les anomalies touchent les soldes fondamentaux</td>
+        </tr>
+        <tr>
+          <td><span class="anomaly-tag tag-red">Refus de certification</span></td>
+          <td>Anomalies significatives ET pervasives affectant la validité globale des états</td>
+          <td><strong>→ À retenir : les anomalies sont massives (×9,3 le seuil) et pervasives</strong></td>
+        </tr>
+      </table>
+      <div class="alert danger">
+        <strong>Conclusion finale</strong>
+        En l'absence de corrections, le CAC doit émettre un <strong>refus de certification (opinion défavorable)</strong>. Il devra également envisager de signaler les irrégularités constatées aux autorités compétentes (Parquet) si elles révèlent des infractions pénales, conformément à l'article 177 de la loi sur les SA.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 3 : CYCLE ACHATS-FOURNISSEURS
+══════════════════════════════════════════════ -->
+<div id="tab-achats" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Achats — Fournisseurs</h2>
+
+  <div class="case-header">
+    <h3>Cas CONSTRUBAT SARL — Audit du cycle Achats-Fournisseurs · Exercice 2025</h3>
+    <div class="case-context">Entreprise de BTP · Achats matériaux 45 M DH · Dettes fournisseurs 12 M DH · Nombreux sous-traitants</div>
+  </div>
+
+  <div class="alert neutral">
+    <strong>Contexte fictif</strong>
+    CONSTRUBAT SARL réalise des travaux de construction. Des faiblesses ont été relevées : factures reçues sans bons de commande, avances versées à des fournisseurs sans contrats, délais fournisseurs élevés (>90j), et un fournisseur principal représente 40% des achats. Un changement de ERP en cours de période a généré des doublons de comptabilisation.
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Risques du cycle Achats-Fournisseurs</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques inhérents</div>
+          <ul>
+            <li><strong>Dépendance fournisseur :</strong> 1 fournisseur = 40% → risque de continuité</li>
+            <li><strong>Fraude sur achats fictifs :</strong> secteur BTP très exposé</li>
+            <li><strong>Risque de TVA déductible :</strong> travaux mixtes TVA/exonération</li>
+            <li><strong>Risque de coupure :</strong> travaux en cours non facturés à la clôture</li>
+            <li><strong>Doublons ERP :</strong> migration informatique → double comptabilisation de factures</li>
+          </ul>
+        </div>
+        <div class="card risk">
+          <div class="card-title">Faiblesses de contrôle interne</div>
+          <ul>
+            <li>Factures payées sans bon de commande préalable</li>
+            <li>Avances fournisseurs sans contrat signé</li>
+            <li>Absence de rapprochement BC / BR / Facture (circuit à 3 voies)</li>
+            <li>Pas de plafond d'autorisation d'achat formalisé</li>
+            <li>Délais de paiement >90j : risque de pénalités légales</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Comptes concernés</h4>
+      <table>
+        <tr><th>Compte</th><th>Libellé</th><th>Assertion prioritaire</th></tr>
+        <tr><td>441</td><td>Fournisseurs</td><td>Exhaustivité, Existence, Cut-off</td></tr>
+        <tr><td>4417</td><td>Fournisseurs factures non parvenues (FNP)</td><td>Exhaustivité</td></tr>
+        <tr><td>441x</td><td>Avances & acomptes versés</td><td>Existence, Droits</td></tr>
+        <tr><td>611/612</td><td>Achats consommés / Charges externes</td><td>Occurrence, Cut-off, Exactitude</td></tr>
+        <tr><td>3455</td><td>TVA récupérable sur charges</td><td>Exactitude, Droits</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q2</span>
+      <span class="q-title">Programme de travail — Contrôle des achats</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <h4>A — Contrôle des achats (compte 611/612)</h4>
+      <ul>
+        <li>Revue analytique : évolution des achats vs CA, marge brute vs secteur</li>
+        <li>Test de cut-off : factures reçues en jan. 2026 → à rattacher à 2025 si livraison en 2025</li>
+        <li>Test sur échantillon de 30 factures : vérifier BC → BR → Facture → paiement</li>
+        <li>Identifier les doublons ERP : rapprochement des numéros de factures comptabilisés deux fois</li>
+      </ul>
+      <h4>B — Circularisation fournisseurs</h4>
+      <ul>
+        <li>Sélectionner les 10 fournisseurs principaux + tous les soldes débiteurs anormaux</li>
+        <li>Envoyer confirmations directes → comparer réponses aux soldes comptables</li>
+        <li>Analyser les écarts : factures non parvenues, avoirs non comptabilisés, litiges</li>
+      </ul>
+      <h4>C — Factures non parvenues (FNP)</h4>
+      <ul>
+        <li>Demander la liste des commandes en cours non encore facturées au 31/12/2025</li>
+        <li>Contrôle des factures reçues en janvier 2026 : identifier celles imputables à 2025</li>
+        <li>Comparer le solde du compte 4417 avec l'exercice précédent</li>
+      </ul>
+      <h4>D — TVA récupérable</h4>
+      <ul>
+        <li>Vérification de la déductibilité (conditions : facture au nom de la société, TVA apparente, usage professionnel)</li>
+        <li>Contrôle du rapprochement déclaration TVA vs grand livre</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q3</span>
+      <span class="q-title">Anomalies types et ajustements comptables</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <table>
+        <tr><th>Anomalie</th><th>Impact</th><th>Ajustement</th></tr>
+        <tr>
+          <td>Facture fournisseur de décembre 2025 (livraison 28/12) reçue en janvier 2026, non comptabilisée — 800 000 DH</td>
+          <td>Charges sous-évaluées de 800 K DH / Dettes sous-évaluées</td>
+          <td>D. 611 / C. 4417 FNP — 800 000 DH</td>
+        </tr>
+        <tr>
+          <td>Facture doublon comptabilisée deux fois suite migration ERP — 350 000 DH</td>
+          <td>Charges surévaluées de 350 K DH / Dettes surévaluées</td>
+          <td>D. 441 Fournisseurs / C. 611 — 350 000 DH (extourne doublon)</td>
+        </tr>
+        <tr>
+          <td>Avance versée à fournisseur sans contrat — 500 000 DH (non justifiée)</td>
+          <td>Risque de perte de 500 K DH / Actif fictif</td>
+          <td>Demander justificatif ou constituer provision D. 6194 / C. 3941 — 500 000 DH</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 4 : CYCLE TRÉSORERIE
+══════════════════════════════════════════════ -->
+<div id="tab-tresorerie" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Trésorerie</h2>
+
+  <div class="case-header">
+    <h3>Cas SOFIGEST SA — Audit du cycle Trésorerie · Exercice 2025</h3>
+    <div class="case-context">Société de services · 3 comptes bancaires · Caisse de petite caisse · Placements court terme 8 M DH · Découvert bancaire récurrent</div>
+  </div>
+
+  <div class="alert neutral">
+    <strong>Contexte fictif</strong>
+    SOFIGEST SA gère une importante trésorerie avec 3 banques. Des anomalies ont été relevées : des chèques encaissés non rapprochés avec les relevés bancaires, des dépenses en espèces sans justificatifs, un écart de rapprochement bancaire de 230 000 DH non expliqué, et des virements inter-comptes non enregistrés en temps réel.
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Risques du cycle Trésorerie</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques inhérents</div>
+          <ul>
+            <li><strong>Risque de fraude :</strong> trésorerie = actif liquide par nature très exposé</li>
+            <li><strong>Risque de détournement :</strong> paiements en espèces sans justificatifs</li>
+            <li><strong>Risque de valorisation :</strong> placements mal évalués à la clôture</li>
+            <li><strong>Risque de change :</strong> si opérations en devises</li>
+          </ul>
+        </div>
+        <div class="card risk">
+          <div class="card-title">Faiblesses CI relevées</div>
+          <ul>
+            <li>Rapprochements bancaires non effectués mensuellement</li>
+            <li>Caissier enregistre ET détient la caisse (cumul de fonctions)</li>
+            <li>Virements inter-comptes enregistrés avec retard</li>
+            <li>Absence de plafond de caisse</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q2</span>
+      <span class="q-title">Programme de travail trésorerie</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body">
+      <h4>A — Rapprochements bancaires</h4>
+      <ul>
+        <li>Obtenir les relevés bancaires des 3 comptes au 31/12/2025</li>
+        <li>Préparer les états de rapprochement : GL vs relevé bancaire</li>
+        <li>Identifier et analyser les éléments en suspens (chèques non encaissés, virements en cours)</li>
+        <li>Expliquer l'écart de 230 000 DH non justifié</li>
+      </ul>
+      <h4>B — Circularisation bancaire</h4>
+      <ul>
+        <li>Envoyer des lettres de confirmation directe aux 3 banques</li>
+        <li>Confirmer : soldes, autorisations de découvert, garanties données, engagements hors bilan</li>
+      </ul>
+      <h4>C — Inventaire physique de caisse</h4>
+      <ul>
+        <li>Procéder à l'inventaire de la caisse par surprise (ou au 31/12)</li>
+        <li>Rapprocher le solde physique avec le solde comptable</li>
+        <li>Vérifier les justificatifs de toutes les dépenses en espèces</li>
+      </ul>
+      <h4>D — Placements financiers</h4>
+      <ul>
+        <li>Obtenir les relevés de placements au 31/12/2025</li>
+        <li>Vérifier l'évaluation à la valeur de marché ou au coût amorti</li>
+        <li>Contrôle des intérêts courus à rattacher à l'exercice</li>
+      </ul>
+      <h4>E — Anomalies types et ajustements</h4>
+      <table>
+        <tr><th>Anomalie</th><th>Ajustement</th></tr>
+        <tr>
+          <td>Écart de rapprochement bancaire 230 000 DH : virement reçu le 31/12 non enregistré</td>
+          <td>D. 514 Banque / C. 342 ou compte approprié — 230 000 DH</td>
+        </tr>
+        <tr>
+          <td>Intérêts courus sur placement (DAT) non constatés — 45 000 DH</td>
+          <td>D. 3491 Intérêts courus / C. 738 Produits financiers — 45 000 DH</td>
+        </tr>
+        <tr>
+          <td>Dépenses caisse sans justificatif — 18 000 DH</td>
+          <td>Reclasser en compte courant associé ou D. 6185 Autres charges / C. 516 Caisse</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 5 : CYCLE STOCKS
+══════════════════════════════════════════════ -->
+<div id="tab-stocks" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Stocks</h2>
+
+  <div class="case-header">
+    <h3>Cas TEXMAR SA — Audit du cycle Stocks · Exercice 2025</h3>
+    <div class="case-context">Industrie textile · Stocks matières premières + produits finis · Inventaire annuel · Méthode CMUP · Entrepôt multi-sites</div>
+  </div>
+
+  <div class="alert neutral">
+    <strong>Contexte fictif</strong>
+    TEXMAR SA possède des stocks valorisés à 18 M DH. L'inventaire physique a révélé des écarts de 1,2 M DH non justifiés. Des matières premières obsolètes (3 M DH) n'ont fait l'objet d'aucune dépréciation. L'auditeur n'a pas pu assister à l'inventaire dans l'entrepôt secondaire.
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Risques et programme de travail — Stocks</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques principaux</div>
+          <ul>
+            <li><strong>Existence :</strong> stocks fictifs ou surévalués dans l'inventaire</li>
+            <li><strong>Valorisation :</strong> méthode CMUP mal appliquée, obsolescence non provisionnée</li>
+            <li><strong>Cut-off stocks :</strong> marchandises en transit mal rattachées</li>
+            <li><strong>Limitation étendue :</strong> non-assistance à l'inventaire de l'entrepôt B</li>
+          </ul>
+        </div>
+        <div class="card ok">
+          <div class="card-title">Programme de travail</div>
+          <ul>
+            <li>Observer l'inventaire physique (procédure normalement obligatoire)</li>
+            <li>Vérifier les feuilles de comptage vs listing informatique</li>
+            <li>Recalcul des coûts unitaires CMUP sur échantillon</li>
+            <li>Revue des mouvements depuis le dernier inventaire</li>
+            <li>Analyse des stocks à rotation nulle (>12 mois) → provision</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Ajustements comptables</h4>
+      <table>
+        <tr><th>Anomalie</th><th>Montant</th><th>Ajustement</th></tr>
+        <tr>
+          <td>Écart inventaire non justifié (manquants)</td>
+          <td>1 200 000 DH</td>
+          <td>D. 6196 Dotation dépréc. stocks / C. 393 Prov. stocks → ou D. 6186 Pertes / C. 31 Stocks</td>
+        </tr>
+        <tr>
+          <td>Stocks obsolètes non dépréciés (rotation nulle >18 mois)</td>
+          <td>3 000 000 DH</td>
+          <td>D. 6196 Dotation dépréc. stocks / C. 393 Prov. dépréc. stocks — 3 000 000</td>
+        </tr>
+        <tr>
+          <td>Stocks en transit (livraison 28/12) non comptabilisés</td>
+          <td>420 000 DH</td>
+          <td>D. 31 Stocks / C. 611 ou 441 — 420 000 (rattachement exercice)</td>
+        </tr>
+      </table>
+      <div class="alert danger">
+        <strong>Non-assistance à l'inventaire</strong>
+        L'auditeur n'a pas pu assister à l'inventaire de l'entrepôt B. Si des procédures alternatives (inventaire tournant, confirmation documentaire) ne permettent pas de pallier cette limitation, l'auditeur devra émettre une réserve pour limitation d'étendue sur le poste stocks.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 6 : CYCLE IMMOBILISATIONS
+══════════════════════════════════════════════ -->
+<div id="tab-immo" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Immobilisations</h2>
+
+  <div class="case-header">
+    <h3>Cas AGRITECH SA — Audit du cycle Immobilisations · Exercice 2025</h3>
+    <div class="case-context">Agro-industrie · Immobilisations corporelles 42 M DH · Matériel industriel · Investissements importants en 2025 · Cession d'une ligne de production</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Risques, programme de travail et ajustements</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques principaux</div>
+          <ul>
+            <li><strong>Existence :</strong> immobilisations cédées ou mises au rebut non sorties de l'actif</li>
+            <li><strong>Exhaustivité :</strong> charges d'entretien capitalisées à tort (ou inversement)</li>
+            <li><strong>Valorisation :</strong> durées d'amortissement non adaptées à l'usage réel</li>
+            <li><strong>Cut-off :</strong> immobilisations en cours non mises en service mais amorties</li>
+            <li><strong>Cession :</strong> plus-values mal calculées ou non imposées</li>
+          </ul>
+        </div>
+        <div class="card ok">
+          <div class="card-title">Programme de travail</div>
+          <ul>
+            <li>Obtenir le fichier des immobilisations et rapprocher avec GL</li>
+            <li>Vérifier les acquisitions 2025 : factures, autorisations, date de mise en service</li>
+            <li>Contrôle des amortissements : durées × taux × base amortissable → recalcul sur échantillon</li>
+            <li>Analyse des cessions : calcul VNA → résultat de cession → vérification enregistrement</li>
+            <li>Observation physique d'un échantillon d'immobilisations</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Anomalies types et ajustements</h4>
+      <table>
+        <tr><th>Anomalie</th><th>Montant</th><th>Ajustement comptable</th></tr>
+        <tr>
+          <td>Charge d'entretien capitalisée à tort (réparation courante)</td>
+          <td>480 000 DH</td>
+          <td>D. 6132 Entretien & réparations / C. 232 Matériel (sortie immob.) — 480 000</td>
+        </tr>
+        <tr>
+          <td>Amortissement calculé sur base surévaluée (valeur résiduelle non déduite)</td>
+          <td>95 000 DH en trop</td>
+          <td>D. 28x Amortissements / C. 6193 Dotation amort. (réduction de dotation) — 95 000</td>
+        </tr>
+        <tr>
+          <td>Cession ligne de production : VNA = 1,2 M DH, Prix = 900 K DH. Moins-value non constatée</td>
+          <td>300 000 DH</td>
+          <td>D. 651 VNA cessions / C. 23x Immob. (VNA) — constatation moins-value — 300 000</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 7 : CYCLE PAIE-PERSONNEL
+══════════════════════════════════════════════ -->
+<div id="tab-paie" class="content">
+  <div class="part-label">Cas pratique · TD modèle</div>
+  <h2>Cycle Paie — Personnel</h2>
+
+  <div class="case-header">
+    <h3>Cas LOGIPAK SA — Audit du cycle Paie-Personnel · Exercice 2025</h3>
+    <div class="case-context">Logistique · 320 salariés · Masse salariale 28 M DH · Personnel saisonnier · Congés payés non provisionnés · Déclarations CNSS en retard</div>
+  </div>
+
+  <div class="q-block">
+    <div class="q-header" onclick="toggleQ(this)">
+      <span class="q-num">Q1</span>
+      <span class="q-title">Risques, programme et anomalies</span>
+      <span class="q-toggle">▼</span>
+    </div>
+    <div class="q-body open">
+      <div class="card-grid">
+        <div class="card risk">
+          <div class="card-title">Risques principaux</div>
+          <ul>
+            <li><strong>Salariés fantômes :</strong> salaires versés à des personnes inexistantes</li>
+            <li><strong>Exhaustivité congés :</strong> provision congés payés non constituée</li>
+            <li><strong>CNSS :</strong> sous-déclaration des salaires → risque redressement</li>
+            <li><strong>Primes :</strong> primes versées sans base contractuelle</li>
+            <li><strong>Saisonniers :</strong> contrats à durée déterminée non respectés légalement</li>
+          </ul>
+        </div>
+        <div class="card ok">
+          <div class="card-title">Programme de travail</div>
+          <ul>
+            <li>Rapprochement liste du personnel RH vs bulletins de paie vs déclarations CNSS</li>
+            <li>Vérification des calculs de salaire sur échantillon de 20 bulletins</li>
+            <li>Contrôle des cotisations CNSS : assiette × taux, rapprochement déclarations</li>
+            <li>Calcul de la provision congés payés : jours acquis × taux journalier</li>
+            <li>Vérification des primes : base contractuelle ou accord d'entreprise</li>
+          </ul>
+        </div>
+      </div>
+      <h4>Anomalies types et ajustements</h4>
+      <table>
+        <tr><th>Anomalie</th><th>Montant</th><th>Ajustement</th></tr>
+        <tr>
+          <td>Provision congés payés non constituée (320 sal. × 2j moy. × 320 DH/j)</td>
+          <td>204 800 DH</td>
+          <td>D. 617 Charges de personnel / C. 4432 Congés payés à payer — 204 800</td>
+        </tr>
+        <tr>
+          <td>CNSS sous-déclarée : primes non intégrées dans l'assiette CNSS</td>
+          <td>85 000 DH</td>
+          <td>D. 617x Cotisations sociales / C. 4441 CNSS à régulariser — 85 000</td>
+        </tr>
+        <tr>
+          <td>Salaire versé à un employé sorti des effectifs (octobre 2025) — non détecté</td>
+          <td>32 000 DH</td>
+          <td>Récupération auprès de l'intéressé ou D. 3481 Débiteurs divers / C. 617 — 32 000</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggleQ(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.q-toggle');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open');
+    toggle.classList.toggle('open', !isOpen);
+  }
+
+  // Open first Q of each tab by default on tab switch
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      // handled above
+    });
+  });
+</script>
+</body>
+</html>
