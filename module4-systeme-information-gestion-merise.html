@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Module 4 — Système d'Information de Gestion | MERISE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--paper:#f6f3ec;
+--ink:#1c2438;
+--ink-soft:#4a5170;
+--line:#d8d2c2;
+--entite:#2f7a5c;
+--entite-bg:#e6f2ec;
+--assoc:#8a4fd6;
+--assoc-bg:#f1e9fb;
+--card:#c85a3e;
+--card-bg:#fbe9e2;
+--mld:#1f6fb2;
+--mld-bg:#e5f0f9;
+--mpd:#b8860b;
+--mpd-bg:#faf1de;
+--gold:#d9a441;
+}
+*{box-sizing:border-box;}
+body{
+margin:0;
+background:var(--paper);
+color:var(--ink);
+font-family:'IBM Plex Sans',sans-serif;
+line-height:1.5;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px 80px;}
+/* HERO */
+.hero{
+padding:56px 24px 40px;
+text-align:center;
+border-bottom:3px solid var(--ink);
+margin-bottom:48px;
+background:
+repeating-linear-gradient(90deg, transparent, transparent 79px, rgba(28,36,56,0.05) 80px);
+}
+.hero .eyebrow{
+font-family:'IBM Plex Mono',monospace;
+letter-spacing:.18em;
+text-transform:uppercase;
+font-size:12px;
+color:var(--card);
+font-weight:600;
+}
+.hero h1{
+font-family:'Fraunces',serif;
+font-weight:900;
+font-size:clamp(34px,5vw,58px);
+margin:8px 0 6px;
+letter-spacing:-0.01em;
+}
+.hero p{color:var(--ink-soft);font-size:16px;max-width:640px;margin:0 auto;}
+.pipeline{
+display:flex;align-items:center;justify-content:center;gap:14px;
+margin-top:28px;flex-wrap:wrap;
+font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;
+}
+.pipeline .stage{
+padding:10px 20px;border-radius:999px;border:2px solid var(--ink);background:#fff;
+}
+.pipeline .arrow{color:var(--ink-soft);font-size:20px;}
+.pipeline .stage.mcd{border-color:var(--entite);color:var(--entite);}
+.pipeline .stage.mld{border-color:var(--mld);color:var(--mld);}
+.pipeline .stage.mpd{border-color:var(--mpd);color:var(--mpd);}
+/* SECTION TITLES */
+.section{margin-bottom:64px;}
+.section-head{
+display:flex;align-items:baseline;gap:14px;margin-bottom:22px;
+border-bottom:2px solid var(--ink);padding-bottom:10px;
+}
+.section-head .tag{
+font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;
+padding:4px 10px;border-radius:6px;color:#fff;white-space:nowrap;
+}
+.tag.mcd{background:var(--entite);}
+.tag.mld{background:var(--mld);}
+.tag.mpd{background:var(--mpd);}
+.tag.flash{background:var(--card);}
+.section-head h2{
+font-family:'Fraunces',serif;font-weight:700;font-size:28px;margin:0;
+}
+.section-sub{color:var(--ink-soft);font-size:14.5px;margin:-10px 0 24px;}
+/* MIND MAP HUB */
+.hub-center{
+text-align:center;font-family:'Fraunces',serif;font-weight:900;font-size:22px;
+background:var(--ink);color:var(--paper);
+border-radius:16px;padding:14px 24px;display:inline-block;margin-bottom:26px;
+box-shadow:6px 6px 0 var(--gold);
+}
+.hub-wrap{text-align:center;}
+.branches{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;
+}
+.branch{
+border-radius:14px;border:2px solid var(--line);background:#fff;
+padding:18px 20px;position:relative;
+}
+.branch::before{
+content:"";position:absolute;top:-2px;left:16px;width:44px;height:6px;border-radius:4px;
+}
+.branch h3{
+font-family:'Fraunces',serif;font-size:18px;margin:2px 0 10px;display:flex;align-items:center;gap:8px;
+}
+.branch h3 .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
+.branch ul{margin:0;padding-left:20px;font-size:14px;}
+.branch li{margin-bottom:5px;}
+.branch .example{
+margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;
+background:var(--paper);border-radius:8px;padding:8px 10px;border:1px dashed var(--line);
+}
+.branch p.def{font-size:14px;color:var(--ink-soft);margin:0 0 8px;}
+.branch.entite::before{background:var(--entite);}
+.branch.entite h3 .dot{background:var(--entite);}
+.branch.entite{background:var(--entite-bg);border-color:var(--entite);}
+.branch.assoc::before{background:var(--assoc);}
+.branch.assoc h3 .dot{background:var(--assoc);}
+.branch.assoc{background:var(--assoc-bg);border-color:var(--assoc);}
+.branch.card::before{background:var(--card);}
+.branch.card h3 .dot{background:var(--card);}
+.branch.card{background:var(--card-bg);border-color:var(--card);}
+.branch.mld::before{background:var(--mld);}
+.branch.mld h3 .dot{background:var(--mld);}
+.branch.mld{background:var(--mld-bg);border-color:var(--mld);}
+.branch.mpd::before{background:var(--mpd);}
+.branch.mpd h3 .dot{background:var(--mpd);}
+.branch.mpd{background:var(--mpd-bg);border-color:var(--mpd);}
+/* CARDINALITY TABLE */
+.cardtable{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:24px;
+}
+.cardbox{
+border:2px solid var(--card);background:var(--card-bg);border-radius:12px;padding:14px 16px;
+}
+.cardbox .code{
+font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:16px;color:var(--card);
+}
+.cardbox p{margin:6px 0 0;font-size:13.5px;}
+/* RULES TABLE (MLD) */
+.rules{
+width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;
+border-radius:12px;overflow:hidden;
+}
+.rules th{
+background:var(--ink);color:var(--paper);text-align:left;padding:10px 14px;
+font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.04em;
+}
+.rules td{padding:10px 14px;border-bottom:1px solid var(--line);background:#fff;}
+.rules tr:nth-child(even) td{background:#fbfaf6;}
+.rules .badge{
+font-family:'IBM Plex Mono',monospace;font-weight:700;padding:2px 8px;border-radius:6px;
+background:var(--mld-bg);color:var(--mld);display:inline-block;
+}
+/* CODE BLOCK */
+pre{
+background:var(--ink);color:#e9e6da;border-radius:12px;padding:16px 18px;
+font-family:'IBM Plex Mono',monospace;font-size:13px;overflow-x:auto;line-height:1.6;
+}
+.comment{color:#8b93b0;}
+/* SCHEMA CHAIN (worked example) */
+.chain{
+display:flex;align-items:center;gap:0;flex-wrap:wrap;justify-content:center;margin:20px 0;
+}
+.ent{
+border:2px solid var(--entite);background:var(--entite-bg);border-radius:10px;
+padding:8px 14px;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13px;color:var(--entite);
+}
+.link{
+display:flex;flex-direction:column;align-items:center;padding:0 8px;font-size:11px;
+color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;
+}
+.link .card1,.link .card2{color:var(--card);font-weight:700;}
+.link .assocname{
+background:var(--assoc-bg);color:var(--assoc);border:1px solid var(--assoc);
+border-radius:999px;padding:2px 10px;margin:2px 0;font-weight:700;
+}
+.link-line{width:38px;height:2px;background:var(--ink-soft);}
+/* TYPE TABLE */
+.typegrid{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:18px;
+}
+.typecell{
+border:1.5px solid var(--mpd);background:var(--mpd-bg);border-radius:10px;padding:10px 12px;font-size:13px;
+}
+.typecell .t{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--mpd);display:block;margin-bottom:2px;}
+/* CHECKLIST */
+.checklist{
+display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;
+}
+.check{
+background:#fff;border:2px solid var(--ink);border-radius:14px;padding:16px 18px;
+}
+.check h4{
+font-family:'Fraunces',serif;font-size:16px;margin:0 0 8px;display:flex;gap:8px;align-items:center;
+}
+.check .num{
+background:var(--ink);color:var(--paper);border-radius:50%;width:24px;height:24px;
+display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-family:'IBM Plex Mono',monospace;
+}
+.check p{font-size:13.5px;margin:0;color:var(--ink-soft);}
+.errbox{
+border-left:4px solid var(--card);background:var(--card-bg);border-radius:0 10px 10px 0;
+padding:12px 16px;margin-top:18px;font-size:14px;
+}
+.errbox b{color:var(--card);}
+.casebox{
+background:#fff;border:2px solid var(--ink);border-radius:14px;padding:20px 22px;margin-top:18px;
+}
+.casebox h4{font-family:'Fraunces',serif;font-size:17px;margin:0 0 10px;}
+.casebox ol{margin:0;padding-left:20px;font-size:14px;}
+.casebox li{margin-bottom:6px;}
+
+.nav-buttons{
+display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:28px auto 0;
+}
+.nav-buttons a{
+text-decoration:none;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13px;
+padding:10px 18px;border-radius:999px;border:2px solid var(--ink);background:#fff;color:var(--ink);
+box-shadow:3px 3px 0 var(--gold);transition:.2s;
+}
+.nav-buttons a:hover{transform:translateY(-2px);box-shadow:5px 5px 0 var(--gold);}
+
+footer{
+text-align:center;color:var(--ink-soft);font-size:12.5px;margin-top:60px;
+font-family:'IBM Plex Mono',monospace;
+}
+</style>
+</head>
+<body>
+<div class="hero">
+<div class="eyebrow">Module 4 — Système d'Information de Gestion</div>
+<h1>Système d'Information de Gestion</h1>
+<p>Fiche de révision MERISE pour comprendre la modélisation des données dans un système d'information : MCD → MLD → MPD.</p>
+<div class="pipeline">
+<span class="stage mcd">MCD — quoi mémoriser ?</span>
+<span class="arrow">→</span>
+<span class="stage mld">MLD — comment organiser ?</span>
+<span class="arrow">→</span>
+<span class="stage mpd">MPD — comment créer ?</span>
+</div>
+</div>
+<div class="nav-buttons">
+<a href="javascript:history.back()">← Retour à la page précédente</a>
+<a href="index.html">🏠 Retour à l'accueil</a>
+</div>
+
+<div class="wrap">
+<!-- ============ SECTION MCD ============ -->
+<section class="section">
+<div class="section-head">
+<span class="tag mcd">1</span>
+<h2>MCD — Modèle Conceptuel de Données</h2>
+</div>
+<p class="section-sub">Photographie logique du métier, indépendante de toute technique. Se construit en 4 étapes.</p>
+<div class="hub-wrap"><div class="hub-center">MCD</div></div>
+<div class="branches">
+<div class="branch entite">
+<h3><span class="dot"></span>1 · Entités</h3>
+<p class="def">Objet du monde réel dont on garde des infos. Doit être identifiable, autonome, utile — pas une simple caractéristique.</p>
+<ul>
+<li>Toutes les propriétés sont obligatoires (pas de "facultatif")</li>
+<li>Ne pas confondre entité et attribut : <i>CLIENT</i> = entité, <i>Adresse</i> = attribut</li>
+</ul>
+<div class="example">CLIENT · PRODUIT · COMMANDE · FOURNISSEUR · FACTURE</div>
+</div>
+<div class="branch card">
+<h3><span class="dot"></span>2 · Attributs & Identifiant</h3>
+<p class="def">Informations descriptives d'une entité. Un attribut = identifiant (clé primaire conceptuelle) unique par entité.</p>
+<ul>
+<li><b>Unique</b> — jamais 2 occurrences avec la même valeur</li>
+<li><b>Stable</b> — ne change pas dans le temps (CIN, pas l'adresse)</li>
+<li><b>Non ambigu</b> — désigne une seule chose (pas "le professeur")</li>
+<li><b>Minimal</b> — le plus simple possible</li>
+<li>Élémentaire, jamais calculé (Date_Naissance, pas Âge)</li>
+</ul>
+<div class="example">CLIENT → Code_Client · COMMANDE → Num_Commande</div>
+</div>
+<div class="branch assoc">
+<h3><span class="dot"></span>3 · Associations</h3>
+<p class="def">Lien sémantique entre plusieurs entités — traduit la dynamique du métier.</p>
+<ul>
+<li>CLIENT — PASSER — COMMANDE</li>
+<li>PRODUIT — FOURNI_PAR — FOURNISSEUR</li>
+<li>COMMANDE — GÉNÈRE — FACTURE</li>
+<li>EMPLOYÉ — TRAITE — COMMANDE</li>
+</ul>
+</div>
+<div class="branch mld">
+<h3><span class="dot"></span>4 · Cardinalités</h3>
+<p class="def">Bornes (min, max) : combien d'occurrences d'une entité liées à combien d'occurrences de l'autre.</p>
+<ul>
+<li>Se lisent toujours <b>du côté opposé</b> de l'entité</li>
+<li>Règle de gestion → phrase → cardinalité</li>
+</ul>
+</div>
+</div>
+<div class="cardtable">
+<div class="cardbox"><span class="code">(0,1)</span><p>Zéro ou une occurrence. Ex : un employé peut avoir ou pas un véhicule de service.</p></div>
+<div class="cardbox"><span class="code">(1,1)</span><p>Obligatoirement une seule occurrence. Ex : chaque facture correspond à exactement une commande.</p></div>
+<div class="cardbox"><span class="code">(0,N)</span><p>Aucune ou plusieurs occurrences. Ex : un client peut n'avoir passé aucune commande, ou plusieurs.</p></div>
+<div class="cardbox"><span class="code">(1,N)</span><p>Au moins une, éventuellement plusieurs. Ex : une commande contient au moins un produit.</p></div>
+</div>
+<div class="casebox">
+<h4>🔎 Cas résolu — Entreprise de distribution</h4>
+<div class="chain">
+<span class="ent">CLIENT</span>
+<div class="link"><span class="card1">(0,N)</span><span class="assocname">PASSE</span><span class="card2">(1,1)</span></div>
+<span class="ent">COMMANDE</span>
+<div class="link"><span class="card1">(1,N)</span><span class="assocname">CONTIENT</span><span class="card2">(0,N)</span></div>
+<span class="ent">PRODUIT</span>
+<div class="link"><span class="card1">(1,1)</span><span class="assocname">FOURNI_PAR</span><span class="card2">(0,N)</span></div>
+<span class="ent">FOURNISSEUR</span>
+</div>
+<div class="chain">
+<span class="ent">COMMANDE</span>
+<div class="link"><span class="card1">(1,1)</span><span class="assocname">GÉNÈRE</span><span class="card2">(1,1)</span></div>
+<span class="ent">FACTURE</span>
+</div>
+<p style="font-size:13.5px;color:var(--ink-soft);margin-top:10px">
+Astuce de lecture : « chaque commande appartient à un seul client » → la cardinalité <b>(1,1)</b> se place du <b>côté COMMANDE</b>, pas du côté client.
+</p>
+</div>
+</section>
+<!-- ============ SECTION MLD ============ -->
+<section class="section">
+<div class="section-head">
+<span class="tag mld">2</span>
+<h2>MLD — Modèle Logique de Données</h2>
+</div>
+<p class="section-sub">Traduit le MCD en tables relationnelles : les associations disparaissent au profit de clés étrangères (ou de tables associatives).</p>
+<div class="hub-wrap"><div class="hub-center">MLD</div></div>
+<div class="branches">
+<div class="branch mld">
+<h3><span class="dot"></span>Association (1,N)</h3>
+<p class="def">Un côté (1,1) et un côté (1,N) → pas de nouvelle table.</p>
+<ul><li>La clé primaire du côté « 1 » migre vers le côté « N » comme clé étrangère</li></ul>
+<div class="example">ÉTUDIANT (1,1) — S'INSCRIRE — PROGRAMME (1,N)<br>→ ETUDIANT(Matricule, Nom, ..., <b>#CodeProgramme</b>)</div>
+</div>
+<div class="branch assoc">
+<h3><span class="dot"></span>Association (N,N)</h3>
+<p class="def">Plusieurs occurrences des deux côtés → création obligatoire d'une nouvelle table.</p>
+<ul><li>Contient les 2 clés primaires des entités</li><li>+ les attributs propres à l'association</li></ul>
+<div class="example">PROGRAMME (1,N) — COMPOSER — MODULE (1,N)<br>→ COMPOSER(<b>#CodeProgramme</b>, <b>#CodeModule</b>)</div>
+</div>
+<div class="branch entite">
+<h3><span class="dot"></span>Association (1,1)</h3>
+<p class="def">Cardinalité max de 1 des deux côtés.</p>
+<ul><li>Une clé primaire migre vers l'autre table</li><li>Pas de nouvelle table nécessaire</li></ul>
+</div>
+</div>
+<table class="rules">
+<tr><th>Type d'association</th><th>Règle de transformation</th></tr>
+<tr><td><span class="badge">(1,1)</span></td><td>Migration d'une clé primaire vers l'autre table comme clé étrangère</td></tr>
+<tr><td><span class="badge">(1,N)</span></td><td>Migration de la clé primaire du côté « 1 » vers le côté « N »</td></tr>
+<tr><td><span class="badge">(N,N)</span></td><td>Création d'une table associative contenant les deux clés étrangères</td></tr>
+<tr><td><span class="badge">assoc. avec attributs</span></td><td>Les attributs de l'association sont ajoutés à la table associative</td></tr>
+</table>
+<div class="casebox">
+<h4>🔎 Cas résolu — École de management (MCD → MLD)</h4>
+<pre>ETUDIANT(<b>Matricule</b>, Nom, Prénom, DateNaissance, Email, #CodeProgramme)
+PROGRAMME(<b>CodeProgramme</b>, Intitulé, Niveau)
+MODULE(<b>CodeModule</b>, Intitulé, Crédits)
+ENSEIGNANT(<b>CodeEns</b>, Nom, Prénom, Grade)
+<span class="comment">-- tables associatives issues des associations (N,N)</span>
+COMPOSER(<b>#CodeProgramme</b>, <b>#CodeModule</b>)
+ENSEIGNER(<b>#CodeEns</b>, <b>#CodeModule</b>)</pre>
+</div>
+</section>
+<!-- ============ SECTION MPD ============ -->
+<section class="section">
+<div class="section-head">
+<span class="tag mpd">3</span>
+<h2>MPD — Modèle Physique de Données</h2>
+</div>
+<p class="section-sub">Traduction technique du MLD dans un SGBD précis (MySQL, PostgreSQL...) : types, contraintes, index.</p>
+<div class="hub-wrap"><div class="hub-center">MPD</div></div>
+<div class="branches">
+<div class="branch mpd">
+<h3><span class="dot"></span>Transformation de base</h3>
+<ul>
+<li>Relation MLD → <b>table</b> SQL</li>
+<li>Attribut → <b>colonne</b></li>
+<li>Clé primaire → contrainte <code>PRIMARY KEY</code></li>
+<li>Clé étrangère → contrainte <code>FOREIGN KEY ... REFERENCES</code></li>
+</ul>
+</div>
+<div class="branch card">
+<h3><span class="dot"></span>Contraintes d'intégrité</h3>
+<ul>
+<li><code>NOT NULL</code> — champ obligatoire</li>
+<li><code>UNIQUE</code> — valeur non dupliquée</li>
+<li><code>CHECK</code> — condition à respecter (prix ≥ 0)</li>
+<li><code>DEFAULT</code> — valeur par défaut</li>
+</ul>
+</div>
+<div class="branch assoc">
+<h3><span class="dot"></span>Suppression / mise à jour</h3>
+<ul>
+<li><code>ON DELETE CASCADE</code> — supprime en chaîne</li>
+<li><code>ON DELETE RESTRICT</code> — interdit la suppression si lié</li>
+<li><code>ON UPDATE CASCADE</code> — répercute la mise à jour</li>
+</ul>
+</div>
+<div class="branch entite">
+<h3><span class="dot"></span>Index</h3>
+<p class="def">Accélère les recherches sur une colonne souvent filtrée (ex. clé étrangère).</p>
+<div class="example">CREATE INDEX idx_commande_client<br>ON Commande(id_client);</div>
+</div>
+</div>
+<p style="margin-top:26px;font-weight:600">Types de données courants (mémo rapide) :</p>
+<div class="typegrid">
+<div class="typecell"><span class="t">INT</span>identifiant / quantité</div>
+<div class="typecell"><span class="t">VARCHAR(n)</span>texte court (nom, ville)</div>
+<div class="typecell"><span class="t">TEXT</span>texte long (description)</div>
+<div class="typecell"><span class="t">DECIMAL(10,2)</span>montant, prix, salaire</div>
+<div class="typecell"><span class="t">DATE</span>date seule</div>
+<div class="typecell"><span class="t">DATETIME</span>date + heure</div>
+<div class="typecell"><span class="t">BOOLEAN</span>vrai / faux</div>
+<div class="typecell"><span class="t">uniqueidentifier</span>clé auto-incrémentée</div>
+</div>
+<div class="casebox">
+<h4>🔎 Cas résolu — Gestion des commandes (MLD → MPD complet)</h4>
+<pre>CREATE TABLE Client (
+id_client INT PRIMARY KEY,
+nom VARCHAR(50) NOT NULL,
+prenom VARCHAR(50) NOT NULL,
+telephone VARCHAR(20)
+);
+CREATE TABLE Commande (
+id_commande INT PRIMARY KEY,
+date_commande DATE NOT NULL,
+id_client INT NOT NULL,
+FOREIGN KEY (id_client) REFERENCES Client(id_client)
+);
+CREATE TABLE Produit (
+id_produit INT PRIMARY KEY,
+designation VARCHAR(100) NOT NULL,
+prix DECIMAL(10,2) NOT NULL CHECK (prix >= 0)
+);
+<span class="comment">-- table associative : relation N,N entre Commande et Produit</span>
+CREATE TABLE Ligne_commande (
+id_commande INT,
+id_produit INT,
+quantite INT NOT NULL CHECK (quantite > 0),
+PRIMARY KEY (id_commande, id_produit),
+FOREIGN KEY (id_commande) REFERENCES Commande(id_commande),
+FOREIGN KEY (id_produit) REFERENCES Produit(id_produit)
+);</pre>
+</div>
+</section>
+<!-- ============ SECTION FLASH / EXAM ============ -->
+<section class="section">
+<div class="section-head">
+<span class="tag flash">★</span>
+<h2>Fiche flash pour demain</h2>
+</div>
+<p class="section-sub">Méthode pas-à-pas pour traiter un cas pratique le jour de l'examen.</p>
+<div class="checklist">
+<div class="check">
+<h4><span class="num">1</span>Lire &amp; souligner</h4>
+<p>Repérer les noms → entités possibles. Repérer les verbes d'action (passer, contenir, enseigner...) → associations.</p>
+</div>
+<div class="check">
+<h4><span class="num">2</span>Lister les attributs</h4>
+<p>Sous chaque entité, noter ses propriétés + choisir l'identifiant (unique, stable, non ambigu, minimal).</p>
+</div>
+<div class="check">
+<h4><span class="num">3</span>Formuler les règles de gestion</h4>
+<p>Une phrase par sens : « un X peut/doit avoir combien de Y ? » → déduire la cardinalité de ce côté.</p>
+</div>
+<div class="check">
+<h4><span class="num">4</span>Dessiner le MCD</h4>
+<p>Entités = rectangles, association = losange, cardinalités aux deux bouts du trait.</p>
+</div>
+<div class="check">
+<h4><span class="num">5</span>Passer au MLD</h4>
+<p>Pour chaque association : (1,N) → clé migre côté N · (N,N) → table associative · (1,1) → migration simple.</p>
+</div>
+<div class="check">
+<h4><span class="num">6</span>Passer au MPD</h4>
+<p>CREATE TABLE avec types précis, PRIMARY KEY, FOREIGN KEY, contraintes (NOT NULL, CHECK, UNIQUE).</p>
+</div>
+</div>
+<div class="errbox">
+<b>Pièges classiques à éviter :</b> oublier une clé primaire · oublier une clé étrangère · confondre attribut et entité (ex. « Adresse » n'est pas une entité) · cardinalité mise du mauvais côté · attribut calculé (Âge au lieu de Date_Naissance) · oublier la table associative pour une relation (N,N).
+</div>
+</section>
+</div>
+<footer>NB Prof — Module 4 : Système d'Information de Gestion · Fiche MERISE</footer>
+</body>
+</html> je veux ajouter ceci au module 4 **Système d'Information de Gestion sur mon site avec le meme disigne de mon site**
