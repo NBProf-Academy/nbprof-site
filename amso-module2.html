@@ -212,12 +212,57 @@
       background: var(--gold);
       color: var(--navy);
     }
+.resources-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin: 25px 0 40px;
+}
 
+.resource-card {
+  display: block;
+  background: var(--navy-2);
+  border: 1px solid var(--gold-medium);
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 24px;
+  text-decoration: none;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+}
+
+.resource-card:hover {
+  transform: translateY(-4px);
+  background: var(--gold-light);
+  border-color: var(--gold);
+}
+
+.resource-icon {
+  font-size: 34px;
+  margin-bottom: 10px;
+}
+
+.resource-card h3 {
+  color: var(--gold);
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.resource-card p {
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.resource-card span {
+  color: var(--gold);
+  font-weight: bold;
+}
     @media (max-width: 768px) {
       .course-header h1 { font-size: 1.6em; }
       .course-container { padding: 0 15px; }
       .matrix-table { font-size: 0.9em; }
       .matrix-table th, .matrix-table td { padding: 10px; }
+      .resources-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -264,6 +309,32 @@
         <li>Évaluer la performance globale d'une organisation</li>
       </ul>
     </div>
+    <!-- RESSOURCES INTERACTIVES -->
+<h2>📌 Ressources interactives du Module 2</h2>
+
+<div class="resources-grid">
+
+  <a class="resource-card" href="module2-fiche-revision-diagnostic-performance.html">
+    <div class="resource-icon">🧠</div>
+    <h3>Fiche de révision</h3>
+    <p>
+      Carte mentale interactive pour réviser le diagnostic stratégique,
+      l’analyse externe, l’analyse interne, la SWOT et l’évaluation de la performance.
+    </p>
+    <span>Accéder à la fiche →</span>
+  </a>
+
+  <a class="resource-card" href="module2-exercices-pratiques-diagnostic-performance.html">
+    <div class="resource-icon">📝</div>
+    <h3>Exercices pratiques</h3>
+    <p>
+      Atelier pratique réutilisable pour s’entraîner sur PESTEL, SWOT,
+      TOWS, choix stratégique et pitch de recommandation.
+    </p>
+    <span>Accéder aux exercices →</span>
+  </a>
+
+</div>
 
     <!-- CHAPITRE 1 -->
     <h2>1️⃣ Les fondamentaux du diagnostic stratégique</h2>
