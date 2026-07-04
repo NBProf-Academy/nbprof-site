@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Module 2 — Diagnostic Stratégique & Évaluation de la Performance</title>
+  <style>
+    :root{
+      --primary:#1e3a8a;
+      --secondary:#f97316;
+      --accent:#0f766e;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#64748b;
+      --border:#e2e8f0;
+      --soft-blue:#eff6ff;
+      --soft-orange:#fff7ed;
+      --soft-green:#ecfdf5;
+      --shadow:0 10px 25px rgba(15,23,42,.08);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%);
+      color:var(--text);
+      line-height:1.65;
+    }
+    .module2-wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:28px 18px 60px;
+    }
+    .hero{
+      background:linear-gradient(135deg,var(--primary),#2563eb);
+      color:#fff;
+      border-radius:26px;
+      padding:34px 28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      width:260px;height:260px;
+      right:-90px;top:-90px;
+      background:rgba(255,255,255,.12);
+      border-radius:50%;
+    }
+    .hero .badge{
+      display:inline-block;
+      background:rgba(249,115,22,.95);
+      color:#fff;
+      padding:7px 13px;
+      border-radius:999px;
+      font-size:.88rem;
+      font-weight:700;
+      margin-bottom:12px;
+    }
+    h1{margin:0 0 8px;font-size:2.1rem;line-height:1.2}
+    .hero p{max-width:850px;margin:8px 0;color:#e0ecff}
+    .meta{
+      display:flex;flex-wrap:wrap;gap:10px;margin-top:18px
+    }
+    .meta span{
+      background:rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.22);
+      padding:8px 12px;border-radius:999px;font-size:.9rem
+    }
+    .nav-actions{
+      display:flex;flex-wrap:wrap;gap:12px;margin:20px 0 6px
+    }
+    .btn{
+      display:inline-block;
+      text-decoration:none;
+      background:var(--primary);
+      color:#fff;
+      padding:11px 16px;
+      border-radius:12px;
+      font-weight:700;
+      box-shadow:0 5px 14px rgba(30,58,138,.18);
+    }
+    .btn.orange{background:var(--secondary)}
+    .btn.light{background:#fff;color:var(--primary);border:1px solid var(--border)}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+      margin-top:24px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+    .span-12{grid-column:span 12}
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+    .span-3{grid-column:span 3}
+    h2{
+      color:var(--primary);
+      margin:0 0 14px;
+      font-size:1.55rem;
+      border-left:6px solid var(--secondary);
+      padding-left:12px;
+    }
+    h3{color:#0f172a;margin:16px 0 8px;font-size:1.15rem}
+    .sub{color:var(--muted);font-size:.95rem;margin-top:-6px}
+    .pill{
+      display:inline-block;
+      margin:4px 6px 4px 0;
+      background:var(--soft-blue);
+      color:var(--primary);
+      border:1px solid #bfdbfe;
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.86rem;
+      font-weight:700;
+    }
+    .note{
+      background:var(--soft-orange);
+      border-left:5px solid var(--secondary);
+      padding:14px 16px;
+      border-radius:12px;
+      margin:14px 0;
+    }
+    .success{
+      background:var(--soft-green);
+      border-left:5px solid var(--accent);
+      padding:14px 16px;
+      border-radius:12px;
+      margin:14px 0;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      overflow:hidden;
+      border-radius:14px;
+      margin:12px 0;
+      font-size:.94rem;
+    }
+    th{
+      background:var(--primary);
+      color:#fff;
+      text-align:left;
+      padding:11px;
+    }
+    td{
+      border:1px solid var(--border);
+      padding:10px;
+      vertical-align:top;
+      background:#fff;
+    }
+    tr:nth-child(even) td{background:#f8fafc}
+    ul{padding-left:22px}
+    li{margin:6px 0}
+    .flow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin:14px 0;
+    }
+    .step{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      color:var(--primary);
+      box-shadow:0 4px 10px rgba(15,23,42,.05);
+    }
+    .arrow{color:var(--secondary);font-weight:900}
+    .matrix{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+      margin-top:12px;
+    }
+    .matrix div{
+      padding:14px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#fff;
+    }
+    .matrix strong{color:var(--primary)}
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-size:.9rem;
+      margin-top:28px;
+    }
+    @media(max-width:850px){
+      .span-6,.span-4,.span-3{grid-column:span 12}
+      h1{font-size:1.65rem}
+      .hero{padding:26px 20px}
+      .matrix{grid-template-columns:1fr}
+      table{font-size:.86rem}
+    }
+  </style>
+</head>
+<body>
+  <main class="module2-wrap">
+    <section class="hero">
+      <span class="badge">Module 2 · Master AMSO</span>
+      <h1>Diagnostic Stratégique & Évaluation de la Performance</h1>
+      <p><strong>Résumé pédagogique bilingue FR / EN</strong> enrichi par une méthode réutilisable : PESTEL → SWOT → TOWS → Choix stratégique → Pitch.</p>
+      <p>Support inspiré du cours de Pr. Mme Lamia BOUKAYA et de l’atelier « Strategy War Room — Netflix ».</p>
+      <div class="meta">
+        <span>Fiche de révision</span>
+        <span>Concepts clés</span>
+        <span>Étude de cas Netflix</span>
+        <span>Méthode applicable à toute entreprise</span>
+      </div>
+    </section>
+
+    <div class="nav-actions">
+      <a href="javascript:history.back()" class="btn light">← Retour à la page précédente</a>
+      <a href="index.html" class="btn orange">🏠 Accueil</a>
+      <a href="#netflix" class="btn">Voir le cas Netflix</a>
+    </div>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>1. Diagnostic stratégique : l’idée générale</h2>
+        <p>Le <strong>diagnostic stratégique</strong> relie le segment stratégique, les facteurs clés de succès et le profil de l’entreprise. Il combine une analyse externe — opportunités et menaces — et une analyse interne — forces et faiblesses — pour orienter le choix stratégique.</p>
+        <div class="flow">
+          <span class="step">Segmentation stratégique</span><span class="arrow">→</span>
+          <span class="step">Diagnostic stratégique</span><span class="arrow">→</span>
+          <span class="step">Choix stratégique</span><span class="arrow">→</span>
+          <span class="step">Stratégie générique</span>
+        </div>
+        <div class="note">
+          <strong>À retenir :</strong> le diagnostic stratégique n’est pas toute la stratégie. Il représente surtout l’étape d’analyse qui prépare la décision.
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>2. Segmentation stratégique</h2>
+        <p>Elle permet d’identifier les activités pertinentes pour l’analyse concurrentielle, les <strong>FCS</strong> et les <strong>DAS / SBU</strong>.</p>
+        <table>
+          <tr><th>Terme</th><th>Définition simple</th></tr>
+          <tr><td>Segment stratégique</td><td>Résultat de la segmentation appliquée à un secteur.</td></tr>
+          <tr><td>DAS / SBU</td><td>Domaine d’activité stratégique de l’entreprise.</td></tr>
+          <tr><td>FCS / KSF</td><td>Savoir-faire indispensable pour réussir dans un DAS.</td></tr>
+        </table>
+        <h3>Étapes</h3>
+        <ul>
+          <li>Décomposer l’entreprise en activités élémentaires.</li>
+          <li>Lister les attentes clients pour chaque activité.</li>
+          <li>Regrouper les activités similaires pour obtenir les DAS.</li>
+          <li>Regrouper les DAS qui partagent des synergies.</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <h2>3. Types de décisions</h2>
+        <table>
+          <tr><th>Décision</th><th>Horizon</th><th>Niveau</th></tr>
+          <tr><td>Stratégique</td><td>Moyen / long terme</td><td>Direction générale</td></tr>
+          <tr><td>Administrative</td><td>Court terme</td><td>Management intermédiaire</td></tr>
+          <tr><td>Opérationnelle</td><td>Très court terme</td><td>Niveau opérationnel</td></tr>
+        </table>
+        <p>Le diagnostic aide à décider : entrer dans un marché, investir dans la technologie, gérer les risques, choisir entre domination par les coûts, différenciation ou concentration.</p>
+      </article>
+
+      <article class="card span-12">
+        <h2>4. Analyse externe : comprendre l’environnement</h2>
+        <p>L’analyse externe identifie les pressions du marché, les opportunités, les menaces et les FCS nécessaires pour réussir dans un secteur.</p>
+        <h3>Les 5 + 1 forces de Porter</h3>
+        <table>
+          <tr><th>Force</th><th>Question principale</th></tr>
+          <tr><td>Nouveaux entrants</td><td>Est-il facile pour de nouveaux concurrents d’entrer ?</td></tr>
+          <tr><td>Pouvoir des clients</td><td>Les clients peuvent-ils imposer les prix ou la qualité ?</td></tr>
+          <tr><td>Pouvoir des fournisseurs</td><td>Les fournisseurs peuvent-ils imposer leurs conditions ?</td></tr>
+          <tr><td>Substituts</td><td>Existe-t-il des produits alternatifs ?</td></tr>
+          <tr><td>Rivalité</td><td>La concurrence entre entreprises existantes est-elle forte ?</td></tr>
+          <tr><td>Pouvoirs publics</td><td>L’État influence-t-il le secteur par la loi, la fiscalité ou la régulation ?</td></tr>
+        </table>
+      </article>
+
+      <article class="card span-6">
+        <h2>5. PESTEL</h2>
+        <p>Le PESTEL analyse les facteurs macro-environnementaux qui peuvent influencer l’entreprise.</p>
+        <div>
+          <span class="pill">Politique</span>
+          <span class="pill">Économique</span>
+          <span class="pill">Social</span>
+          <span class="pill">Technologique</span>
+          <span class="pill">Écologique</span>
+          <span class="pill">Légal</span>
+        </div>
+        <div class="note">
+          <strong>Différence importante :</strong> PESTEL décrit des faits externes neutres. SWOT transforme ces faits en opportunités ou menaces.
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <h2>6. Analyse interne</h2>
+        <p>L’analyse interne évalue les ressources, compétences, forces et faiblesses de l’entreprise par rapport à ses concurrents.</p>
+        <h3>Fonctions de management</h3>
+        <ul>
+          <li><strong>Planification :</strong> objectifs, stratégies, politiques.</li>
+          <li><strong>Organisation :</strong> structure, autorité, postes.</li>
+          <li><strong>Motivation :</strong> leadership, communication, culture.</li>
+          <li><strong>Gestion RH :</strong> recrutement, formation, rémunération.</li>
+          <li><strong>Contrôle :</strong> qualité, finance, ventes, écarts.</li>
+        </ul>
+      </article>
+
+      <article class="card span-6">
+        <h2>7. Chaîne de valeur</h2>
+        <p>Selon Porter, l’entreprise est une chaîne d’activités qui créent de la valeur pour le client. L’avantage concurrentiel vient soit d’un coût plus faible, soit d’une manière unique de créer de la valeur.</p>
+        <table>
+          <tr><th>Activités principales</th><td>Logistique entrante, opérations, logistique sortante, marketing & ventes, service.</td></tr>
+          <tr><th>Activités de soutien</th><td>Infrastructure, RH, technologie, approvisionnement.</td></tr>
+        </table>
+        <p><strong>Marge = valeur créée − coût des activités.</strong></p>
+      </article>
+
+      <article class="card span-6">
+        <h2>8. Ressources, compétences et FCS</h2>
+        <p>Les ressources peuvent être tangibles ou intangibles. Les compétences fondamentales permettent de transformer ces ressources en avantage concurrentiel difficile à imiter.</p>
+        <ul>
+          <li>Capital humain : savoirs et compétences des employés.</li>
+          <li>Capital produit : image de marque et fidélité client.</li>
+          <li>Capital structurel : culture, brevets, bases de données.</li>
+        </ul>
+        <div class="success">
+          <strong>Phrase clé :</strong> En stratégie, il ne suffit pas d’être bon ; il faut être meilleur que les concurrents.
+        </div>
+      </article>
+
+      <article class="card span-12">
+        <h2>9. SWOT et TOWS</h2>
+        <p>Le SWOT croise les facteurs internes et externes pour construire des orientations stratégiques.</p>
+        <table>
+          <tr><th>Interne</th><th>Externe</th></tr>
+          <tr><td>Forces : capacités, ressources, avantages internes.</td><td>Opportunités : conditions favorables du marché.</td></tr>
+          <tr><td>Faiblesses : limites ou déficits internes.</td><td>Menaces : facteurs externes pouvant nuire à l’entreprise.</td></tr>
+        </table>
+        <div class="matrix">
+          <div><strong>SO :</strong> utiliser les forces pour saisir les opportunités.</div>
+          <div><strong>ST :</strong> utiliser les forces pour réduire les menaces.</div>
+          <div><strong>WO :</strong> corriger les faiblesses grâce aux opportunités.</div>
+          <div><strong>WT :</strong> réduire les faiblesses et éviter les menaces.</div>
+        </div>
+      </article>
+
+      <article class="card span-12" id="netflix">
+        <h2>10. Strategy War Room — Cas Netflix</h2>
+        <p class="sub">Mission : sécuriser la croissance de Netflix pour les cinq prochaines années.</p>
+        <div class="flow">
+          <span class="step">1. PESTEL Sprint</span><span class="arrow">→</span>
+          <span class="step">2. Transformation SWOT</span><span class="arrow">→</span>
+          <span class="step">3. Choix stratégique</span><span class="arrow">→</span>
+          <span class="step">4. Pitch</span>
+        </div>
+
+        <h3>PESTEL Netflix — exemples essentiels</h3>
+        <table>
+          <tr><th>Facteur</th><th>Éléments clés</th></tr>
+          <tr><td>Politique</td><td>Quotas de contenus locaux, régulations différenciées selon les pays.</td></tr>
+          <tr><td>Économique</td><td>Guerre des prix du streaming, inflation, taux de change, publicité intégrée.</td></tr>
+          <tr><td>Social</td><td>Fin du partage de mot de passe, demande de contenus locaux, concurrence de TikTok/YouTube.</td></tr>
+          <tr><td>Technologique</td><td>IA de recommandation, doublage/traduction par IA, 5G/fibre, cloud gaming.</td></tr>
+          <tr><td>Écologique</td><td>Empreinte carbone des data centers et exigences ESG/RSE.</td></tr>
+          <tr><td>Légal</td><td>Protection des données, droits d’auteur, licences, antitrust.</td></tr>
+        </table>
+
+        <h3>SWOT Netflix</h3>
+        <table>
+          <tr><th>Forces</th><th>Faiblesses</th></tr>
+          <tr>
+            <td>Bibliothèque de contenus originaux, marque forte, données clients, algorithme mature, présence mondiale.</td>
+            <td>Dette élevée liée aux dépenses de contenu, dépendance aux marchés saturés, offre publicitaire encore en construction.</td>
+          </tr>
+          <tr><th>Opportunités</th><th>Menaces</th></tr>
+          <tr>
+            <td>Publicité intégrée, cloud gaming, live streaming, demande de contenus locaux.</td>
+            <td>Guerre des prix, quotas et coûts de licences, concurrence pour l’attention, régulation des données et pression environnementale.</td>
+          </tr>
+        </table>
+
+        <h3>Choix stratégique recommandé</h3>
+        <div class="success">
+          <strong>Recommandation :</strong> stratégie de croissance par différenciation et diversification liée : renforcer le contenu original, accélérer la publicité ciblée, développer le direct et le gaming, tout en maîtrisant la dette.
+        </div>
+
+        <h3>Pitch réutilisable</h3>
+        <table>
+          <tr><th>Bloc</th><th>Contenu</th></tr>
+          <tr><td>Vision</td><td>Devenir la plateforme de divertissement personnalisé de référence : streaming, jeux et direct réunis.</td></tr>
+          <tr><td>Diagnostic clé</td><td>Marque et données fortes, mais dette élevée et marchés matures ; publicité et direct en croissance, mais guerre des prix et régulation.</td></tr>
+          <tr><td>Recommandation</td><td>Différenciation par le contenu, diversification liée, monétisation publicitaire et discipline financière.</td></tr>
+          <tr><td>Feuille de route</td><td>An 1-2 : publicité et direct. An 3-4 : jeux et coproductions locales. An 5 : consolidation et réduction de la dette.</td></tr>
+          <tr><td>KPI</td><td>Croissance des abonnés, ARPU publicitaire, heures de direct visionnées, dette/EBITDA, taux de rétention.</td></tr>
+        </table>
+      </article>
+
+      <article class="card span-12">
+        <h2>11. Méthode à réutiliser dans n’importe quelle étude de cas</h2>
+        <ol>
+          <li>Remplacer Netflix par l’entreprise étudiée.</li>
+          <li>Réaliser le PESTEL avec des faits réels et récents.</li>
+          <li>Transformer les facteurs PESTEL en opportunités ou menaces.</li>
+          <li>Ajouter les forces et faiblesses grâce à l’analyse interne.</li>
+          <li>Construire la matrice TOWS : SO, ST, WO, WT.</li>
+          <li>Choisir une orientation stratégique avec Porter ou Ansoff.</li>
+          <li>Présenter le pitch : Vision → Diagnostic → Recommandation → Feuille de route → KPI.</li>
+        </ol>
+      </article>
+    </section>
+
+    <p class="footer">© NB Prof · Ressource pédagogique Module 2 — Diagnostic Stratégique & Évaluation de la Performance</p>
+  </main>
+</body>
+</html>
