@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Carte mentale — Diagnostic Stratégique & Performance / Mind Map — Strategic Diagnosis & Performance</title>
+<style>
+  :root{
+    --bg:#faf9f6; --ink:#1f2430; --sub:#6b7280; --card:#ffffff; --line:#d8d6cd;
+    --c1:#1f3864; --c1L:#e7edf7;
+    --c2:#8c2f39; --c2L:#f7e7e8;
+    --c3:#2f6b4f; --c3L:#e7f3ec;
+    --c4:#a3631a; --c4L:#faedde;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:28px 20px 80px;}
+  .wrap{max-width:1100px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;margin:0 0 4px;color:var(--c1);}
+  .sub{color:var(--sub);font-size:14px;margin:0 0 18px;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;font-size:13px;}
+  button:hover{background:#f0efe9;}
+  button.primary{background:var(--c1);color:#fff;border-color:var(--c1);}
+  .center-node{background:var(--ink);color:#fff;padding:16px 22px;border-radius:14px;text-align:center;font-size:17px;font-weight:700;max-width:520px;margin:0 auto 26px;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  @media (max-width:760px){.grid{grid-template-columns:1fr;}}
+  .branch{background:var(--card);border-radius:14px;border:1px solid var(--line);overflow:hidden;}
+  .branch > .head{padding:12px 16px;color:#fff;font-weight:700;font-size:15px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .branch .body{padding:10px 14px 16px;}
+  details{border-top:1px dashed var(--line);}
+  details:first-child{border-top:none;}
+  summary{cursor:pointer;padding:8px 4px;font-weight:600;font-size:13.5px;list-style:none;display:flex;align-items:center;gap:6px;}
+  summary::-webkit-details-marker{display:none;}
+  summary:before{content:"▸";display:inline-block;transition:transform .15s;font-size:11px;color:var(--sub);}
+  details[open] summary:before{transform:rotate(90deg);}
+  .leaf-list{margin:2px 0 10px 18px;padding:0;list-style:none;}
+  .leaf-list li{position:relative;padding:5px 8px 5px 14px;margin:3px 0;border-radius:6px;font-size:13px;line-height:1.5;}
+  .leaf-list li:before{content:"•";position:absolute;left:2px;color:var(--sub);}
+  .leaf-list li[contenteditable="true"]:focus{outline:2px solid #9db8e0;background:#fff;}
+  .row-actions{display:flex;gap:6px;margin:6px 0 4px 18px;}
+  .row-actions button{font-size:11px;padding:4px 9px;}
+  .fr{color:var(--sub);font-style:italic;}
+  .c1{background:var(--c1);} .c1b{background:var(--c1L);}
+  .c2{background:var(--c2);} .c2b{background:var(--c2L);}
+  .c3{background:var(--c3);} .c3b{background:var(--c3L);}
+  .c4{background:var(--c4);} .c4b{background:var(--c4L);}
+  .hint{font-size:12px;color:var(--sub);margin:20px 0 0;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Carte mentale — Diagnostic Stratégique & Évaluation de la Performance</h1>
+  <p class="sub">Mind Map — Strategic Diagnosis & Performance Evaluation · Bilingue FR/EN · 100% personnalisable / fully editable</p>
+
+  <div class="toolbar">
+    <button class="primary" onclick="document.querySelectorAll('details').forEach(d=>d.open=true)">Tout ouvrir / Expand all</button>
+    <button onclick="document.querySelectorAll('details').forEach(d=>d.open=false)">Tout fermer / Collapse all</button>
+    <button onclick="toggleFR()">Afficher / masquer le FR — Show/hide French</button>
+    <button onclick="window.print()">Imprimer / Exporter en PDF</button>
+  </div>
+
+  <div class="center-node">🎯 Diagnostic Stratégique &amp; Performance<br><span style="font-weight:400;font-size:13px;opacity:.85">Strategic Diagnosis &amp; Performance Evaluation</span></div>
+
+  <div class="grid" id="mindmap">
+
+    <!-- BRANCH 1 -->
+    <div class="branch">
+      <div class="head c1">1. Concepts &amp; fondements <span style="font-weight:400">/ Foundations</span></div>
+      <div class="body">
+        <details open><summary>Segmentation stratégique / Strategic segmentation</summary>
+          <ul class="leaf-list" contenteditable="false">
+            <li contenteditable="true">Découpe l'entreprise en DAS (SBU) selon des FCS communs.</li>
+            <li contenteditable="true" class="fr">Critères internes: technologies, compétences, synergies, coûts.</li>
+            <li contenteditable="true" class="fr">Critères externes: clients, marché, distribution, concurrence.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Diagnostic stratégique / Strategic diagnosis</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Relie FCS + profil de l'entreprise → choix stratégique → stratégie générique.</li>
+            <li contenteditable="true">Cycle: Segmentation → Diagnostic → Choix → Stratégie.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Avantage concurrentiel / Competitive advantage</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Activité/ressource difficile à imiter — durable mais jamais éternelle.</li>
+            <li contenteditable="true">Cycle: Vision → Formuler → Implémenter → Évaluer → (retour).</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Décisions / Decisions</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Stratégiques (LT, irréversibles) vs. administratives vs. opérationnelles.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+      </div>
+    </div>
+
+    <!-- BRANCH 2 -->
+    <div class="branch">
+      <div class="head c2">2. Analyse externe <span style="font-weight:400">/ External Analysis</span></div>
+      <div class="body">
+        <details open><summary>5(+1) Forces de Porter / Porter's Forces</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Nouveaux entrants, clients, fournisseurs, substituts, rivalité + pouvoirs publics.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Groupes stratégiques / Strategic groups</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Cartographie des concurrents (ex: prix/qualité vs. gamme).</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>PESTEL</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Politique · Économique · Social · Technologique · Écologique · Légal.</li>
+            <li contenteditable="true" class="fr">PESTEL = faits neutres → SWOT = interprétation en O/T.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Stratégies génériques / Generic strategies</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Intégration, intensives, diversification, défensives (Ansoff, Porter).</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+      </div>
+    </div>
+
+    <!-- BRANCH 3 -->
+    <div class="branch">
+      <div class="head c3">3. Analyse interne <span style="font-weight:400">/ Internal Analysis</span></div>
+      <div class="body">
+        <details open><summary>Chaîne de valeur / Value chain (Porter, 1985)</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Activités principales + de soutien → marge = valeur créée − coût.</li>
+            <li contenteditable="true" class="fr">Avantage = coûts plus bas OU différenciation.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Ressources &amp; compétences / Resources &amp; competencies</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Tangibles / intangibles ; compétence fondamentale (Hamel &amp; Prahalad).</li>
+            <li contenteditable="true" class="fr">Capital intellectuel: humain, produit, structurel.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>FCS / KSF</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Types: sectoriel, environnemental, stratégique, temporel.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Matrice SWOT</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Forces/Faiblesses (interne) × Opportunités/Menaces (externe).</li>
+            <li contenteditable="true" class="fr">4 stratégies: SO, WO, ST, WT.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+      </div>
+    </div>
+
+    <!-- BRANCH 4 -->
+    <div class="branch">
+      <div class="head c4">4. Performance <span style="font-weight:400">/ Performance Evaluation</span></div>
+      <div class="body">
+        <details open><summary>Performance globale / Global performance</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Approche 3P: People, Planet, Profit.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Typologie / Typology</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">Économique · Commerciale · Sociale &amp; sociétale · Organisationnelle.</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+        <details><summary>Mesure / Measurement</summary>
+          <ul class="leaf-list">
+            <li contenteditable="true">KPI, KRI, KCI et Balanced Scorecard (Tableau de bord prospectif).</li>
+          </ul>
+          <div class="row-actions"><button onclick="addLeaf(this)">+ ajouter / add</button></div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+
+  <p class="hint">💡 Cliquez sur un texte pour le modifier. Utilisez « + ajouter » pour créer vos propres branches. Vos modifications restent dans cette page tant qu'elle est ouverte — imprimez/exportez en PDF pour les conserver.<br>
+  Click any text to edit it. Use "+ add" to create your own branches. Changes stay on this page while it's open — print/export to PDF to keep them.</p>
+</div>
+
+<script>
+function addLeaf(btn){
+  const ul = btn.parentElement.previousElementSibling;
+  const li = document.createElement('li');
+  li.contentEditable = "true";
+  li.textContent = "Nouveau point / New point — cliquez pour éditer";
+  ul.appendChild(li);
+  li.focus();
+}
+let frVisible = true;
+function toggleFR(){
+  frVisible = !frVisible;
+  document.querySelectorAll('.fr').forEach(el => el.style.display = frVisible ? '' : 'none');
+}
+</script>
+</body>
+</html>
