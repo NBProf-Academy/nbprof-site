@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Strategy War Room — Template réutilisable / Reusable Template</title>
+<style>
+  :root{
+    --bg:#faf9f6; --ink:#1f2430; --sub:#6b7280; --card:#ffffff; --line:#d8d6cd;
+    --p:#8c2f39; --pL:#f7e7e8;
+    --e:#a3631a; --eL:#faedde;
+    --s:#2f6b4f; --sL:#e7f3ec;
+    --t:#1f3864; --tL:#e7edf7;
+    --env:#3a7d6e; --envL:#e5f2ef;
+    --l:#5b4b8a; --lL:#efeaf7;
+    --ok:#2f6b4f;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:26px 20px 90px;}
+  .wrap{max-width:1150px;margin:0 auto;}
+  h1{font-size:22px;font-weight:700;margin:0 0 4px;color:var(--t);}
+  .sub{color:var(--sub);font-size:14px;margin:0 0 6px;}
+  .banner{background:#fdf2e9;border:1px solid #f0d6b8;border-radius:10px;padding:12px 16px;font-size:13px;margin:14px 0 22px;}
+  .banner b{color:var(--e);}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  button{cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;font-size:13px;}
+  button:hover{background:#f0efe9;}
+  button.primary{background:var(--t);color:#fff;border-color:var(--t);}
+  button.warn{background:var(--p);color:#fff;border-color:var(--p);}
+  .company-field{display:flex;align-items:center;gap:8px;margin-bottom:18px;font-size:14px;}
+  .company-field input{font-size:15px;font-weight:700;color:var(--t);border:none;border-bottom:2px solid var(--t);background:transparent;padding:4px 2px;min-width:220px;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-bottom:22px;overflow:hidden;}
+  .step .head{padding:12px 18px;color:#fff;font-weight:700;font-size:15px;background:var(--t);display:flex;justify-content:space-between;align-items:center;}
+  .step .body{padding:16px 18px;}
+  .method{font-size:12.5px;color:var(--sub);font-style:italic;margin:0 0 12px;}
+  .pestel-grid{display:grid;grid-template-columns:70px 1fr;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .pestel-row{display:contents;}
+  .pestel-letter{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:#fff;}
+  .pestel-cell{padding:12px 14px;border-bottom:1px solid var(--line);font-size:13.5px;line-height:1.6;}
+  .pestel-row:last-child .pestel-cell, .pestel-row:last-child .pestel-letter{border-bottom:none;}
+  [contenteditable="true"]:focus{outline:2px solid #9db8e0;background:#fff;border-radius:4px;}
+  .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media (max-width:700px){.swot-grid{grid-template-columns:1fr;}}
+  .swot-box{border-radius:10px;padding:14px 16px;font-size:13.5px;line-height:1.6;}
+  .swot-box h3{margin:0 0 8px;font-size:13px;text-transform:uppercase;letter-spacing:.03em;}
+  .tows-grid{display:grid;grid-template-columns:130px 1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .tows-grid > div{padding:12px 14px;font-size:13.5px;line-height:1.6;border-bottom:1px solid var(--line);border-right:1px solid var(--line);}
+  .tows-grid > div:last-child, .tows-grid > div:nth-child(3n){border-right:none;}
+  .tows-head{font-weight:700;color:#fff;background:var(--t);display:flex;align-items:center;}
+  .pitch-grid{display:grid;grid-template-columns:170px 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .pitch-grid > div{padding:12px 14px;font-size:13.5px;line-height:1.6;border-bottom:1px solid var(--line);}
+  .pitch-grid > div:nth-last-child(-n+2){border-bottom:none;}
+  .pitch-label{font-weight:700;background:var(--tL);color:var(--t);}
+  .fr{color:var(--sub);font-style:italic;display:block;margin-top:2px;}
+  .hint{font-size:12px;color:var(--sub);margin:24px 0 0;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Strategy War Room — Template réutilisable / Reusable Template</h1>
+  <p class="sub">Correction de l'atelier Netflix, rédigée comme une méthode générique / Netflix exercise correction, written as a generic method</p>
+
+  <div class="banner">
+    <b>Comment l'utiliser :</b> remplacez « Netflix » par votre entreprise, effacez le contenu pré-rempli avec « Vider le template », puis reprenez le même parcours en 4 étapes avec vos propres données.<br>
+    <b style="color:var(--t)">How to use it:</b> replace "Netflix" with your company, clear the pre-filled content with "Clear template", then follow the same 4-step path with your own data.
+  </div>
+
+  <div class="company-field">
+    🏢 Entreprise étudiée / Company studied: <input id="companyName" value="Netflix" contenteditable="true">
+  </div>
+
+  <div class="toolbar">
+    <button class="primary" onclick="document.getElementById('companyName').value='Votre Entreprise / Your Company'">Nouvelle entreprise / New company</button>
+    <button class="warn" onclick="clearAll()">Vider le template / Clear template</button>
+    <button onclick="location.reload()">Recharger l'exemple Netflix / Reload Netflix example</button>
+    <button onclick="window.print()">Imprimer / Exporter en PDF</button>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="head" style="background:var(--p);">Étape 1 / Step 1 — PESTEL Sprint</div>
+    <div class="body">
+      <p class="method">Méthode : listez des faits externes neutres et récents pour chaque lettre. / Method: list neutral, recent external facts for each letter.</p>
+      <div class="pestel-grid">
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--p)">P</div>
+          <div class="pestel-cell" contenteditable="true">Quotas de contenu local dans l'UE (≈30% d'œuvres européennes) ; pression pour financer la production locale.<span class="fr">EU local-content quotas (~30% European works); pressure to fund local production.</span></div>
+        </div>
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--e)">E</div>
+          <div class="pestel-cell" contenteditable="true">Guerre des prix du streaming ; sensibilité à l'inflation ; montée de l'offre avec publicité.<span class="fr">Streaming price war; inflation sensitivity; growth of the ad-supported tier.</span></div>
+        </div>
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--s)">S</div>
+          <div class="pestel-cell" contenteditable="true">Fin du partage de mot de passe ; demande de contenus locaux/diversifiés ; concurrence de l'attention (TikTok/YouTube).<span class="fr">Password-sharing crackdown; demand for local/diverse content; attention competition from TikTok/YouTube.</span></div>
+        </div>
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--t)">T</div>
+          <div class="pestel-cell" contenteditable="true">Personnalisation par IA ; meilleure bande passante pour le direct (sport) ; essor du cloud gaming.<span class="fr">AI personalization; better bandwidth for live streaming (sports); rise of cloud gaming.</span></div>
+        </div>
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--env)">E</div>
+          <div class="pestel-cell" contenteditable="true">Empreinte carbone des centres de données ; attentes croissantes en reporting RSE/ESG.<span class="fr">Carbon footprint of data centers; growing ESG/CSR reporting expectations.</span></div>
+        </div>
+        <div class="pestel-row">
+          <div class="pestel-letter" style="background:var(--l)">L</div>
+          <div class="pestel-cell" contenteditable="true">RGPD sur les données de visionnage ; coûts de licences croissants ; surveillance antitrust.<span class="fr">GDPR on viewing data; rising licensing costs; antitrust scrutiny.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="head" style="background:var(--e);">Étape 2 / Step 2 — Transform to SWOT</div>
+    <div class="body">
+      <p class="method">Règle : chaque fait PESTEL devient Opportunité (aide) ou Menace (nuit). Les Forces/Faiblesses viennent de la chaîne de valeur et des ressources internes.<br>Rule: each PESTEL fact becomes an Opportunity (helps) or a Threat (hurts). Strengths/Weaknesses come from the value chain and internal resources.</p>
+      <div class="swot-grid">
+        <div class="swot-box" style="background:var(--tL)"><h3 style="color:var(--t)">Forces / Strengths</h3>
+          <div contenteditable="true">Plus grande bibliothèque de contenus originaux, marque forte, algorithme de recommandation mature, présence mondiale (190+ pays).</div>
+        </div>
+        <div class="swot-box" style="background:var(--pL)"><h3 style="color:var(--p)">Faiblesses / Weaknesses</h3>
+          <div contenteditable="true">Dette élevée liée aux contenus, dépendance aux marchés saturés, marges encore faibles sur l'offre avec publicité.</div>
+        </div>
+        <div class="swot-box" style="background:var(--sL)"><h3 style="color:var(--s)">Opportunités / Opportunities</h3>
+          <div contenteditable="true">Publicité ciblée en croissance, cloud gaming / Netflix Games, direct sportif, demande de contenus locaux.</div>
+        </div>
+        <div class="swot-box" style="background:var(--eL)"><h3 style="color:var(--e)">Menaces / Threats</h3>
+          <div contenteditable="true">Guerre des prix, quotas et coûts de licence, concurrence pour l'attention, régulation des données et antitrust.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="head" style="background:var(--s);">Étape 3 / Step 3 — Strategy Choice (matrice TOWS)</div>
+    <div class="body">
+      <p class="method">Combinez S/W avec O/T, puis validez avec Porter (générique) et/ou Ansoff.<br>Combine S/W with O/T, then validate with Porter's generic strategies and/or Ansoff.</p>
+      <div class="tows-grid">
+        <div class="tows-head"></div>
+        <div class="tows-head">Opportunités / Opportunities</div>
+        <div class="tows-head">Menaces / Threats</div>
+
+        <div class="tows-head">Forces / Strengths</div>
+        <div contenteditable="true"><b>SO —</b> Utiliser bibliothèque + données clients pour développer la publicité ciblée et le direct sportif.</div>
+        <div contenteditable="true"><b>ST —</b> S'appuyer sur la marque et l'infrastructure mondiale pour se différencier plutôt que baisser les prix.</div>
+
+        <div class="tows-head">Faiblesses / Weaknesses</div>
+        <div contenteditable="true"><b>WO —</b> Utiliser la demande de contenu local pour réduire la dépendance aux marchés saturés (co-productions).</div>
+        <div contenteditable="true"><b>WT —</b> Réduire la dette en priorisant gaming et publicité, freiner les dépenses à faible ROI.</div>
+      </div>
+      <p class="method" style="margin-top:14px">✅ <b>Recommandation :</b> <span contenteditable="true">différenciation par le contenu + diversification liée (gaming, direct) + monétisation publicitaire, sous discipline financière stricte.</span></p>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="head" style="background:var(--l);">Étape 4 / Step 4 — Pitch</div>
+    <div class="body">
+      <p class="method">Trame fixe en 5 blocs, réutilisable pour tout pitch stratégique. / Fixed 5-block template, reusable for any strategy pitch.</p>
+      <div class="pitch-grid">
+        <div class="pitch-label">Vision</div>
+        <div contenteditable="true">En 5 ans, devenir la plateforme de divertissement personnalisé de référence : streaming, jeux et direct réunis.</div>
+        <div class="pitch-label">Diagnostic clé / Key diagnosis</div>
+        <div contenteditable="true">Marque et données uniques (force) mais dette élevée (faiblesse) ; publicité et direct en forte croissance (opportunité) mais guerre des prix (menace).</div>
+        <div class="pitch-label">Recommandation</div>
+        <div contenteditable="true">Différenciation par le contenu + diversification liée + monétisation publicitaire, financées par une discipline stricte sur la dette.</div>
+        <div class="pitch-label">Feuille de route / Roadmap</div>
+        <div contenteditable="true">An 1-2: scaler pub et direct sportif. An 3-4: élargir gaming et coproductions locales. An 5: consolider et réduire la dette.</div>
+        <div class="pitch-label">Impact attendu (KPI)</div>
+        <div contenteditable="true">Croissance des abonnés, ARPU publicitaire, heures de direct, ratio dette/EBITDA, taux de rétention.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">💡 Tous les champs colorés sont éditables : cliquez et modifiez pour appliquer cette méthode à votre propre étude de cas.<br>
+  All colored fields are editable: click and edit to apply this method to your own case study.</p>
+</div>
+
+<script>
+function clearAll(){
+  document.querySelectorAll('[contenteditable="true"]').forEach(el=>{
+    if(el.id !== 'companyName'){ el.innerHTML = '<span style="color:#9a9a9a">— à compléter / to fill in —</span>'; }
+  });
+}
+</script>
+</body>
+</html>
