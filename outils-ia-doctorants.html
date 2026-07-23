@@ -1,0 +1,623 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Outils IA pour Doctorants</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #03040a;
+      --surface: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.08);
+      --text: #e8eaf0;
+      --muted: #7b8098;
+      --accent1: #6ee7f7;
+      --accent2: #a78bfa;
+      --accent3: #34d399;
+      --glow1: rgba(110,231,247,0.15);
+      --glow2: rgba(167,139,250,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background ── */
+    .bg-canvas {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(110,231,247,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(167,139,250,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(52,211,153,0.04) 0%, transparent 60%),
+        #03040a;
+    }
+
+    .grid-overlay {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* ── Layout ── */
+    .wrapper {
+      position: relative; z-index: 1;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .header-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent1);
+      background: rgba(110,231,247,0.08);
+      border: 1px solid rgba(110,231,247,0.2);
+      padding: 0.4rem 1.2rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .header h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      animation: fadeDown 0.8s 0.1s ease both;
+    }
+
+    .header h1 span {
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header p {
+      margin-top: 1.2rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      font-family: 'Space Mono', monospace;
+      font-weight: 400;
+      max-width: 580px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeDown 0.8s 0.2s ease both;
+    }
+
+    /* ── Category Sections ── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-left: 0.5rem;
+      border-left: 2px solid var(--accent2);
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.4rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 1.6rem;
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.35s cubic-bezier(.23,1,.32,1),
+                  box-shadow 0.35s ease,
+                  border-color 0.35s ease;
+      transform-style: preserve-3d;
+      animation: cardReveal 0.6s ease both;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 20px;
+      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card:hover {
+      transform: perspective(800px) rotateX(calc(var(--ry, 0) * 1deg)) rotateY(calc(var(--rx, 0) * 1deg)) translateZ(10px);
+      border-color: rgba(255,255,255,0.16);
+    }
+
+    /* Colored top accent line */
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 20px; right: 20px;
+      height: 2px;
+      border-radius: 0 0 4px 4px;
+      background: var(--card-accent, var(--accent1));
+      opacity: 0.7;
+    }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--card-icon-bg, rgba(110,231,247,0.1));
+      border: 1px solid var(--card-icon-border, rgba(110,231,247,0.2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    .card-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--card-accent, var(--accent1));
+      text-decoration: none;
+      padding: 0.55rem 1.1rem;
+      border: 1px solid var(--card-accent, var(--accent1));
+      border-radius: 10px;
+      background: transparent;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card-link:hover {
+      background: var(--card-accent, var(--accent1));
+      color: #03040a;
+      transform: translateY(-2px);
+    }
+
+    .card-link svg {
+      width: 12px; height: 12px;
+      transition: transform 0.2s;
+    }
+
+    .card-link:hover svg { transform: translate(2px, -2px); }
+
+    /* Category color schemes */
+    .cat-search  { --card-accent: #6ee7f7; --card-icon-bg: rgba(110,231,247,0.1); --card-icon-border: rgba(110,231,247,0.2); }
+    .cat-read    { --card-accent: #a78bfa; --card-icon-bg: rgba(167,139,250,0.1); --card-icon-border: rgba(167,139,250,0.2); }
+    .cat-viz     { --card-accent: #f472b6; --card-icon-bg: rgba(244,114,182,0.1); --card-icon-border: rgba(244,114,182,0.2); }
+    .cat-present { --card-accent: #fb923c; --card-icon-bg: rgba(251,146,60,0.1);  --card-icon-border: rgba(251,146,60,0.2); }
+    .cat-bib     { --card-accent: #34d399; --card-icon-bg: rgba(52,211,153,0.1);  --card-icon-border: rgba(52,211,153,0.2); }
+
+    /* ── Hover glow by category ── */
+    .cat-search:hover  { box-shadow: 0 20px 60px rgba(110,231,247,0.12), 0 4px 20px rgba(0,0,0,0.5); }
+    .cat-read:hover    { box-shadow: 0 20px 60px rgba(167,139,250,0.12), 0 4px 20px rgba(0,0,0,0.5); }
+    .cat-viz:hover     { box-shadow: 0 20px 60px rgba(244,114,182,0.12), 0 4px 20px rgba(0,0,0,0.5); }
+    .cat-present:hover { box-shadow: 0 20px 60px rgba(251,146,60,0.12),  0 4px 20px rgba(0,0,0,0.5); }
+    .cat-bib:hover     { box-shadow: 0 20px 60px rgba(52,211,153,0.12),  0 4px 20px rgba(0,0,0,0.5); }
+
+    /* ── Animations ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: translateY(30px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* staggered card delays */
+    .card:nth-child(1)  { animation-delay: 0.05s; }
+    .card:nth-child(2)  { animation-delay: 0.10s; }
+    .card:nth-child(3)  { animation-delay: 0.15s; }
+    .card:nth-child(4)  { animation-delay: 0.20s; }
+    .card:nth-child(5)  { animation-delay: 0.25s; }
+    .card:nth-child(6)  { animation-delay: 0.30s; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 4rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Floating particles ── */
+    .particles {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+    }
+    .dot {
+      position: absolute;
+      width: 2px; height: 2px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.5; }
+      to   { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .wrapper { padding: 2rem 1rem 4rem; }
+      .header { margin-bottom: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-canvas"></div>
+<div class="grid-overlay"></div>
+<div class="particles" id="particles"></div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-badge">Pour les nouveaux doctorants</div>
+    <h1>Outils <span>IA</span> pour la Recherche</h1>
+    <p>Plateformes essentielles pour accélérer vos travaux scientifiques</p>
+  </header>
+
+  <!-- Section 1: Recherche & Analyse -->
+  <section class="section">
+    <div class="section-label">🔍 Recherche & Analyse Académique</div>
+    <div class="grid">
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">⚡</div>
+          <div class="card-title">Perplexity</div>
+        </div>
+        <p class="card-desc">Moteur de recherche académique assisté par IA permettant de synthétiser rapidement des informations scientifiques. Très utile pour accélérer la revue de littérature.</p>
+        <a class="card-link" href="https://www.perplexity.ai" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">🎯</div>
+          <div class="card-title">Consensus</div>
+        </div>
+        <p class="card-desc">Plateforme spécialisée dans l'analyse d'articles scientifiques à partir de questions de recherche. Identifiez rapidement les conclusions dominantes dans la littérature.</p>
+        <a class="card-link" href="https://consensus.app" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">🔬</div>
+          <div class="card-title">Scite</div>
+        </div>
+        <p class="card-desc">Outil intelligent d'analyse des citations scientifiques. Aide à vérifier si une étude est soutenue, discutée ou contestée par d'autres travaux de recherche.</p>
+        <a class="card-link" href="https://scite.ai" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">🐇</div>
+          <div class="card-title">ResearchRabbit</div>
+        </div>
+        <p class="card-desc">Assistant de découverte scientifique basé sur des réseaux d'articles et d'auteurs. Facilite l'identification de nouvelles références pertinentes dans un domaine précis.</p>
+        <a class="card-link" href="https://www.researchrabbit.ai" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">🌐</div>
+          <div class="card-title">Google Scholar</div>
+        </div>
+        <p class="card-desc">Fonctionnalités avancées pour améliorer l'exploration académique. Utile pour suivre les citations, auteurs et tendances scientifiques récentes.</p>
+        <a class="card-link" href="https://scholar.google.com" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-search">
+        <div class="card-head">
+          <div class="card-icon">📊</div>
+          <div class="card-title">Scopus AI</div>
+        </div>
+        <p class="card-desc">Extension intelligente de la base de données Scopus intégrant des outils d'analyse IA. Obtenez des synthèses rapides et des analyses bibliométriques avancées.</p>
+        <a class="card-link" href="https://www.scopus.com/ai" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 2: Lecture & Notes -->
+  <section class="section">
+    <div class="section-label">📖 Lecture, Résumé & Notes</div>
+    <div class="grid">
+
+      <div class="card cat-read">
+        <div class="card-head">
+          <div class="card-icon">🚀</div>
+          <div class="card-title">SciSpace</div>
+        </div>
+        <p class="card-desc">Plateforme conçue pour lire, résumer et expliquer des articles scientifiques complexes. Très utile pour comprendre rapidement des méthodologies et concepts techniques.</p>
+        <a class="card-link" href="https://typeset.io" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-read">
+        <div class="card-head">
+          <div class="card-icon">📓</div>
+          <div class="card-title">NotebookLM</div>
+        </div>
+        <p class="card-desc">Assistant de recherche permettant d'interagir avec ses propres documents académiques. Facilite la synthèse, l'organisation des notes et la préparation de travaux scientifiques.</p>
+        <a class="card-link" href="https://notebooklm.google.com" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Visualisation -->
+  <section class="section">
+    <div class="section-label">🗺️ Visualisation & Cartographie</div>
+    <div class="grid">
+
+      <div class="card cat-viz">
+        <div class="card-head">
+          <div class="card-icon">🕸️</div>
+          <div class="card-title">Connected Papers</div>
+        </div>
+        <p class="card-desc">Visualisation graphique des relations entre publications scientifiques. Comprenez l'évolution d'un champ de recherche et les liens entre articles clés.</p>
+        <a class="card-link" href="https://www.connectedpapers.com" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-viz">
+        <div class="card-head">
+          <div class="card-icon">✏️</div>
+          <div class="card-title">Napkin AI</div>
+        </div>
+        <p class="card-desc">Plateforme qui transforme des idées en schémas et représentations visuelles. Très utile pour illustrer des modèles théoriques et conceptuels.</p>
+        <a class="card-link" href="https://www.napkin.ai" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 4: Présentations -->
+  <section class="section">
+    <div class="section-label">🎬 Présentations Académiques</div>
+    <div class="grid">
+
+      <div class="card cat-present">
+        <div class="card-head">
+          <div class="card-icon">⚡</div>
+          <div class="card-title">Gamma AI</div>
+        </div>
+        <p class="card-desc">Outil de création automatisée de présentations académiques et professionnelles. Idéal pour préparer rapidement des soutenances, conférences et exposés scientifiques.</p>
+        <a class="card-link" href="https://gamma.app" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 5: Bibliographie -->
+  <section class="section">
+    <div class="section-label">📚 Gestion Bibliographique</div>
+    <div class="grid">
+
+      <div class="card cat-bib">
+        <div class="card-head">
+          <div class="card-icon">📖</div>
+          <div class="card-title">EndNote</div>
+        </div>
+        <p class="card-desc">Logiciel de gestion bibliographique utilisé dans la recherche universitaire. Permet d'organiser automatiquement les références et de les insérer dans vos documents.</p>
+        <a class="card-link" href="https://endnote.com" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-bib">
+        <div class="card-head">
+          <div class="card-icon">🤝</div>
+          <div class="card-title">Mendeley</div>
+        </div>
+        <p class="card-desc">Gestionnaire de références et réseau académique collaboratif. Facilite le classement, l'annotation d'articles scientifiques et le partage entre chercheurs.</p>
+        <a class="card-link" href="https://www.mendeley.com" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="card cat-bib">
+        <div class="card-head">
+          <div class="card-icon">🆓</div>
+          <div class="card-title">Zotero</div>
+        </div>
+        <p class="card-desc">Solution gratuite et open source de gestion bibliographique. Collectez, organisez, annotez et citez vos sources avec facilité dans tous vos travaux académiques.</p>
+        <a class="card-link" href="https://www.zotero.org" target="_blank" rel="noopener">
+          Accéder
+          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div style="margin-bottom: 1.2rem;">✦ Outils sélectionnés pour les doctorants · Mise à jour 2026 ✦</div>
+    <div style="
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 0.9rem 1.6rem;
+      font-family: 'Syne', sans-serif;
+    ">
+      <div style="
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #6ee7f7, #a78bfa);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1rem; font-weight: 800; color: #03040a;
+        flex-shrink: 0;
+      ">NB</div>
+      <div style="text-align: left;">
+        <div style="font-size: 0.85rem; font-weight: 700; color: #e8eaf0; letter-spacing: 0.05em;">Prof. Noamane Boulahcen</div>
+        <a href="mailto:noamane73@gmail.com" style="
+          font-family: 'Space Mono', monospace;
+          font-size: 0.68rem;
+          color: #6ee7f7;
+          text-decoration: none;
+          letter-spacing: 0.05em;
+          transition: opacity 0.2s;
+        " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">noamane73@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  /* ── Floating particles ── */
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 30; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    d.style.cssText = `
+      left: ${Math.random() * 100}%;
+      animation-duration: ${8 + Math.random() * 14}s;
+      animation-delay: ${Math.random() * 10}s;
+      opacity: ${0.1 + Math.random() * 0.3};
+      width: ${1 + Math.random() * 2}px;
+      height: ${1 + Math.random() * 2}px;
+    `;
+    container.appendChild(d);
+  }
+
+  /* ── 3D tilt on cards ── */
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      const cx = r.width / 2;
+      const cy = r.height / 2;
+      const rx = ((x - cx) / cx) * 8;
+      const ry = -((y - cy) / cy) * 6;
+      card.style.setProperty('--rx', rx);
+      card.style.setProperty('--ry', ry);
+      const mx = (x / r.width) * 100;
+      const my = (y / r.height) * 100;
+      card.style.setProperty('--mx', mx + '%');
+      card.style.setProperty('--my', my + '%');
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--rx', 0);
+      card.style.setProperty('--ry', 0);
+      card.style.transform = '';
+    });
+  });
+
+  /* ── Scroll reveal ── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.animationPlayState = 'running';
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card').forEach(c => {
+    c.style.animationPlayState = 'paused';
+    io.observe(c);
+  });
+</script>
+</body>
+</html>
