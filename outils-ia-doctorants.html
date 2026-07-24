@@ -317,6 +317,28 @@
     opacity:.85;
     transform:translateY(-2px);
 }
+    .home-card{
+    margin:25px auto 0;
+    max-width:300px;
+    text-decoration:none;
+    color:inherit;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.home-card h3{
+    margin:0;
+}
+
+.home-card p{
+    margin:5px 0 0;
+    font-size:14px;
+}
+
+.home-card:hover{
+    transform:translateY(-5px);
+}
   </style>
 </head>
 <body>
@@ -332,8 +354,12 @@
     <div class="header-badge">Pour les nouveaux doctorants</div>
     <h1>Outils <span>IA</span> pour la Recherche</h1>
     <p>Plateformes essentielles pour accélérer vos travaux scientifiques</p>
-    <a href="index.html" class="home-btn">
-    🏠 Retour à l’accueil
+    <a href="index.html" class="tool-card home-card">
+    <div class="tool-icon">🏠</div>
+    <div>
+        <h3>Retour à l’accueil</h3>
+        <p>Revenir à la plateforme principale NBProf</p>
+    </div>
 </a>
   </header>
 
