@@ -339,6 +339,33 @@
 .home-card:hover{
     transform:translateY(-5px);
 }
+    .top-actions {
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:30px;
+}
+
+
+.action-card {
+    width:280px;
+    padding:20px;
+    text-align:center;
+    border-radius:20px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+
+.action-card span {
+    font-size:30px;
+}
+
+
+.action-card:hover {
+    transform:translateY(-5px);
+}
   </style>
 </head>
 <body>
@@ -354,13 +381,34 @@
     <div class="header-badge">Pour les nouveaux doctorants</div>
     <h1>Outils <span>IA</span> pour la Recherche</h1>
     <p>Plateformes essentielles pour accélérer vos travaux scientifiques</p>
+    <div class="header-actions">
+
+    <!-- Retour accueil -->
     <a href="index.html" class="tool-card home-card">
-    <div class="tool-icon">🏠</div>
-    <div>
-        <h3>Retour à l’accueil</h3>
-        <p>Revenir à la plateforme principale NBProf</p>
-    </div>
-</a>
+        <div class="tool-icon">🏠</div>
+
+        <div>
+            <h3>Retour à l’accueil</h3>
+            <p>Revenir à la plateforme principale NBProf</p>
+        </div>
+    </a>
+
+
+    <!-- Application IA Recherche -->
+    <a href="https://nbprof-academy.github.io/ia-recherche/" 
+       class="tool-card home-card"
+       target="_blank">
+
+        <div class="tool-icon">📱</div>
+
+        <div>
+            <h3>Installer l’application</h3>
+            <p>Application IA Recherche gratuite et installable</p>
+        </div>
+
+    </a>
+
+</div>
   </header>
 
   <!-- Section 1: Recherche & Analyse -->
