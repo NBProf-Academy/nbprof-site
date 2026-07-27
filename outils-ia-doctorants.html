@@ -505,6 +505,38 @@ width:90%;
 #installApp:hover {
     transform:translateY(-5px);
 }
+    #installButton {
+
+background: linear-gradient(135deg,#6ee7f7,#8b5cf6);
+
+border:none;
+
+color:white;
+
+font-size:16px;
+
+font-weight:700;
+
+padding:14px 28px;
+
+border-radius:30px;
+
+cursor:pointer;
+
+margin-top:20px;
+
+transition:0.3s;
+
+}
+
+
+#installButton:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 10px 30px rgba(110,231,247,0.4);
+
+}
   </style>
 </head>
 <body>
@@ -559,8 +591,15 @@ width:90%;
     <div class="tool-icon">📱</div>
 
     <div>
-        <h3>Installer l’application</h3>
-        <p>Application IA Recherche gratuite pour doctorants et chercheurs</p>
+     <h3>📱 Installer NBProf IA Recherche</h3>
+
+<p>
+Accédez rapidement à votre assistant scientifique depuis votre écran d'accueil.
+</p>
+
+<button id="installButton">
+Installer maintenant
+</button>
     </div>
 
 </a>
@@ -1038,5 +1077,95 @@ installBtn.addEventListener("click", async ()=>{
 });
 
 
-</script></body>
+</script>
+  <script>
+
+let installPrompt;
+
+
+const button = document.getElementById("installButton");
+
+
+
+window.addEventListener(
+"beforeinstallprompt",
+(event)=>{
+
+
+event.preventDefault();
+
+
+installPrompt = event;
+
+
+button.style.display="block";
+
+
+});
+
+
+
+button.addEventListener(
+"click",
+async ()=>{
+
+
+if(installPrompt){
+
+
+installPrompt.prompt();
+
+
+const choice =
+await installPrompt.userChoice;
+
+
+
+if(choice.outcome==="accepted"){
+
+console.log("Installation réussie");
+
+}
+
+
+installPrompt=null;
+
+
+
+}else{
+
+
+let isIOS =
+/iPad|iPhone|iPod/.test(navigator.userAgent);
+
+
+
+if(isIOS){
+
+
+alert(
+"Pour installer NBProf IA :\n\n1️⃣ Appuyez sur Partager\n2️⃣ Choisissez 'Sur l’écran d’accueil'"
+);
+
+
+}else{
+
+
+alert(
+"Ouvrez le menu du navigateur puis choisissez 'Installer l'application'"
+);
+
+
+}
+
+
+}
+
+
+
+});
+
+
+</script>
+</body>
 </html>
