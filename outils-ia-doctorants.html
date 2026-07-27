@@ -496,6 +496,15 @@ width:90%;
 }
 
 }
+    #installApp {
+    cursor:pointer;
+    transition:0.3s;
+}
+
+
+#installApp:hover {
+    transform:translateY(-5px);
+}
   </style>
 </head>
 <body>
@@ -551,9 +560,7 @@ width:90%;
 
     <div>
         <h3>Installer l’application</h3>
-        <p id="installText">
-            Application IA Recherche gratuite pour doctorants
-        </p>
+        <p>Application IA Recherche gratuite pour doctorants et chercheurs</p>
     </div>
 
 </a>
@@ -933,5 +940,54 @@ deferredPrompt=null;
 }
 
 });
+  <script>
+
+let deferredPrompt;
+
+const installButton = document.getElementById("installApp");
+
+
+window.addEventListener("beforeinstallprompt", (e) => {
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+    installButton.style.display = "flex";
+
+
+});
+
+
+installButton.addEventListener("click", async () => {
+
+
+    if (deferredPrompt) {
+
+        deferredPrompt.prompt();
+
+        const { outcome } = await deferredPrompt.userChoice;
+
+        if(outcome === "accepted"){
+
+            console.log("Application installée");
+
+        }
+
+        deferredPrompt = null;
+
+    } else {
+
+        window.open(
+        "https://nbprof-academy.github.io/ia-recherche/",
+        "_blank"
+        );
+
+    }
+
+
+});
+
+</script>
 </body>
 </html>
