@@ -544,19 +544,67 @@ width:90%;
 
     <!-- Application IA Recherche -->
     <a href="https://nbprof-academy.github.io/ia-recherche/" 
-       class="tool-card home-card"
-       target="_blank">
+   class="tool-card home-card"
+   id="installApp">
 
-        <div class="tool-icon">📱</div>
+    <div class="tool-icon">📱</div>
 
-        <div>
-            <h3>Installer l’application</h3>
-            <p>Application IA Recherche gratuite et installable</p>
-        </div>
+    <div>
+        <h3>Installer l’application</h3>
+        <p id="installText">
+            Application IA Recherche gratuite pour doctorants
+        </p>
+    </div>
 
-    </a>
+</a>
 
-</div>
+
+<script>
+const installBtn = document.getElementById("installApp");
+const installText = document.getElementById("installText");
+
+let isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+let isAndroid = /Android/i.test(navigator.userAgent);
+
+
+if (isIOS) {
+
+    installText.innerHTML =
+    "Sur iPhone : ouvrir puis Partager → Sur l’écran d’accueil";
+
+}
+
+else if (isAndroid) {
+
+    installText.innerHTML =
+    "Sur Android : installer l’application depuis Chrome";
+
+}
+
+else {
+
+    installText.innerHTML =
+    "Application installable sur ordinateur et mobile";
+
+}
+
+
+installBtn.addEventListener("click", function(e){
+
+    if(isIOS){
+
+        alert(
+        "Pour installer NBProf IA :\n\n" +
+        "1. Appuyez sur le bouton Partager ⬆️\n" +
+        "2. Choisissez 'Sur l’écran d’accueil'\n" +
+        "3. Appuyez sur Ajouter"
+        );
+
+    }
+
+});
+
+</script>
   </header>
 
   <!-- Section 1: Recherche & Analyse -->
