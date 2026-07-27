@@ -6,6 +6,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Outils IA pour Doctorants</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  /* ==============================
+   ALIGNEMENT HEADER APPLICATION
+   VERSION PROFESSIONNELLE
+================================ */
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+}
+
+
+/* Tous les blocs même hauteur */
+
+.header > * {
+    min-height: 170px;
+}
+
+
+/* Cartes gauche et centre */
+
+.tool-card.home-card {
+
+    height:170px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    padding:25px;
+
+    border-radius:25px;
+
+}
+
+
+/* Icônes */
+
+.tool-icon {
+
+    font-size:35px;
+
+    flex-shrink:0;
+
+}
+
+
+/* Bloc texte droite */
+
+.header-install {
+
+    height:170px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+/* Titres */
+
+.header-install h3,
+.tool-card h3 {
+
+    margin-bottom:10px;
+
+    font-size:24px;
+
+}
+
+
+/* Descriptions */
+
+.header-install p,
+.tool-card p {
+
+    line-height:1.5;
+
+}
+
+
+/* Bouton */
+
+#installButton {
+
+    margin-top:20px;
+
+    padding:14px 35px;
+
+    border-radius:35px;
+
+    border:none;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+}
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -590,7 +701,7 @@ box-shadow:0 10px 30px rgba(110,231,247,0.4);
 
     <div class="tool-icon">📱</div>
 
-    <div>
+    <div class="header-install">
      <h3>📱 Installer NBProf IA Recherche</h3>
 
 <p>
