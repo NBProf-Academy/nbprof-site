@@ -989,5 +989,54 @@ installButton.addEventListener("click", async () => {
 });
 
 </script>
-</body>
+  <script>
+
+let deferredPrompt;
+
+const installBtn = document.getElementById("installApp");
+
+
+window.addEventListener("beforeinstallprompt", (e)=>{
+
+    e.preventDefault();
+
+    deferredPrompt = e;
+
+});
+
+
+installBtn.addEventListener("click", async ()=>{
+
+
+    if(deferredPrompt){
+
+        deferredPrompt.prompt();
+
+
+        const result = await deferredPrompt.userChoice;
+
+
+        if(result.outcome === "accepted"){
+
+            console.log("Application installée");
+
+        }
+
+
+        deferredPrompt = null;
+
+
+    }else{
+
+        alert(
+        "Pour installer l'application : utilisez le menu du navigateur puis 'Ajouter à l'écran d'accueil'"
+        );
+
+    }
+
+
+});
+
+
+</script></body>
 </html>
