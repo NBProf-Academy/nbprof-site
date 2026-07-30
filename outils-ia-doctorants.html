@@ -1,1282 +1,148 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Outils IA pour Doctorants</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  /* ==============================
-   ALIGNEMENT HEADER APPLICATION
-   VERSION PROFESSIONNELLE
-================================ */
-
-.header {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    gap: 30px;
-    width: 100%;
-}
-
-
-/* Tous les blocs même hauteur */
-
-.header > * {
-    min-height: 170px;
-}
-
-
-/* Cartes gauche et centre */
-
-.tool-card.home-card {
-
-    height:170px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:20px;
-
-    padding:25px;
-
-    border-radius:25px;
-
-}
-
-
-/* Icônes */
-
-.tool-icon {
-
-    font-size:35px;
-
-    flex-shrink:0;
-
-}
-
-
-/* Bloc texte droite */
-
-.header-install {
-
-    height:170px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
-
-    text-align:center;
-
-}
-
-
-/* Titres */
-
-.header-install h3,
-.tool-card h3 {
-
-    margin-bottom:10px;
-
-    font-size:24px;
-
-}
-
-
-/* Descriptions */
-
-.header-install p,
-.tool-card p {
-
-    line-height:1.5;
-
-}
-
-
-/* Bouton */
-
-#installButton {
-
-    margin-top:20px;
-
-    padding:14px 35px;
-
-    border-radius:35px;
-
-    border:none;
-
-    font-size:18px;
-
-    cursor:pointer;
-
-}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Outils IA pour doctorants : recherche, rédaction et bibliographie | NBProf</title>
+  <meta name="description" content="Une sélection d’outils IA pour doctorants : revue de littérature, lecture d’articles, bibliographie, rédaction et préparation de soutenance.">
+  <link rel="canonical" href="https://nbprof.com/outils-ia-doctorants.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Outils IA pour doctorants | NBProf">
+  <meta property="og:description" content="Choisissez le bon outil pour chaque étape de votre recherche doctorale.">
+  <meta property="og:url" content="https://nbprof.com/outils-ia-doctorants.html">
+  <meta name="theme-color" content="#07111f">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #03040a;
-      --surface: rgba(255,255,255,0.04);
-      --border: rgba(255,255,255,0.08);
-      --text: #e8eaf0;
-      --muted: #7b8098;
-      --accent1: #6ee7f7;
-      --accent2: #a78bfa;
-      --accent3: #34d399;
-      --glow1: rgba(110,231,247,0.15);
-      --glow2: rgba(167,139,250,0.15);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Syne', sans-serif;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── Background ── */
-    .bg-canvas {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(110,231,247,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(167,139,250,0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(52,211,153,0.04) 0%, transparent 60%),
-        #03040a;
-    }
-
-    .grid-overlay {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    /* ── Layout ── */
-    .wrapper {
-      position: relative; z-index: 1;
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 4rem 2rem 6rem;
-    }
-
-    /* ── Header ── */
-    .header {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .header-badge {
-      display: inline-block;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent1);
-      background: rgba(110,231,247,0.08);
-      border: 1px solid rgba(110,231,247,0.2);
-      padding: 0.4rem 1.2rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-      animation: fadeDown 0.8s ease both;
-    }
-
-    .header h1 {
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-      animation: fadeDown 0.8s 0.1s ease both;
-    }
-
-    .header h1 span {
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .header p {
-      margin-top: 1.2rem;
-      color: var(--muted);
-      font-size: 1.05rem;
-      font-family: 'Space Mono', monospace;
-      font-weight: 400;
-      max-width: 580px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeDown 0.8s 0.2s ease both;
-    }
-
-    /* ── Category Sections ── */
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-      padding-left: 0.5rem;
-      border-left: 2px solid var(--accent2);
-    }
-
-    .section {
-      margin-bottom: 4rem;
-    }
-
-    /* ── Grid ── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 1.4rem;
-    }
-
-    /* ── Card ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 1.6rem;
-      position: relative;
-      overflow: hidden;
-      cursor: default;
-      transition: transform 0.35s cubic-bezier(.23,1,.32,1),
-                  box-shadow 0.35s ease,
-                  border-color 0.35s ease;
-      transform-style: preserve-3d;
-      animation: cardReveal 0.6s ease both;
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 20px;
-      background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,0.05) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .card:hover::before { opacity: 1; }
-
-    .card:hover {
-      transform: perspective(800px) rotateX(calc(var(--ry, 0) * 1deg)) rotateY(calc(var(--rx, 0) * 1deg)) translateZ(10px);
-      border-color: rgba(255,255,255,0.16);
-    }
-
-    /* Colored top accent line */
-    .card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 20px; right: 20px;
-      height: 2px;
-      border-radius: 0 0 4px 4px;
-      background: var(--card-accent, var(--accent1));
-      opacity: 0.7;
-    }
-
-    .card-icon {
-      width: 44px; height: 44px;
-      border-radius: 12px;
-      background: var(--card-icon-bg, rgba(110,231,247,0.1));
-      border: 1px solid var(--card-icon-border, rgba(110,231,247,0.2));
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      flex-shrink: 0;
-    }
-
-    .card-head { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
-
-    .card-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      color: #fff;
-    }
-
-    .card-desc {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 1.2rem;
-    }
-
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--card-accent, var(--accent1));
-      text-decoration: none;
-      padding: 0.55rem 1.1rem;
-      border: 1px solid var(--card-accent, var(--accent1));
-      border-radius: 10px;
-      background: transparent;
-      transition: background 0.2s, color 0.2s, transform 0.2s;
-      position: relative;
-      z-index: 2;
-    }
-
-    .card-link:hover {
-      background: var(--card-accent, var(--accent1));
-      color: #03040a;
-      transform: translateY(-2px);
-    }
-
-    .card-link svg {
-      width: 12px; height: 12px;
-      transition: transform 0.2s;
-    }
-
-    .card-link:hover svg { transform: translate(2px, -2px); }
-
-    /* Category color schemes */
-    .cat-search  { --card-accent: #6ee7f7; --card-icon-bg: rgba(110,231,247,0.1); --card-icon-border: rgba(110,231,247,0.2); }
-    .cat-read    { --card-accent: #a78bfa; --card-icon-bg: rgba(167,139,250,0.1); --card-icon-border: rgba(167,139,250,0.2); }
-    .cat-viz     { --card-accent: #f472b6; --card-icon-bg: rgba(244,114,182,0.1); --card-icon-border: rgba(244,114,182,0.2); }
-    .cat-present { --card-accent: #fb923c; --card-icon-bg: rgba(251,146,60,0.1);  --card-icon-border: rgba(251,146,60,0.2); }
-    .cat-bib     { --card-accent: #34d399; --card-icon-bg: rgba(52,211,153,0.1);  --card-icon-border: rgba(52,211,153,0.2); }
-
-    /* ── Hover glow by category ── */
-    .cat-search:hover  { box-shadow: 0 20px 60px rgba(110,231,247,0.12), 0 4px 20px rgba(0,0,0,0.5); }
-    .cat-read:hover    { box-shadow: 0 20px 60px rgba(167,139,250,0.12), 0 4px 20px rgba(0,0,0,0.5); }
-    .cat-viz:hover     { box-shadow: 0 20px 60px rgba(244,114,182,0.12), 0 4px 20px rgba(0,0,0,0.5); }
-    .cat-present:hover { box-shadow: 0 20px 60px rgba(251,146,60,0.12),  0 4px 20px rgba(0,0,0,0.5); }
-    .cat-bib:hover     { box-shadow: 0 20px 60px rgba(52,211,153,0.12),  0 4px 20px rgba(0,0,0,0.5); }
-
-    /* ── Animations ── */
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes cardReveal {
-      from { opacity: 0; transform: translateY(30px) scale(0.97); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* staggered card delays */
-    .card:nth-child(1)  { animation-delay: 0.05s; }
-    .card:nth-child(2)  { animation-delay: 0.10s; }
-    .card:nth-child(3)  { animation-delay: 0.15s; }
-    .card:nth-child(4)  { animation-delay: 0.20s; }
-    .card:nth-child(5)  { animation-delay: 0.25s; }
-    .card:nth-child(6)  { animation-delay: 0.30s; }
-
-    /* ── Footer ── */
-    .footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-    }
-
-    /* ── Floating particles ── */
-    .particles {
-      position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
-    }
-    .dot {
-      position: absolute;
-      width: 2px; height: 2px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      animation: float linear infinite;
-    }
-
-    @keyframes float {
-      from { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.5; }
-      to   { transform: translateY(-10vh) translateX(40px); opacity: 0; }
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 640px) {
-      .wrapper { padding: 2rem 1rem 4rem; }
-      .header { margin-bottom: 3rem; }
-    }
-    .home-btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:10px 22px;
-    background:#0b5ed7;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:600;
-    transition:.3s;
-}
-
-.home-btn:hover{
-    opacity:.85;
-    transform:translateY(-2px);
-}
-    .home-card{
-    margin:25px auto 0;
-    max-width:300px;
-    text-decoration:none;
-    color:inherit;
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.home-card h3{
-    margin:0;
-}
-
-.home-card p{
-    margin:5px 0 0;
-    font-size:14px;
-}
-
-.home-card:hover{
-    transform:translateY(-5px);
-}
-    .top-actions {
-    display:flex;
-    justify-content:center;
-    gap:25px;
-    flex-wrap:wrap;
-    margin-top:30px;
-}
-
-
-.action-card {
-    width:280px;
-    padding:20px;
-    text-align:center;
-    border-radius:20px;
-    text-decoration:none;
-    transition:.3s;
-}
-
-
-.action-card span {
-    font-size:30px;
-}
-
-
-.action-card:hover {
-    transform:translateY(-5px);
-}
-    .header-actions{
-
-display:flex;
-justify-content:center;
-gap:20px;
-margin-top:40px;
-flex-wrap:wrap;
-
-}
-
-
-.action-btn{
-
-display:flex;
-align-items:center;
-gap:15px;
-
-padding:18px 25px;
-
-border-radius:18px;
-
-text-decoration:none;
-
-min-width:260px;
-
-transition:.3s;
-
-font-family:inherit;
-
-cursor:pointer;
-
-}
-
-
-.action-btn span{
-
-font-size:28px;
-
-}
-
-
-.action-btn strong{
-
-display:block;
-
-font-size:18px;
-
-color:white;
-
-}
-
-
-.action-btn small{
-
-display:block;
-
-margin-top:5px;
-
-color:#9aa4c7;
-
-}
-
-
-
-.home-btn{
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.15);
-
-}
-
-
-
-.install-btn{
-
-background:linear-gradient(
-135deg,
-#6ee7f7,
-#7c3aed
-);
-
-border:none;
-
-}
-
-
-
-.install-btn strong{
-
-color:#03040a;
-
-}
-
-
-.install-btn small{
-
-color:#111827;
-
-}
-
-
-.action-btn:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 10px 30px rgba(110,231,247,.25);
-
-}
-
-
-
-@media(max-width:600px){
-
-.header-actions{
-
-flex-direction:column;
-
-align-items:center;
-
-}
-
-
-.action-btn{
-
-width:90%;
-
-}
-
-}
-    #installApp {
-    cursor:pointer;
-    transition:0.3s;
-}
-
-
-#installApp:hover {
-    transform:translateY(-5px);
-}
-    #installButton {
-
-background: linear-gradient(135deg,#6ee7f7,#8b5cf6);
-
-border:none;
-
-color:white;
-
-font-size:16px;
-
-font-weight:700;
-
-padding:14px 28px;
-
-border-radius:30px;
-
-cursor:pointer;
-
-margin-top:20px;
-
-transition:0.3s;
-
-}
-
-
-#installButton:hover{
-
-transform:scale(1.05);
-
-box-shadow:0 10px 30px rgba(110,231,247,0.4);
-
-}
+    :root { --ink:#eaf2ff; --muted:#a7b6cc; --line:rgba(211,228,255,.16); --panel:#101d31; --accent:#5eead4; --violet:#a78bfa; --bg:#07111f; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at 15% 0%,#193764 0,transparent 28rem), radial-gradient(circle at 92% 12%,#35225d 0,transparent 28rem),var(--bg); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.55; }
+    a { color:inherit; }
+    .container { width:min(1120px,calc(100% - 2rem)); margin:auto; }
+    .hero { padding:4.75rem 0 3rem; border-bottom:1px solid var(--line); }
+    .eyebrow { display:inline-flex; gap:.45rem; align-items:center; padding:.42rem .75rem; border:1px solid rgba(94,234,212,.35); border-radius:999px; color:var(--accent); background:rgba(94,234,212,.08); font-size:.86rem; font-weight:700; }
+    h1 { max-width:860px; margin:1rem 0 .85rem; font-size:clamp(2.25rem,6vw,4.65rem); line-height:1.05; letter-spacing:-.055em; }
+    h1 span { color:var(--accent); }
+    .lead { max-width:760px; margin:0; color:var(--muted); font-size:clamp(1.05rem,2vw,1.25rem); }
+    .actions { display:flex; flex-wrap:wrap; gap:.85rem; margin-top:1.65rem; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:.75rem 1rem; border-radius:.8rem; text-decoration:none; font-weight:750; border:1px solid var(--line); transition:transform .2s,background .2s; }
+    .button:hover { transform:translateY(-2px); }
+    .button.primary { color:#06111d; background:var(--accent); border-color:var(--accent); }
+    .button.secondary { background:rgba(255,255,255,.055); }
+    main { padding:2.5rem 0 4.5rem; }
+    .notice { display:grid; grid-template-columns:auto 1fr; gap:.8rem; padding:1rem 1.1rem; border:1px solid rgba(94,234,212,.28); border-radius:1rem; color:#d7fffa; background:rgba(94,234,212,.08); }
+    .notice strong { display:block; }
+    .notice p { margin:.2rem 0 0; color:#bde8e2; }
+    .filters { display:flex; flex-wrap:wrap; gap:.6rem; margin:2.2rem 0 1.6rem; }
+    .filter { appearance:none; cursor:pointer; padding:.5rem .8rem; color:var(--muted); background:transparent; border:1px solid var(--line); border-radius:999px; font:inherit; font-size:.9rem; }
+    .filter[aria-pressed="true"],.filter:hover { color:#07111f; background:var(--ink); border-color:var(--ink); }
+    section { margin-top:3rem; }
+    h2 { margin:0 0 .35rem; font-size:clamp(1.45rem,3vw,2rem); letter-spacing:-.03em; }
+    .section-intro { margin:0 0 1.25rem; color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+    .card { display:flex; flex-direction:column; min-height:280px; padding:1.25rem; border:1px solid var(--line); border-radius:1rem; background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025)); box-shadow:0 18px 45px rgba(0,0,0,.14); }
+    .card[hidden] { display:none; }
+    .card-top { display:flex; gap:.7rem; align-items:center; }
+    .icon { display:grid; width:2.5rem; height:2.5rem; place-items:center; border-radius:.7rem; background:rgba(167,139,250,.18); font-size:1.25rem; }
+    h3 { margin:0; font-size:1.12rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:.4rem; margin:.85rem 0; }
+    .tag { padding:.22rem .48rem; border-radius:.4rem; background:rgba(255,255,255,.09); color:#d3def0; font-size:.75rem; font-weight:650; }
+    .card p { margin:0; color:var(--muted); font-size:.94rem; }
+    .fit { margin-top:.75rem !important; color:#dcecff !important; }
+    .card a { display:inline-flex; align-items:center; gap:.35rem; width:max-content; margin-top:auto; padding-top:1rem; color:var(--accent); font-weight:750; text-underline-offset:.2rem; }
+    .cta { display:grid; grid-template-columns:1.4fr 1fr; gap:1.5rem; align-items:center; margin-top:4rem; padding:1.75rem; border:1px solid rgba(167,139,250,.4); border-radius:1.2rem; background:linear-gradient(120deg,rgba(167,139,250,.18),rgba(94,234,212,.09)); }
+    .cta h2 { margin-bottom:.5rem; }
+    .cta p { margin:0; color:#d0d9eb; }
+    .cta .actions { justify-content:flex-end; margin:0; }
+    footer { padding:2rem 0; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:800px) { .grid{grid-template-columns:repeat(2,minmax(0,1fr));}.cta{grid-template-columns:1fr;}.cta .actions{justify-content:flex-start;} }
+    @media (max-width:560px) { .hero{padding-top:3.25rem}.grid{grid-template-columns:1fr}.container{width:min(100% - 1.25rem,1120px)} }
+    @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto}.button{transition:none} }
   </style>
 </head>
 <body>
-
-<div class="bg-canvas"></div>
-<div class="grid-overlay"></div>
-<div class="particles" id="particles"></div>
-
-<div class="wrapper">
-
-  <!-- Header -->
-  <header class="header">
-    <div class="header-badge">Pour les nouveaux doctorants</div>
-    <h1>Outils <span>IA</span> pour la Recherche</h1>
-    <p>Plateformes essentielles pour accélérer vos travaux scientifiques</p>
-    <div class="header-actions">
-
-    <!-- Retour accueil -->
-    <div class="header-actions">
-
-<a href="index.html" class="action-btn home-btn">
-
-<span>🏠</span>
-
-<div>
-<strong>Retour à l’accueil</strong>
-<small>Plateforme principale NBProf</small>
-</div>
-
-</a>
-
-
-<button id="installBtn" class="action-btn install-btn">
-
-<span>📱</span>
-
-<div>
-<strong>Installer l’application</strong>
-<small>Accès rapide depuis votre écran d’accueil</small>
-</div>
-
-</button>
-
-</div>
-
-
-    <!-- Application IA Recherche -->
-    <a href="https://nbprof-academy.github.io/ia-recherche/" 
-   class="tool-card home-card"
-   id="installApp">
-
-    <div class="tool-icon">📱</div>
-
-    <div class="header-install">
-     <h3>📱 Installer NBProf IA Recherche</h3>
-
-<p>
-Accédez rapidement à votre assistant scientifique depuis votre écran d'accueil.
-</p>
-
-<button id="installButton">
-Installer maintenant
-</button>
+  <header class="hero">
+    <div class="container">
+      <div class="eyebrow">✦ Guide pratique pour doctorants</div>
+      <h1>Les <span>outils IA</span> utiles à chaque étape de votre doctorat</h1>
+      <p class="lead">Sélectionnez le bon outil pour explorer la littérature, comprendre vos articles, organiser vos sources et préparer vos présentations—sans déléguer votre esprit critique.</p>
+      <div class="actions">
+        <a class="button primary" href="#outils">Explorer les outils</a>
+        <a class="button secondary" href="index.html">Retour à NBProf</a>
+      </div>
     </div>
-
-</a>
-
-
-<script>
-const installBtn = document.getElementById("installApp");
-const installText = document.getElementById("installText");
-
-let isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-let isAndroid = /Android/i.test(navigator.userAgent);
-
-
-if (isIOS) {
-
-    installText.innerHTML =
-    "Sur iPhone : ouvrir puis Partager → Sur l’écran d’accueil";
-
-}
-
-else if (isAndroid) {
-
-    installText.innerHTML =
-    "Sur Android : installer l’application depuis Chrome";
-
-}
-
-else {
-
-    installText.innerHTML =
-    "Application installable sur ordinateur et mobile";
-
-}
-
-
-installBtn.addEventListener("click", function(e){
-
-    if(isIOS){
-
-        alert(
-        "Pour installer NBProf IA :\n\n" +
-        "1. Appuyez sur le bouton Partager ⬆️\n" +
-        "2. Choisissez 'Sur l’écran d’accueil'\n" +
-        "3. Appuyez sur Ajouter"
-        );
-
-    }
-
-});
-
-</script>
   </header>
 
-  <!-- Section 1: Recherche & Analyse -->
-  <section class="section">
-    <div class="section-label">🔍 Recherche & Analyse Académique</div>
-    <div class="grid">
+  <main class="container" id="outils">
+    <aside class="notice" aria-label="Conseil d’utilisation">
+      <div aria-hidden="true">⚖️</div>
+      <div><strong>Utilisez l’IA comme assistant, pas comme auteur.</strong><p>Vérifiez toujours les sources, les citations, les résultats et les règles de votre établissement avant de les intégrer à vos travaux.</p></div>
+    </aside>
 
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">⚡</div>
-          <div class="card-title">Perplexity</div>
-        </div>
-        <p class="card-desc">Moteur de recherche académique assisté par IA permettant de synthétiser rapidement des informations scientifiques. Très utile pour accélérer la revue de littérature.</p>
-        <a class="card-link" href="https://www.perplexity.ai" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <nav class="filters" aria-label="Filtrer les outils">
+      <button class="filter" type="button" data-filter="all" aria-pressed="true">Tous</button>
+      <button class="filter" type="button" data-filter="gratuit" aria-pressed="false">Gratuit / freemium</button>
+      <button class="filter" type="button" data-filter="recherche" aria-pressed="false">Recherche</button>
+      <button class="filter" type="button" data-filter="lecture" aria-pressed="false">Lecture</button>
+      <button class="filter" type="button" data-filter="bibliographie" aria-pressed="false">Bibliographie</button>
+      <button class="filter" type="button" data-filter="presentation" aria-pressed="false">Présentation</button>
+    </nav>
+
+    <section aria-labelledby="recherche">
+      <h2 id="recherche">Recherche et revue de littérature</h2>
+      <p class="section-intro">Pour trouver des articles, cartographier un domaine et vérifier la solidité des citations.</p>
+      <div class="grid">
+        <article class="card" data-tags="gratuit recherche"><div class="card-top"><div class="icon">🔎</div><h3>Perplexity</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Veille</span></div><p>Synthétisez un sujet et remontez rapidement vers des sources à vérifier.</p><p class="fit"><strong>Idéal pour :</strong> démarrer une revue de littérature.</p><a href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Perplexity dans un nouvel onglet">Ouvrir Perplexity ↗</a></article>
+        <article class="card" data-tags="gratuit recherche"><div class="card-top"><div class="icon">🎯</div><h3>Consensus</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Études</span></div><p>Interrogez la littérature scientifique par question et comparez les conclusions des études.</p><p class="fit"><strong>Idéal pour :</strong> évaluer rapidement l’état des preuves.</p><a href="https://consensus.app/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Consensus dans un nouvel onglet">Ouvrir Consensus ↗</a></article>
+        <article class="card" data-tags="gratuit recherche"><div class="card-top"><div class="icon">🕸️</div><h3>ResearchRabbit</h3></div><div class="tags"><span class="tag">Gratuit</span><span class="tag">Cartographie</span></div><p>Explorez les réseaux d’auteurs et de publications autour d’un article central.</p><p class="fit"><strong>Idéal pour :</strong> découvrir les références connexes.</p><a href="https://www.researchrabbit.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir ResearchRabbit dans un nouvel onglet">Ouvrir ResearchRabbit ↗</a></article>
+        <article class="card" data-tags="recherche"><div class="card-top"><div class="icon">🌩️</div><h3>STORM</h3></div><div class="tags"><span class="tag">Recherche bibliographique</span><span class="tag">Synthèse</span></div><p>Assistant de recherche qui aide à explorer un sujet, organiser les informations collectées et préparer une première synthèse documentée.</p><p class="fit"><strong>Idéal pour :</strong> cadrer rapidement une recherche bibliographique.</p><a href="https://storm.genie.stanford.edu/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir STORM dans un nouvel onglet">Ouvrir STORM ↗</a></article>
+        <article class="card" data-tags="recherche"><div class="card-top"><div class="icon">🌍</div><h3>Mandumah</h3></div><div class="tags"><span class="tag">Recherche bibliographique arabe</span><span class="tag">Sources arabophones</span></div><p>Plateforme de recherche documentaire consacrée aux ressources scientifiques et académiques en langue arabe.</p><p class="fit"><strong>Idéal pour :</strong> rechercher de la littérature scientifique arabe.</p><a href="https://www.mandumah.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mandumah dans un nouvel onglet">Ouvrir Mandumah ↗</a></article>
       </div>
+    </section>
 
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">🎯</div>
-          <div class="card-title">Consensus</div>
-        </div>
-        <p class="card-desc">Plateforme spécialisée dans l'analyse d'articles scientifiques à partir de questions de recherche. Identifiez rapidement les conclusions dominantes dans la littérature.</p>
-        <a class="card-link" href="https://consensus.app" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <section aria-labelledby="lecture">
+      <h2 id="lecture">Lecture, compréhension et notes</h2>
+      <p class="section-intro">Pour dialoguer avec vos PDF, clarifier une méthode et conserver vos idées de lecture.</p>
+      <div class="grid">
+        <article class="card" data-tags="gratuit lecture"><div class="card-top"><div class="icon">📓</div><h3>NotebookLM</h3></div><div class="tags"><span class="tag">Gratuit</span><span class="tag">Vos sources</span></div><p>Posez des questions à vos propres documents et créez des synthèses ancrées dans ce corpus.</p><p class="fit"><strong>Idéal pour :</strong> préparer un chapitre ou un état de l’art.</p><a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir NotebookLM dans un nouvel onglet">Ouvrir NotebookLM ↗</a></article>
+        <article class="card" data-tags="gratuit lecture"><div class="card-top"><div class="icon">📄</div><h3>SciSpace</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">PDF</span></div><p>Obtenez une aide à la lecture d’articles complexes, notamment sur les concepts et méthodes.</p><p class="fit"><strong>Idéal pour :</strong> comprendre un article technique.</p><a href="https://typeset.io/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir SciSpace dans un nouvel onglet">Ouvrir SciSpace ↗</a></article>
+        <article class="card" data-tags="gratuit recherche"><div class="card-top"><div class="icon">🔬</div><h3>Scite</h3></div><div class="tags"><span class="tag">Payant</span><span class="tag">Citations</span></div><p>Identifiez si une publication est soutenue, discutée ou contestée par les travaux qui la citent.</p><p class="fit"><strong>Idéal pour :</strong> vérifier la robustesse d’une source clé.</p><a href="https://scite.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Scite dans un nouvel onglet">Ouvrir Scite ↗</a></article>
       </div>
+    </section>
 
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">🔬</div>
-          <div class="card-title">Scite</div>
-        </div>
-        <p class="card-desc">Outil intelligent d'analyse des citations scientifiques. Aide à vérifier si une étude est soutenue, discutée ou contestée par d'autres travaux de recherche.</p>
-        <a class="card-link" href="https://scite.ai" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <section aria-labelledby="bibliographie">
+      <h2 id="bibliographie">Bibliographie et citations</h2>
+      <p class="section-intro">Votre base de travail pour classer les références, annoter les PDF et citer sans erreur.</p>
+      <div class="grid">
+        <article class="card" data-tags="gratuit bibliographie"><div class="card-top"><div class="icon">📚</div><h3>Zotero</h3></div><div class="tags"><span class="tag">Gratuit</span><span class="tag">Open source</span></div><p>Collectez, organisez, annotez et citez vos références depuis votre navigateur et traitement de texte.</p><p class="fit"><strong>Idéal pour :</strong> la plupart des doctorants.</p><a href="https://www.zotero.org/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Zotero dans un nouvel onglet">Ouvrir Zotero ↗</a></article>
+        <article class="card" data-tags="gratuit bibliographie"><div class="card-top"><div class="icon">🤝</div><h3>Mendeley</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Collaboration</span></div><p>Gérez des bibliothèques partagées et annotez des références avec votre équipe.</p><p class="fit"><strong>Idéal pour :</strong> les projets collaboratifs.</p><a href="https://www.mendeley.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Mendeley dans un nouvel onglet">Ouvrir Mendeley ↗</a></article>
+        <article class="card" data-tags="bibliographie"><div class="card-top"><div class="icon">🗂️</div><h3>EndNote</h3></div><div class="tags"><span class="tag">Payant</span><span class="tag">Institutionnel</span></div><p>Gestionnaire de références largement utilisé dans les environnements universitaires et hospitaliers.</p><p class="fit"><strong>Idéal pour :</strong> les universités déjà équipées.</p><a href="https://endnote.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir EndNote dans un nouvel onglet">Ouvrir EndNote ↗</a></article>
       </div>
+    </section>
 
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">🐇</div>
-          <div class="card-title">ResearchRabbit</div>
-        </div>
-        <p class="card-desc">Assistant de découverte scientifique basé sur des réseaux d'articles et d'auteurs. Facilite l'identification de nouvelles références pertinentes dans un domaine précis.</p>
-        <a class="card-link" href="https://www.researchrabbit.ai" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+    <section aria-labelledby="presentation">
+      <h2 id="presentation">Visualiser et présenter</h2>
+      <p class="section-intro">Pour rendre vos idées, modèles et résultats plus faciles à comprendre.</p>
+      <div class="grid">
+        <article class="card" data-tags="gratuit presentation"><div class="card-top"><div class="icon">🧩</div><h3>Connected Papers</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Réseaux</span></div><p>Visualisez les relations entre publications pour situer les articles majeurs de votre domaine.</p><p class="fit"><strong>Idéal pour :</strong> comprendre un champ de recherche.</p><a href="https://www.connectedpapers.com/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Connected Papers dans un nouvel onglet">Ouvrir Connected Papers ↗</a></article>
+        <article class="card" data-tags="gratuit presentation"><div class="card-top"><div class="icon">🎬</div><h3>Gamma</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Soutenance</span></div><p>Créez une première structure de présentation à affiner avec vos contenus validés.</p><p class="fit"><strong>Idéal pour :</strong> préparer une présentation ou une soutenance.</p><a href="https://gamma.app/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Gamma dans un nouvel onglet">Ouvrir Gamma ↗</a></article>
+        <article class="card" data-tags="gratuit presentation"><div class="card-top"><div class="icon">✏️</div><h3>Napkin AI</h3></div><div class="tags"><span class="tag">Freemium</span><span class="tag">Schémas</span></div><p>Transformez une idée ou une explication en représentation visuelle à retravailler.</p><p class="fit"><strong>Idéal pour :</strong> illustrer un cadre conceptuel.</p><a href="https://www.napkin.ai/" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir Napkin AI dans un nouvel onglet">Ouvrir Napkin AI ↗</a></article>
       </div>
+    </section>
 
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">🌐</div>
-          <div class="card-title">Google Scholar</div>
-        </div>
-        <p class="card-desc">Fonctionnalités avancées pour améliorer l'exploration académique. Utile pour suivre les citations, auteurs et tendances scientifiques récentes.</p>
-        <a class="card-link" href="https://scholar.google.com" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="card cat-search">
-        <div class="card-head">
-          <div class="card-icon">📊</div>
-          <div class="card-title">Scopus AI</div>
-        </div>
-        <p class="card-desc">Extension intelligente de la base de données Scopus intégrant des outils d'analyse IA. Obtenez des synthèses rapides et des analyses bibliométriques avancées.</p>
-        <a class="card-link" href="https://www.scopus.com/ai" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Section 2: Lecture & Notes -->
-  <section class="section">
-    <div class="section-label">📖 Lecture, Résumé & Notes</div>
-    <div class="grid">
-
-      <div class="card cat-read">
-        <div class="card-head">
-          <div class="card-icon">🚀</div>
-          <div class="card-title">SciSpace</div>
-        </div>
-        <p class="card-desc">Plateforme conçue pour lire, résumer et expliquer des articles scientifiques complexes. Très utile pour comprendre rapidement des méthodologies et concepts techniques.</p>
-        <a class="card-link" href="https://typeset.io" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="card cat-read">
-        <div class="card-head">
-          <div class="card-icon">📓</div>
-          <div class="card-title">NotebookLM</div>
-        </div>
-        <p class="card-desc">Assistant de recherche permettant d'interagir avec ses propres documents académiques. Facilite la synthèse, l'organisation des notes et la préparation de travaux scientifiques.</p>
-        <a class="card-link" href="https://notebooklm.google.com" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Section 3: Visualisation -->
-  <section class="section">
-    <div class="section-label">🗺️ Visualisation & Cartographie</div>
-    <div class="grid">
-
-      <div class="card cat-viz">
-        <div class="card-head">
-          <div class="card-icon">🕸️</div>
-          <div class="card-title">Connected Papers</div>
-        </div>
-        <p class="card-desc">Visualisation graphique des relations entre publications scientifiques. Comprenez l'évolution d'un champ de recherche et les liens entre articles clés.</p>
-        <a class="card-link" href="https://www.connectedpapers.com" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="card cat-viz">
-        <div class="card-head">
-          <div class="card-icon">✏️</div>
-          <div class="card-title">Napkin AI</div>
-        </div>
-        <p class="card-desc">Plateforme qui transforme des idées en schémas et représentations visuelles. Très utile pour illustrer des modèles théoriques et conceptuels.</p>
-        <a class="card-link" href="https://www.napkin.ai" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Section 4: Présentations -->
-  <section class="section">
-    <div class="section-label">🎬 Présentations Académiques</div>
-    <div class="grid">
-
-      <div class="card cat-present">
-        <div class="card-head">
-          <div class="card-icon">⚡</div>
-          <div class="card-title">Gamma AI</div>
-        </div>
-        <p class="card-desc">Outil de création automatisée de présentations académiques et professionnelles. Idéal pour préparer rapidement des soutenances, conférences et exposés scientifiques.</p>
-        <a class="card-link" href="https://gamma.app" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Section 5: Bibliographie -->
-  <section class="section">
-    <div class="section-label">📚 Gestion Bibliographique</div>
-    <div class="grid">
-
-      <div class="card cat-bib">
-        <div class="card-head">
-          <div class="card-icon">📖</div>
-          <div class="card-title">EndNote</div>
-        </div>
-        <p class="card-desc">Logiciel de gestion bibliographique utilisé dans la recherche universitaire. Permet d'organiser automatiquement les références et de les insérer dans vos documents.</p>
-        <a class="card-link" href="https://endnote.com" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="card cat-bib">
-        <div class="card-head">
-          <div class="card-icon">🤝</div>
-          <div class="card-title">Mendeley</div>
-        </div>
-        <p class="card-desc">Gestionnaire de références et réseau académique collaboratif. Facilite le classement, l'annotation d'articles scientifiques et le partage entre chercheurs.</p>
-        <a class="card-link" href="https://www.mendeley.com" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-      <div class="card cat-bib">
-        <div class="card-head">
-          <div class="card-icon">🆓</div>
-          <div class="card-title">Zotero</div>
-        </div>
-        <p class="card-desc">Solution gratuite et open source de gestion bibliographique. Collectez, organisez, annotez et citez vos sources avec facilité dans tous vos travaux académiques.</p>
-        <a class="card-link" href="https://www.zotero.org" target="_blank" rel="noopener">
-          Accéder
-          <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 11L11 1M11 1H4M11 1V8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div style="margin-bottom: 1.2rem;">✦ Outils sélectionnés pour les doctorants · Mise à jour 2026 ✦</div>
-    <div style="
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      padding: 0.9rem 1.6rem;
-      font-family: 'Syne', sans-serif;
-    ">
-      <div style="
-        width: 42px; height: 42px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #6ee7f7, #a78bfa);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1rem; font-weight: 800; color: #03040a;
-        flex-shrink: 0;
-      ">NB</div>
-      <div style="text-align: left;">
-        <div style="font-size: 0.85rem; font-weight: 700; color: #e8eaf0; letter-spacing: 0.05em;">Prof. Noamane Boulahcen</div>
-        <a href="mailto:noamane73@gmail.com" style="
-          font-family: 'Space Mono', monospace;
-          font-size: 0.68rem;
-          color: #6ee7f7;
-          text-decoration: none;
-          letter-spacing: 0.05em;
-          transition: opacity 0.2s;
-        " onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">noamane73@gmail.com</a>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<script>
-  /* ── Floating particles ── */
-  const container = document.getElementById('particles');
-  for (let i = 0; i < 30; i++) {
-    const d = document.createElement('div');
-    d.className = 'dot';
-    d.style.cssText = `
-      left: ${Math.random() * 100}%;
-      animation-duration: ${8 + Math.random() * 14}s;
-      animation-delay: ${Math.random() * 10}s;
-      opacity: ${0.1 + Math.random() * 0.3};
-      width: ${1 + Math.random() * 2}px;
-      height: ${1 + Math.random() * 2}px;
-    `;
-    container.appendChild(d);
-  }
-
-  /* ── 3D tilt on cards ── */
-  document.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = e.clientX - r.left;
-      const y = e.clientY - r.top;
-      const cx = r.width / 2;
-      const cy = r.height / 2;
-      const rx = ((x - cx) / cx) * 8;
-      const ry = -((y - cy) / cy) * 6;
-      card.style.setProperty('--rx', rx);
-      card.style.setProperty('--ry', ry);
-      const mx = (x / r.width) * 100;
-      const my = (y / r.height) * 100;
-      card.style.setProperty('--mx', mx + '%');
-      card.style.setProperty('--my', my + '%');
-    });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.setProperty('--rx', 0);
-      card.style.setProperty('--ry', 0);
-      card.style.transform = '';
-    });
-  });
-
-  /* ── Scroll reveal ── */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.animationPlayState = 'running';
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.card').forEach(c => {
-    c.style.animationPlayState = 'paused';
-    io.observe(c);
-  });
-</script>
-  let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e)=>{
-
-e.preventDefault();
-
-deferredPrompt=e;
-
-});
-
-
-document.getElementById("installBtn")
-.addEventListener("click", async()=>{
-
-if(deferredPrompt){
-
-deferredPrompt.prompt();
-
-await deferredPrompt.userChoice;
-
-deferredPrompt=null;
-
-}
-
-});
+    <section class="cta" aria-labelledby="cta-title">
+      <div><h2 id="cta-title">Besoin d’un parcours IA adapté à votre recherche ?</h2><p>NBProf vous accompagne pour choisir vos outils, structurer votre méthode et les utiliser dans le respect de l’intégrité scientifique.</p></div>
+      <div class="actions"><a class="button primary" href="https://nbprof-academy.github.io/ia-recherche/" target="_blank" rel="noopener noreferrer">Découvrir NBProf IA Recherche</a></div>
+    </section>
+  </main>
+  <footer><div class="container">NBProf · Outils IA pour doctorants · Mis à jour en juillet 2026</div></footer>
   <script>
-
-let deferredPrompt;
-
-const installButton = document.getElementById("installApp");
-
-
-window.addEventListener("beforeinstallprompt", (e) => {
-
-    e.preventDefault();
-
-    deferredPrompt = e;
-
-    installButton.style.display = "flex";
-
-
-});
-
-
-installButton.addEventListener("click", async () => {
-
-
-    if (deferredPrompt) {
-
-        deferredPrompt.prompt();
-
-        const { outcome } = await deferredPrompt.userChoice;
-
-        if(outcome === "accepted"){
-
-            console.log("Application installée");
-
-        }
-
-        deferredPrompt = null;
-
-    } else {
-
-        window.open(
-        "https://nbprof-academy.github.io/ia-recherche/",
-        "_blank"
-        );
-
-    }
-
-
-});
-
-</script>
-  <script>
-
-let deferredPrompt;
-
-const installBtn = document.getElementById("installApp");
-
-
-window.addEventListener("beforeinstallprompt", (e)=>{
-
-    e.preventDefault();
-
-    deferredPrompt = e;
-
-});
-
-
-installBtn.addEventListener("click", async ()=>{
-
-
-    if(deferredPrompt){
-
-        deferredPrompt.prompt();
-
-
-        const result = await deferredPrompt.userChoice;
-
-
-        if(result.outcome === "accepted"){
-
-            console.log("Application installée");
-
-        }
-
-
-        deferredPrompt = null;
-
-
-    }else{
-
-        alert(
-        "Pour installer l'application : utilisez le menu du navigateur puis 'Ajouter à l'écran d'accueil'"
-        );
-
-    }
-
-
-});
-
-
-</script>
-  <script>
-
-let installPrompt;
-
-
-const button = document.getElementById("installButton");
-
-
-
-window.addEventListener(
-"beforeinstallprompt",
-(event)=>{
-
-
-event.preventDefault();
-
-
-installPrompt = event;
-
-
-button.style.display="block";
-
-
-});
-
-
-
-button.addEventListener(
-"click",
-async ()=>{
-
-
-if(installPrompt){
-
-
-installPrompt.prompt();
-
-
-const choice =
-await installPrompt.userChoice;
-
-
-
-if(choice.outcome==="accepted"){
-
-console.log("Installation réussie");
-
-}
-
-
-installPrompt=null;
-
-
-
-}else{
-
-
-let isIOS =
-/iPad|iPhone|iPod/.test(navigator.userAgent);
-
-
-
-if(isIOS){
-
-
-alert(
-"Pour installer NBProf IA :\n\n1️⃣ Appuyez sur Partager\n2️⃣ Choisissez 'Sur l’écran d’accueil'"
-);
-
-
-}else{
-
-
-alert(
-"Ouvrez le menu du navigateur puis choisissez 'Installer l'application'"
-);
-
-
-}
-
-
-}
-
-
-
-});
-
-
-</script>
+    document.querySelectorAll('.filter').forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+        document.querySelectorAll('.filter').forEach((item) => item.setAttribute('aria-pressed', item === button ? 'true' : 'false'));
+        document.querySelectorAll('.card').forEach((card) => { card.hidden = filter !== 'all' && !card.dataset.tags.includes(filter); });
+      });
+    });
+  </script>
 </body>
 </html>
