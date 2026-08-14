@@ -1521,5 +1521,522 @@ const ARTICLES = [
       <p><strong>🌟 When your employees thrive, your company prospers.</strong></p>
     `
   }
+},
+    {
+  id: 7,
+  category: 'ia',
+  icon: '🧠',
+  date: {
+    fr: 'Août 2026',
+    ar: 'غشت 2026',
+    en: 'August 2026'
+  },
+  readTime: {
+    fr: '8 min',
+    ar: '8 دقائق',
+    en: '8 min'
+  },
+  badge: {
+    fr: 'Éducation · Pédagogie · Apprentissage',
+    ar: 'التربية · البيداغوجيا · التعلم',
+    en: 'Education · Pedagogy · Learning'
+  },
+
+  title: {
+    fr: "Comprendre ne suffit pas pour retenir",
+    ar: "الفهم وحده لا يكفي للتذكر",
+    en: "Understanding is not enough to remember"
+  },
+
+  excerpt: {
+    fr: "Un étudiant peut comprendre parfaitement une notion et pourtant l'oublier quelques heures plus tard. Le véritable apprentissage ne se mesure pas seulement à la compréhension immédiate, mais à notre capacité à récupérer l'information dans le temps.",
+    ar: "قد يفهم الطالب مفهوماً بشكل كامل ثم ينساه بعد ساعات قليلة. فالتعلم الحقيقي لا يقاس فقط بالفهم الفوري، بل بالقدرة على استرجاع المعلومة مع مرور الوقت.",
+    en: "A student may understand a concept perfectly and still forget it a few hours later. Real learning is not measured only by immediate understanding, but by our ability to retrieve information over time."
+  },
+
+  content: {
+
+    fr: `
+      <div class="highlight-box">
+        🧠 <strong>Le plus grand malentendu pédagogique :</strong><br>
+        Comprendre une notion au moment où elle est expliquée ne signifie pas encore qu'elle est durablement apprise.
+      </div>
+
+      <p>Un formateur me raconte un jour :</p>
+
+      <blockquote>
+        « Mon étudiante comprend un concept, elle le réexplique avec succès, mais en fin de cours... plus rien. »
+      </blockquote>
+
+      <p>Cette situation est si familière qu'elle en devient presque banale. Pourtant, elle révèle un <strong>malentendu fondamental</strong> qui persiste dans nos pratiques pédagogiques.</p>
+
+      <h3>Du côté du formateur</h3>
+
+      <p>« Pourtant elle avait compris. »</p>
+      <p>« Ça n'a pas tenu. »</p>
+      <p>« On a tout essayé, rien ne marche. »</p>
+
+      <p>Ces phrases traduisent une frustration légitime, mais aussi une méprise sur la nature même de l'apprentissage.</p>
+
+      <h3>1. Comprendre ne garantit pas de retenir</h3>
+
+      <p>Il existe une différence fondamentale entre <strong>la performance immédiate</strong> et <strong>l'apprentissage durable</strong>.</p>
+
+      <p>La fluidité d'une explication juste après un cours n'est pas nécessairement le signe d'une consolidation durable.</p>
+
+      <p>La réponse que l'étudiant donne peut encore être fortement soutenue par ce qui vient d'être expliqué, par le contexte et par les informations encore disponibles en mémoire de travail.</p>
+
+      <div class="highlight-box">
+        💡 <strong>À retenir :</strong><br>
+        Réussir immédiatement après l'explication ne signifie pas nécessairement que l'information pourra être récupérée plus tard.
+      </div>
+
+      <h3>2. La réalité du processus d'apprentissage</h3>
+
+      <p>Lorsque l'on redemande l'information plus tard, plusieurs phénomènes apparaissent :</p>
+
+      <ul>
+        <li>une <strong>récupération réelle</strong> de l'information ;</li>
+        <li>un <strong>effort mnésique authentique</strong> ;</li>
+        <li>une <strong>difficulté normale</strong> liée au rappel.</li>
+      </ul>
+
+      <p>Le blocage devient alors informatif. Il nous renseigne sur ce qui est réellement disponible en mémoire et sur ce qui doit encore être consolidé.</p>
+
+      <h3>3. Tentative + feedback = consolidation</h3>
+
+      <p>Les tentatives de récupération constituent un puissant levier d'apprentissage.</p>
+
+      <p>L'étudiant ne doit donc pas seulement relire ou reconnaître une information. Il doit essayer de la <strong>retrouver lui-même</strong>.</p>
+
+      <div class="highlight-box">
+        🎯 <strong>Principe pédagogique :</strong><br><br>
+        Tentative de récupération → Feedback → Consolidation
+      </div>
+
+      <p>C'est l'effort de récupération, davantage que la simple exposition répétée à l'information, qui contribue à construire une mémorisation durable.</p>
+
+      <h3>4. Réinterpréter le trou de mémoire</h3>
+
+      <p>Le trou de mémoire n'est pas nécessairement :</p>
+
+      <ul>
+        <li>❌ une preuve d'incapacité ;</li>
+        <li>❌ un échec pédagogique ;</li>
+        <li>❌ la preuve que l'étudiant n'a rien compris.</li>
+      </ul>
+
+      <p>Il peut au contraire représenter le moment où l'étudiant doit véritablement mobiliser sa mémoire.</p>
+
+      <blockquote>
+        Le blocage n'est pas toujours l'ennemi de l'apprentissage. Il peut devenir le point de départ d'une récupération active.
+      </blockquote>
+
+      <h3>Quatre changements pédagogiques simples</h3>
+
+      <ol>
+        <li><strong>Tester la récupération plus tard</strong></li>
+        <li><strong>Normaliser la difficulté</strong></li>
+        <li><strong>Tester avant de réexpliquer</strong></li>
+        <li><strong>Faire récupérer toute la classe</strong></li>
+      </ol>
+
+      <h3>Erreur fréquente n°1 — Tester trop tôt</h3>
+
+      <p>Vous venez d'expliquer un concept. Vous demandez :</p>
+
+      <blockquote>
+        « Qui peut me le redire ? »
+      </blockquote>
+
+      <p>Une étudiante répond parfaitement. Vous pensez : <strong>« C'est bon, c'est acquis. »</strong></p>
+
+      <p>Mais le véritable test vient plus tard.</p>
+
+      <p>Juste après l'explication, l'information est encore active, le contexte est intact et la reconnaissance est facilitée.</p>
+
+      <div class="highlight-box">
+        ✅ <strong>À faire plutôt :</strong><br><br>
+        Tester la récupération :
+        <ul>
+          <li>en fin de séance ;</li>
+          <li>à la séance suivante ;</li>
+          <li>par un rappel surprise ;</li>
+          <li>après un délai suffisamment long pour nécessiter une véritable récupération.</li>
+        </ul>
+      </div>
+
+      <h3>Erreur fréquente n°2 — Interpréter le blocage comme un échec</h3>
+
+      <p>L'étudiant hésite. Il cherche... puis bloque.</p>
+
+      <p>Dans la classe, le silence s'installe.</p>
+
+      <p>Le premier réflexe peut être de penser :</p>
+
+      <blockquote>
+        « Il n'a pas compris. »
+      </blockquote>
+
+      <p>Mais souvent, le trou de mémoire signifie simplement que la mémoire est maintenant réellement sollicitée.</p>
+
+      <div class="highlight-box">
+        ✅ <strong>À faire plutôt :</strong><br><br>
+        Normaliser la difficulté en disant par exemple :<br><br>
+        <strong>« Si c'est difficile, c'est normal. Prenez quelques secondes pour chercher. »</strong>
+      </div>
+
+      <p>Puis :</p>
+
+      <ul>
+        <li>laisser chercher quelques secondes ;</li>
+        <li>écouter la tentative ;</li>
+        <li>corriger après la tentative.</li>
+      </ul>
+
+      <p><strong>L'effort fait partie de l'apprentissage.</strong></p>
+
+      <h3>Erreur fréquente n°3 — Réexpliquer trop vite</h3>
+
+      <p>L'étudiant hésite. Le silence dure quelques secondes.</p>
+
+      <p>Le réflexe du formateur est souvent :</p>
+
+      <blockquote>
+        « Je te réexplique. »
+      </blockquote>
+
+      <p>L'intention est évidemment d'aider. Pourtant, réexpliquer immédiatement peut supprimer l'occasion donnée à l'étudiant de chercher lui-même l'information.</p>
+
+      <p>Si la réponse arrive avant la tentative, la récupération n'a pas réellement lieu.</p>
+
+      <div class="highlight-box">
+        ✅ <strong>À faire plutôt :</strong><br><br>
+        Poser une question comme :<br><br>
+        <strong>« Qu'est-ce qui te revient sur cette notion ? »</strong>
+      </div>
+
+      <p>Puis suivre cette séquence :</p>
+
+      <p><strong>Tentative → Feedback → Consolidation</strong></p>
+
+      <h3>Erreur fréquente n°4 — Interroger uniquement les volontaires</h3>
+
+      <p>Imaginez un amphithéâtre de 100 étudiants.</p>
+
+      <p>Vous posez une question. Trois mains se lèvent. Souvent les mêmes.</p>
+
+      <p>Les autres écoutent la réponse, la reconnaissent et peuvent avoir l'impression de maîtriser la notion.</p>
+
+      <p>Mais la majorité n'a pas réellement tenté de récupérer l'information.</p>
+
+      <div class="highlight-box">
+        ⚠️ <strong>Risque :</strong><br>
+        La reconnaissance peut créer une <strong>illusion de maîtrise</strong>.
+      </div>
+
+      <h3>À faire plutôt : faire récupérer toute la classe</h3>
+
+      <p>Une technique extrêmement simple consiste à interroger d'abord tous les étudiants à l'écrit :</p>
+
+      <ol>
+        <li>Afficher une question à réponse ouverte courte.</li>
+        <li>Laisser environ une minute pour répondre individuellement.</li>
+        <li>Demander ensuite quelques réponses.</li>
+        <li>Procéder à une correction collective.</li>
+      </ol>
+
+      <p>Ainsi, avant que la bonne réponse soit révélée, <strong>chaque étudiant a tenté de la récupérer</strong>.</p>
+
+      <h3>Ce que cela change dans notre manière d'enseigner</h3>
+
+      <p>L'objectif n'est plus seulement de demander :</p>
+
+      <blockquote>
+        « Est-ce que vous avez compris ? »
+      </blockquote>
+
+      <p>Il faut aussi se demander :</p>
+
+      <blockquote>
+        « Seront-ils capables de retrouver cette information demain, la semaine prochaine ou lorsqu'ils devront réellement l'utiliser ? »
+      </blockquote>
+
+      <h3>Conclusion</h3>
+
+      <p><strong>Comprendre ne suffit pas.</strong></p>
+
+      <p>Le véritable apprentissage se joue aussi dans l'effort de récupération, dans la difficulté surmontée et parfois dans les quelques secondes de silence qui précèdent la réponse.</p>
+
+      <p>Le trou de mémoire n'est donc pas automatiquement un échec. Il peut devenir une <strong>opportunité pédagogique</strong>.</p>
+
+      <p>En modifiant quelques habitudes simples, nous pouvons transformer ces moments de blocage en véritables leviers d'apprentissage durable.</p>
+
+      <blockquote>
+        « Ne demandons pas seulement à l'étudiant s'il a compris. Donnons-lui l'occasion de retrouver ce qu'il a appris. »<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Professeur au primaire · Étudiant-chercheur · Master AMSO<br>
+      Université Cadi Ayyad</p>
+
+      <p style="color:var(--white-dim);font-size:0.9em">
+        #Education #Pédagogie #Apprentissage #Mémoire #Enseignement #NBProf
+      </p>
+    `,
+
+    ar: `
+      <div class="highlight-box">
+        🧠 <strong>أحد أكبر الالتباسات التربوية:</strong><br>
+        فهم المعلومة أثناء شرحها لا يعني بالضرورة أنها أصبحت مكتسبة بشكل دائم.
+      </div>
+
+      <p>حكى لي أحد المكونين يوماً:</p>
+
+      <blockquote>
+        « طالبة عندي تفهم المفهوم وتعيد شرحه بنجاح، لكن في نهاية الحصة... لا تتذكر شيئاً. »
+      </blockquote>
+
+      <p>هذه الوضعية مألوفة جداً، لكنها تكشف عن سوء فهم أساسي لطبيعة التعلم.</p>
+
+      <h3>1. الفهم لا يضمن التذكر</h3>
+
+      <p>هناك فرق أساسي بين <strong>الأداء الفوري</strong> و<strong>التعلم المستدام</strong>.</p>
+
+      <p>قد يتمكن المتعلم من إعادة شرح مفهوم مباشرة بعد تقديمه، لكن ذلك لا يعني بالضرورة أن المعلومة قد ترسخت في ذاكرته على المدى الطويل.</p>
+
+      <div class="highlight-box">
+        💡 <strong>الخلاصة:</strong><br>
+        النجاح مباشرة بعد الشرح لا يعني بالضرورة القدرة على استرجاع المعلومة لاحقاً.
+      </div>
+
+      <h3>2. ماذا يحدث عندما نطلب المعلومة لاحقاً؟</h3>
+
+      <ul>
+        <li>يحدث استرجاع حقيقي للمعلومة؛</li>
+        <li>يبذل المتعلم جهداً ذهنياً؛</li>
+        <li>تظهر صعوبة طبيعية في التذكر.</li>
+      </ul>
+
+      <p>هنا يصبح التردد أو التعثر معلومة مفيدة للأستاذ، لأنه يكشف ما تم ترسيخه وما يزال يحتاج إلى تعزيز.</p>
+
+      <h3>3. المحاولة + التغذية الراجعة = ترسيخ</h3>
+
+      <div class="highlight-box">
+        🎯 <strong>المبدأ:</strong><br><br>
+        محاولة الاسترجاع ← التغذية الراجعة ← تعزيز التعلم
+      </div>
+
+      <p>إن محاولة استرجاع المعلومة أكثر فائدة للتعلم من مجرد إعادة قراءتها أو التعرف عليها.</p>
+
+      <h3>4. إعادة تفسير النسيان</h3>
+
+      <p>التعثر في استرجاع المعلومة لا يعني بالضرورة:</p>
+
+      <ul>
+        <li>❌ عدم القدرة؛</li>
+        <li>❌ فشل المتعلم؛</li>
+        <li>❌ فشل العملية التعليمية.</li>
+      </ul>
+
+      <p>بل قد يمثل اللحظة التي تبدأ فيها الذاكرة في العمل بشكل فعلي.</p>
+
+      <h3>أربعة تغييرات تربوية بسيطة</h3>
+
+      <ol>
+        <li><strong>اختبار الاسترجاع بعد مرور بعض الوقت</strong></li>
+        <li><strong>اعتبار الصعوبة أمراً طبيعياً</strong></li>
+        <li><strong>اختبار المتعلم قبل إعادة الشرح</strong></li>
+        <li><strong>إشراك جميع المتعلمين في الاسترجاع</strong></li>
+      </ol>
+
+      <h3>الخطأ الأول — الاختبار مباشرة بعد الشرح</h3>
+
+      <p>بعد شرح مفهوم ما، قد يجيب أحد الطلاب إجابة مثالية. لكن الاختبار الحقيقي يكون بعد مرور بعض الوقت.</p>
+
+      <div class="highlight-box">
+        ✅ <strong>الأفضل:</strong><br>
+        إعادة طرح السؤال في نهاية الحصة، أو في الحصة التالية، أو بشكل مفاجئ لاحقاً.
+      </div>
+
+      <h3>الخطأ الثاني — اعتبار التردد فشلاً</h3>
+
+      <p>عندما يتردد المتعلم، من الأفضل إعطاؤه وقتاً قصيراً للبحث في ذاكرته بدل إعطائه الجواب فوراً.</p>
+
+      <blockquote>
+        « إذا كان الأمر صعباً فهذا طبيعي. خذ بعض الوقت وحاول أن تتذكر. »
+      </blockquote>
+
+      <h3>الخطأ الثالث — إعادة الشرح بسرعة</h3>
+
+      <p>إعادة الشرح مباشرة قد تحرم المتعلم من فرصة محاولة استرجاع المعلومة بنفسه.</p>
+
+      <p>يمكن للأستاذ أن يسأل:</p>
+
+      <blockquote>
+        « ماذا تتذكر عن هذا المفهوم؟ »
+      </blockquote>
+
+      <p><strong>محاولة → تغذية راجعة → ترسيخ</strong></p>
+
+      <h3>الخطأ الرابع — سؤال المتطوعين فقط</h3>
+
+      <p>عندما يجيب عدد قليل من الطلاب، قد يكتفي الآخرون بالتعرف على الإجابة دون محاولة استرجاعها بأنفسهم.</p>
+
+      <h3>الحل: إشراك الجميع</h3>
+
+      <ol>
+        <li>عرض سؤال قصير مفتوح.</li>
+        <li>منح دقيقة للإجابة الفردية كتابةً.</li>
+        <li>طلب بعض الإجابات.</li>
+        <li>تصحيح جماعي.</li>
+      </ol>
+
+      <p>بهذه الطريقة يحاول كل طالب استرجاع المعلومة قبل رؤية الإجابة الصحيحة.</p>
+
+      <h3>الخاتمة</h3>
+
+      <p><strong>الفهم وحده لا يكفي.</strong></p>
+
+      <p>التعلم الحقيقي يحتاج أيضاً إلى الاسترجاع، والجهد الذهني، والزمن، والتغذية الراجعة.</p>
+
+      <blockquote>
+        « لا نسأل المتعلم فقط هل فهم، بل نوفر له فرصاً ليسترجع ما تعلمه. »<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>نعمان بولحسن</strong><br>
+      أستاذ بالتعليم الابتدائي · طالب باحث · ماستر AMSO<br>
+      جامعة القاضي عياض</p>
+    `,
+
+    en: `
+      <div class="highlight-box">
+        🧠 <strong>One of the biggest misunderstandings in education:</strong><br>
+        Understanding something when it is explained does not necessarily mean it has been learned durably.
+      </div>
+
+      <p>A trainer once told me:</p>
+
+      <blockquote>
+        "My student understands a concept and can explain it correctly, but by the end of the lesson... nothing."
+      </blockquote>
+
+      <p>This situation is extremely familiar, yet it reveals a fundamental misunderstanding about the nature of learning.</p>
+
+      <h3>1. Understanding does not guarantee remembering</h3>
+
+      <p>There is an important difference between <strong>immediate performance</strong> and <strong>durable learning</strong>.</p>
+
+      <p>A fluent explanation immediately after a lesson does not necessarily mean that the information has been consolidated for later retrieval.</p>
+
+      <div class="highlight-box">
+        💡 <strong>Key idea:</strong><br>
+        Performing successfully immediately after instruction does not necessarily mean the information will still be retrievable later.
+      </div>
+
+      <h3>2. What happens when we ask later?</h3>
+
+      <ul>
+        <li>real retrieval takes place;</li>
+        <li>genuine memory effort is required;</li>
+        <li>normal difficulty appears.</li>
+      </ul>
+
+      <p>A temporary block can therefore be informative. It shows what is available in memory and what still needs consolidation.</p>
+
+      <h3>3. Attempt + feedback = consolidation</h3>
+
+      <div class="highlight-box">
+        🎯 <strong>Learning sequence:</strong><br><br>
+        Retrieval attempt → Feedback → Consolidation
+      </div>
+
+      <p>Students should not only reread or recognize information. They should also attempt to <strong>retrieve it themselves</strong>.</p>
+
+      <h3>4. Rethinking the memory gap</h3>
+
+      <p>A memory gap is not necessarily:</p>
+
+      <ul>
+        <li>❌ evidence of inability;</li>
+        <li>❌ pedagogical failure;</li>
+        <li>❌ proof that the student understood nothing.</li>
+      </ul>
+
+      <p>It may instead be the moment when memory is genuinely being challenged.</p>
+
+      <h3>Four simple pedagogical changes</h3>
+
+      <ol>
+        <li><strong>Test retrieval later</strong></li>
+        <li><strong>Normalize difficulty</strong></li>
+        <li><strong>Test before explaining again</strong></li>
+        <li><strong>Make the whole class retrieve</strong></li>
+      </ol>
+
+      <h3>Common mistake 1 — Testing too soon</h3>
+
+      <p>Immediately after explaining a concept, a student may reproduce it perfectly. The real test comes later.</p>
+
+      <div class="highlight-box">
+        ✅ <strong>Try instead:</strong><br>
+        Test retrieval at the end of the lesson, during the next session, or through an unexpected recall question.
+      </div>
+
+      <h3>Common mistake 2 — Treating difficulty as failure</h3>
+
+      <p>When a student hesitates, give them a few seconds to search their memory.</p>
+
+      <blockquote>
+        "If it feels difficult, that's normal. Take a few seconds and try to remember."
+      </blockquote>
+
+      <h3>Common mistake 3 — Explaining again too quickly</h3>
+
+      <p>Immediately giving the answer can remove the opportunity for retrieval.</p>
+
+      <p>Instead, ask:</p>
+
+      <blockquote>
+        "What do you remember about this concept?"
+      </blockquote>
+
+      <p><strong>Attempt → Feedback → Consolidation</strong></p>
+
+      <h3>Common mistake 4 — Asking only volunteers</h3>
+
+      <p>In a large class, only a few students may answer while everyone else simply recognizes the answer.</p>
+
+      <p>This can create an <strong>illusion of mastery</strong>.</p>
+
+      <h3>A better approach: make everyone retrieve</h3>
+
+      <ol>
+        <li>Display a short open-ended question.</li>
+        <li>Give students about one minute to answer individually.</li>
+        <li>Ask for several responses.</li>
+        <li>Provide collective feedback.</li>
+      </ol>
+
+      <p>Now every student has attempted retrieval before seeing the correct answer.</p>
+
+      <h3>Conclusion</h3>
+
+      <p><strong>Understanding is not enough.</strong></p>
+
+      <p>Durable learning also develops through retrieval effort, productive difficulty, time and feedback.</p>
+
+      <blockquote>
+        "Don't only ask students whether they understood. Give them opportunities to retrieve what they learned."<br>
+        <strong>— NB</strong>
+      </blockquote>
+
+      <p><strong>Noamane Boulahcen</strong><br>
+      Primary school teacher · Student-researcher · Master AMSO<br>
+      Cadi Ayyad University</p>
+    `
+  }
 }
 ];
