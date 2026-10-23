@@ -291,6 +291,57 @@
     text-align: center;
   }
 }
+
+    /* ── RESSOURCE QUALITÉ ───────────────────────────── */
+    .resource-card {
+      background: linear-gradient(135deg, rgba(201,168,76,0.14), rgba(15,30,53,0.96));
+      border: 1px solid var(--gold-medium);
+      border-left: 5px solid var(--gold);
+      border-radius: 12px;
+      padding: 26px;
+      margin: 10px 0 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }
+    .resource-card h2 {
+      margin-top: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .resource-meta {
+      color: var(--text-muted);
+      font-size: 0.95em;
+      margin-bottom: 14px;
+    }
+    .resource-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .resource-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 11px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .resource-btn:hover {
+      background: #e8cc80;
+      transform: translateY(-2px);
+    }
+    .resource-btn.secondary {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .resource-btn.secondary:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
   </style>
 </head>
 <body>
@@ -328,6 +379,31 @@
   <!-- Content -->
   <article class="course-container">
     
+
+    <!-- RESSOURCE COMPLÉMENTAIRE : AUDIT & MANAGEMENT DE LA QUALITÉ -->
+    <section class="resource-card" id="guide-audit-qualite">
+      <h2>📘 Guide d’expert — Audit et Management de la Qualité</h2>
+      <p class="resource-meta">Master Audit et Management Stratégique des Organisations (AMSO) · Version du 22 octobre 2026</p>
+      <p>
+        Cette ressource complémentaire propose une synthèse structurée de <strong>12 thèmes essentiels</strong> :
+        évolution de la qualité, principes ISO 9000/9001, approche processus, satisfaction client, PDCA, audit qualité,
+        non-conformités, outils qualité, indicateurs, qualité des services publics et universitaires, certification et ISO 9001:2026.
+      </p>
+      <p>
+        Chaque thème comprend l’essentiel à retenir, des tableaux de synthèse, des schémas, un réflexe d’expert,
+        un piège à éviter et une phrase utile pour l’oral. Le guide contient aussi des questions probables, un glossaire
+        et une fiche de synthèse finale.
+      </p>
+      <div class="resource-actions">
+        <a href="guide-audit-management-qualite.pdf" target="_blank" rel="noopener" class="resource-btn">
+          📖 Ouvrir le guide PDF
+        </a>
+        <a href="guide-audit-management-qualite.pdf" download class="resource-btn secondary">
+          ⬇ Télécharger le PDF
+        </a>
+      </div>
+    </section>
+
     <!-- INTRODUCTION -->
     <h2>🎯 Introduction</h2>
     <p>
