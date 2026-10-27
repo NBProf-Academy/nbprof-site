@@ -1,11 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Politique de Confidentialité - NBProf</title>
-  <meta name="description" content="Politique de confidentialité de NBProf - Comment nous collectons et protégeons vos données personnelles.">
+  <meta name="description" content="Politique de confidentialité de NBProf : collecte des données, cookies, statistiques Cloudflare et protection des informations personnelles.">
   <link rel="stylesheet" href="style.css">
+
   <style>
     .privacy-page {
       max-width: 900px;
@@ -16,6 +18,7 @@
       color: #333;
       background: #fff;
     }
+
     .privacy-page h1 {
       color: #222;
       border-bottom: 3px solid #d4af37;
@@ -23,6 +26,7 @@
       margin-bottom: 10px;
       font-size: 2.2em;
     }
+
     .privacy-meta {
       color: #888;
       font-size: 0.95em;
@@ -30,30 +34,44 @@
       padding-bottom: 20px;
       border-bottom: 1px solid #eee;
     }
+
     .privacy-page h2 {
       color: #d4af37;
       margin-top: 40px;
       margin-bottom: 15px;
       font-size: 1.4em;
     }
-    .privacy-page p, .privacy-page li {
+
+    .privacy-page h3 {
+      color: #333;
+      margin-top: 25px;
+      font-size: 1.1em;
+    }
+
+    .privacy-page p,
+    .privacy-page li {
       color: #555;
       margin-bottom: 12px;
     }
+
     .privacy-page ul {
       padding-left: 25px;
       margin-bottom: 20px;
     }
+
     .privacy-page strong {
       color: #222;
     }
+
     .privacy-page a {
-      color: #d4af37;
+      color: #b8941f;
       text-decoration: none;
     }
+
     .privacy-page a:hover {
       text-decoration: underline;
     }
+
     .privacy-note {
       background: #fff8e1;
       border-left: 4px solid #d4af37;
@@ -61,182 +79,854 @@
       margin: 30px 0;
       border-radius: 4px;
     }
+
     .privacy-contact {
       background: #f8f8f8;
       padding: 20px;
       border-radius: 8px;
       margin-top: 30px;
     }
+
+    .privacy-history {
+      background: #fafafa;
+      border-left: 4px solid #d4af37;
+      padding: 20px 25px;
+      margin: 25px 0 35px;
+      border-radius: 6px;
+    }
+
+    .privacy-history h3 {
+      margin-top: 0;
+      color: #222;
+    }
+
+    .privacy-history ul {
+      margin-bottom: 0;
+    }
+
+    .privacy-history li {
+      margin-bottom: 12px;
+    }
+
+    .privacy-history li:last-child {
+      margin-bottom: 0;
+    }
+
+    .privacy-highlight {
+      background: #fffdf5;
+      border: 1px solid #ead9a4;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
     .back-link {
       display: inline-block;
       margin-top: 40px;
       padding: 12px 30px;
       background: #d4af37;
-      color: white;
+      color: white !important;
       border-radius: 6px;
       text-decoration: none;
       transition: background 0.3s;
     }
+
     .back-link:hover {
       background: #b8941f;
       text-decoration: none;
     }
+
+    @media (max-width: 600px) {
+      .privacy-page {
+        margin: 30px auto;
+        padding: 25px 18px;
+      }
+
+      .privacy-page h1 {
+        font-size: 1.7em;
+      }
+
+      .privacy-page h2 {
+        font-size: 1.25em;
+      }
+
+      .privacy-history {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <main class="privacy-page">
+
     <h1>Politique de Confidentialité</h1>
+
     <div class="privacy-meta">
-      📅 Dernière mise à jour : 1er juin 2026<br>
-      🌐 Site web : www.nbprof.com
+      📅 Première publication : 1er juin 2026<br>
+      📅 Dernière mise à jour : 28 octobre 2026<br>
+      🌐 Site web :
+      <a href="https://nbprof.com">www.nbprof.com</a>
+    </div>
+
+    <!-- HISTORIQUE DES MISES À JOUR -->
+
+    <div class="privacy-history">
+      <h3>📜 Historique des mises à jour</h3>
+
+      <ul>
+        <li>
+          <strong>1er juin 2026 :</strong>
+          Publication initiale de la politique de confidentialité
+          de NBProf, comprenant les informations relatives
+          à la collecte des données, aux cookies,
+          aux services Google et aux droits des utilisateurs.
+        </li>
+
+        <li>
+          <strong>28 octobre 2026 :</strong>
+          Actualisation de la politique à la suite de
+          l'intégration de Cloudflare Web Analytics.
+          Ajout des informations relatives aux statistiques
+          de fréquentation, à la confidentialité des visiteurs
+          et à la protection des données personnelles.
+        </li>
+      </ul>
     </div>
 
     <p>
-      La présente politique de confidentialité décrit comment <strong>NBProf</strong> 
-      (Noamane Boulahcen) collecte, utilise et protège les informations que vous nous 
-      fournissez lorsque vous utilisez ce site web.
+      La présente politique de confidentialité décrit comment
+      <strong>NBProf</strong>, développé et administré par
+      <strong>Noamane Boulahcen</strong>, collecte, utilise
+      et protège les informations relatives aux visiteurs
+      et utilisateurs de son écosystème numérique.
     </p>
+
+    <p>
+      NBProf propose des contenus pédagogiques,
+      des ressources universitaires, des outils numériques
+      et des services destinés aux enseignants,
+      aux étudiants et aux chercheurs.
+    </p>
+
+    <p>
+      Cette politique concerne le site
+      <strong>www.nbprof.com</strong> et les pages
+      qui y sont associées. Les applications et services
+      complémentaires peuvent disposer de politiques
+      spécifiques lorsque leurs traitements de données
+      sont différents.
+    </p>
+
+    <!-- SECTION 1 -->
 
     <h2>1. Responsable du traitement des données</h2>
+
     <p>
       <strong>Nom :</strong> Noamane Boulahcen<br>
-      <strong>Site web :</strong> www.nbprof.com<br>
-      <strong>Localisation :</strong> Kelaa Des Sraghna, Marrakech-Safi, Maroc<br>
-      <strong>Contact :</strong> Via le formulaire de contact sur www.nbprof.com
+      <strong>Projet :</strong> NBProf / NBProf Research Hub<br>
+      <strong>Site web :</strong>
+      <a href="https://nbprof.com">www.nbprof.com</a><br>
+      <strong>Localisation :</strong>
+      El Kelaâ des Sraghna, Marrakech-Safi, Maroc<br>
+      <strong>Contact :</strong>
+      Via le formulaire de contact du site NBProf.
     </p>
+
+    <!-- SECTION 2 -->
 
     <h2>2. Données collectées</h2>
-    <p>Nous collectons les types de données suivants :</p>
+
+    <p>
+      Selon les fonctionnalités utilisées,
+      différentes catégories d'informations
+      peuvent être traitées.
+    </p>
+
     <ul>
-      <li><strong>Données de navigation</strong> : adresse IP, type de navigateur, pages visitées, durée de visite (via Google Analytics)</li>
-      <li><strong>Données de formulaire</strong> : nom, adresse email et message lorsque vous utilisez notre formulaire de contact</li>
-      <li><strong>Cookies publicitaires</strong> : Google AdSense peut déposer des cookies pour afficher des publicités personnalisées</li>
-      <li><strong>Données de commentaires</strong> : nom et email si vous laissez un commentaire sur le blog</li>
+      <li>
+        <strong>Données de navigation :</strong>
+        pages consultées, nombre de visites,
+        provenance du trafic, type de navigateur,
+        pays de connexion et performances des pages.
+      </li>
+
+      <li>
+        <strong>Données de formulaire :</strong>
+        nom, adresse électronique et contenu du message
+        lorsque vous utilisez le formulaire de contact.
+      </li>
+
+      <li>
+        <strong>Données statistiques :</strong>
+        informations agrégées sur la fréquentation
+        et l'utilisation du site, notamment via
+        Cloudflare Web Analytics.
+      </li>
+
+      <li>
+        <strong>Données de commentaires :</strong>
+        nom, adresse électronique et contenu
+        des commentaires lorsque cette fonctionnalité
+        est proposée.
+      </li>
+
+      <li>
+        <strong>Données liées aux services tiers :</strong>
+        certains services externes peuvent traiter
+        des informations techniques ou utiliser
+        des cookies selon leur fonctionnement.
+      </li>
     </ul>
+
+    <p>
+      NBProf ne demande pas aux visiteurs de fournir
+      des informations sensibles pour simplement
+      consulter ses ressources publiques.
+    </p>
+
+    <!-- SECTION 3 -->
 
     <h2>3. Utilisation des données</h2>
-    <p>Les données collectées sont utilisées pour :</p>
+
+    <p>
+      Les données collectées sont utilisées
+      pour les finalités suivantes :
+    </p>
+
     <ul>
-      <li>Améliorer l'expérience utilisateur sur notre site</li>
-      <li>Répondre à vos demandes via le formulaire de contact</li>
-      <li>Analyser le trafic et les statistiques du site (Google Analytics)</li>
-      <li>Afficher des publicités pertinentes (Google AdSense)</li>
-      <li>Assurer la sécurité et le bon fonctionnement du site</li>
+      <li>
+        Améliorer la qualité des contenus
+        et l'expérience de navigation.
+      </li>
+
+      <li>
+        Comprendre la fréquentation
+        des différentes pages du site.
+      </li>
+
+      <li>
+        Identifier les ressources les plus consultées
+        et les besoins des utilisateurs.
+      </li>
+
+      <li>
+        Analyser les performances du site
+        grâce aux outils de mesure d'audience.
+      </li>
+
+      <li>
+        Répondre aux messages envoyés
+        depuis le formulaire de contact.
+      </li>
+
+      <li>
+        Assurer la sécurité et le fonctionnement
+        des services numériques.
+      </li>
+
+      <li>
+        Contribuer à l'amélioration continue
+        de l'écosystème NBProf Research Hub.
+      </li>
     </ul>
 
-    <h2>4. Cookies</h2>
     <p>
-      Notre site utilise des cookies pour améliorer votre expérience de navigation. 
-      Les cookies sont de petits fichiers texte stockés sur votre appareil.
+      Les statistiques de fréquentation peuvent
+      également servir à évaluer les performances
+      générales du projet dans le cadre
+      de travaux de recherche et d'amélioration
+      des services, sous une forme agrégée.
     </p>
-    <p>Nous utilisons les types de cookies suivants :</p>
-    <ul>
-      <li><strong>Cookies essentiels</strong> : nécessaires au fonctionnement du site</li>
-      <li><strong>Cookies analytiques</strong> : Google Analytics pour mesurer l'audience (anonymisés)</li>
-      <li><strong>Cookies publicitaires</strong> : Google AdSense pour afficher des publicités adaptées</li>
-    </ul>
+
+    <!-- SECTION 4 -->
+
+    <h2>4. Cookies et technologies de suivi</h2>
+
     <p>
-      Vous pouvez désactiver les cookies dans les paramètres de votre navigateur. 
-      Notez que certaines fonctionnalités du site pourraient ne plus fonctionner correctement.
+      Les cookies sont de petits fichiers
+      susceptibles d'être enregistrés
+      sur votre appareil lors de la consultation
+      de certains sites ou services.
     </p>
+
+    <p>
+      Les technologies de mesure d'audience
+      n'utilisent pas toutes des cookies.
+      Leur fonctionnement dépend du service concerné.
+    </p>
+
+    <h3>4.1. Cookies fonctionnels</h3>
+
+    <p>
+      Certaines fonctionnalités ou certains services
+      externes peuvent utiliser des cookies
+      nécessaires à leur fonctionnement.
+    </p>
+
+    <h3>4.2. Statistiques Cloudflare</h3>
+
+    <p>
+      <strong>Cloudflare Web Analytics</strong>
+      fonctionne sans déposer de cookies
+      de mesure d'audience sur les appareils
+      des visiteurs.
+    </p>
+
+    <p>
+      Ce service ne repose pas sur
+      le suivi publicitaire individualisé
+      ou sur la création de profils
+      de navigation entre plusieurs sites.
+    </p>
+
+    <h3>4.3. Autres cookies éventuels</h3>
+
+    <p>
+      Lorsque des services Google ou d'autres
+      services tiers sont effectivement activés,
+      ils peuvent utiliser des cookies
+      ou d'autres technologies de suivi.
+    </p>
+
+    <p>
+      Leur utilisation et les mécanismes
+      de consentement éventuellement requis
+      dépendent de la nature du service,
+      de sa configuration et de la réglementation
+      applicable.
+    </p>
+
+    <p>
+      Vous pouvez gérer ou supprimer les cookies
+      depuis les paramètres de votre navigateur.
+      Certaines fonctionnalités peuvent être
+      affectées par leur désactivation.
+    </p>
+
+    <!-- SECTION 5 -->
 
     <h2>5. Google AdSense et publicités</h2>
+
     <p>
-      Ce site utilise <strong>Google AdSense</strong> pour afficher des publicités. 
-      Google AdSense utilise des cookies pour afficher des annonces basées sur vos visites 
-      antérieures sur ce site et d'autres sites web.
+      NBProf a prévu l'utilisation éventuelle
+      de services publicitaires tels que
+      <strong>Google AdSense</strong>.
     </p>
+
     <p>
-      Vous pouvez désactiver la publicité personnalisée en visitant les 
-      <a href="https://www.google.com/settings/ads" target="_blank">paramètres de publicité Google</a>.
+      Lorsque Google AdSense est effectivement
+      activé sur une page, Google et ses partenaires
+      peuvent utiliser des cookies ou des identifiants
+      pour diffuser et mesurer des annonces,
+      selon les paramètres applicables.
     </p>
+
     <p>
-      Pour en savoir plus sur la manière dont Google utilise les données, consultez la 
-      <a href="https://policies.google.com/privacy" target="_blank">politique de confidentialité de Google</a>.
+      Les utilisateurs peuvent gérer leurs préférences
+      publicitaires depuis les
+      <a href="https://myadcenter.google.com/"
+         target="_blank"
+         rel="noopener noreferrer">
+        paramètres publicitaires Google
+      </a>.
     </p>
+
+    <p>
+      Pour plus d'informations :
+      <a href="https://policies.google.com/privacy"
+         target="_blank"
+         rel="noopener noreferrer">
+        Politique de confidentialité de Google
+      </a>.
+    </p>
+
+    <!-- SECTION 6 -->
 
     <h2>6. Google Analytics</h2>
+
     <p>
-      Nous utilisons Google Analytics pour analyser le trafic de notre site. 
-      Google Analytics collecte des informations anonymes sur la façon dont les visiteurs utilisent notre site.
+      Google Analytics est un service
+      de mesure d'audience pouvant être utilisé
+      pour analyser la fréquentation
+      et les interactions des visiteurs.
     </p>
+
     <p>
-      Ces données incluent : le nombre de visiteurs, les pages consultées, la durée des 
-      visites et la source du trafic. Ces informations nous aident à améliorer notre contenu.
+      Si Google Analytics est activé sur certaines
+      pages de NBProf, il peut traiter
+      des événements de navigation,
+      des informations techniques
+      et des données relatives aux visites.
     </p>
+
+    <p>
+      Les traitements et les durées de conservation
+      dépendent de la version du service
+      et des paramètres configurés.
+    </p>
+
+    <p>
+      L'utilisation actuelle de ce service
+      sur les différentes pages de NBProf
+      doit être vérifiée séparément
+      de Cloudflare Web Analytics.
+    </p>
+
+    <!-- SECTION 6 BIS -->
+
+    <h2>6 bis. Cloudflare Web Analytics</h2>
+
+    <div class="privacy-highlight">
+      <strong>
+        Nouveau service intégré en octobre 2026
+      </strong>
+
+      <p>
+        NBProf utilise
+        <strong>Cloudflare Web Analytics</strong>
+        afin de disposer de statistiques
+        sur la fréquentation du site
+        tout en limitant le suivi des visiteurs.
+      </p>
+    </div>
+
+    <h3>6 bis.1. Objectifs du service</h3>
+
+    <p>
+      Cloudflare Web Analytics permet notamment :
+    </p>
+
+    <ul>
+      <li>
+        De connaître le nombre de visites
+        et de pages consultées.
+      </li>
+
+      <li>
+        D'identifier les pages
+        les plus fréquentées.
+      </li>
+
+      <li>
+        De comprendre les sources
+        de trafic vers le site.
+      </li>
+
+      <li>
+        D'observer les statistiques
+        géographiques générales.
+      </li>
+
+      <li>
+        De mesurer certaines performances
+        techniques des pages.
+      </li>
+
+      <li>
+        D'améliorer les contenus,
+        l'organisation et la navigation du site.
+      </li>
+    </ul>
+
+    <h3>6 bis.2. Respect de la vie privée</h3>
+
+    <p>
+      Cloudflare Web Analytics est conçu
+      comme un outil de mesure d'audience
+      respectueux de la confidentialité.
+    </p>
+
+    <ul>
+      <li>
+        Il n'utilise pas de cookies
+        pour son dispositif de mesure d'audience.
+      </li>
+
+      <li>
+        Il ne crée pas de profils publicitaires
+        individualisés des visiteurs.
+      </li>
+
+      <li>
+        Il n'a pas pour objectif de suivre
+        une personne entre différents sites.
+      </li>
+
+      <li>
+        Les rapports accessibles à NBProf
+        sont utilisés à des fins statistiques
+        et d'amélioration du site.
+      </li>
+    </ul>
+
+    <p>
+      Le fonctionnement technique du service
+      peut nécessiter le traitement temporaire
+      de certaines informations de connexion
+      par Cloudflare. L'absence de cookies
+      ne signifie donc pas l'absence
+      de tout traitement de données techniques.
+    </p>
+
+    <h3>6 bis.3. Utilisation par NBProf</h3>
+
+    <p>
+      Les données statistiques fournies
+      par Cloudflare permettent à NBProf
+      de mieux comprendre l'utilisation
+      de ses ressources pédagogiques,
+      universitaires et numériques.
+    </p>
+
+    <p>
+      Ces informations peuvent également
+      contribuer à l'évaluation
+      de l'écosystème NBProf Research Hub,
+      notamment dans le cadre
+      de l'amélioration continue
+      et de travaux de recherche.
+    </p>
+
+    <p>
+      NBProf privilégie l'utilisation
+      de données statistiques agrégées
+      plutôt que l'identification
+      individuelle des visiteurs.
+    </p>
+
+    <h3>6 bis.4. Documentation officielle</h3>
+
+    <p>
+      Pour connaître le fonctionnement
+      du service, consultez :
+      <a href="https://developers.cloudflare.com/web-analytics/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Cloudflare Web Analytics
+      </a>.
+    </p>
+
+    <p>
+      Vous pouvez également consulter :
+      <a href="https://www.cloudflare.com/privacypolicy/"
+         target="_blank"
+         rel="noopener noreferrer">
+        la politique de confidentialité de Cloudflare
+      </a>.
+    </p>
+
+    <!-- SECTION 7 -->
 
     <h2>7. Partage des données</h2>
+
     <p>
-      Nous ne vendons, n'échangeons ni ne louons vos informations personnelles à des tiers. 
-      Vos données peuvent être partagées avec :
+      NBProf ne vend ni ne loue
+      les informations personnelles
+      communiquées directement
+      par ses utilisateurs.
     </p>
+
+    <p>
+      Certains prestataires techniques
+      peuvent néanmoins traiter
+      des informations nécessaires
+      au fonctionnement des services.
+    </p>
+
     <ul>
-      <li><strong>Google</strong> : pour les services Analytics et AdSense</li>
-      <li><strong>GitHub</strong> : plateforme d'hébergement du blog</li>
-      <li><strong>Namecheap</strong> : hébergement du site principal</li>
+      <li>
+        <strong>Cloudflare :</strong>
+        mesure d'audience, performances
+        et services techniques associés.
+      </li>
+
+      <li>
+        <strong>GitHub Pages :</strong>
+        hébergement et diffusion
+        des pages statiques du site.
+      </li>
+
+      <li>
+        <strong>Namecheap :</strong>
+        gestion du nom de domaine
+        et des services associés.
+      </li>
+
+      <li>
+        <strong>Google :</strong>
+        lorsque des services tels que
+        Google Analytics ou Google AdSense
+        sont effectivement activés.
+      </li>
     </ul>
-    <p>Ces services sont soumis à leurs propres politiques de confidentialité.</p>
+
+    <p>
+      Chaque prestataire applique
+      sa propre politique de confidentialité.
+      Certains traitements peuvent avoir lieu
+      en dehors du Maroc.
+    </p>
+
+    <!-- SECTION 8 -->
 
     <h2>8. Conservation des données</h2>
+
     <p>
-      Les données collectées via le formulaire de contact sont conservées pendant une 
-      durée maximale de <strong>2 ans</strong> à compter de votre dernière interaction avec nous.
+      Les données transmises
+      par le formulaire de contact
+      sont conservées pendant une durée
+      maximale prévue de
+      <strong>2 ans</strong>
+      après la dernière interaction,
+      sauf obligation légale
+      ou nécessité particulière justifiée.
     </p>
+
     <p>
-      Les données de navigation collectées via Google Analytics sont conservées pendant 
-      <strong>26 mois</strong> conformément aux paramètres par défaut de Google Analytics.
+      Les données statistiques issues
+      de Cloudflare Web Analytics
+      sont conservées conformément
+      aux modalités applicables
+      au service Cloudflare utilisé.
     </p>
+
+    <p>
+      Les données éventuellement traitées
+      par Google Analytics sont soumises
+      aux durées de conservation
+      configurées dans ce service.
+      Aucune durée unique de 26 mois
+      n'est présumée applicable.
+    </p>
+
+    <p>
+      NBProf veille à ne conserver
+      les informations personnelles
+      que pendant les durées nécessaires
+      aux finalités annoncées,
+      sous réserve des obligations légales.
+    </p>
+
+    <!-- SECTION 9 -->
 
     <h2>9. Vos droits</h2>
-    <p>Conformément aux lois applicables sur la protection des données, vous disposez des droits suivants :</p>
-    <ul>
-      <li><strong>Droit d'accès</strong> : obtenir une copie de vos données personnelles</li>
-      <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
-      <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
-      <li><strong>Droit d'opposition</strong> : vous opposer au traitement de vos données</li>
-      <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format structuré</li>
-    </ul>
+
     <p>
-      Pour exercer ces droits, contactez-nous via le formulaire disponible sur 
-      <a href="index.html#contact">www.nbprof.com</a>.
+      La protection des données personnelles
+      au Maroc est notamment encadrée
+      par la <strong>loi n° 09-08</strong>
+      relative à la protection
+      des personnes physiques à l'égard
+      du traitement des données
+      à caractère personnel.
     </p>
+
+    <p>
+      Sous réserve des conditions
+      prévues par les textes applicables,
+      les personnes concernées disposent
+      notamment des droits suivants :
+    </p>
+
+    <ul>
+      <li>
+        <strong>Droit d'information :</strong>
+        connaître les finalités
+        du traitement de leurs données.
+      </li>
+
+      <li>
+        <strong>Droit d'accès :</strong>
+        demander communication
+        des données personnelles les concernant.
+      </li>
+
+      <li>
+        <strong>Droit de rectification :</strong>
+        faire corriger les informations
+        inexactes ou incomplètes.
+      </li>
+
+      <li>
+        <strong>Droit d'opposition :</strong>
+        s'opposer à certains traitements
+        dans les conditions prévues par la loi.
+      </li>
+
+      <li>
+        <strong>Droit de suppression :</strong>
+        demander l'effacement de données
+        lorsque les conditions légales
+        le permettent.
+      </li>
+    </ul>
+
+    <p>
+      Pour exercer ces droits,
+      vous pouvez contacter NBProf
+      à partir du
+      <a href="index.html#contact">
+        formulaire de contact
+      </a>.
+    </p>
+
+    <p>
+      Pour plus d'informations sur
+      la protection des données au Maroc,
+      consultez le site de la
+      <a href="https://www.cndp.ma/"
+         target="_blank"
+         rel="noopener noreferrer">
+        Commission Nationale de contrôle
+        de la protection des Données
+        à caractère Personnel (CNDP)
+      </a>.
+    </p>
+
+    <!-- SECTION 10 -->
 
     <h2>10. Sécurité des données</h2>
+
     <p>
-      Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos 
-      informations contre tout accès non autorisé, modification, divulgation ou destruction. 
-      Notre site utilise le protocole <strong>HTTPS</strong> pour sécuriser toutes les communications.
+      NBProf cherche à mettre en œuvre
+      des mesures techniques et organisationnelles
+      adaptées afin de limiter les risques
+      d'accès non autorisé, de perte,
+      de modification ou de divulgation
+      des informations.
     </p>
+
+    <p>
+      Le site utilise le protocole
+      <strong>HTTPS</strong>
+      afin de chiffrer les échanges
+      entre le navigateur du visiteur
+      et le serveur web.
+    </p>
+
+    <p>
+      Aucun dispositif de sécurité
+      ne garantit toutefois
+      une protection absolue
+      contre tous les risques informatiques.
+    </p>
+
+    <!-- SECTION 11 -->
 
     <h2>11. Liens vers des sites tiers</h2>
+
     <p>
-      Notre site peut contenir des liens vers des sites web tiers. Nous n'assumons aucune 
-      responsabilité quant aux pratiques de confidentialité de ces sites. Nous vous 
-      encourageons à consulter leurs politiques de confidentialité.
+      NBProf peut proposer des liens
+      vers des plateformes externes,
+      des ressources universitaires,
+      des publications scientifiques
+      ou des services numériques.
     </p>
+
+    <p>
+      Ces sites appliquent leurs propres règles
+      de confidentialité et de traitement
+      des données personnelles.
+    </p>
+
+    <p>
+      Les utilisateurs sont invités
+      à consulter les politiques
+      des services externes
+      avant de leur communiquer
+      des informations personnelles.
+    </p>
+
+    <!-- SECTION 12 -->
 
     <h2>12. Modifications de cette politique</h2>
+
     <p>
-      Nous nous réservons le droit de modifier cette politique de confidentialité à tout 
-      moment. Les modifications entrent en vigueur dès leur publication sur cette page. 
-      Nous vous encourageons à consulter régulièrement cette page.
+      La présente politique peut être modifiée
+      afin de tenir compte de l'évolution
+      des fonctionnalités de NBProf,
+      des services techniques utilisés
+      ou des obligations réglementaires.
     </p>
 
+    <p>
+      Chaque mise à jour importante
+      est accompagnée d'une date
+      et d'une description
+      des principales modifications.
+    </p>
+
+    <p>
+      Les anciennes dates de publication
+      sont conservées dans l'historique
+      pour permettre aux utilisateurs
+      de suivre l'évolution
+      de la politique de confidentialité.
+    </p>
+
+    <p>
+      Les modifications sont publiées
+      sur cette page. Lorsque la réglementation
+      impose une information spécifique
+      ou un consentement, les mesures
+      nécessaires doivent être prises.
+    </p>
+
+    <!-- NOTE IMPORTANTE -->
+
     <div class="privacy-note">
-      <strong>⚠️ Note importante :</strong> En utilisant notre site web, vous acceptez 
-      les termes de cette politique de confidentialité. Si vous n'acceptez pas cette 
-      politique, veuillez ne pas utiliser notre site.
+      <strong>⚠️ Information importante :</strong>
+
+      <p>
+        La consultation de NBProf
+        ne constitue pas automatiquement
+        un consentement à tous les traitements
+        de données personnelles.
+      </p>
+
+      <p>
+        Lorsque le consentement est requis
+        par la réglementation applicable,
+        il doit être recueilli
+        par un mécanisme approprié.
+      </p>
+
+      <p>
+        Pour toute question concernant
+        vos données personnelles,
+        vous pouvez contacter
+        l'administrateur du site.
+      </p>
     </div>
+
+    <!-- CONTACT -->
 
     <div class="privacy-contact">
+
       <strong>📩 Nous contacter</strong><br>
-      Pour toute question concernant cette politique de confidentialité ou pour exercer vos droits, contactez-nous via :<br>
-      🌐 <a href="index.html#contact">www.nbprof.com/#contact</a><br>
+
+      Pour toute question concernant
+      cette politique de confidentialité
+      ou pour exercer vos droits,
+      contactez-nous via :<br>
+
+      🌐
+      <a href="index.html#contact">
+        www.nbprof.com/#contact
+      </a><br>
+
       🔗 LinkedIn : Noamane Boulahcen
+
     </div>
 
-    <a href="index.html" class="back-link">← Retour à l'accueil</a>
+    <!-- RETOUR ACCUEIL -->
+
+    <a href="index.html" class="back-link">
+      ← Retour à l'accueil
+    </a>
+
   </main>
 
 </body>
