@@ -1,0 +1,970 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>M236 · Audit et Management de la Qualité — cours complet en 7 séances | NBProf AMSO</title>
+<meta name="description" content="Module M236 Audit et Management de la Qualité (Master AMSO) : 7 séances — notions, pensée qualité, approche processus, satisfaction, PDCA, audit ISO 19011, non-conformités, outils, indicateurs, certification ISO 9001 — avec schémas, cas corrigés et QCM.">
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#07111f;--c:#102137;--c2:#0c1a2c;--l:#29405a;--cyan:#04e0ed;--gold:#e8c46d;--green:#62e4ba;--red:#ff7a7a;--orange:#ffb454;--mut:#aebdd1;--text:#f0f5fc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at top left,#12324a,transparent 40%),var(--bg);font:16px/1.7 Arial,sans-serif;color:var(--text)}
+a{color:var(--cyan)}
+header{padding:16px 5%;display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;background:#07111feb;border-bottom:1px solid var(--l);position:sticky;top:0;z-index:5}
+header a{text-decoration:none}header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;letter-spacing:1px}
+.logo{font-size:26px;font-weight:800;color:var(--gold)}
+main{max-width:1180px;margin:auto;padding:35px 22px 90px}
+.hero{padding:40px 0 10px}
+.eyebrow{color:var(--cyan);letter-spacing:2px;font-weight:700;font-size:13px}
+.code{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);border-radius:30px;padding:4px 14px;font-weight:700;letter-spacing:2px;font-size:13px;margin-right:8px;background:rgba(4,224,237,.06)}
+h1{font-size:clamp(32px,5.5vw,54px);line-height:1.12;margin:15px 0;color:var(--gold)}
+h2{color:var(--gold);font-size:25px;margin:0;line-height:1.3}
+h3{color:var(--cyan);font-size:19px;margin:30px 0 10px;line-height:1.4}
+h4{color:var(--gold);font-size:15px;margin:0 0 6px;letter-spacing:.5px}
+p,li{color:var(--mut)}strong{color:var(--text)}ul,ol{padding-left:22px}li{margin:4px 0}
+.panel,.card{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:23px;margin:18px 0}
+.card{margin:0;padding:18px;background:var(--c2)}
+.card p{margin:0;font-size:15px}
+.objective{border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(232,196,109,.10),rgba(4,224,237,.04))}
+.objective b{color:var(--gold);letter-spacing:1px;font-size:13px;display:block;margin-bottom:4px}
+.objective p{margin:0;color:var(--text)}
+.note{font-style:italic;font-size:14px;color:var(--mut);border-left:3px solid var(--l);padding-left:14px;margin:18px 0}
+.grid2,.grid3,.grid4{display:grid;gap:14px;margin:14px 0}
+.grid2{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(3,1fr)}.grid4{grid-template-columns:repeat(4,1fr)}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:26px 0 6px}
+.btn{font:inherit;font-size:14px;padding:9px 15px;border:1px solid var(--l);border-radius:10px;background:#183047;color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.on,.btn.primary{background:var(--cyan);color:#05131e;border-color:var(--cyan);font-weight:bold}
+.progress{flex:1;min-width:180px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}
+.bar{flex:1;height:8px;border-radius:99px;background:#183047;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width .3s}
+.layout{display:grid;grid-template-columns:265px minmax(0,1fr);gap:22px;margin-top:14px}
+.side{position:sticky;top:90px;align-self:start;padding:16px;max-height:calc(100vh - 110px);overflow:auto}
+.side small{display:block;color:var(--gold);letter-spacing:2px;font-weight:700;font-size:12px;margin:4px 0 10px}
+.side a{display:flex;gap:9px;background:#142b43;color:#ecf2f9;border:1px solid var(--l);border-radius:9px;padding:9px 10px;margin-bottom:7px;text-decoration:none;font-size:14px;line-height:1.35}
+.side a b{color:var(--cyan);min-width:22px}.side a.active{border-color:var(--cyan);color:var(--cyan)}
+.side a.prop b{color:var(--gold)}
+.side a.done::after{content:"✓";margin-left:auto;color:var(--green);font-weight:700}
+.seance{scroll-margin-top:90px}
+.s-head{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid var(--l);padding-bottom:14px;margin-bottom:6px}
+.s-tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:2px;color:#05131e;background:var(--cyan);border-radius:8px;padding:3px 10px;margin-bottom:8px}
+.s-tag.prop{background:var(--gold)}
+.src{display:block;font-size:13px;color:var(--mut);margin-top:6px}
+.check{display:flex;gap:7px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer;user-select:none;white-space:nowrap}
+.check input{accent-color:var(--cyan);width:16px;height:16px}
+.def{border-left:4px solid var(--gold);background:rgba(232,196,109,.08);padding:14px 18px;border-radius:0 12px 12px 0;margin:14px 0;color:var(--text)}
+.def b{color:var(--gold)}
+.bpr{border-left:3px solid var(--cyan);padding:12px 16px;background:#0c3242;margin:16px 0;border-radius:0 12px 12px 0;color:var(--text)}
+.bpr>b:first-child{color:var(--cyan);font-size:12px;letter-spacing:1.5px;display:block;margin-bottom:4px}
+.bpr p,.bpr li{color:var(--text)}
+.retenir{background:linear-gradient(135deg,rgba(98,228,186,.10),rgba(4,224,237,.04));border:1px solid rgba(98,228,186,.35);border-radius:14px;padding:16px 20px;margin:22px 0 4px}
+.retenir h4{color:var(--green)}.retenir ol{margin:6px 0 0}.retenir li{color:var(--text)}
+.tablewrap{overflow-x:auto;margin:14px 0;border:1px solid var(--l);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:15px}
+th,td{border-bottom:1px solid var(--l);padding:10px 12px;text-align:left;vertical-align:top;color:var(--mut)}
+th{color:var(--gold);background:#172b40;font-size:14px}
+tr:last-child td{border-bottom:0}td strong{color:var(--text)}
+.num{text-align:center}
+.flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:14px 0}
+.flow>div{flex:1;min-width:120px;background:var(--c2);border:1px solid var(--l);border-radius:12px;padding:12px;font-size:14px;color:var(--mut);position:relative}
+.flow>div b{display:block;color:var(--cyan);font-size:15px;margin-bottom:2px}
+.flow>div span.n{display:inline-flex;width:24px;height:24px;border-radius:7px;background:var(--cyan);color:#05131e;font-weight:800;align-items:center;justify-content:center;font-size:13px;margin-bottom:6px}
+.timeline{border-left:2px solid var(--l);margin:14px 0 14px 8px;padding-left:20px}
+.timeline div{position:relative;margin-bottom:14px}
+.timeline div::before{content:"";position:absolute;left:-27px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(4,224,237,.15)}
+.timeline b{color:var(--gold)}.timeline p{margin:0}
+.kpi{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.kpi div{flex:1;min-width:120px;text-align:center;background:var(--c2);border:1px solid var(--l);border-radius:12px;padding:12px}
+.kpi b{display:block;font-size:28px;color:var(--gold);line-height:1.2}.kpi span{font-size:13px;color:var(--mut)}
+.cas{border:1px dashed var(--gold);border-radius:16px;padding:20px;margin:24px 0 8px;background:rgba(232,196,109,.04)}
+.cas>h4{font-size:16px}
+details{margin-top:14px;border:1px solid var(--l);border-radius:12px;background:var(--c2)}
+summary{cursor:pointer;padding:12px 16px;color:var(--cyan);font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";}details[open] summary::before{content:"▾ "}
+details>div{padding:0 16px 14px}
+.formula{font-family:Consolas,Menlo,monospace;background:#0a1828;border:1px solid var(--l);border-radius:10px;padding:10px 14px;color:var(--text);margin:8px 0;font-size:14.5px;overflow-x:auto}
+.pill{white-space:nowrap;display:inline-block;border-radius:30px;padding:2px 10px;font-size:13px;font-weight:700}
+.g{background:rgba(98,228,186,.15);color:var(--green)}.o{background:rgba(255,180,84,.15);color:var(--orange)}.r{background:rgba(255,122,122,.15);color:var(--red)}
+figure{margin:16px 0;background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:14px}
+figure svg{width:100%;height:auto;display:block}
+figure.wide{overflow-x:auto}figure.wide svg{min-width:540px}
+figcaption{font-size:13px;color:var(--mut);margin-top:8px;text-align:center}
+.carto{display:grid;gap:8px;margin:14px 0}
+.carto .row{display:grid;grid-template-columns:90px 1fr 90px;gap:8px;align-items:stretch}
+.carto .box{border-radius:12px;padding:12px;text-align:center;font-size:14px}
+.carto .m{background:rgba(232,196,109,.12);border:1px solid var(--gold);color:var(--text)}
+.carto .rz{background:rgba(4,224,237,.10);border:1px solid var(--cyan);color:var(--text)}
+.carto .s{background:#183047;border:1px solid var(--l);color:var(--text)}
+.carto .cl{background:var(--c2);border:1px dashed var(--l);color:var(--mut);display:flex;align-items:center;justify-content:center}
+.carto b{color:var(--gold);display:block;font-size:12px;letter-spacing:1.5px}
+body.revision .detail{display:none}
+.quiz .q{background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:16px;margin:14px 0}
+.quiz .q p{color:var(--text);margin:0 0 10px;font-weight:700}
+.quiz button.opt{display:block;width:100%;text-align:left;margin:7px 0;font:inherit;font-size:15px;padding:10px 14px;border-radius:10px;border:1px solid var(--l);background:#142b43;color:#ecf2f9;cursor:pointer}
+.quiz button.opt.ok{border-color:var(--green);background:rgba(98,228,186,.15)}
+.quiz button.opt.ko{border-color:var(--red);background:rgba(255,122,122,.12)}
+.quiz .fb{font-size:14px;color:var(--mut);margin-top:6px;display:none}
+.score{font-size:18px;color:var(--gold);font-weight:700}
+.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:34px}
+.pager a{flex:1;min-width:220px;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text)}
+.pager a:hover{border-color:var(--cyan)}.pager small{display:block;color:var(--cyan);letter-spacing:1.5px;font-size:12px}
+.pager a.next{text-align:right}
+footer{text-align:center;padding:35px;background:#060d17;border-top:1px solid var(--l);color:var(--mut);font-size:14px}
+@media(max-width:900px){.grid3,.grid4{grid-template-columns:1fr 1fr}}
+.layout>*{min-width:0}
+@media(max-width:800px){.layout,.grid2{grid-template-columns:minmax(0,1fr)}.side{position:relative;top:0;max-height:none}header{position:relative}.carto .row{grid-template-columns:1fr}}
+@media(max-width:520px){.grid3,.grid4{grid-template-columns:1fr}}
+@media print{header,.toolbar,.side,.pager,.check,.quiz{display:none}.layout{display:block}details{display:block}details>div{display:block}}
+</style></head><body data-mod="M236-cours">
+<header><a href="index.html" class="logo">#NBProf</a><nav><a href="index.html">ACCUEIL</a><a href="amso2026.html">AMSO 2026</a><a href="#s1">LE MODULE</a><a href="#qcm">QCM</a><a href="index.html#contact">CONTACT</a></nav></header>
+<main>
+<div class="hero"><div class="eyebrow">MASTER AMSO · COURS COMPLET EN 7 SÉANCES</div>
+<h1>✅ Audit et Management de la Qualité</h1>
+<p><span class="code">M236</span>FSJES Kelaa des Sraghna · Université Cadi Ayyad · Synthèse par Noamane Boulahcen</p></div>
+
+<div class="panel objective"><b>🎯 OBJECTIF GÉNÉRAL DU MODULE</b><p>Passer de la compréhension des notions (qualité, exigence, processus, SMQ, audit, non-conformité, amélioration continue) à leur application dans des situations professionnelles concrètes : préparer un audit, analyser un écart, choisir un outil, piloter par les indicateurs.</p></div>
+
+<p class="note">📚 Séances 1 à 5 : synthèse du cours de <strong>Pr. Abdellah NOUIB</strong> et <strong>Dr. Asmae ATITAOU</strong> (M236, 2026–2027), enrichie d'exemples transposés à la Banque Populaire Région Marrakech-Safi. Séances 6 et 7 : <strong>séances proposées</strong> pour anticiper la suite du programme, construites à partir des thèmes d'exposés du module (indicateurs, services publics, certification, ISO 9001:2026). Ce document complète le cours et ne le remplace pas.</p>
+
+<div class="toolbar"><button class="btn" id="rev" type="button">⚡ Mode révision rapide</button><button class="btn" type="button" onclick="window.print()">🖨️ Imprimer</button><a class="btn" href="#qcm">🧠 QCM final</a>
+<div class="progress"><div class="bar"><i></i></div><span id="pc"></span></div></div>
+
+<div class="layout"><aside class="panel side"><small>LES SÉANCES</small>
+<a href="#s1"><b>S1</b><span>Notions fondamentales</span></a>
+<a href="#s2"><b>S2</b><span>Pensée qualité, 7 principes, ISO 9000 / 9001</span></a>
+<a href="#s3"><b>S3</b><span>Approche processus & satisfaction client</span></a>
+<a href="#s4"><b>S4</b><span>PDCA & audit qualité ISO 19011</span></a>
+<a href="#s5"><b>S5</b><span>Non-conformités, actions correctives & outils</span></a>
+<a href="#s6" class="prop"><b>S6</b><span>Indicateurs de performance qualité</span></a>
+<a href="#s7" class="prop"><b>S7</b><span>Services publics, certification & ISO 9001:2026</span></a>
+<small style="margin-top:14px">ÉVALUATION</small>
+<a href="#qcm"><b>🧠</b><span>QCM final (12 questions)</span></a>
+</aside>
+<div>
+
+<!-- ================= SÉANCE 1 ================= -->
+<section class="panel seance" id="s1"><div class="s-head"><div><span class="s-tag">SÉANCE 1</span><h2>Présentation du module et notions fondamentales</h2><span class="src">Cours de Pr. A. NOUIB & Dr. A. ATITAOU</span></div>
+<label class="check"><input type="checkbox" data-ch="s1"> Je maîtrise</label></div>
+
+<h3>1.1 Pourquoi étudier ce module ?</h3>
+<p>La qualité concerne <strong>toutes</strong> les organisations — entreprises, administrations, universités, banques. C'est un <strong>levier stratégique</strong> autour de trois enjeux :</p>
+<div class="tablewrap"><table><tr><th>Enjeu</th><th>Objectif</th><th>Exemple</th></tr>
+<tr><td><strong>Satisfaire les exigences</strong></td><td>Répondre aux attentes des clients, bénéficiaires, partenaires et autorités</td><td>Délais respectés, documents exacts</td></tr>
+<tr><td><strong>Maîtriser les processus</strong></td><td>Organiser les activités, limiter les erreurs et les risques</td><td>Procédures claires, responsabilités définies</td></tr>
+<tr><td><strong>Améliorer la performance</strong></td><td>Mesurer les résultats, corriger les écarts, progresser durablement</td><td>Indicateurs de suivi, actions correctives</td></tr></table></div>
+
+<div class="detail">
+<h3>1.2 Contenu du module en 6 parties</h3>
+<div class="grid3">
+<div class="card"><h4>1 · Fondements</h4><p>Définitions, évolution, Zéro Défaut, Qualité Totale, fondateurs</p></div>
+<div class="card"><h4>2 · Management de la qualité</h4><p>Principes ISO, satisfaction client, parties intéressées</p></div>
+<div class="card"><h4>3 · SMQ & approche processus</h4><p>Cartographie, indicateurs, risques, documentation, PDCA</p></div>
+<div class="card"><h4>4 · Audit qualité</h4><p>Définition, types, principes, critères, preuves, rapport</p></div>
+<div class="card"><h4>5 · Amélioration continue</h4><p>Non-conformités, actions correctives, outils de résolution</p></div>
+<div class="card"><h4>6 · Cas & exposés</h4><p>Études de cas, travaux de groupe, simulations</p></div>
+</div>
+</div>
+
+<h3>1.3 Les trois référentiels de base</h3>
+<div class="grid3">
+<div class="card"><h4>ISO 9000 · le vocabulaire</h4><p>Définit les concepts et les termes : qualité, SMQ, processus, client, satisfaction, amélioration, risque, audit… <br><span class="pill o">Ne se certifie pas</span></p></div>
+<div class="card"><h4>ISO 9001 · les exigences</h4><p>Ce qu'une organisation doit mettre en place pour son système de management de la qualité.<br><span class="pill g">La seule qui se certifie</span></p></div>
+<div class="card"><h4>ISO 19011 · le guide d'audit</h4><p>Lignes directrices pour réaliser l'audit des systèmes de management.<br><span class="pill o">Guide, pas de certification</span></p></div>
+</div>
+
+<h3>1.4 Notion fondamentale : la qualité</h3>
+<div class="def"><b>Qualité (ISO 9000)</b> : capacité d'un produit, d'un service ou d'une organisation à satisfaire des <b>exigences</b> — celles du client, mais aussi les exigences réglementaires ou implicites.</div>
+<div class="tablewrap"><table><tr><th>Concept</th><th>Définition</th><th>Exemple</th></tr>
+<tr><td><strong>Exigence</strong></td><td>Besoin ou attente à satisfaire</td><td>Délai, fiabilité, exactitude</td></tr>
+<tr><td><strong>Processus</strong></td><td>Activités qui transforment des entrées en sorties</td><td>Traitement d'une attestation</td></tr>
+<tr><td><strong>Indicateur</strong></td><td>Mesure de la performance</td><td>Taux d'erreurs, délai moyen</td></tr></table></div>
+
+<h3>1.5 Notion fondamentale : le SMQ</h3>
+<div class="def"><b>Système de Management de la Qualité</b> : ensemble organisé de processus, responsabilités, ressources, documents et outils permettant de maîtriser et d'améliorer la qualité.</div>
+<div class="grid4">
+<div class="card"><h4>① Politique & objectifs</h4><p>Donner une direction claire</p></div>
+<div class="card"><h4>② Processus & ressources</h4><p>Organiser le travail et les responsabilités</p></div>
+<div class="card"><h4>③ Mesure & évaluation</h4><p>Suivre les résultats avec des indicateurs</p></div>
+<div class="card"><h4>④ Amélioration</h4><p>Corriger et progresser en continu</p></div>
+</div>
+
+<h3>1.6 Notion fondamentale : l'audit</h3>
+<div class="def"><b>Audit</b> : processus <b>systématique, indépendant et documenté</b> visant à recueillir des <b>preuves objectives</b> et à les comparer à des <b>critères</b> définis. <br>L'audit ne cherche pas des coupables : il fournit des informations fiables pour améliorer les pratiques.</div>
+<div class="flow">
+<div><span class="n">1</span><b>Critères</b>Norme, procédure, exigence client</div>
+<div><span class="n">2</span><b>Preuves</b>Documents, enregistrements, entretiens</div>
+<div><span class="n">3</span><b>Constats</b>Conformités, écarts, opportunités</div>
+<div><span class="n">4</span><b>Actions</b>Corrections, actions correctives, suivi</div>
+</div>
+<div class="detail">
+<p><strong>Moyen mnémotechnique A-U-D-I-T</strong> — ce que fait un auditeur du premier au dernier jour :</p>
+<div class="tablewrap"><table><tr><th>Lettre</th><th>Action</th><th>Contenu</th></tr>
+<tr><td class="num"><strong>A</strong></td><td>Analyser</td><td>Collecter les données et les informations</td></tr>
+<tr><td class="num"><strong>U</strong></td><td>Comprendre (<em>Understand</em>)</td><td>Interpréter les exigences et les processus</td></tr>
+<tr><td class="num"><strong>D</strong></td><td>Documenter</td><td>Enregistrer les constats et les preuves</td></tr>
+<tr><td class="num"><strong>I</strong></td><td>Inspecter</td><td>Examiner la conformité et les écarts</td></tr>
+<tr><td class="num"><strong>T</strong></td><td>Tester</td><td>Vérifier la performance et l'efficacité du système</td></tr></table></div>
+</div>
+
+<h3>1.7 Audit de la qualité ≠ audit du SMQ</h3>
+<p>L'audit du SMQ est un <strong>type particulier</strong> d'audit de la qualité. Un audit de la qualité peut porter sur quatre objets : <strong>produit, service, processus ou système</strong>.</p>
+<div class="grid3">
+<div class="card"><h4>Le résultat</h4><p>Le repas livré par un restaurant → audit du <strong>produit</strong>.</p></div>
+<div class="card"><h4>Le processus</h4><p>La livraison du repas → audit du <strong>processus</strong>.</p></div>
+<div class="card"><h4>Le système</h4><p>L'organisation du restaurant (objectifs, indicateurs, réclamations, formation, actions correctives) → audit du <strong>SMQ</strong>.</p></div>
+</div>
+<p>L'audit du SMQ ne vérifie pas seulement le résultat : il vérifie la <strong>capacité de l'organisation à obtenir, maintenir et améliorer</strong> la qualité.</p>
+
+<div class="bpr"><b>🏦 TRANSPOSITION BPR</b>
+<p><strong>Produit</strong> : la carte bancaire remise est-elle correcte ? · <strong>Processus</strong> : le circuit de commande et de remise des cartes respecte-t-il le délai prévu ? · <strong>Système</strong> : l'agence suit-elle ses réclamations, forme-t-elle ses conseillers, mesure-t-elle ses délais et corrige-t-elle ses écarts ?</p></div>
+
+<div class="detail">
+<h3>1.8 Organisation des exposés</h3>
+<p>Groupes de 3 à 4 étudiants, un thème par groupe · 15 à 20 min de présentation + 3 à 5 min de questions · Attendus : définition, concepts, exemple concret, analyse, limites ou recommandations · À remettre : support + résumé d'une page avec les sources.</p>
+<div class="tablewrap"><table><tr><th>Thème d'exposé</th><th>Traité dans cette page</th></tr>
+<tr><td>1 · Genèse et évolution de la pensée qualité</td><td><a href="#s2">Séance 2</a></td></tr>
+<tr><td>2 · Les principes du management de la qualité et ISO 9000 / 9001</td><td><a href="#s2">Séance 2</a></td></tr>
+<tr><td>3 · L'approche processus</td><td><a href="#s3">Séance 3</a></td></tr>
+<tr><td>4 · La satisfaction client / usager</td><td><a href="#s3">Séance 3</a></td></tr>
+<tr><td>5 · Le cycle PDCA et l'amélioration continue</td><td><a href="#s4">Séance 4</a></td></tr>
+<tr><td>6 · L'audit qualité et la norme ISO 19011</td><td><a href="#s4">Séance 4</a></td></tr>
+<tr><td>7 · Les non-conformités et actions correctives</td><td><a href="#s5">Séance 5</a></td></tr>
+<tr><td>8 · Les outils de la qualité</td><td><a href="#s5">Séance 5</a></td></tr>
+<tr><td>9 · Les indicateurs de performance qualité</td><td><a href="#s6">Séance 6 (proposée)</a></td></tr>
+<tr><td>10 · La qualité dans les services publics et universitaires</td><td><a href="#s7">Séance 7 (proposée)</a></td></tr>
+<tr><td>11 · La certification ISO 9001 · 12 · ISO 9001:2026</td><td><a href="#s4">Séance 4</a> et <a href="#s7">Séance 7 (proposée)</a></td></tr></table></div>
+</div>
+
+<div class="cas"><h4>✍️ ACTIVITÉ — Qu'est-ce qu'un service de qualité ?</h4>
+<p>Choisissez un service (restaurant, banque, administration, hôpital, université, livraison) : identifiez trois attentes de l'usager, deux problèmes de qualité possibles et un indicateur simple.</p>
+<details><summary>Voir l'exemple du cours et une version bancaire</summary><div>
+<div class="tablewrap"><table><tr><th></th><th>Service universitaire (cours)</th><th>Agence bancaire (transposition)</th></tr>
+<tr><td><strong>Attentes</strong></td><td>Rapidité, exactitude des documents, information claire</td><td>Attente courte au guichet, réponse rapide au crédit, conseil fiable</td></tr>
+<tr><td><strong>Problèmes</strong></td><td>Retards, erreurs dans les attestations, réclamations sans réponse</td><td>Dossier de crédit renvoyé incomplet, carte livrée en retard</td></tr>
+<tr><td><strong>Indicateur</strong></td><td>Délai moyen de délivrance des attestations</td><td>Délai moyen de réponse à une demande de crédit</td></tr></table></div>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>La qualité consiste à satisfaire des exigences de manière <strong>maîtrisée</strong>.</li>
+<li>Le management de la qualité organise les processus, les ressources et l'amélioration.</li>
+<li>Le SMQ est le cadre qui permet de piloter cette démarche.</li>
+<li>L'audit est un outil de vérification et de progrès <strong>fondé sur des preuves</strong>.</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 2 ================= -->
+<section class="panel seance" id="s2"><div class="s-head"><div><span class="s-tag">SÉANCE 2</span><h2>Évolution de la pensée qualité, 7 principes et normes ISO 9000 / 9001</h2><span class="src">Reconstituée à partir du rappel présenté en séance 3 (Dr. A. ATITAOU)</span></div>
+<label class="check"><input type="checkbox" data-ch="s2"> Je maîtrise</label></div>
+
+<h3>2.1 De l'inspection aux normes ISO</h3>
+<div class="timeline">
+<div><b>1910 · Inspection</b><p>On trie les produits défectueux à la fin. Logique : <strong>détecter après</strong> production (Taylor).</p></div>
+<div><b>1924 · Contrôle statistique</b><p>On mesure la variabilité pendant la production pour <strong>maîtriser les variations</strong> (Shewhart).</p></div>
+<div><b>1950 · Qualité au Japon</b><p>On <strong>prévient</strong> les défauts et on améliore en continu (Deming, Juran).</p></div>
+<div><b>1960–1980 · Qualité totale</b><p>Toute l'entreprise s'implique : la qualité est <strong>l'affaire de tous</strong> (Ishikawa, Crosby, Feigenbaum).</p></div>
+<div><b>1987–2026 · Normes ISO</b><p>Un cadre mondial commun (ISO 9000 / 9001) pour <strong>piloter de façon standardisée</strong>.</p></div>
+</div>
+<div class="def"><b>Le fil conducteur</b> : Détecter → Prévenir → Piloter l'amélioration. Hier on contrôlait le produit en fin de chaîne ; ensuite on a prévenu les défauts par les processus ; aujourd'hui on pilote et on améliore en continu.</div>
+
+<h3>2.2 Les pères fondateurs</h3>
+<div class="tablewrap"><table><tr><th>Auteur</th><th>Repère</th><th>Apport</th><th>Idée-clé</th></tr>
+<tr><td><strong>Shewhart</strong></td><td class="num">1924</td><td>Contrôle statistique</td><td>Mesurer pour maîtriser</td></tr>
+<tr><td><strong>Deming</strong></td><td class="num">1950</td><td>Cycle PDCA</td><td>Améliorer en cycle</td></tr>
+<tr><td><strong>Juran</strong></td><td class="num">1950</td><td>Trilogie qualité</td><td>Planifier, maîtriser (contrôler), améliorer</td></tr>
+<tr><td><strong>Feigenbaum</strong></td><td class="num">1961</td><td>Qualité totale (TQC)</td><td>La qualité concerne tous les services</td></tr>
+<tr><td><strong>Ishikawa</strong></td><td class="num">1960</td><td>Diagramme causes-effets</td><td>Chercher les causes racines</td></tr>
+<tr><td><strong>Crosby</strong></td><td class="num">1979</td><td>Zéro défaut</td><td>Faire bien du premier coup (prévention)</td></tr></table></div>
+<div class="detail">
+<p><strong>Zéro défaut</strong> (Crosby) : la non-qualité a un coût (reprises, réclamations, clients perdus) ; il est moins cher de bien faire du premier coup que de corriger après. <strong>Qualité totale</strong> : la qualité n'est plus l'affaire d'un service « contrôle », mais de chaque personne, du guichet à la direction.</p>
+</div>
+
+<h3>2.3 Les 7 principes du management de la qualité (ISO 9000)</h3>
+<div class="grid4">
+<div class="card"><h4>1 · Orientation client</h4><p>Satisfaire les exigences et viser au-delà des attentes</p></div>
+<div class="card"><h4>2 · Leadership</h4><p>La direction fixe le cap et mobilise</p></div>
+<div class="card"><h4>3 · Implication du personnel</h4><p>Des personnes compétentes et engagées</p></div>
+<div class="card"><h4>4 · Approche processus</h4><p>Piloter des activités liées entre elles</p></div>
+<div class="card"><h4>5 · Amélioration</h4><p>Progresser en continu, pas seulement corriger</p></div>
+<div class="card"><h4>6 · Décisions fondées sur des preuves</h4><p>Décider à partir de données et de faits</p></div>
+<div class="card"><h4>7 · Management des relations avec les parties intéressées</h4><p>Fournisseurs, partenaires, autorités…</p></div>
+<div class="card" style="border-color:var(--gold)"><h4>Moyen mnémotechnique</h4><p><strong>C-L-I-P-A-D-R</strong> : Client, Leadership, Implication, Processus, Amélioration, Décision, Relations.</p></div>
+</div>
+
+<div class="bpr"><b>🏦 TRANSPOSITION BPR</b>
+<ul><li><strong>Orientation client</strong> : mesurer la satisfaction des clients de l'agence (CSAT, NPS).</li>
+<li><strong>Leadership</strong> : la direction régionale fixe des objectifs qualité (délais, réclamations).</li>
+<li><strong>Décisions fondées sur des preuves</strong> : décider à partir du tableau de bord, pas des impressions.</li>
+<li><strong>Parties intéressées</strong> : Bank Al-Maghrib, prestataires (transport de fonds, cartes), clients, collaborateurs.</li></ul></div>
+
+<h3>2.4 ISO 9000 ou ISO 9001 ?</h3>
+<div class="grid2">
+<div class="card"><h4>ISO 9000</h4><p>Concepts, principes, vocabulaire. Langage commun : processus, exigence, audit, non-conformité… → <span class="pill o">ne se certifie pas</span></p></div>
+<div class="card"><h4>ISO 9001</h4><p>Exigences d'un SMQ : ce qu'une organisation doit mettre en place → <span class="pill g">peut être certifiée</span></p></div>
+</div>
+<div class="def">On se certifie à l'<b>ISO 9001</b>, pas à l'ISO 9000. Les principes n°1 (orientation client) et n°4 (approche processus) sont le cœur opérationnel de l'ISO 9001 : c'est le sujet de la séance 3.</div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>La pensée qualité est passée de la <strong>détection</strong> à la <strong>prévention</strong>, puis au <strong>pilotage de l'amélioration</strong>.</li>
+<li>Six fondateurs : Shewhart, Deming, Juran, Feigenbaum, Ishikawa, Crosby.</li>
+<li>Sept principes : client, leadership, implication, processus, amélioration, preuves, parties intéressées.</li>
+<li>ISO 9000 = vocabulaire ; ISO 9001 = exigences certifiables.</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 3 ================= -->
+<section class="panel seance" id="s3"><div class="s-head"><div><span class="s-tag">SÉANCE 3</span><h2>Approche processus & satisfaction client / usager</h2><span class="src">Cours de Dr. A. ATITAOU · Exposés 3 et 4</span></div>
+<label class="check"><input type="checkbox" data-ch="s3"> Je maîtrise</label></div>
+<p><strong>Objectif</strong> : comprendre comment l'organisation s'organise en processus pour garantir la qualité, et comment elle écoute, traite et fidélise le client / usager.</p>
+
+<h3>3.1 Qu'est-ce qu'un processus ?</h3>
+<div class="def"><b>Processus (ISO)</b> : ensemble d'activités liées qui transforment des <b>entrées</b> en <b>sorties</b>, avec des <b>ressources</b>, un <b>pilote</b> et des <b>indicateurs</b>. Objectif : créer de la valeur pour le client.</div>
+<div class="flow">
+<div><b>ENTRÉES</b>Besoins client, matières, informations, ressources</div>
+<div style="border-color:var(--cyan)"><b>PROCESSUS</b>Activités enchaînées + ressources + pilote + indicateurs</div>
+<div><b>SORTIES</b>Produit, service, information, décision</div>
+</div>
+
+<h3>3.2 Pourquoi l'approche processus ?</h3>
+<p>Gérer l'organisation comme un ensemble d'activités <strong>reliées entre elles</strong>, orientées vers le client — et non comme des services isolés.</p>
+<ul>
+<li>Orienter l'organisation vers le client ;</li>
+<li><strong>Décloisonner</strong> : traiter les interfaces entre services ;</li>
+<li>Mieux maîtriser les activités (entrées, sorties, ressources) ;</li>
+<li>Piloter par les indicateurs (cycle PDCA) ;</li>
+<li>Gagner en <strong>efficacité</strong> (atteindre l'objectif) et en <strong>efficience</strong> (avec le moins de ressources) ;</li>
+<li>Clarifier les responsabilités grâce au <strong>pilote</strong> ;</li>
+<li>Anticiper les risques et améliorer en continu.</li></ul>
+
+<h3>3.3 La cartographie : trois familles de processus</h3>
+<div class="carto">
+<div class="row"><div></div><div class="box m"><b>PROCESSUS DE MANAGEMENT</b>Direction · Objectifs · Pilotage · Amélioration continue <br><small>▼ oriente et contrôle</small></div><div></div></div>
+<div class="row"><div class="box cl">CLIENT<br>besoins</div><div class="box rz"><b style="color:var(--cyan)">PROCESSUS DE RÉALISATION</b>Commande → Production / Service → Livraison → SAV</div><div class="box cl">CLIENT<br>satisfaction</div></div>
+<div class="row"><div></div><div class="box s"><small>▲ fournit les moyens</small><b style="color:var(--mut)">PROCESSUS SUPPORT</b>RH · SI · Achats · Maintenance · Finance</div><div></div></div>
+</div>
+
+<div class="bpr"><b>🏦 TRANSPOSITION BPR — CARTOGRAPHIE D'UNE AGENCE</b>
+<ul><li><strong>Management</strong> : pilotage par la direction régionale, contrôle de gestion, conformité, gestion des risques.</li>
+<li><strong>Réalisation</strong> : accueil → ouverture de compte → étude et octroi du crédit → suivi du client → traitement des réclamations.</li>
+<li><strong>Support</strong> : système d'information, RH et formation, back-office, logistique (cartes, fournitures, transport de fonds).</li></ul></div>
+
+<h3>3.4 Les interactions entre processus</h3>
+<p>La sortie d'un processus devient l'entrée du suivant : Commercial (commande) → Production (fabrication) → Logistique (livraison) → SAV (suivi).</p>
+<div class="grid3">
+<div class="card"><h4>Interfaces</h4><p>Les problèmes se situent souvent <strong>aux frontières</strong> entre services.</p></div>
+<div class="card"><h4>Client-fournisseur interne</h4><p>Chaque processus est client du précédent.</p></div>
+<div class="card"><h4>Engagements</h4><p>On formalise délais, qualité et informations échangées.</p></div>
+</div>
+<div class="bpr"><b>🏦 EXEMPLE BPR</b>L'agence transmet un dossier de crédit au back-office : s'il arrive incomplet, il est renvoyé et le client attend. Formaliser la liste des pièces et le délai d'instruction entre agence et back-office, c'est « briser les barrières » entre services.</div>
+
+<h3>3.5 La satisfaction client / usager</h3>
+<div class="def"><b>Satisfaction</b> : l'écart entre ce que le client <b>attend</b> et ce qu'il <b>reçoit</b> (service perçu). Elle est à la fois la <b>finalité</b> et l'<b>indicateur</b> de la performance.</div>
+<div class="flow">
+<div><b>Attentes</b>Ce que le client espère</div>
+<div><b>Service perçu</b>Ce qu'il reçoit</div>
+<div><b>Satisfaction</b>Écart attentes / perçu</div>
+<div><b>Fidélisation</b>Recommandation, croissance</div>
+</div>
+<div class="detail">
+<p><strong>Pourquoi la mesurer ?</strong> Fidéliser coûte moins cher que conquérir · améliorer l'image et la réputation · augmenter le chiffre d'affaires · se différencier · réduire les réclamations et les coûts de non-qualité · obtenir des données pour s'améliorer (PDCA) · répondre à l'exigence de l'ISO 9001. Sans mesure, on pilote sans visibilité.</p>
+</div>
+
+<h3>3.6 De la réclamation à la fidélisation</h3>
+<div class="flow">
+<div><span class="n">1</span><b>Recueillir</b>Enregistrer</div>
+<div><span class="n">2</span><b>Analyser</b>Cause racine</div>
+<div><span class="n">3</span><b>Traiter</b>Répondre</div>
+<div><span class="n">4</span><b>Suivre</b>Vérifier</div>
+<div><span class="n">5</span><b>Fidéliser</b>Relation</div>
+</div>
+<p>Une réclamation bien traitée est une <strong>opportunité d'amélioration</strong>. Une réclamation ignorée est une perte de client et de confiance.</p>
+
+<h3>3.7 Les indicateurs de mesure</h3>
+<p><em>On ne peut pas piloter ce que l'on ne mesure pas.</em></p>
+<div class="tablewrap"><table><tr><th>Famille</th><th>Indicateurs</th><th>Exemple</th></tr>
+<tr><td><strong>Processus · efficacité</strong></td><td>Taux de conformité des sorties ; taux de non-conformités</td><td>% d'attestations sans erreur</td></tr>
+<tr><td><strong>Processus · efficience</strong></td><td>Délai moyen de traitement ; coût par unité ; taux d'utilisation des ressources</td><td>Délai moyen de délivrance d'une attestation</td></tr>
+<tr><td><strong>Satisfaction · directe</strong></td><td><strong>CSAT</strong> (note 1 à 5) : satisfaction immédiate · <strong>NPS</strong> (0 à 10) : recommandation, fidélité, bouche-à-oreille</td><td>« Recommanderiez-vous notre clinique à un proche ? »</td></tr>
+<tr><td><strong>Satisfaction · indirecte</strong></td><td>Taux de réclamations ; délai de traitement des réclamations ; taux de réachat</td><td>% de clients servis en moins de 10 min</td></tr></table></div>
+<div class="formula">NPS = % promoteurs (notes 9–10) − % détracteurs (notes 0–6)   → résultat entre −100 et +100</div>
+<div class="bpr"><b>🏦 EXEMPLE BPR</b>Sur 200 clients interrogés : 110 promoteurs (55 %), 50 passifs, 40 détracteurs (20 %). NPS = 55 − 20 = <strong>+35</strong>. Le pilote de l'accueil suit aussi le CSAT après chaque visite et le délai de réponse aux réclamations.</div>
+
+<div class="cas"><h4>🏥 MINI-CAS — CLINIQUE PRIVÉE</h4>
+<p>Une clinique constate une hausse des réclamations. Les rendez-vous sont mal organisés, les patients s'accumulent, et les réclamations ne sont pas suivies de façon structurée.</p>
+<div class="kpi"><div><b>90 min</b><span>délai d'attente moyen</span></div><div><b>40 %</b><span>des réclamations portent sur l'attente</span></div><div><b>65 %</b><span>de patients satisfaits</span></div></div>
+<p>1. Quels processus sont concernés ? 2. Quels principes mobiliser ? 3. Quels indicateurs suivre ? 4. Quelle action pour chaque problème ? 5. Comment structurer le traitement des réclamations ? <br><strong>Formule</strong> : Problème → Principe → Indicateur → Action.</p>
+<details><summary>Proposition de correction</summary><div>
+<p><strong>1. Processus concernés</strong> — réalisation : accueil, prise de rendez-vous, consultation, facturation ; support : planning / SI, ressources humaines (effectif aux heures de pointe) ; management : traitement des réclamations et pilotage.</p>
+<p><strong>2. Principes</strong> — orientation client (n°1), approche processus (n°4), décisions fondées sur des preuves (n°6), amélioration (n°5).</p>
+<div class="tablewrap"><table><tr><th>Problème</th><th>Principe</th><th>Indicateur (cible)</th><th>Action</th></tr>
+<tr><td>Attente de 90 min</td><td>Approche processus</td><td>Délai d'attente moyen (≤ 30 min)</td><td>Rendez-vous par créneaux, rappel par SMS, renfort aux heures de pointe</td></tr>
+<tr><td>Rendez-vous mal organisés</td><td>Leadership + processus</td><td>% de patients reçus dans les 15 min de l'heure prévue</td><td>Désigner un pilote du processus « accueil / RDV », planning partagé</td></tr>
+<tr><td>Réclamations non suivies</td><td>Orientation client</td><td>Délai de réponse (≤ 48 h) ; taux de réclamations</td><td>Registre unique, réponse écrite, analyse mensuelle des causes (Pareto)</td></tr>
+<tr><td>Satisfaction à 65 %</td><td>Décisions fondées sur des preuves</td><td>CSAT (≥ 80 % de notes 4–5), NPS</td><td>Questionnaire court à la sortie, résultats revus chaque mois</td></tr></table></div>
+<p><strong>5. Structurer les réclamations</strong> : Recueillir (registre) → Analyser (cause racine) → Traiter (réponse au patient) → Suivre (vérifier l'efficacité) → Fidéliser (rappel, geste de suivi).</p>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>Un processus transforme des entrées en sorties avec ressources, pilote et indicateurs.</li>
+<li>Cartographie : management (oriente), réalisation (crée la valeur), support (fournit les moyens).</li>
+<li>Les problèmes naissent souvent aux <strong>interfaces</strong> : chaque processus est client du précédent.</li>
+<li>Satisfaction = écart attentes / perçu ; mesures directes (CSAT, NPS) et indirectes (réclamations).</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 4 ================= -->
+<section class="panel seance" id="s4"><div class="s-head"><div><span class="s-tag">SÉANCE 4</span><h2>Cycle PDCA, amélioration continue & audit qualité ISO 19011</h2><span class="src">Cours de Dr. A. ATITAOU · Exposés 5 et 6</span></div>
+<label class="check"><input type="checkbox" data-ch="s4"> Je maîtrise</label></div>
+<p><strong>Fil conducteur</strong> : Processus + Client → <strong>Améliorer</strong> (PDCA) → <strong>Vérifier</strong> (Audit).</p>
+
+<h3>4.1 Le cycle PDCA (roue de Deming)</h3>
+<div class="def"><b>PDCA</b> : méthode d'amélioration continue en 4 étapes, formalisée par Deming à partir des travaux de Shewhart.</div>
+<figure class="wide"><svg viewBox="0 0 560 300" role="img" aria-label="Roue de Deming sur une pente avec sa cale">
+<line x1="30" y1="285" x2="540" y2="160" stroke="#29405a" stroke-width="4"/>
+<path d="M260,125 L260,30 A95,95 0 0 1 355,125 Z" fill="#04e0ed" opacity=".85"/>
+<path d="M260,125 L355,125 A95,95 0 0 1 260,220 Z" fill="#62e4ba" opacity=".8"/>
+<path d="M260,125 L260,220 A95,95 0 0 1 165,125 Z" fill="#e8c46d" opacity=".85"/>
+<path d="M260,125 L165,125 A95,95 0 0 1 260,30 Z" fill="#ffb454" opacity=".8"/>
+<circle cx="260" cy="125" r="95" fill="none" stroke="#07111f" stroke-width="3"/>
+<g font-family="Arial" font-weight="700" fill="#05131e" text-anchor="middle">
+<text x="300" y="88" font-size="30">P</text><text x="300" y="104" font-size="11">Planifier</text>
+<text x="300" y="168" font-size="30">D</text><text x="300" y="184" font-size="11">Réaliser</text>
+<text x="220" y="168" font-size="30">C</text><text x="220" y="184" font-size="11">Vérifier</text>
+<text x="220" y="88" font-size="30">A</text><text x="220" y="104" font-size="11">Agir</text></g>
+<polygon points="150,250 205,236 190,200" fill="#aebdd1"/>
+<text x="40" y="232" font-family="Arial" font-size="13" fill="#aebdd1">Cale = standard</text>
+<text x="400" y="175" font-family="Arial" font-size="13" fill="#e8c46d" transform="rotate(-13 400 175)">Amélioration continue ➜</text>
+<path d="M370,60 A120,120 0 0 1 380,150" fill="none" stroke="#f0f5fc" stroke-width="2" marker-end="url(#ar)"/>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f0f5fc"/></marker></defs>
+</svg><figcaption>La roue tourne et monte la pente ; la cale (standardisation) l'empêche de redescendre.</figcaption></figure>
+<div class="tablewrap"><table><tr><th>Étape</th><th>Que fait-on ?</th><th>Concrètement</th></tr>
+<tr><td><strong>P · Plan</strong></td><td>Identifier le problème, fixer un objectif, choisir une action</td><td>Diagnostiquer · cause racine · objectif SMART · plan d'action</td></tr>
+<tr><td><strong>D · Do</strong></td><td>Mettre en œuvre sur un périmètre limité (test)</td><td>Tester à petite échelle · former · collecter les données</td></tr>
+<tr><td><strong>C · Check</strong></td><td>Mesurer, comparer à l'objectif, analyser les écarts</td><td>Indicateurs · valider ou non</td></tr>
+<tr><td><strong>A · Act</strong></td><td>Standardiser si succès, sinon corriger et relancer</td><td>Procédure standard (la « cale ») ou nouveau cycle</td></tr></table></div>
+<p class="detail"><strong>Pourquoi le PDCA ?</strong> Éviter l'action impulsive (on planifie avant d'agir) · tester avant de généraliser · mesurer pour décider · capitaliser les acquis. C'est le moteur du principe n°5 (amélioration) ; il s'applique à un processus, un projet, un service ou une administration.</p>
+
+<div class="cas" style="border-style:solid;border-color:var(--l)"><h4>📋 APPLICATION DU COURS — délais d'attente dans une administration</h4>
+<div class="grid4">
+<div class="card"><h4>PLAN</h4><p>Objectif : réduire le délai moyen de 30 à 15 min. Action : réorganiser les guichets + tickets.</p></div>
+<div class="card"><h4>DO</h4><p>Test 2 semaines sur un guichet ; former 2 agents ; mettre en place la file.</p></div>
+<div class="card"><h4>CHECK</h4><p>Délai moyen = 18 min ; satisfaction de 60 % à 75 %.</p></div>
+<div class="card"><h4>ACT</h4><p>Étendre à tous les guichets, rédiger la procédure standard, relancer un cycle si besoin.</p></div>
+</div></div>
+
+<h3>4.2 PDCA et ISO 9001</h3>
+<p>L'ISO 9001 est structurée autour du PDCA :</p>
+<div class="flow">
+<div><b>PLAN · chap. 4–6</b>Contexte, leadership, planification</div>
+<div><b>DO · chap. 7–8</b>Support et réalisation</div>
+<div><b>CHECK · chap. 9</b>Évaluation (audit, revue)</div>
+<div><b>ACT · chap. 10</b>Amélioration</div>
+</div>
+<p>L'audit (chap. 9) est l'outil de vérification du cycle PDCA.</p>
+
+<h3>4.3 L'audit qualité selon l'ISO 19011</h3>
+<div class="def"><b>Audit qualité</b> : processus systématique, indépendant et documenté permettant d'obtenir des preuves d'audit et de les évaluer de manière objective pour déterminer dans quelle mesure les critères d'audit sont satisfaits. <br>L'audit n'est pas un contrôle de police : c'est un outil d'amélioration.</div>
+<div class="grid4">
+<div class="card"><h4>Systématique</h4><p>Méthode planifiée</p></div>
+<div class="card"><h4>Indépendant</h4><p>L'auditeur n'est pas juge et partie</p></div>
+<div class="card"><h4>Documenté</h4><p>Preuves et rapport</p></div>
+<div class="card"><h4>Objectif</h4><p>Des faits, pas des opinions</p></div>
+</div>
+<p><strong>Objectifs</strong> : <strong>vérifier</strong> la conformité aux exigences · <strong>évaluer</strong> l'efficacité du SMQ et des processus · <strong>identifier</strong> écarts et opportunités · <strong>rassurer</strong> la direction, les clients et les parties intéressées.</p>
+
+<h3>4.4 Les trois types d'audit</h3>
+<div class="tablewrap"><table><tr><th>Type</th><th>Réalisé par</th><th>Objectif</th><th>Exemple BPR</th></tr>
+<tr><td><strong>1<sup>re</sup> partie · interne</strong></td><td>L'organisation elle-même (ou pour son compte)</td><td>Améliorer le SMQ</td><td>Audit d'une agence par l'audit interne de la banque</td></tr>
+<tr><td><strong>2<sup>e</sup> partie · client / fournisseur</strong></td><td>Un client sur son fournisseur</td><td>Évaluer un partenaire</td><td>La banque audite son prestataire de transport de fonds</td></tr>
+<tr><td><strong>3<sup>e</sup> partie · certification</strong></td><td>Organisme indépendant (certificateur)</td><td>Délivrer un certificat</td><td>Certification ISO 9001 d'un service (ex. centre de traitement)</td></tr></table></div>
+<p>L'ISO 19011 guide notamment les audits de 1<sup>re</sup> et 2<sup>e</sup> partie.</p>
+
+<h3>4.5 Les 7 principes de l'audit (ISO 19011)</h3>
+<div class="grid4">
+<div class="card"><h4>1 · Intégrité</h4><p>Honnêteté, responsabilité</p></div>
+<div class="card"><h4>2 · Présentation équitable</h4><p>Rapports vrais et précis</p></div>
+<div class="card"><h4>3 · Conscience professionnelle</h4><p>Diligence et jugement</p></div>
+<div class="card"><h4>4 · Confidentialité</h4><p>Protection des informations</p></div>
+<div class="card"><h4>5 · Indépendance</h4><p>Objectivité, impartialité</p></div>
+<div class="card"><h4>6 · Approche fondée sur les preuves</h4><p>Données vérifiables</p></div>
+<div class="card"><h4>7 · Approche par les risques</h4><p>Se concentrer sur les enjeux</p></div>
+</div>
+
+<h3>4.6 Déroulement d'un audit en 6 étapes</h3>
+<div class="flow">
+<div><span class="n">1</span><b>Préparation</b>Objectifs, périmètre, critères, plan d'audit</div>
+<div><span class="n">2</span><b>Réunion d'ouverture</b>Présenter l'équipe, confirmer le programme</div>
+<div><span class="n">3</span><b>Conduite</b>Collecte de preuves : entretiens, documents, observation</div>
+<div><span class="n">4</span><b>Réunion de clôture</b>Présenter les constats</div>
+<div><span class="n">5</span><b>Rapport</b>Conclusions et non-conformités</div>
+<div><span class="n">6</span><b>Suivi</b>Vérifier les actions correctives</div>
+</div>
+
+<h3>4.7 Preuves et constats d'audit</h3>
+<div class="def"><b>Preuve d'audit</b> = information vérifiable. Sans preuve, pas de constat. Sans constat, pas de conclusion. <br><b>Triangulation</b> : croiser <b>documents</b> (procédures, enregistrements, rapports) + <b>entretiens</b> (personnes impliquées) + <b>observations</b> (ce que l'auditeur voit sur le terrain).</div>
+<div class="tablewrap"><table><tr><th>Constat</th><th>Signification</th></tr>
+<tr><td><span class="pill r">NC majeure</span></td><td>Écart grave qui remet en cause l'efficacité du SMQ ou la conformité du produit / service</td></tr>
+<tr><td><span class="pill o">NC mineure</span></td><td>Écart isolé qui n'affecte pas gravement le système, mais doit être corrigé</td></tr>
+<tr><td><span class="pill" style="background:rgba(4,224,237,.12);color:var(--cyan)">Observation</span></td><td>Point sensible : risque potentiel ou piste d'amélioration, sans non-conformité formelle</td></tr>
+<tr><td><span class="pill g">Point fort</span></td><td>Pratique exemplaire à valoriser et éventuellement à étendre</td></tr></table></div>
+<p><strong>Lien PDCA ↔ audit</strong> : l'audit est l'outil principal de la phase <strong>Check</strong> ; il fournit les preuves pour décider d'agir (Act). L'ISO 9001 §9.2 oblige à planifier et réaliser des audits internes. Sans audit, le PDCA tourne à vide.</p>
+
+<h3>4.8 Qui fait quoi, et comment obtenir la certification ?</h3>
+<div class="grid3">
+<div class="card"><h4>ISO 9000 · vocabulaire</h4><p>Termes et 7 principes. Non certifiable.</p></div>
+<div class="card"><h4>ISO 9001 · exigences</h4><p>Exigences du SMQ. <strong>Certifiable</strong>, après un audit de 3<sup>e</sup> partie.</p></div>
+<div class="card"><h4>ISO 19011 · guide d'audit</h4><p>Préparer, conduire, rapporter un audit. Non certifiable.</p></div>
+</div>
+<div class="flow">
+<div><span class="n">1</span><b>Demande</b>Choisir un certificateur accrédité (ex. IMANOR), signer le contrat</div>
+<div><span class="n">2</span><b>Pré-audit</b>Facultatif : audit « à blanc »</div>
+<div><span class="n">3</span><b>Audit étape 1</b>Revue documentaire</div>
+<div><span class="n">4</span><b>Audit étape 2</b>Sur site : conformité et efficacité</div>
+<div><span class="n">5</span><b>Constats</b>Actions correctives</div>
+<div><span class="n">6</span><b>Décision</b>Certificat valable 3 ans</div>
+</div>
+<div class="detail">
+<p><strong>Dossier à présenter</strong> : politique et objectifs qualité, cartographie des processus, audits internes (§9.2), revue de direction (§9.3), indicateurs suivis et actions. <strong>Suivi</strong> : audits de surveillance annuels, renouvellement à 3 ans.</p>
+<p><strong>Résultat selon les constats</strong> : NC majeure → pas de certificat tant qu'elle n'est pas corrigée · NC mineure → certificat avec plan d'actions · aucun écart → certificat délivré. La décision revient au comité de certification, indépendant des auditeurs.</p>
+</div>
+
+<div class="cas"><h4>🏛️ MINI-CAS — PDCA + AUDIT</h4>
+<p>Une administration constate un <strong>taux d'erreur de 15 %</strong> dans le traitement des dossiers. Un audit interne constate : procédures non à jour, formation insuffisante, pas d'indicateurs suivis. <br>1. Appliquez le PDCA. 2. Quel type d'audit ? 3. Quelles preuves ? 4. Formulez une non-conformité.</p>
+<details><summary>Correction du cours</summary><div>
+<p><strong>1. PDCA</strong> — <strong>P</strong> : analyser les causes (Pareto, Ishikawa), objectif &lt; 5 % d'erreurs en 6 mois, plan d'action · <strong>D</strong> : mettre à jour les procédures, former les agents, installer un tableau de bord · <strong>C</strong> : mesurer le taux d'erreur, suivre les indicateurs, audit de suivi · <strong>A</strong> : objectif atteint → standardiser et généraliser ; sinon analyser les écarts et relancer.</p>
+<p><strong>2. Type</strong> — audit de 1<sup>re</sup> partie (interne) : l'administration contrôle son propre fonctionnement pour s'améliorer.</p>
+<p><strong>3. Preuves</strong> — documents (procédures obsolètes, registres de formation, absence de tableaux de bord), observations (pratiques sur le terrain), entretiens (agents, responsable), données (taux d'erreur de 15 %).</p>
+<p><strong>4. Non-conformité</strong> — <em>Exigence</em> : personnel compétent et formé (ISO 9001 §7.2). <em>Constat</em> : agents insuffisamment formés, procédures non à jour. <em>Preuve</em> : aucun plan ni registre de formation, procédure en version obsolète.</p>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>Le PDCA est le moteur de l'amélioration continue : la roue ne s'arrête jamais, la cale empêche de reculer.</li>
+<li>L'audit est systématique, indépendant, documenté et fondé sur des preuves.</li>
+<li>Trois types : interne, client / fournisseur, certification.</li>
+<li>L'ISO 19011 guide la préparation, la conduite et le rapport d'audit.</li>
+<li>L'audit alimente la phase Check et déclenche l'amélioration.</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 5 ================= -->
+<section class="panel seance" id="s5"><div class="s-head"><div><span class="s-tag">SÉANCE 5</span><h2>Non-conformités, actions correctives & outils de la qualité</h2><span class="src">Cours de Dr. A. ATITAOU · Exposés 7 et 8</span></div>
+<label class="check"><input type="checkbox" data-ch="s5"> Je maîtrise</label></div>
+<p><strong>Fil conducteur</strong> : Audit (Check) → Non-conformité → Analyse des causes → Action corrective (Act) → Outils d'analyse.</p>
+
+<h3>5.1 Qu'est-ce qu'une non-conformité ?</h3>
+<div class="def"><b>Non-conformité (NC)</b> : écart entre une exigence (norme, procédure, spécification client) et ce qui est réellement réalisé ou observé.</div>
+<div class="grid3">
+<div class="card"><h4>Produit / service</h4><p>Non conforme aux spécifications</p></div>
+<div class="card"><h4>Processus</h4><p>Procédure non respectée</p></div>
+<div class="card"><h4>Système</h4><p>Exigence ISO non appliquée</p></div>
+</div>
+<p><span class="pill r">Majeure</span> remet en cause le SMQ ou la conformité du produit · <span class="pill o">Mineure</span> écart isolé, à corriger sans urgence critique.</p>
+<p><strong>Six sources de détection</strong> : audit interne / externe · contrôle en production · réclamation client · revue de direction (analyse des indicateurs) · autocontrôle (opérateur, responsable) · fournisseur (NC entrante).</p>
+
+<h3>5.2 Le cycle de traitement d'une NC</h3>
+<div class="flow">
+<div><span class="n">1</span><b>Détecter</b>Identifier et enregistrer</div>
+<div><span class="n">2</span><b>Contenir</b>Action immédiate pour limiter l'impact</div>
+<div><span class="n">3</span><b>Analyser</b>Cause racine (5 Pourquoi, Ishikawa)</div>
+<div><span class="n">4</span><b>Corriger</b>Action corrective : supprimer la cause racine</div>
+<div><span class="n">5</span><b>Suivre</b>Vérifier l'efficacité et standardiser</div>
+</div>
+<p>ISO 9001 §10.2 : réagir aux NC, analyser, agir et vérifier l'efficacité.</p>
+
+<h3>5.3 Correction, action corrective, action préventive</h3>
+<div class="tablewrap"><table><tr><th></th><th>Correction</th><th>Action corrective</th><th>Action préventive</th></tr>
+<tr><td><strong>Objectif</strong></td><td>Traiter l'écart constaté (le symptôme)</td><td>Éliminer la cause de l'écart</td><td>Éviter qu'un écart n'apparaisse</td></tr>
+<tr><td><strong>Moment</strong></td><td>Immédiatement, dès la détection</td><td>Après analyse de la cause racine</td><td>Avant tout incident, par anticipation</td></tr>
+<tr><td><strong>Exemple</strong></td><td>Reprendre le dossier erroné</td><td>Mettre à jour la procédure, former les agents</td><td>Contrôle de cohérence avant validation (AMDEC)</td></tr>
+<tr><td><strong>Effet</strong></td><td>Immédiat, cause intacte</td><td>Empêche la récurrence</td><td>Empêche l'apparition</td></tr></table></div>
+<div class="def">Les deux premières sont nécessaires : <b>correction = stopper maintenant</b> ; <b>action corrective = empêcher la récurrence</b>. Dans l'ISO 9001:2015, l'action préventive est intégrée à l'approche par les risques (§6.1).</div>
+
+<h3>5.4 Analyse des causes : les 5 Pourquoi</h3>
+<div class="tablewrap"><table><tr><th class="num">#</th><th>Question</th><th>Réponse</th></tr>
+<tr><td class="num">1</td><td>Pourquoi le taux d'erreur est-il à 15 % ?</td><td>Les agents se trompent sur les dossiers.</td></tr>
+<tr><td class="num">2</td><td>Pourquoi se trompent-ils ?</td><td>Ils n'appliquent pas la bonne procédure.</td></tr>
+<tr><td class="num">3</td><td>Pourquoi ne l'appliquent-ils pas ?</td><td>La procédure n'est pas à jour.</td></tr>
+<tr><td class="num">4</td><td>Pourquoi n'est-elle pas à jour ?</td><td>Personne n'est responsable de sa mise à jour.</td></tr>
+<tr><td class="num">5</td><td>Pourquoi personne n'est responsable ?</td><td><strong>Absence de pilote et d'indicateur de suivi</strong> (cause racine).</td></tr></table></div>
+
+<h3>5.5 Le diagramme d'Ishikawa (causes-effets, 6M)</h3>
+<figure class="wide"><svg viewBox="0 0 640 310" role="img" aria-label="Diagramme d'Ishikawa appliqué au taux d'erreur de 18 %">
+<g font-family="Arial">
+<line x1="30" y1="155" x2="500" y2="155" stroke="#04e0ed" stroke-width="4"/>
+<rect x="500" y="120" width="128" height="70" rx="10" fill="#e8c46d"/>
+<text x="564" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#05131e">EFFET</text>
+<text x="564" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#05131e">Erreurs 18 %</text>
+<g stroke="#aebdd1" stroke-width="2">
+<line x1="70" y1="35" x2="140" y2="155"/><line x1="220" y1="35" x2="290" y2="155"/><line x1="370" y1="35" x2="440" y2="155"/>
+<line x1="70" y1="275" x2="140" y2="155"/><line x1="220" y1="275" x2="290" y2="155"/><line x1="370" y1="275" x2="440" y2="155"/></g>
+<g font-size="13" font-weight="700" fill="#e8c46d">
+<text x="40" y="26">Main-d'œuvre</text><text x="200" y="26">Méthode</text><text x="350" y="26">Machine</text>
+<text x="50" y="297">Matière</text><text x="205" y="297">Milieu</text><text x="355" y="297">Mesure</text></g>
+<g font-size="11" fill="#f0f5fc">
+<text x="100" y="80">Formation insuffisante</text><text x="112" y="104">Agents peu sensibilisés</text>
+<text x="250" y="80">Procédures non à jour</text><text x="262" y="104">Aucun pilote désigné</text>
+<text x="400" y="80">Saisie sans contrôle</text><text x="412" y="104">Champs non obligatoires</text>
+<text x="112" y="210">Pièces incomplètes</text><text x="100" y="234">Dossiers mal orientés</text>
+<text x="262" y="210">Charge de travail forte</text><text x="250" y="234">Interruptions fréquentes</text>
+<text x="412" y="210">Aucun indicateur suivi</text><text x="400" y="234">Erreurs non tracées</text></g>
+</g></svg><figcaption>Cas « Services Citoyens » : les causes sont rangées en 6 familles. Cause racine retenue (en lien avec les 5 Pourquoi) : absence de pilote et d'indicateur de suivi.</figcaption></figure>
+
+<h3>5.6 Le suivi de l'efficacité et la fiche de NC</h3>
+<div class="flow">
+<div><span class="n">1</span><b>Définir un indicateur</b>Taux d'erreur &lt; 5 % en 3 mois</div>
+<div><span class="n">2</span><b>Fixer un délai</b>Revue à 30 / 60 / 90 jours</div>
+<div><span class="n">3</span><b>Vérifier sur le terrain</b>Audit de suivi, observations, données</div>
+<div><span class="n">4</span><b>Clôturer ou relancer</b>OK → clôturer + standardiser ; sinon → nouvelle analyse</div>
+</div>
+<div class="tablewrap"><table><tr><th colspan="2">Fiche de non-conformité et d'action corrective — exemple du cours</th></tr>
+<tr><td><strong>Référence / origine</strong></td><td>FNC-2026-07 · détectée lors d'un audit interne</td></tr>
+<tr><td><strong>Exigence non respectée</strong></td><td>Personnel compétent et formé (ISO 9001 §7.2)</td></tr>
+<tr><td><strong>Constat et preuve</strong></td><td>Agents peu formés · aucun registre de formation · procédure obsolète</td></tr>
+<tr><td><strong>Gravité</strong></td><td><span class="pill r">Majeure</span> impact sur la conformité du service rendu</td></tr>
+<tr><td><strong>Correction immédiate</strong></td><td>Reprise des dossiers erronés</td></tr>
+<tr><td><strong>Cause racine</strong></td><td>Absence de pilote et d'indicateur de suivi</td></tr>
+<tr><td><strong>Action corrective</strong></td><td>Mettre à jour la procédure, former les agents · responsable : chef de service · 60 jours</td></tr>
+<tr><td><strong>Vérification d'efficacité</strong></td><td>Taux d'erreur ≤ 5 % à 90 jours → clôture et standardisation</td></tr></table></div>
+
+<h3>5.7 Les outils de la qualité : vue d'ensemble</h3>
+<div class="grid4">
+<div class="card"><h4>Pareto</h4><p>Prioriser (80/20)</p></div>
+<div class="card"><h4>Ishikawa</h4><p>Structurer les causes</p></div>
+<div class="card"><h4>5 Pourquoi</h4><p>Trouver la cause racine</p></div>
+<div class="card"><h4>AMDEC</h4><p>Anticiper les risques</p></div>
+<div class="card"><h4>Feuille de relevé</h4><p>Collecter les données</p></div>
+<div class="card"><h4>Histogramme</h4><p>Voir la distribution</p></div>
+<div class="card"><h4>Carte de contrôle</h4><p>Surveiller la variabilité</p></div>
+<div class="card" style="border-color:var(--gold)"><h4>Enchaînement</h4><p>Relever → visualiser → surveiller. L'AMDEC anticipe en amont.</p></div>
+</div>
+
+<h3>5.8 Le diagramme de Pareto</h3>
+<div class="def"><b>Pareto (loi des 80/20)</b> : environ 80 % des effets proviennent de 20 % des causes. On hiérarchise les causes par ordre décroissant de fréquence pour traiter d'abord les causes « vitales ». <br>Méthode : collecter → classer → calculer le % cumulé → décider.</div>
+<figure class="wide"><svg viewBox="0 0 580 300" role="img" aria-label="Diagramme de Pareto des erreurs">
+<g font-family="Arial">
+<line x1="60" y1="250" x2="530" y2="250" stroke="#29405a" stroke-width="2"/><line x1="60" y1="30" x2="60" y2="250" stroke="#29405a" stroke-width="2"/><line x1="530" y1="30" x2="530" y2="250" stroke="#29405a" stroke-width="2"/>
+<g font-size="11" fill="#aebdd1" text-anchor="end"><text x="54" y="254">0</text><text x="54" y="199">25 %</text><text x="54" y="144">50 %</text><text x="54" y="89">75 %</text><text x="54" y="34">100 %</text></g>
+<line x1="60" y1="74" x2="530" y2="74" stroke="#ff7a7a" stroke-dasharray="6 5" stroke-width="1.5"/><text x="526" y="68" font-size="11" fill="#ff7a7a" text-anchor="end">seuil 80 %</text>
+<rect x="80" y="151" width="80" height="99" rx="4" fill="#04e0ed"/><rect x="190" y="184" width="80" height="66" rx="4" fill="#04e0ed"/>
+<rect x="300" y="217" width="80" height="33" rx="4" fill="#29405a"/><rect x="410" y="228" width="80" height="22" rx="4" fill="#29405a"/>
+<g font-size="13" font-weight="700" fill="#05131e" text-anchor="middle"><text x="120" y="180">45 %</text><text x="230" y="208">30 %</text></g><g font-size="13" font-weight="700" fill="#f0f5fc" text-anchor="middle"><text x="340" y="211">15 %</text><text x="450" y="222">10 %</text></g>
+<polyline points="120,151 230,85 340,52 450,30" fill="none" stroke="#e8c46d" stroke-width="3"/>
+<g fill="#e8c46d"><circle cx="120" cy="151" r="5"/><circle cx="230" cy="85" r="5"/><circle cx="340" cy="52" r="5"/><circle cx="450" cy="30" r="5"/></g>
+<g font-size="11" fill="#e8c46d"><text x="240" y="104">75 %</text><text x="350" y="72">90 %</text><text x="462" y="34">100 %</text></g>
+<g font-size="12" fill="#aebdd1" text-anchor="middle"><text x="120" y="270">Saisie</text><text x="230" y="270">Pièces manquantes</text><text x="340" y="270">Orientation</text><text x="450" y="270">Autres</text></g>
+<text x="295" y="292" font-size="11" fill="#aebdd1" text-anchor="middle">Barres : part des erreurs · Courbe or : % cumulé</text>
+</g></svg><figcaption>Saisie (45 %) + pièces manquantes (30 %) = 75 % des erreurs : ce sont les causes « vitales » à traiter en priorité.</figcaption></figure>
+
+<h3>5.9 La feuille de relevé</h3>
+<div class="def"><b>Feuille de relevé</b> : tableau structuré qui recense méthodiquement la fréquence d'un dysfonctionnement, pour transformer des impressions en faits mesurables.</div>
+<div class="tablewrap"><table><tr><th>Type d'erreur</th><th class="num">Lun</th><th class="num">Mar</th><th class="num">Mer</th><th class="num">Total</th></tr>
+<tr><td>Saisie incorrecte</td><td class="num">5</td><td class="num">3</td><td class="num">4</td><td class="num"><strong>12</strong></td></tr>
+<tr><td>Pièces manquantes</td><td class="num">2</td><td class="num">1</td><td class="num">3</td><td class="num"><strong>6</strong></td></tr>
+<tr><td><strong>Total</strong></td><td class="num">7</td><td class="num">4</td><td class="num">7</td><td class="num"><strong>18</strong></td></tr></table></div>
+<p>Méthode : définir précisément l'erreur · renseigner période, lieu, personne · cocher chaque erreur le jour même · additionner. Ici, la saisie = 12 / 18 = <strong>67 %</strong> des erreurs : cette donnée alimente le Pareto.</p>
+
+<h3>5.10 L'histogramme</h3>
+<div class="def"><b>Histogramme</b> : barres juxtaposées représentant la distribution d'une variable continue par classes. Il montre le centre, la dispersion et les valeurs inhabituelles d'un processus — une preuve visuelle pour l'auditeur.</div>
+<figure class="wide"><svg viewBox="0 0 580 300" role="img" aria-label="Histogramme des délais de traitement de 40 dossiers">
+<g font-family="Arial">
+<line x1="60" y1="250" x2="545" y2="250" stroke="#29405a" stroke-width="2"/><line x1="60" y1="30" x2="60" y2="250" stroke="#29405a" stroke-width="2"/>
+<g font-size="11" fill="#aebdd1" text-anchor="end"><text x="54" y="254">0</text><text x="54" y="181">5</text><text x="54" y="107">10</text><text x="54" y="34">15</text></g>
+<g stroke="#07111f" stroke-width="2">
+<rect x="60" y="206" width="80" height="44" fill="#04e0ed"/><rect x="140" y="118" width="80" height="132" fill="#04e0ed"/><rect x="220" y="59" width="80" height="191" fill="#04e0ed"/>
+<rect x="300" y="118" width="80" height="132" fill="#04e0ed"/><rect x="380" y="191" width="80" height="59" fill="#ffb454"/><rect x="460" y="221" width="80" height="29" fill="#ffb454"/></g>
+<g font-size="13" font-weight="700" fill="#f0f5fc" text-anchor="middle"><text x="100" y="200">3</text><text x="180" y="112">9</text><text x="260" y="53">13</text><text x="340" y="112">9</text><text x="420" y="185">4</text><text x="500" y="215">2</text></g>
+<g font-size="11" fill="#aebdd1" text-anchor="middle"><text x="100" y="268">0–5</text><text x="180" y="268">5–10</text><text x="260" y="268">10–15</text><text x="340" y="268">15–20</text><text x="420" y="268">20–25</text><text x="500" y="268">25–30</text></g>
+<line x1="380" y1="30" x2="380" y2="250" stroke="#ff7a7a" stroke-width="2" stroke-dasharray="6 5"/><text x="386" y="44" font-size="12" fill="#ff7a7a">Seuil : 20 min</text>
+<text x="300" y="290" font-size="11" fill="#aebdd1" text-anchor="middle">Délai de traitement (minutes) · nombre de dossiers</text>
+</g></svg><figcaption>40 dossiers : les délais se concentrent entre 10 et 15 min, mais 6 dossiers (15 %) dépassent le seuil de 20 min → on cherche pourquoi.</figcaption></figure>
+
+<h3>5.11 La carte de contrôle</h3>
+<div class="def"><b>Carte de contrôle</b> : graphique qui suit un indicateur dans le temps entre une limite supérieure (LCS) et une limite inférieure (LCI), pour distinguer une variation normale d'une anomalie. <br>Règle : entre les limites, on ne réagit pas ; hors limites, on cherche la cause.</div>
+<div class="formula">LCS = m + 3σ = 4,5 + 3 × 1,5 = 9 %     LCI = m − 3σ = 0 % (un taux ne peut pas être négatif)</div>
+<figure class="wide"><svg viewBox="0 0 580 290" role="img" aria-label="Carte de contrôle du taux d'erreur">
+<g font-family="Arial">
+<line x1="60" y1="250" x2="550" y2="250" stroke="#29405a" stroke-width="2"/><line x1="60" y1="30" x2="60" y2="250" stroke="#29405a" stroke-width="2"/>
+<g font-size="11" fill="#aebdd1" text-anchor="end"><text x="54" y="254">0 %</text><text x="54" y="175">5 %</text><text x="54" y="97">10 %</text></g>
+<line x1="60" y1="109" x2="550" y2="109" stroke="#ff7a7a" stroke-width="2" stroke-dasharray="7 5"/><text x="546" y="103" font-size="11" fill="#ff7a7a" text-anchor="end">LCS = 9 %</text>
+<line x1="60" y1="179" x2="550" y2="179" stroke="#62e4ba" stroke-width="1.5"/><text x="546" y="173" font-size="11" fill="#62e4ba" text-anchor="end">moyenne = 4,5 %</text>
+<line x1="60" y1="249" x2="550" y2="249" stroke="#ff7a7a" stroke-width="2" stroke-dasharray="7 5"/><text x="546" y="243" font-size="11" fill="#ff7a7a" text-anchor="end">LCI = 0 %</text>
+<polyline points="110,203 210,171 310,156 410,187 510,61" fill="none" stroke="#04e0ed" stroke-width="3"/>
+<g fill="#04e0ed"><circle cx="110" cy="203" r="6"/><circle cx="210" cy="171" r="6"/><circle cx="310" cy="156" r="6"/><circle cx="410" cy="187" r="6"/></g><circle cx="510" cy="61" r="8" fill="#ff7a7a"/>
+<text x="500" y="48" font-size="12" font-weight="700" fill="#ff7a7a" text-anchor="end">12 % : cause spéciale</text>
+<g font-size="12" fill="#aebdd1" text-anchor="middle"><text x="110" y="270">Lun</text><text x="210" y="270">Mar</text><text x="310" y="270">Mer</text><text x="410" y="270">Jeu</text><text x="510" y="270">Ven</text></g>
+</g></svg><figcaption>Du lundi au jeudi, le taux varie naturellement entre 3 % et 6 % : processus sous contrôle. Le pic de 12 % du vendredi franchit la LCS : c'est une cause spéciale à analyser.</figcaption></figure>
+
+<h3>5.12 L'AMDEC et l'indice IPR</h3>
+<div class="def"><b>AMDEC</b> (Analyse des Modes de Défaillance, de leurs Effets et de leur Criticité) : identifier les défaillances potentielles <b>avant</b> qu'elles se produisent, puis les classer par priorité. <b>Anticiper plutôt que corriger.</b></div>
+<div class="formula">IPR = G (gravité) × O (occurrence) × D (détection)     — de 1 à 1 000 avec des notes de 1 à 10</div>
+<div class="grid3">
+<div class="card"><h4>G · Gravité</h4><p>Si ça arrive, est-ce grave ? 1 = sans importance, 10 = très grave. Si <strong>G ≥ 9</strong> : prioritaire quel que soit l'IPR.</p></div>
+<div class="card"><h4>O · Occurrence</h4><p>Est-ce que ça arrive souvent ? 1 = très rare, 10 = tous les jours.</p></div>
+<div class="card"><h4>D · Détection</h4><p>Peut-on le voir avant l'usager ? <strong>Échelle inversée</strong> : 1 = facile à voir, 10 = invisible.</p></div>
+</div>
+<div class="tablewrap"><table><tr><th>Défaillance</th><th>Cause</th><th>Effet</th><th class="num">G</th><th class="num">O</th><th class="num">D</th><th class="num">IPR</th><th>Décision</th></tr>
+<tr><td><strong>Saisie erronée</strong></td><td>Agent non formé</td><td>Document erroné, réclamation</td><td class="num">6</td><td class="num">8</td><td class="num">5</td><td class="num"><strong>240</strong></td><td><span class="pill r">Prioritaire</span></td></tr>
+<tr><td><strong>Pièces manquantes</strong></td><td>Pièces non listées</td><td>Retard de traitement</td><td class="num">5</td><td class="num">7</td><td class="num">4</td><td class="num"><strong>140</strong></td><td><span class="pill o">À planifier</span></td></tr>
+<tr><td><strong>Remise au mauvais usager</strong></td><td>Identité non vérifiée</td><td>Données personnelles divulguées</td><td class="num">9</td><td class="num">2</td><td class="num">6</td><td class="num"><strong>108</strong></td><td><span class="pill r">Prioritaire (G = 9)</span></td></tr>
+<tr><td><strong>Mauvaise orientation</strong></td><td>Signalétique peu claire</td><td>Perte de temps</td><td class="num">4</td><td class="num">5</td><td class="num">3</td><td class="num"><strong>60</strong></td><td><span class="pill g">Surveillance</span></td></tr></table></div>
+<p>Seuils indicatifs : <strong>&gt; 150</strong> action prioritaire · <strong>100 à 150</strong> à planifier (responsable + échéance) · <strong>&lt; 100</strong> surveillance. Après l'action préventive, on recalcule l'IPR pour vérifier qu'il a baissé.</p>
+<div class="bpr"><b>🏦 TRANSPOSITION BPR — AMDEC DU PROCESSUS « REMISE DE CARTE »</b>
+<p>Défaillance « carte remise à un tiers » : G = 9 (fraude possible), O = 2, D = 5 → IPR = 90, mais <strong>G ≥ 9 : prioritaire</strong>. Action préventive : vérification systématique de la pièce d'identité et signature d'un accusé de réception. Défaillance « carte non activée à la remise » : G = 4, O = 6, D = 3 → IPR = 72 : surveillance.</p></div>
+
+<div class="tablewrap"><table><tr><th>Outil</th><th>Question posée</th><th>Forme</th><th>Moment</th></tr>
+<tr><td><strong>AMDEC</strong></td><td>Quels risques anticiper ?</td><td>Tableau G × O × D → IPR</td><td>Avant : prévention</td></tr>
+<tr><td><strong>Feuille de relevé</strong></td><td>Quelles données collecter ?</td><td>Tableau de comptage</td><td>Pendant : collecte</td></tr>
+<tr><td><strong>Histogramme</strong></td><td>Comment se répartissent les valeurs ?</td><td>Barres collées</td><td>Analyse</td></tr>
+<tr><td><strong>Carte de contrôle</strong></td><td>Le processus reste-t-il stable ?</td><td>Courbe avec limites</td><td>Surveillance continue</td></tr></table></div>
+
+<div class="cas"><h4>🏛️ CAS PRATIQUE — ADMINISTRATION « SERVICES CITOYENS »</h4>
+<p>Direction de l'état civil et des documents officiels. <strong>Taux d'erreur = 18 %</strong> dans la délivrance des documents. Un audit interne constate : procédures non à jour, formation insuffisante, pas d'indicateurs suivis. Répartition : saisie 45 %, pièces manquantes 30 %, orientation usager 15 %, autres 10 %.</p>
+<p>1. Formulez la NC (exigence + constat + preuve). 2. Quel outil pour prioriser ? 3. 5 Pourquoi sur la saisie. 4. Correction ou action corrective ? 5. Comment suivre l'efficacité ? <br><strong>Formule</strong> : NC → Prioriser (Pareto) → Cause racine → Action corrective → Suivi.</p>
+<details><summary>Correction du cours</summary><div>
+<p><strong>1. NC</strong> — taux d'erreur de 18 % + procédures non à jour + formation insuffisante + aucun indicateur : écart sur la maîtrise du processus (ISO 9001 §8 / §7.2).</p>
+<p><strong>2. Pareto</strong> — saisie 45 % + pièces 30 % = 75 % → prioriser la saisie (et les pièces manquantes).</p>
+<p><strong>3. 5 Pourquoi</strong> — erreur de saisie → procédure non appliquée → procédure obsolète → pas de responsable de la mise à jour → pas de pilote ni d'indicateur.</p>
+<p><strong>4. Correction / AC</strong> — correction : reprendre les dossiers erronés ; action corrective : mettre à jour la procédure, former, instaurer un tableau de bord.</p>
+<p><strong>5. Suivi</strong> — taux d'erreur ≤ 5 % en 3 mois, vérification à 30 / 60 / 90 jours ; clôturer si atteint et standardiser.</p>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>Une NC est un écart par rapport à une exigence, fondé sur des preuves.</li>
+<li>Correction = symptôme · action corrective = cause racine · action préventive = anticipation.</li>
+<li>Analyser avec les 5 Pourquoi et Ishikawa <strong>avant</strong> d'agir.</li>
+<li>Pareto priorise · AMDEC anticipe · carte de contrôle surveille.</li>
+<li>Le suivi d'efficacité clôture le cycle (phase Act du PDCA).</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 6 (PROPOSÉE) ================= -->
+<section class="panel seance" id="s6"><div class="s-head"><div><span class="s-tag prop">SÉANCE 6 · PROPOSÉE</span><h2>Les indicateurs de performance qualité et le tableau de bord</h2><span class="src">Construite à partir du thème d'exposé n°9 et des exemples des séances 3 à 5 — données chiffrées fictives, à visée pédagogique</span></div>
+<label class="check"><input type="checkbox" data-ch="s6"> Je maîtrise</label></div>
+<p><strong>Objectif</strong> : savoir <strong>choisir</strong>, <strong>calculer</strong> et <strong>interpréter</strong> des indicateurs qualité, puis les réunir dans un tableau de bord qui aide à décider. C'est le prolongement naturel de la phase <strong>Check</strong> du PDCA et de l'exigence ISO 9001 §9.1 (surveillance, mesure, analyse et évaluation).</p>
+
+<h3>6.1 Indicateur, objectif, cible, seuil : ne pas confondre</h3>
+<div class="tablewrap"><table><tr><th>Notion</th><th>Définition</th><th>Exemple « Services Citoyens »</th></tr>
+<tr><td><strong>Donnée</strong></td><td>Fait brut relevé</td><td>216 documents erronés ce mois</td></tr>
+<tr><td><strong>Indicateur</strong></td><td>Donnée mise en rapport, qui mesure une performance</td><td>Taux d'erreur = 216 / 1 200 = 18 %</td></tr>
+<tr><td><strong>Objectif</strong></td><td>Résultat visé, formulé de façon SMART</td><td>Ramener le taux d'erreur sous 5 % d'ici 3 mois</td></tr>
+<tr><td><strong>Cible</strong></td><td>Valeur à atteindre</td><td>≤ 5 %</td></tr>
+<tr><td><strong>Seuil d'alerte</strong></td><td>Valeur au-delà de laquelle on agit sans attendre</td><td>&gt; 10 %</td></tr></table></div>
+
+<h3>6.2 Les familles d'indicateurs qualité</h3>
+<div class="grid4">
+<div class="card"><h4>Efficacité</h4><p>Atteint-on le résultat ? Taux de conformité, taux de NC, taux de documents sans erreur.</p></div>
+<div class="card"><h4>Efficience</h4><p>Avec quelles ressources ? Délai moyen, coût unitaire, productivité.</p></div>
+<div class="card"><h4>Satisfaction</h4><p>Qu'en pense l'usager ? CSAT, NPS, taux et délai de réponse aux réclamations.</p></div>
+<div class="card"><h4>Coût de non-qualité</h4><p>Combien coûtent les erreurs ? Reprises, gestes commerciaux, temps perdu.</p></div>
+</div>
+<p class="detail">On distingue aussi les <strong>indicateurs de résultat</strong> (ce qui a été obtenu : taux d'erreur du mois) et les <strong>indicateurs de pilotage</strong> ou d'avancement (ce qui prépare le résultat : % d'agents formés à la nouvelle procédure). Les premiers constatent, les seconds permettent d'agir à temps.</p>
+
+<h3>6.3 Bien choisir un indicateur</h3>
+<div class="grid3">
+<div class="card"><h4>Pertinent</h4><p>Relié à un objectif et à une attente de l'usager.</p></div>
+<div class="card"><h4>Simple et compris</h4><p>Une formule claire, comprise par ceux qui le produisent.</p></div>
+<div class="card"><h4>Fiable et disponible</h4><p>Des données existantes, collectées toujours de la même façon.</p></div>
+<div class="card"><h4>Orienté action</h4><p>Si la valeur se dégrade, on sait quoi faire et qui agit.</p></div>
+<div class="card"><h4>Peu nombreux</h4><p>5 à 7 indicateurs par processus, pas davantage.</p></div>
+<div class="card"><h4>Équilibré</h4><p>Croiser efficacité, efficience et satisfaction pour éviter les effets pervers.</p></div>
+</div>
+<div class="tablewrap"><table><tr><th colspan="2">Fiche indicateur — exemple</th></tr>
+<tr><td><strong>Nom</strong></td><td>Taux d'erreur de délivrance</td></tr>
+<tr><td><strong>Finalité</strong></td><td>Mesurer la conformité des documents remis aux usagers</td></tr>
+<tr><td><strong>Formule</strong></td><td>Documents erronés ÷ documents délivrés × 100</td></tr>
+<tr><td><strong>Source</strong></td><td>Feuille de relevé + registre des réclamations</td></tr>
+<tr><td><strong>Fréquence</strong></td><td>Hebdomadaire (suivi), mensuelle (revue)</td></tr>
+<tr><td><strong>Cible / seuil</strong></td><td>≤ 5 % / alerte au-delà de 10 %</td></tr>
+<tr><td><strong>Pilote</strong></td><td>Chef du service de délivrance</td></tr>
+<tr><td><strong>Représentation</strong></td><td>Carte de contrôle hebdomadaire + feu tricolore dans le tableau de bord</td></tr></table></div>
+
+<h3>6.4 Calculer : les formules essentielles</h3>
+<div class="formula">Taux de conformité = sorties conformes ÷ sorties totales × 100<br>
+Taux de non-conformité = sorties non conformes ÷ sorties totales × 100<br>
+Délai moyen = somme des délais ÷ nombre de dossiers<br>
+Taux de respect du délai = dossiers traités dans le délai ÷ dossiers traités × 100<br>
+Taux de réclamations = réclamations ÷ usagers servis × 100<br>
+CSAT = réponses notées 4 ou 5 ÷ réponses totales × 100<br>
+NPS = % promoteurs (9–10) − % détracteurs (0–6)<br>
+Coût de non-qualité = nombre d'erreurs × temps de reprise × coût de la minute</div>
+<div class="cas" style="border-style:solid;border-color:var(--l)"><h4>📐 APPLICATION — un mois au service « Services Citoyens »</h4>
+<p>1 200 documents délivrés, 216 erronés ; sur les 40 dossiers chronométrés, 34 traités en 20 min ou moins ; 36 réclamations ; 200 usagers interrogés : 90 promoteurs, 60 passifs, 50 détracteurs ; reprise d'une erreur = 25 min ; coût de la minute d'agent = 1,5 DH.</p>
+<div class="kpi">
+<div><b>18 %</b><span>taux d'erreur<br>216 ÷ 1 200</span></div>
+<div><b>85 %</b><span>respect du délai<br>34 ÷ 40</span></div>
+<div><b>3 %</b><span>taux de réclamations<br>36 ÷ 1 200</span></div>
+<div><b>+20</b><span>NPS<br>45 % − 25 %</span></div>
+<div><b>8 100 DH</b><span>coût de non-qualité / mois<br>216 × 25 × 1,5</span></div>
+</div>
+<p>Le coût de non-qualité rend le problème visible pour la direction : 8 100 DH par mois, soit près de 100 000 DH par an consacrés à refaire un travail mal fait la première fois — l'argument du « Zéro défaut » de Crosby.</p></div>
+
+<h3>6.5 Interpréter : cinq réflexes</h3>
+<ol>
+<li><strong>Comparer à la cible</strong> : l'écart est-il acceptable ?</li>
+<li><strong>Regarder la tendance</strong> sur plusieurs périodes, pas une valeur isolée.</li>
+<li><strong>Distinguer variation normale et anomalie</strong> : la carte de contrôle (séance 5) évite de sur-réagir à une variation ordinaire.</li>
+<li><strong>Croiser les indicateurs</strong> : un délai qui baisse pendant que les erreurs montent signale qu'on va trop vite.</li>
+<li><strong>Remonter à la cause</strong> : un indicateur alerte, il n'explique pas — Pareto, Ishikawa et 5 Pourquoi prennent le relais.</li></ol>
+
+<h3>6.6 Le tableau de bord qualité</h3>
+<div class="def"><b>Tableau de bord qualité</b> : outil de pilotage qui réunit, sur une page, les indicateurs clés d'un processus avec leur cible, leur valeur, leur tendance, un signal visuel (feu tricolore) et l'action décidée. Il alimente la <b>revue de direction</b> (ISO 9001 §9.3) et rejoint le tableau de bord du contrôle de gestion (axe « processus internes » du Balanced Scorecard).</div>
+<div class="tablewrap"><table><tr><th>Indicateur</th><th>Cible</th><th>Alerte</th><th class="num">Mois M</th><th class="num">M + 3</th><th class="num">Tendance</th><th>Commentaire / action</th></tr>
+<tr><td><strong>Taux d'erreur</strong></td><td>≤ 5 %</td><td>&gt; 10 %</td><td class="num"><span class="pill r">18 %</span></td><td class="num"><span class="pill o">6 %</span></td><td class="num">↘</td><td>Procédure mise à jour, 80 % des agents formés ; poursuivre</td></tr>
+<tr><td><strong>Respect du délai de 20 min</strong></td><td>≥ 95 %</td><td>&lt; 85 %</td><td class="num"><span class="pill o">85 %</span></td><td class="num"><span class="pill o">94 %</span></td><td class="num">↗</td><td>Tickets et guichet dédié aux dossiers simples</td></tr>
+<tr><td><strong>Taux de réclamations</strong></td><td>≤ 1 %</td><td>&gt; 3 %</td><td class="num"><span class="pill o">3 %</span></td><td class="num"><span class="pill o">1,2 %</span></td><td class="num">↘</td><td>Liste des pièces affichée et publiée en ligne</td></tr>
+<tr><td><strong>Délai de réponse aux réclamations</strong></td><td>≤&nbsp;2&nbsp;jours</td><td>&gt;&nbsp;5&nbsp;jours</td><td class="num"><span class="pill r">6 j</span></td><td class="num"><span class="pill g">2 j</span></td><td class="num">↘</td><td>Registre unique + pilote désigné : standardiser</td></tr>
+<tr><td><strong>CSAT</strong></td><td>≥ 80 %</td><td>&lt; 65 %</td><td class="num"><span class="pill r">62 %</span></td><td class="num"><span class="pill o">78 %</span></td><td class="num">↗</td><td>Mesure à la sortie chaque semaine</td></tr>
+<tr><td><strong>Coût de non-qualité</strong></td><td>≤&nbsp;1&nbsp;500&nbsp;DH</td><td>&gt;&nbsp;5&nbsp;000&nbsp;DH</td><td class="num"><span class="pill r">8 100 DH</span></td><td class="num"><span class="pill o">2 810 DH</span></td><td class="num">↘</td><td>Suit mécaniquement le taux d'erreur</td></tr></table></div>
+<p><span class="pill g">Vert</span> cible atteinte · <span class="pill o">Orange</span> entre la cible et le seuil d'alerte · <span class="pill r">Rouge</span> au-delà du seuil : action immédiate. Lecture : le plan d'action fonctionne (plus aucun rouge) mais la cible n'est atteinte que pour un indicateur → on relance un cycle PDCA plutôt que de clôturer.</p>
+
+<div class="bpr"><b>🏦 TRANSPOSITION BPR — TABLEAU DE BORD QUALITÉ D'UNE AGENCE</b>
+<p>Délai d'attente moyen au guichet · délai de réponse à une demande de crédit · taux de dossiers de crédit renvoyés incomplets par le back-office · taux de réclamations et délai de réponse · NPS trimestriel · nombre d'incidents opérationnels. Le directeur d'agence le présente chaque mois à la direction régionale, à côté des indicateurs commerciaux.</p></div>
+
+<div class="cas"><h4>🏦 MINI-CAS — AGENCE BANCAIRE (données fictives)</h4>
+<p>Sur un trimestre : 480 demandes de crédit, dont 72 renvoyées incomplètes par le back-office ; délai moyen de réponse 9 jours (cible 5 jours, alerte au-delà de 8) ; 1 200 clients reçus, 30 réclamations ; enquête auprès de 150 clients : 63 notes de 9–10, 57 notes de 7–8, 30 notes de 0–6.</p>
+<p>1. Calculez le taux de dossiers incomplets, le taux de réclamations et le NPS. 2. Attribuez un feu au délai de réponse. 3. Quel outil pour trouver pourquoi les dossiers sont incomplets ? 4. Proposez une action corrective et un indicateur de pilotage.</p>
+<details><summary>Proposition de correction</summary><div>
+<p><strong>1.</strong> Dossiers incomplets = 72 ÷ 480 = <strong>15 %</strong> · Réclamations = 30 ÷ 1 200 = <strong>2,5 %</strong> · Promoteurs 63 ÷ 150 = 42 %, détracteurs 30 ÷ 150 = 20 % → NPS = <strong>+22</strong>.</p>
+<p><strong>2.</strong> 9 jours &gt; seuil de 8 jours → <span class="pill r">Rouge</span> : action immédiate.</p>
+<p><strong>3.</strong> Une feuille de relevé des pièces manquantes pendant 2 à 4 semaines, puis un Pareto ; Ishikawa et 5 Pourquoi sur la pièce la plus fréquente.</p>
+<p><strong>4.</strong> Action corrective : check-list obligatoire des pièces, validée avant envoi au back-office, et formation des conseillers. Indicateur de pilotage : % de dossiers envoyés avec check-list complète (cible 100 %) ; indicateur de résultat : taux de dossiers renvoyés (cible ≤ 5 %), vérifié à 30 / 60 / 90 jours.</p>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>Un indicateur est une donnée mise en rapport ; il vit avec une cible, un seuil d'alerte et un pilote.</li>
+<li>Croiser efficacité, efficience, satisfaction et coût de non-qualité.</li>
+<li>Peu d'indicateurs, fiables, compris et orientés action.</li>
+<li>Interpréter = cible + tendance + variation normale ou anomalie + croisement + cause.</li>
+<li>Le tableau de bord nourrit la revue de direction et relance le PDCA.</li></ol></div>
+</section>
+
+<!-- ================= SÉANCE 7 (PROPOSÉE) ================= -->
+<section class="panel seance" id="s7"><div class="s-head"><div><span class="s-tag prop">SÉANCE 7 · PROPOSÉE</span><h2>Qualité dans les services publics, certification ISO 9001 et ISO 9001:2026</h2><span class="src">Construite à partir des thèmes d'exposés n°10, 11 et 12 et de l'exemple « service universitaire » de la séance 1</span></div>
+<label class="check"><input type="checkbox" data-ch="s7"> Je maîtrise</label></div>
+<p><strong>Objectif</strong> : transposer la démarche qualité au service public et à l'université, comprendre le cycle complet de la certification ISO 9001, connaître les évolutions de la version 2026, puis relier les sept séances dans un cas de synthèse.</p>
+
+<h3>7.1 Les spécificités de la qualité dans le service public</h3>
+<div class="grid3">
+<div class="card"><h4>Un usager, pas un client qui choisit</h4><p>Il ne peut souvent pas « aller ailleurs » : sa satisfaction ne se lit pas dans le chiffre d'affaires, il faut la mesurer.</p></div>
+<div class="card"><h4>Des principes propres</h4><p>Égalité d'accès, continuité du service, neutralité, transparence et reddition des comptes.</p></div>
+<div class="card"><h4>De nombreuses parties intéressées</h4><p>Usagers, tutelle, élus, agents, partenaires, citoyens contribuables.</p></div>
+</div>
+<p>Au Maroc, la Constitution de 2011 soumet les services publics aux normes de <strong>qualité, de transparence, de reddition des comptes et de responsabilité</strong> (art. 154). La Charte des services publics (loi 54-19) et la loi 55-19 sur la simplification des procédures administratives prolongent ce cadre : délais, information de l'usager, traitement des réclamations.</p>
+<p class="detail"><strong>Freins fréquents</strong> : cloisonnement entre services, procédures lourdes, faible culture de la mesure, ressources limitées. <strong>Leviers</strong> : approche processus, engagements de service affichés (délais, pièces), écoute des usagers, digitalisation, indicateurs publiés.</p>
+
+<h3>7.2 Application : le service de scolarité d'une université</h3>
+<div class="carto">
+<div class="row"><div></div><div class="box m"><b>MANAGEMENT</b>Présidence · décanat · cellule qualité · pilotage des objectifs</div><div></div></div>
+<div class="row"><div class="box cl">ÉTUDIANT<br>besoins</div><div class="box rz"><b style="color:var(--cyan)">RÉALISATION</b>Inscription → enseignement → évaluation → délivrance des attestations et diplômes</div><div class="box cl">ÉTUDIANT<br>satisfaction</div></div>
+<div class="row"><div></div><div class="box s"><b style="color:var(--mut)">SUPPORT</b>Système d'information · RH · finances · logistique · bibliothèque</div><div></div></div>
+</div>
+<div class="tablewrap"><table><tr><th>Attente de l'étudiant</th><th>Problème possible</th><th>Indicateur</th><th>Piste d'amélioration</th></tr>
+<tr><td>Rapidité</td><td>Attestation délivrée en plusieurs jours</td><td>Délai moyen de délivrance</td><td>Demande en ligne, délai affiché, retrait sur rendez-vous</td></tr>
+<tr><td>Exactitude</td><td>Erreur de nom, de filière ou de note</td><td>Taux d'attestations erronées</td><td>Double contrôle avant signature, données issues du système</td></tr>
+<tr><td>Information claire</td><td>Réclamations sans réponse</td><td>Délai de réponse aux réclamations</td><td>Guichet unique, registre des réclamations, FAQ</td></tr></table></div>
+
+<h3>7.3 La certification ISO 9001 : le cycle complet</h3>
+<div class="grid2">
+<div class="card"><h4>Certificateur</h4><p>Organisme indépendant qui audite le SMQ et délivre le certificat (audit de 3<sup>e</sup> partie). Exemple cité en cours : IMANOR.</p></div>
+<div class="card"><h4>Accréditation</h4><p>Reconnaissance, par un organisme national d'accréditation, de la compétence et de l'impartialité du certificateur. On accrédite le certificateur ; on certifie l'organisation.</p></div>
+</div>
+<div class="flow">
+<div><span class="n">0</span><b>Année 0</b>Audit initial : étape 1 (documents) + étape 2 (sur site) → certificat</div>
+<div><span class="n">1</span><b>Année 1</b>Audit de surveillance</div>
+<div><span class="n">2</span><b>Année 2</b>Audit de surveillance</div>
+<div><span class="n">3</span><b>Année 3</b>Audit de renouvellement → nouveau cycle de 3 ans</div>
+</div>
+<div class="grid2">
+<div class="card"><h4 style="color:var(--green)">Bénéfices</h4><p>Confiance des clients et partenaires · accès à certains marchés et appels d'offres · processus clarifiés · culture de la mesure et de l'amélioration · image.</p></div>
+<div class="card"><h4 style="color:var(--red)">Limites</h4><p>Coût et temps · risque de lourdeur documentaire · risque de « certificat vitrine » · la certification garantit la maîtrise du système, pas la perfection de chaque produit ou service.</p></div>
+</div>
+
+<h3>7.4 ISO 9001:2026 : ce qui change</h3>
+<p>La révision de l'ISO 9001 est en phase finale ; sa publication est annoncée pour l'automne 2026. <strong>Vérifiez la date officielle avant l'examen.</strong> L'esprit de la version 2015 est conservé : c'est une évolution, pas une rupture.</p>
+<div class="tablewrap"><table><tr><th>Thème</th><th>Évolution annoncée</th></tr>
+<tr><td><strong>Structure</strong></td><td>Structure commune des normes de systèmes de management maintenue (10 chapitres, logique PDCA) ; annexe explicative largement réécrite</td></tr>
+<tr><td><strong>Culture qualité et éthique</strong></td><td>La culture qualité et le comportement éthique deviennent des notions explicites, portées par la direction et intégrées à la sensibilisation du personnel</td></tr>
+<tr><td><strong>Risques et opportunités</strong></td><td>Traités séparément (§6.1) pour que les opportunités soient examinées de façon plus systématique</td></tr>
+<tr><td><strong>Changement climatique</strong></td><td>Intègre l'amendement de 2024 : l'organisation examine si le changement climatique est pertinent pour son contexte et ses parties intéressées</td></tr>
+<tr><td><strong>Transition</strong></td><td>Les certificats 2015 restent valables pendant une période de transition (annoncée à 3 ans) après la publication</td></tr></table></div>
+
+<h3>7.5 Le fil conducteur des 7 séances</h3>
+<div class="flow">
+<div><b>S1–S2</b>Notions, pensée qualité, 7 principes, ISO</div>
+<div><b>S3</b>S'organiser (processus) pour qui (client)</div>
+<div><b>S4</b>Améliorer (PDCA) et vérifier (audit)</div>
+<div><b>S5</b>Traiter l'écart et analyser (outils)</div>
+<div><b>S6</b>Mesurer et piloter (indicateurs)</div>
+<div><b>S7</b>Reconnaître (certification) et transposer</div>
+</div>
+
+<div class="cas"><h4>🎓 CAS DE SYNTHÈSE — SCOLARITÉ D'UNE FACULTÉ (données fictives)</h4>
+<p>Le service de scolarité délivre 900 attestations par mois. Délai moyen : 6 jours ouvrés. 108 attestations erronées. 45 réclamations par mois, sans registre. Aucun pilote désigné. Relevé des erreurs : nom mal orthographié 48, filière erronée 30, mauvaise année 18, autres 12. La faculté envisage une certification ISO 9001.</p>
+<p>1. Dans quelle famille de processus se situe la délivrance ? 2. Quels principes sont en jeu ? 3. Formulez une NC. 4. Appliquez le Pareto. 5. Construisez le PDCA. 6. Proposez 4 indicateurs avec cible. 7. La faculté peut-elle viser la certification dès maintenant ?</p>
+<details><summary>Proposition de correction</summary><div>
+<p><strong>1.</strong> Processus de <strong>réalisation</strong> ; il dépend du support (système d'information) et du management (objectifs, pilote).</p>
+<p><strong>2.</strong> Orientation client (n°1), approche processus (n°4), décisions fondées sur des preuves (n°6), amélioration (n°5).</p>
+<p><strong>3.</strong> <em>Exigence</em> : maîtrise de la production et de la prestation de service (ISO 9001 §8.5) et traitement des NC (§10.2). <em>Constat</em> : 12 % d'attestations erronées, réclamations non enregistrées. <em>Preuve</em> : relevé de 108 erreurs sur 900, absence de registre des réclamations, aucun pilote désigné. Gravité : <span class="pill r">majeure</span>.</p>
+<p><strong>4.</strong> Total = 108. Nom 44 %, filière 28 % → cumul 72 % ; année 17 % → 89 % ; autres 11 %. Priorité : nom et filière (72 % des erreurs).</p>
+<p><strong>5.</strong> <strong>P</strong> : 5 Pourquoi sur les erreurs de nom (saisie manuelle au lieu d'une reprise automatique des données d'inscription), objectif ≤ 3 % d'erreurs et ≤ 2 jours de délai en 3 mois · <strong>D</strong> : générer l'attestation à partir de la base d'inscription, double contrôle, formulaire en ligne, test sur une filière · <strong>C</strong> : feuille de relevé hebdomadaire, carte de contrôle, audit interne de suivi · <strong>A</strong> : généraliser et écrire la procédure, ou relancer un cycle.</p>
+<p><strong>6.</strong> Taux d'erreur (≤ 3 %) · délai moyen de délivrance (≤ 2 jours) · délai de réponse aux réclamations (≤ 3 jours) · satisfaction des étudiants (CSAT ≥ 80 %).</p>
+<p><strong>7.</strong> Pas encore : avec une NC majeure ouverte, sans pilote, sans indicateurs ni audit interne ni revue de direction, le certificat serait refusé. Il faut d'abord stabiliser le processus, mener un audit interne (§9.2) et une revue de direction (§9.3), puis demander éventuellement un pré-audit.</p>
+</div></details></div>
+
+<div class="retenir"><h4>📌 À RETENIR</h4><ol>
+<li>Le service public a ses principes (égalité, continuité, transparence) : la satisfaction de l'usager doit être mesurée.</li>
+<li>Toute la boîte à outils du module s'applique à une administration ou à une université.</li>
+<li>Certification = audit initial en 2 étapes, 2 surveillances, renouvellement à 3 ans ; on accrédite le certificateur.</li>
+<li>ISO 9001:2026 : même structure, avec culture qualité, éthique, opportunités et climat plus visibles.</li></ol></div>
+</section>
+
+<!-- ================= QCM ================= -->
+<section class="panel seance quiz" id="qcm"><div class="s-head"><div><span class="s-tag">ÉVALUATION</span><h2>🧠 QCM final — 12 questions</h2><span class="src">Cliquez sur une réponse : la correction s'affiche aussitôt.</span></div>
+<span class="score" id="score">0 / 12</span></div>
+<div id="quiz"></div>
+<button class="btn" type="button" id="qreset">↺ Recommencer</button>
+</section>
+
+<nav class="pager"><a href="amso-m235-ia-decision-strategique.html"><small>← MODULE PRÉCÉDENT</small>M235 · Intelligence Artificielle et prise de décision stratégique</a><a class="next" href="amso-m237-audit-supply-chain.html"><small>MODULE SUIVANT →</small>M237 · Audit de la chaîne d'approvisionnement (Supply Chain)</a></nav>
+</div></div>
+</main>
+<footer><p>✦ © 2026 NBProf · Noamane Boulahcen ✦</p><p>Synthèse d'après le cours M236 de Pr. A. NOUIB et Dr. A. ATITAOU — FSJES Kelaa des Sraghna, Université Cadi Ayyad</p><p><a href="confidentialite.html">Politique de confidentialité</a> · <a href="amso2026.html">← Retour à AMSO 2026</a></p></footer>
+<script>
+(function(){
+var KEY='nbprof-'+document.body.dataset.mod;var st={};
+try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+var boxes=[].slice.call(document.querySelectorAll('.check input'));
+function paint(){var n=0;boxes.forEach(function(b){var id=b.dataset.ch;b.checked=!!st[id];if(st[id])n++;
+var l=document.querySelector('.side a[href="#'+id+'"]');if(l)l.classList.toggle('done',!!st[id]);});
+document.querySelector('.bar i').style.width=(n/boxes.length*100)+'%';
+document.getElementById('pc').textContent=n+' / '+boxes.length+' séances maîtrisées';}
+boxes.forEach(function(b){b.addEventListener('change',function(){st[b.dataset.ch]=b.checked;
+try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}paint();});});paint();
+var rv=document.getElementById('rev');rv.addEventListener('click',function(){
+var on=document.body.classList.toggle('revision');rv.classList.toggle('on',on);
+rv.textContent=on?'📖 Afficher tout le cours':'⚡ Mode révision rapide';});
+var links=[].slice.call(document.querySelectorAll('.side a'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(en){
+if(en.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id)})}})},{rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('.seance').forEach(function(c){io.observe(c)});}
+
+var Q=[
+["Quelle norme est la seule à être certifiable ?",["ISO 9000","ISO 9001","ISO 19011"],1,"L'ISO 9001 fixe les exigences du SMQ ; ISO 9000 est le vocabulaire et ISO 19011 le guide d'audit."],
+["Qui est associé au « Zéro défaut » ?",["Crosby","Juran","Shewhart"],0,"Crosby (1979) : faire bien du premier coup, la prévention coûte moins cher que la correction."],
+["Le principe « Décisions fondées sur des preuves » signifie :",["Décider selon l'expérience du chef","Décider à partir de données et de faits","Décider après un audit de certification"],1,"Principe n°6 : on décide à partir de données et de faits."],
+["Le système d'information appartient aux processus :",["de management","de réalisation","support"],2,"Les processus support (RH, SI, achats, finance…) fournissent les moyens aux processus de réalisation."],
+["Sur 100 répondants : 50 notes 9–10, 30 notes 7–8, 20 notes 0–6. Le NPS vaut :",["+30","+50","+80"],0,"NPS = 50 % de promoteurs − 20 % de détracteurs = +30. Les passifs (7–8) ne comptent pas."],
+["Dans le PDCA, l'audit correspond surtout à l'étape :",["Plan","Do","Check"],2,"L'audit est l'outil principal de la phase Check ; il fournit les preuves pour agir (Act)."],
+["Un client qui audite son fournisseur réalise un audit de :",["1re partie","2e partie","3e partie"],1,"2e partie = client / fournisseur ; 1re = interne ; 3e = certification par un organisme indépendant."],
+["Croiser documents, entretiens et observations s'appelle :",["la triangulation","la standardisation","la stratification"],0,"La triangulation renforce la fiabilité des preuves d'audit."],
+["Reprendre un dossier erroné est :",["une action corrective","une correction","une action préventive"],1,"La correction traite le symptôme ; l'action corrective élimine la cause racine."],
+["Dans une AMDEC : G = 9, O = 2, D = 6. Quelle décision ?",["Surveillance, car IPR = 108","À planifier, car IPR = 108","Prioritaire, car G ≥ 9"],2,"IPR = 108, mais une gravité de 9 ou plus rend le risque prioritaire quel que soit l'IPR."],
+["Sur une carte de contrôle, un point situé entre la LCI et la LCS :",["impose une action corrective immédiate","traduit une variation normale : on ne réagit pas","signifie que le processus est certifié"],1,"Entre les limites : variation normale. Hors limites : cause spéciale à analyser."],
+["Après la certification initiale, combien d'audits de surveillance avant le renouvellement ?",["Aucun","Deux (années 1 et 2)","Un par trimestre"],1,"Le certificat est valable 3 ans, avec des audits de surveillance annuels puis un renouvellement."]];
+var box=document.getElementById('quiz'),sc=document.getElementById('score'),done=0,good=0;
+function build(){box.innerHTML='';done=0;good=0;sc.textContent='0 / '+Q.length;
+Q.forEach(function(q,i){var d=document.createElement('div');d.className='q';
+var p=document.createElement('p');p.textContent=(i+1)+'. '+q[0];d.appendChild(p);
+var fb=document.createElement('div');fb.className='fb';
+q[1].forEach(function(o,j){var b=document.createElement('button');b.type='button';b.className='opt';b.textContent=o;
+b.addEventListener('click',function(){if(d.dataset.done)return;d.dataset.done=1;done++;
+var bs=d.querySelectorAll('.opt');bs[q[2]].classList.add('ok');if(j===q[2]){good++;fb.innerHTML='<strong style="color:var(--green)">Exact.</strong> '+q[3];}else{b.classList.add('ko');fb.innerHTML='<strong style="color:var(--red)">Pas tout à fait.</strong> '+q[3];}
+fb.style.display='block';sc.textContent=good+' / '+Q.length+(done===Q.length?(good>=10?' · Excellent !':good>=7?' · Bien, revoyez les erreurs':' · À retravailler'):'');});
+d.appendChild(b);});d.appendChild(fb);box.appendChild(d);});}
+build();document.getElementById('qreset').addEventListener('click',build);
+})();
+</script>
+<!-- Cloudflare Web Analytics — nbprof.com -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ecf82d9260a34bfc8a6fc1cbc861f541"}'></script>
+</body></html>
