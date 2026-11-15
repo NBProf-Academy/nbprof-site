@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Quiz AMSO · 20 questions par module | NBProf</title>
+<meta content="Quiz interactifs du Master AMSO : 20 questions par module, correction immédiate, explications et score." name="description"/>
+<style>:root{--bg:#07111f;--c:#102137;--c2:#0c1a2c;--l:#29405a;--cyan:#04e0ed;--gold:#e8c46d;--mut:#aebdd1;--text:#f0f5fc;--green:#62e4ba;--red:#ff7a7a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#12324a,transparent 40%),var(--bg);font:16px/1.6 Arial,sans-serif;color:var(--text);min-height:100vh}
+a{color:var(--cyan)}header{padding:16px 5%;display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;background:#07111feb;border-bottom:1px solid var(--l)}
+header a{text-decoration:none}header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;letter-spacing:1px}.logo{font-size:26px;font-weight:800;color:var(--gold)}
+main{max-width:820px;margin:auto;padding:30px 18px 80px}
+.eyebrow{color:var(--cyan);letter-spacing:2px;font-weight:700;font-size:13px}
+h1{font-size:clamp(28px,5vw,42px);line-height:1.15;margin:10px 0 8px;color:var(--gold)}h2{color:var(--gold);font-size:20px;margin:28px 0 10px}
+p{color:var(--mut)}.panel{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:22px;margin:16px 0}
+.code{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);border-radius:30px;padding:3px 12px;font-weight:700;letter-spacing:1.5px;font-size:12px;background:rgba(4,224,237,.06)}
+.list{display:grid;gap:10px}.item{display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px 16px;text-decoration:none;color:var(--text)}
+.item:hover,.item:focus-visible{border-color:var(--cyan);outline:none}.item b{display:block;font-size:16px}.item small{color:var(--mut)}.best{font-size:13px;color:var(--green);white-space:nowrap}.best.none{color:var(--mut)}
+.top{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--mut);margin:14px 0}.bar{flex:1;height:8px;border-radius:99px;background:#183047;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width .3s}
+.q{font-size:19px;font-weight:700;color:var(--text);margin:0 0 16px;line-height:1.45}
+.opt{display:flex;gap:10px;width:100%;text-align:left;margin:9px 0;font:inherit;font-size:15.5px;line-height:1.45;padding:12px 14px;border-radius:12px;border:1px solid var(--l);background:#142b43;color:#ecf2f9;cursor:pointer}
+.opt:hover:not(:disabled),.opt:focus-visible{border-color:var(--cyan);outline:none}.opt:disabled{cursor:default}.opt .k{color:var(--cyan);font-weight:700;flex:none}
+.opt.ok{border-color:var(--green);background:rgba(98,228,186,.15)}.opt.ko{border-color:var(--red);background:rgba(255,122,122,.12)}
+.fb{margin-top:14px;padding:13px 15px;border-left:4px solid var(--gold);background:#1b2935;border-radius:0 10px 10px 0;color:var(--text);font-size:15px}.fb b{display:block;margin-bottom:2px}.fb.good b{color:var(--green)}.fb.bad b{color:var(--red)}
+.btn{font:inherit;font-size:15px;padding:11px 18px;border:1px solid var(--l);border-radius:10px;background:#183047;color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.primary{background:var(--cyan);color:#05131e;border-color:var(--cyan);font-weight:bold}.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.score{font-size:54px;font-weight:800;color:var(--gold);line-height:1}.score small{font-size:22px;color:var(--mut)}
+.rev{border-top:1px dashed var(--l);padding:12px 0}.rev p{margin:2px 0}.rev .qq{color:var(--text);font-weight:700}.rev .bad{color:var(--red)}.rev .good{color:var(--green)}
+footer{text-align:center;padding:30px;background:#060d17;border-top:1px solid var(--l);color:var(--mut);font-size:14px}
+@media(max-width:600px){.item{flex-direction:column;align-items:flex-start}}
+</style></head><body>
+<header><a class="logo" href="index.html">#NBProf</a><nav><a href="index.html">ACCUEIL</a><a href="amso2026.html">AMSO 2026</a><a href="quiz.html">QUIZ</a><a href="index.html#contact">CONTACT</a></nav></header>
+<main id="app" aria-live="polite"></main>
+<footer><p>✦ © 2026 NBProf Research · Groupe ADVISORY GROWTH ✦</p><p><small>Quiz d’entraînement non officiels, rédigés à partir des cours du site. Ils ne remplacent pas les supports des enseignants.</small></p><p><a href="confidentialite.html">Politique de confidentialité</a> · <a href="amso2026.html">← Retour à AMSO 2026</a></p></footer>
+<script src="quiz-data.js"></script>
+<script>(function(){
+var D=window.NBQUIZ||{},app=document.getElementById('app'),KEY='nbprof-quiz-scores';
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return{}}}
+function save(id,n){try{var s=load();if(!(id in s)||n>s[id]){s[id]=n;localStorage.setItem(KEY,JSON.stringify(s))}}catch(e){}}
+function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t}return a}
+function home(){
+  var s=load(),order=['S3','S2','S1'],names={S3:'Semestre 3',S2:'Semestre 2',S1:'Semestre 1'},h='<div class="eyebrow">MASTER AMSO · ENTRAÎNEMENT</div><h1>🧠 Quiz par module</h1><p>Vingt questions par module, tirées des cours du site. La correction et l’explication s’affichent après chaque réponse. Votre meilleur score est gardé sur cet appareil.</p>';
+  order.forEach(function(sem){var ids=Object.keys(D).filter(function(k){return D[k].sem===sem});if(!ids.length)return;
+    h+='<h2>'+names[sem]+'</h2><div class="list">';
+    ids.forEach(function(id){var m=D[id],b=s[id];h+='<a class="item" href="quiz.html?m='+encodeURIComponent(id)+'"><span><small>'+esc(m.code)+'</small><b>'+esc(m.titre)+'</b></span><span class="best'+(b==null?' none':'')+'">'+(b==null?'Pas encore tenté':'Meilleur score : '+b+' / '+m.questions.length)+'</span></a>'});
+    h+='</div>'});
+  app.innerHTML=h;document.title='Quiz AMSO · 20 questions par module | NBProf'}
+function run(id){
+  var m=D[id],Q=shuffle(m.questions).map(function(x){var opts=shuffle(x.o.map(function(t,i){return{t:t,ok:i===0}}));return{q:x.q,e:x.e,o:opts}}),i=0,good=0,log=[];
+  document.title='Quiz · '+m.titre+' | NBProf';
+  function show(){var x=Q[i],L='ABCD';
+    app.innerHTML='<div class="eyebrow">QUIZ · '+esc(m.code)+'</div><h1>'+esc(m.titre)+'</h1><div class="top"><span>Question '+(i+1)+' / '+Q.length+'</span><div class="bar"><i style="width:'+(i/Q.length*100)+'%"></i></div><span>Score : '+good+'</span></div><div class="panel"><p class="q" id="qq" tabindex="-1">'+esc(x.q)+'</p><div id="opts">'+x.o.map(function(o,k){return'<button class="opt" type="button" data-k="'+k+'"><span class="k">'+L[k]+'</span><span>'+esc(o.t)+'</span></button>'}).join('')+'</div><div id="fb"></div></div>';
+    document.getElementById('qq').focus();
+    [].forEach.call(app.querySelectorAll('.opt'),function(b){b.addEventListener('click',function(){answer(+b.dataset.k)})})}
+  function answer(k){var x=Q[i],bs=app.querySelectorAll('.opt'),ok=x.o[k].ok,right=x.o.filter(function(o){return o.ok})[0].t;
+    [].forEach.call(bs,function(b,j){b.disabled=true;if(x.o[j].ok)b.classList.add('ok');else if(j===k)b.classList.add('ko')});
+    if(ok)good++;log.push({q:x.q,ok:ok,yours:x.o[k].t,right:right,e:x.e});
+    var last=i===Q.length-1;
+    document.getElementById('fb').innerHTML='<div class="fb '+(ok?'good':'bad')+'"><b>'+(ok?'Bonne réponse.':'Ce n’est pas la bonne réponse.')+'</b>'+esc(x.e)+'</div><div class="row"><button class="btn primary" id="nx" type="button">'+(last?'Voir mon résultat':'Question suivante')+'</button></div>';
+    var nx=document.getElementById('nx');nx.focus();nx.addEventListener('click',function(){i++;if(i<Q.length)show();else end()})}
+  function end(){save(id,good);var n=Q.length,r=good/n,msg=r>=.9?'Excellent : le module est maîtrisé.':r>=.7?'Bon résultat : revoyez les points manqués.':r>=.5?'Résultat moyen : une relecture du cours s’impose.':'À retravailler : reprenez le cours partie par partie.';
+    var bad=log.filter(function(l){return!l.ok});
+    var h='<div class="eyebrow">RÉSULTAT · '+esc(m.code)+'</div><h1>'+esc(m.titre)+'</h1><div class="panel"><div class="score">'+good+'<small> / '+n+'</small></div><p style="color:var(--text);margin:10px 0 0">'+msg+'</p><div class="row"><a class="btn primary" href="quiz.html?m='+encodeURIComponent(id)+'">Recommencer</a>'+(m.cours?'<a class="btn" href="'+esc(m.cours)+'">Relire le cours</a>':'')+'<a class="btn" href="quiz.html">Autres quiz</a></div></div>';
+    if(bad.length){h+='<h2>À revoir : '+bad.length+' question'+(bad.length>1?'s':'')+'</h2><div class="panel">'+bad.map(function(l){return'<div class="rev"><p class="qq">'+esc(l.q)+'</p><p class="bad">Votre réponse : '+esc(l.yours)+'</p><p class="good">Bonne réponse : '+esc(l.right)+'</p><p>'+esc(l.e)+'</p></div>'}).join('')+'</div>'}
+    app.innerHTML=h;window.scrollTo(0,0)}
+  show()}
+var id=new URLSearchParams(location.search).get('m');
+if(id&&D[id])run(id);else home();
+})();</script>
+<!-- Cloudflare Web Analytics — nbprof.com -->
+<script data-cf-beacon='{"token":"ecf82d9260a34bfc8a6fc1cbc861f541"}' src="https://static.cloudflareinsights.com/beacon.min.js" type="module"></script>
+</body></html>
