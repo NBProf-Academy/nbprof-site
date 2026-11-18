@@ -223,9 +223,9 @@ body.rtl .dropdown-item:hover{transform:translateX(-3px)}
   .burger{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--gold);font-size:1.25rem;cursor:pointer;transition:all .2s;margin-left:6px;line-height:1}
   .burger:active{background:rgba(231,198,107,.15)}
 
-  /* Mobile Drawer - 100% opaque pour zéro transparence gênante */
+  /* Mobile Drawer - 100% opaque, fermé par défaut */
   .nav-center{
-    display:none;
+    display:none!important;
     position:fixed;
     top:64px;
     left:0;
@@ -244,7 +244,9 @@ body.rtl .dropdown-item:hover{transform:translateX(-3px)}
     gap:8px;
     z-index:9999;
   }
-  .nav-center.open{display:flex}
+  .nav-center.open{
+    display:flex!important;
+  }
 
   /* Lignes de navigation homogènes et propres */
   .nav-center > a{
