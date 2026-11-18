@@ -455,10 +455,40 @@ border:1px solid rgba(201,168,76,.3);
   }
 }
 
+/* Carte cliquable AMSO 2026 dans Hero CTA (couleurs AMSO 2026 : Cyan & Deep Navy) */
+.hero-amso-card {
+  display:inline-flex; align-items:center; justify-content:center; gap:.65rem;
+  padding:12px 20px; border:1.5px solid #43ddff; border-radius:.75rem;
+  color:#f2f7ff;
+  background:radial-gradient(circle at 15% 50%, rgba(67, 221, 255, 0.22) 0%, transparent 65%), linear-gradient(135deg, #091f33 0%, #040e1b 100%);
+  font-weight:700; font-size:1rem; text-decoration:none; white-space:nowrap;
+  box-shadow:0 4px 20px rgba(67, 221, 255, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transition:all .25s ease; cursor:pointer;
+}
+.hero-amso-card:hover {
+  transform:translateY(-2px); border-color:#6fe7ff;
+  background:radial-gradient(circle at 20% 50%, rgba(67, 221, 255, 0.32) 0%, transparent 70%), linear-gradient(135deg, #0e2e4a 0%, #06172a 100%);
+  box-shadow:0 8px 28px rgba(67, 221, 255, 0.45); color:#ffffff;
+}
+.hero-amso-card:focus-visible { outline:3px solid #43ddff; outline-offset:4px; }
+.hero-amso-icon { font-size:1.15rem; line-height:1; display:inline-flex; align-items:center; }
+.hero-amso-year { color:#43ddff; font-weight:800; text-shadow:0 0 10px rgba(67,221,255,.6); }
+.hero-amso-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  background:#43ddff; color:#03101d; font-size:.62rem; font-weight:800;
+  padding:2px 7px; border-radius:999px; letter-spacing:.6px; line-height:1.2;
+  box-shadow:0 0 12px rgba(67, 221, 255, 0.65);
+  animation:pulseCyan 1.6s infinite;
+}
+@keyframes pulseCyan {
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.08);opacity:.85}
+}
+
 /* Encart YouTube NBProf AMSO */
 .nbprof-yt-hero {
   display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-  padding:12px 19px; border:1px solid #ff636a; border-radius:6px;
+  padding:12px 19px; border:1px solid #ff636a; border-radius:.75rem;
   color:#fff; background:#2c1423; font-weight:650;
 }
 .nbprof-yt-hero:hover { background:#451b30; }
@@ -503,6 +533,8 @@ border:1px solid rgba(201,168,76,.3);
 .nbprof-yt-hero:focus-visible, .nbprof-yt-cta:focus-visible,
 .nbprof-yt-preview:focus-visible, .nbprof-yt-footer:focus-visible { outline:3px solid #f0d080; outline-offset:4px; }
 @media(max-width:680px) {
+  .hero-cta { display:flex; flex-direction:column; align-items:stretch; max-width:340px; margin-left:auto; margin-right:auto; gap:12px; }
+  .hero-cta > * { width:100%!important; box-sizing:border-box; text-align:center; justify-content:center; }
   #youtube-amso { padding-block:18px 35px; }
   .nbprof-yt-panel { grid-template-columns:1fr; gap:25px; }
   .nbprof-yt-preview { justify-self:start; align-items:flex-start; text-align:start; }
@@ -588,6 +620,11 @@ border:1px solid rgba(201,168,76,.3);
     <div class="hero-cta">
       <button class="btn-primary" onclick="scrollToSection('services')" data-i18n="hero_btn1">Mes Services</button>
       <button class="btn-secondary" onclick="scrollToSection('publications')" data-i18n="hero_btn2">Mes Publications</button>
+      <a class="hero-amso-card" href="amso2026.html" title="Master AMSO 2026 — Audit & Management Stratégique">
+        <span class="hero-amso-icon">🎓</span>
+        <span>AMSO <span class="hero-amso-year">2026</span></span>
+        <span class="hero-amso-badge">NEW</span>
+      </a>
       <a class="nbprof-yt-hero" href="#youtube-amso"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l12-7z"/></svg><span data-i18n="yt_hero">YouTube · NBProf AMSO</span></a>
     </div>
     <div class="hero-stats">
