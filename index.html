@@ -216,17 +216,183 @@ body.rtl .dropdown-text{text-align:right}
 body.rtl .dropdown-item:hover{transform:translateX(-3px)}
 
 @media(max-width:920px){
-  nav{padding:12px 18px}
-  .nav-center{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(7,17,31,.98);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);flex-direction:column;align-items:stretch;padding:18px 20px 24px;border-top:1px solid rgba(231,198,107,.2);border-bottom:1px solid rgba(231,198,107,.2);box-shadow:0 20px 45px rgba(0,0,0,.65);max-height:calc(100vh - 70px);overflow-y:auto;gap:8px}
+  nav{padding:10px 16px;min-height:64px;height:64px;background:#07111f!important;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-logo{font-size:1.35rem}
+  .lang-switcher{padding:2px 4px;gap:2px}
+  .lang-btn{padding:4px 7px;font-size:.74rem}
+  .burger{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--gold);font-size:1.25rem;cursor:pointer;transition:all .2s;margin-left:6px;line-height:1}
+  .burger:active{background:rgba(231,198,107,.15)}
+
+  /* Mobile Drawer - 100% opaque pour zéro transparence gênante */
+  .nav-center{
+    display:none;
+    position:fixed;
+    top:64px;
+    left:0;
+    right:0;
+    bottom:auto;
+    background:#07111f!important;
+    flex-direction:column;
+    align-items:stretch;
+    padding:16px 18px 24px;
+    border-top:1px solid rgba(231,198,107,.25);
+    border-bottom:2px solid rgba(231,198,107,.35);
+    box-shadow:0 30px 60px rgba(0,0,0,.92);
+    max-height:calc(100vh - 64px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    gap:8px;
+    z-index:9999;
+  }
   .nav-center.open{display:flex}
-  .burger{display:block}
-  .nav-center a,.nav-dropdown-btn{width:100%;justify-content:flex-start;padding:10px 14px;font-size:.95rem}
-  .nav-dropdown{width:100%;display:flex;flex-direction:column;align-items:stretch}
-  .nav-dropdown-menu{position:static;width:100%;min-width:0;transform:none!important;box-shadow:none;border:none;background:rgba(255,255,255,.03);margin-top:4px;margin-left:12px;border-left:2px solid rgba(231,198,107,.35);border-radius:0 12px 12px 0;padding:6px 4px;opacity:1;visibility:visible;pointer-events:auto;display:flex}
-  body.rtl .nav-dropdown-menu{margin-left:0;margin-right:12px;border-left:none;border-right:2px solid rgba(231,198,107,.35);border-radius:12px 0 0 12px}
-  .dropdown-item{padding:8px 10px!important}
-  .dropdown-desc{white-space:normal}
-  .amso-link,.nav-contact-link{justify-content:center;margin-top:6px;width:100%}
+
+  /* Lignes de navigation homogènes et propres */
+  .nav-center > a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    padding:12px 14px;
+    font-size:.95rem;
+    font-weight:500;
+    color:var(--white);
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:10px;
+    transition:background .2s,border-color .2s;
+    box-sizing:border-box;
+  }
+  .nav-center > a:active{
+    background:rgba(231,198,107,.12);
+    border-color:rgba(231,198,107,.3);
+  }
+
+  /* Capsule AMSO 2026 intégrée harmonieusement */
+  .amso-link{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    padding:12px 14px!important;
+    border-radius:10px!important;
+    background:rgba(231,198,107,.08)!important;
+    border:1px solid rgba(231,198,107,.3)!important;
+    color:var(--gold-light)!important;
+    font-weight:600;
+    margin:0!important;
+    box-shadow:none!important;
+    transform:none!important;
+    box-sizing:border-box;
+  }
+
+  /* Accordéon Outils & Ressources interactif */
+  .nav-dropdown{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+  }
+  .nav-dropdown-btn{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    width:100%!important;
+    padding:12px 14px!important;
+    font-size:.95rem!important;
+    font-weight:500!important;
+    color:var(--white)!important;
+    background:rgba(255,255,255,.03)!important;
+    border:1px solid rgba(255,255,255,.07)!important;
+    border-radius:10px!important;
+    transition:all .2s ease;
+    box-sizing:border-box;
+  }
+  .nav-dropdown.open .nav-dropdown-btn{
+    background:rgba(231,198,107,.12)!important;
+    border-color:rgba(231,198,107,.4)!important;
+    color:var(--gold-light)!important;
+    border-radius:10px 10px 0 0!important;
+  }
+  .nav-dropdown .nav-chevron{
+    transition:transform .25s ease;
+  }
+  .nav-dropdown.open .nav-chevron{
+    transform:rotate(180deg);
+  }
+
+  /* Sous-menu dépliable */
+  .nav-dropdown-menu{
+    display:none;
+    position:static;
+    width:100%;
+    min-width:0;
+    transform:none!important;
+    box-shadow:none;
+    background:rgba(11,23,40,.96);
+    border:1px solid rgba(231,198,107,.3);
+    border-top:none;
+    border-radius:0 0 10px 10px;
+    padding:8px;
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    flex-direction:column;
+    gap:6px;
+    box-sizing:border-box;
+  }
+  .nav-dropdown.open .nav-dropdown-menu{
+    display:flex;
+  }
+  .dropdown-item{
+    display:flex!important;
+    align-items:center;
+    gap:12px;
+    padding:10px 12px!important;
+    border-radius:8px;
+    background:rgba(255,255,255,.03);
+    border:1px solid rgba(255,255,255,.05);
+    color:var(--white)!important;
+    box-sizing:border-box;
+  }
+  .dropdown-item:active{
+    background:rgba(231,198,107,.14);
+  }
+  .dropdown-icon{
+    width:32px;
+    height:32px;
+    font-size:1.15rem;
+  }
+  .dropdown-title{
+    font-size:.88rem;
+  }
+  .dropdown-desc{
+    font-size:.73rem;
+    white-space:normal;
+    line-height:1.25;
+  }
+
+  /* Bouton d'action Contact bien mis en valeur */
+  .nav-contact-link{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    padding:13px 18px!important;
+    margin-top:6px!important;
+    border-radius:10px!important;
+    background:linear-gradient(135deg,#f6d879,#d9ad42)!important;
+    color:#040a12!important;
+    font-weight:700!important;
+    font-size:.95rem!important;
+    border:none!important;
+    box-shadow:0 4px 16px rgba(231,198,107,.35)!important;
+    text-align:center;
+    box-sizing:border-box;
+  }
+  .nav-contact-link:active{
+    transform:scale(.98);
+  }
+
   section{padding:60px 20px}
   .about-grid,.contact-wrap,.form-row{grid-template-columns:1fr}
   .about-img{max-width:250px;margin:0 auto;font-size:5em}
@@ -361,7 +527,7 @@ border:1px solid rgba(201,168,76,.3);
     </a>
 
     <div class="nav-dropdown">
-      <button class="nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false">
+      <button class="nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown(event)">
         <span data-i18n="nav_tools">Outils &amp; Ressources</span>
         <svg class="nav-chevron" width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
           <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1017,8 +1183,10 @@ function openArticle(id){if(typeof ARTICLES==='undefined')return;const a=ARTICLE
 function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';}
 function closeModalOutside(e){if(e.target.id==='modalOverlay')closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-function scrollToSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});document.getElementById('navCenter').classList.remove('open');}
-function toggleMenu(){document.getElementById('navCenter').classList.toggle('open');}
+function scrollToSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});document.getElementById('navCenter').classList.remove('open');const b=document.querySelector('.burger');if(b)b.innerHTML='☰';}
+function toggleMenu(){const nav=document.getElementById('navCenter');const b=document.querySelector('.burger');const isOpen=nav.classList.toggle('open');if(b)b.innerHTML=isOpen?'✕':'☰';}
+function toggleDropdown(e){if(window.innerWidth<=920){if(e)e.stopPropagation();const d=document.querySelector('.nav-dropdown');if(d)d.classList.toggle('open');}}
+document.addEventListener('click',e=>{const nav=document.getElementById('navbar');const navCenter=document.getElementById('navCenter');const b=document.querySelector('.burger');if(navCenter&&navCenter.classList.contains('open')&&nav&&!nav.contains(e.target)){navCenter.classList.remove('open');if(b)b.innerHTML='☰';}});
 function setLang(lang,btn){currentLang=lang;document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');applyTranslations(lang);if(lang==='ar'){document.body.classList.add('rtl');document.documentElement.setAttribute('lang','ar');document.documentElement.setAttribute('dir','rtl');}else{document.body.classList.remove('rtl');document.documentElement.setAttribute('lang',lang);document.documentElement.setAttribute('dir','ltr');}renderArticles('all');}
 window.addEventListener('scroll',()=>{const nav=document.getElementById('navbar');if(window.scrollY>50)nav.classList.add('scrolled');else nav.classList.remove('scrolled');});
 const observer=new IntersectionObserver((entries)=>{entries.forEach((entry,i)=>{if(entry.isIntersecting)setTimeout(()=>entry.target.classList.add('visible'),i*80);});},{threshold:0.1});
