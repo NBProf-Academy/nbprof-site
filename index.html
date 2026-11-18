@@ -28,79 +28,41 @@ html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden}
 .gold{color:var(--gold)}
 a{color:inherit;text-decoration:none}
-nav{position:fixed;top:0;left:0;right:0;padding:18px 40px;z-index:1000;background:linear-gradient(to bottom,rgba(7,7,26,.95),transparent);display:flex;justify-content:space-between;align-items:center;transition:background .3s}
-nav.scrolled{background:rgba(7,7,26,.98);box-shadow:0 2px 20px rgba(0,0,0,.5)}
-.nav-logo{font-size:1.4em;font-weight:bold;color:var(--gold);cursor:pointer}
-.nav-center{display:flex;gap:25px}
-.nav-center a{cursor:pointer;transition:color .3s;font-size:.95em}
-.nav-center a:hover{color:var(--gold)}
-  .nav-dropdown{
-  position:relative;
-  display:flex;
-  align-items:center;
-}
-
-.nav-dropdown-btn{
-  background:transparent;
-  border:none;
-  color:var(--white);
-  font:inherit;
-  font-size:.95em;
-  cursor:pointer;
-  padding:0;
-  transition:color .3s;
-}
-
-.nav-dropdown-btn:hover{
-  color:var(--gold);
-}
-
-.nav-dropdown-menu{
-  position:absolute;
-  top:calc(100% + 12px);
-  left:50%;
-  transform:translateX(-50%) translateY(-6px);
-  min-width:250px;
-  padding:10px;
-  background:rgba(13,13,40,.98);
-  border:1px solid var(--gold-dim);
-  border-radius:10px;
-  box-shadow:0 18px 45px rgba(0,0,0,.45);
-  opacity:0;
-  visibility:hidden;
-  pointer-events:none;
-  transition:all .22s ease;
-  z-index:1500;
-}
-
-.nav-dropdown:hover .nav-dropdown-menu,
-.nav-dropdown:focus-within .nav-dropdown-menu{
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transform:translateX(-50%) translateY(0);
-}
-
-.nav-dropdown-menu a{
-  display:block;
-  padding:11px 13px;
-  border-radius:7px;
-  color:var(--white);
-  white-space:nowrap;
-  font-size:.9em;
-  cursor:pointer;
-}
-
-.nav-dropdown-menu a:hover{
-  background:var(--gold-dim);
-  color:var(--gold);
-}
-.lang-switcher{display:flex;gap:6px;align-items:center}
-.lang-btn{background:transparent;border:1px solid var(--gold);color:var(--white);padding:5px 10px;cursor:pointer;border-radius:4px;font-size:.82em;transition:all .3s;display:inline-flex;align-items:center;gap:4px}
-.lang-btn:hover{background:rgba(201,168,76,.2)}
-.lang-btn.active{background:var(--gold);color:var(--navy);font-weight:600}
-.lang-flag{font-size:1em}
-.burger{display:none;font-size:1.6em;cursor:pointer;color:var(--gold);background:none;border:none;margin-left:5px}
+section{scroll-margin-top:85px}
+nav{position:fixed;top:0;left:0;right:0;padding:12px clamp(18px,3.5vw,48px);z-index:1000;background:rgba(7,17,31,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;align-items:center;transition:background .3s,box-shadow .3s,padding .3s;min-height:68px;box-sizing:border-box}
+nav.scrolled{background:rgba(7,17,31,.96);border-color:rgba(231,198,107,.25);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.nav-logo{font-size:1.45em;font-weight:800;color:var(--gold);cursor:pointer;white-space:nowrap;flex-shrink:0;letter-spacing:-.03em;transition:opacity .2s}
+.nav-logo:hover{opacity:.9}
+.nav-center{display:flex;align-items:center;gap:clamp(6px,1.2vw,20px);flex-wrap:nowrap}
+.nav-center a{cursor:pointer;transition:all .22s ease;font-size:clamp(.82rem,.9vw,.92rem);font-weight:500;color:var(--white-dim);padding:6px 11px;border-radius:8px;white-space:nowrap;display:inline-flex;align-items:center;line-height:1.2}
+.nav-center a:hover{color:var(--gold-light);background:rgba(255,255,255,.05)}
+.nav-dropdown{position:relative;display:inline-flex;align-items:center}
+.nav-dropdown-btn{background:transparent;border:none;color:var(--white-dim);font:inherit;font-size:clamp(.82rem,.9vw,.92rem);font-weight:500;cursor:pointer;padding:6px 11px;border-radius:8px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;line-height:1.2;transition:all .22s ease}
+.nav-dropdown-btn:hover,.nav-dropdown:hover .nav-dropdown-btn{color:var(--gold-light);background:rgba(255,255,255,.05)}
+.nav-chevron{display:inline-block;transition:transform .25s ease;flex-shrink:0}
+.nav-dropdown:hover .nav-chevron{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:300px;padding:8px;background:rgba(11,23,40,.97);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(231,198,107,.28);border-radius:14px;box-shadow:0 22px 50px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);opacity:0;visibility:hidden;pointer-events:none;transition:all .24s cubic-bezier(.16,1,.3,1);z-index:1500;display:flex;flex-direction:column;gap:3px}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.dropdown-item{display:flex!important;align-items:center;gap:12px;padding:10px 12px!important;border-radius:10px;color:var(--white)!important;text-decoration:none;white-space:nowrap;transition:all .2s ease;cursor:pointer}
+.dropdown-item:hover{background:rgba(231,198,107,.12)!important;transform:translateX(3px);color:var(--gold-light)!important}
+.dropdown-icon{font-size:1.2rem;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);flex-shrink:0}
+.dropdown-text{display:flex;flex-direction:column;text-align:left}
+.dropdown-title{font-size:.86rem;font-weight:600;color:var(--white);line-height:1.25}
+.dropdown-item:hover .dropdown-title{color:var(--gold-light)}
+.dropdown-desc{font-size:.72rem;color:var(--white-dim);opacity:.8;margin-top:2px;line-height:1.2}
+.amso-link{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;padding:5px 12px;border-radius:999px;background:rgba(231,198,107,.08);border:1px solid rgba(231,198,107,.32);color:var(--gold-light)!important;font-weight:600;font-size:clamp(.8rem,.88vw,.9rem);transition:all .25s ease}
+.amso-link:hover{background:rgba(231,198,107,.18);border-color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 15px rgba(231,198,107,.15)}
+.new-badge{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f6d879,#d9ad42);color:#040a12;font-size:.6rem;font-weight:800;padding:2px 6px;border-radius:999px;letter-spacing:.6px;line-height:1;box-shadow:0 0 10px rgba(231,198,107,.4);animation:pulseNew 1.6s infinite}
+@keyframes pulseNew{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.08);opacity:.8}}
+.nav-contact-link{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;color:var(--gold-light)!important;border:1px solid rgba(231,198,107,.35);background:rgba(231,198,107,.06);font-weight:600;white-space:nowrap;transition:all .25s ease}
+.nav-contact-link:hover{background:var(--gold);color:#040a12!important;border-color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 14px rgba(231,198,107,.25)}
+.lang-switcher{display:inline-flex;align-items:center;gap:3px;background:rgba(255,255,255,.05);padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(10px);flex-shrink:0}
+.lang-btn{background:transparent;border:none;color:var(--white-dim);padding:5px 9px;cursor:pointer;border-radius:999px;font-size:.78rem;font-weight:600;transition:all .2s ease;display:inline-flex;align-items:center;gap:4px;line-height:1}
+.lang-btn:hover:not(.active){color:var(--white);background:rgba(255,255,255,.08)}
+.lang-btn.active{background:var(--gold);color:#040a12;font-weight:700;box-shadow:0 2px 8px rgba(231,198,107,.35)}
+.lang-flag{font-size:1em;line-height:1}
+.burger{display:none;font-size:1.5rem;cursor:pointer;color:var(--gold);background:none;border:none;margin-left:8px;padding:4px 6px;border-radius:6px;transition:background .2s}
+.burger:hover{background:rgba(255,255,255,.08)}
 .hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 20px 60px;background:radial-gradient(circle at 50% 30%,rgba(201,168,76,.15),transparent 60%)}
 .hero-content{max-width:850px}
 .hero-tag{display:inline-block;color:var(--gold);font-size:.9em;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;border:1px solid var(--gold);padding:6px 18px;border-radius:30px}
@@ -250,72 +212,21 @@ footer{background:var(--navy-darker);padding:50px 20px 30px;text-align:center;bo
 body.rtl{direction:rtl}
 body.rtl .timeline-item{border-left:none;border-right:3px solid var(--gold);border-radius:8px 0 0 8px}
 body.rtl .pub-badge{align-self:flex-end}
-  .amso-link{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-}
+body.rtl .dropdown-text{text-align:right}
+body.rtl .dropdown-item:hover{transform:translateX(-3px)}
 
-.new-badge{
-  display:inline-block;
-  background:var(--gold);
-  color:var(--navy);
-  font-size:0.55em;
-  font-weight:bold;
-  padding:3px 7px;
-  border-radius:999px;
-  letter-spacing:.8px;
-  text-transform:uppercase;
-  animation:pulseNew 1.2s infinite;
-  box-shadow:0 0 10px rgba(201,168,76,.45);
-  line-height:1;
-}
-
-@keyframes pulseNew{
-  0%,100%{
-    transform:scale(1);
-    opacity:1;
-  }
-  50%{
-    transform:scale(1.08);
-    opacity:.72;
-  }
-}
-@media(max-width:768px){
-  nav{padding:15px 20px}
-  .nav-center{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy-2);flex-direction:column;padding:20px;border-top:1px solid var(--gold-dim)}
+@media(max-width:920px){
+  nav{padding:12px 18px}
+  .nav-center{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(7,17,31,.98);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);flex-direction:column;align-items:stretch;padding:18px 20px 24px;border-top:1px solid rgba(231,198,107,.2);border-bottom:1px solid rgba(231,198,107,.2);box-shadow:0 20px 45px rgba(0,0,0,.65);max-height:calc(100vh - 70px);overflow-y:auto;gap:8px}
   .nav-center.open{display:flex}
   .burger{display:block}
-  .nav-dropdown{
-  width:100%;
-  display:block;
-}
-
-.nav-dropdown-btn{
-  width:100%;
-  text-align:left;
-}
-
-.nav-dropdown-menu{
-  position:static;
-  width:100%;
-  min-width:0;
-  margin-top:8px;
-  padding:6px 0 0 12px;
-  background:transparent;
-  border:none;
-  box-shadow:none;
-  opacity:1;
-  visibility:visible;
-  pointer-events:auto;
-  transform:none;
-}
-
-.nav-dropdown-menu a{
-  padding:9px 12px;
-  white-space:normal;
-  font-size:.9em;
-}
+  .nav-center a,.nav-dropdown-btn{width:100%;justify-content:flex-start;padding:10px 14px;font-size:.95rem}
+  .nav-dropdown{width:100%;display:flex;flex-direction:column;align-items:stretch}
+  .nav-dropdown-menu{position:static;width:100%;min-width:0;transform:none!important;box-shadow:none;border:none;background:rgba(255,255,255,.03);margin-top:4px;margin-left:12px;border-left:2px solid rgba(231,198,107,.35);border-radius:0 12px 12px 0;padding:6px 4px;opacity:1;visibility:visible;pointer-events:auto;display:flex}
+  body.rtl .nav-dropdown-menu{margin-left:0;margin-right:12px;border-left:none;border-right:2px solid rgba(231,198,107,.35);border-radius:12px 0 0 12px}
+  .dropdown-item{padding:8px 10px!important}
+  .dropdown-desc{white-space:normal}
+  .amso-link,.nav-contact-link{justify-content:center;margin-top:6px;width:100%}
   section{padding:60px 20px}
   .about-grid,.contact-wrap,.form-row{grid-template-columns:1fr}
   .about-img{max-width:250px;margin:0 auto;font-size:5em}
@@ -438,39 +349,65 @@ border:1px solid rgba(201,168,76,.3);
 <body>
 
 <nav id="navbar">
-  <div class="nav-logo" onclick="scrollToSection('hero')">NBProf</div>
+  <div class="nav-logo" onclick="scrollToSection('hero')" title="NBProf - Accueil">NBProf</div>
+
   <div class="nav-center" id="navCenter">
-    <a onclick="scrollToSection('themes')" data-i18n="nav_themes">Thèmes</a>
     <a onclick="scrollToSection('about')" data-i18n="nav_about">À propos</a>
+    <a onclick="scrollToSection('themes')" data-i18n="nav_themes">Thèmes</a>
     <a onclick="scrollToSection('publications')" data-i18n="nav_pubs">Publications</a>
-    <a href="/dashboard/">Dashboard</a>
-    <div class="nav-dropdown">
-  <button class="nav-dropdown-btn" type="button">
-    Outils IA ▾
-  </button>
-
-  <div class="nav-dropdown-menu">
-    <a onclick="scrollToSection('outils-ia')">
-      🤖 Outils IA pour doctorants
-    </a>
-
-    <a href="https://recherche.nbprof.com/" target="_blank" rel="noopener">
-      🔬 Recherche NBProf
-    </a>
-  </div>
-</div>
-    <a onclick="scrollToSection('services')">Projets & Ressources</a>
-    <a onclick="scrollToSection('contact')" data-i18n="nav_contact">Contact</a>
     <a href="amso2026.html" class="amso-link">
-  <span data-i18n="nav_amso">AMSO 2026</span>
-  <span class="new-badge">NEW</span>
-</a>
+      <span data-i18n="nav_amso">AMSO 2026</span>
+      <span class="new-badge">NEW</span>
+    </a>
+
+    <div class="nav-dropdown">
+      <button class="nav-dropdown-btn" type="button" aria-haspopup="true" aria-expanded="false">
+        <span data-i18n="nav_tools">Outils &amp; Ressources</span>
+        <svg class="nav-chevron" width="11" height="11" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+          <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <div class="nav-dropdown-menu">
+        <a class="dropdown-item" href="/dashboard/">
+          <span class="dropdown-icon">📊</span>
+          <div class="dropdown-text">
+            <span class="dropdown-title" data-i18n="nav_dashboard">Dashboard interactif</span>
+            <span class="dropdown-desc" data-i18n="nav_dashboard_sub">Diagnostic KPI &amp; pilotage stratégique</span>
+          </div>
+        </a>
+        <a class="dropdown-item" onclick="scrollToSection('outils-ia')">
+          <span class="dropdown-icon">🤖</span>
+          <div class="dropdown-text">
+            <span class="dropdown-title" data-i18n="nav_ai_phd">Outils IA doctorants</span>
+            <span class="dropdown-desc" data-i18n="nav_ai_phd_sub">Recherche, lecture &amp; synthèse</span>
+          </div>
+        </a>
+        <a class="dropdown-item" href="https://recherche.nbprof.com/" target="_blank" rel="noopener">
+          <span class="dropdown-icon">🔬</span>
+          <div class="dropdown-text">
+            <span class="dropdown-title" data-i18n="nav_recherche">Recherche NBProf</span>
+            <span class="dropdown-desc" data-i18n="nav_recherche_sub">Plateforme d’accompagnement scientifique</span>
+          </div>
+        </a>
+        <a class="dropdown-item" onclick="scrollToSection('services')">
+          <span class="dropdown-icon">📂</span>
+          <div class="dropdown-text">
+            <span class="dropdown-title" data-i18n="nav_ecosystem">Tous les projets &amp; ressources</span>
+            <span class="dropdown-desc" data-i18n="nav_ecosystem_sub">Vue d’ensemble de l’écosystème</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <a onclick="scrollToSection('contact')" class="nav-contact-link" data-i18n="nav_contact">Contact</a>
   </div>
+
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('fr',this)"><span class="lang-flag">🇫🇷</span> FR</button>
     <button class="lang-btn" onclick="setLang('ar',this)"><span class="lang-flag">🇲🇦</span> AR</button>
     <button class="lang-btn" onclick="setLang('en',this)"><span class="lang-flag">🇬🇧</span> EN</button>
-    <button class="burger" onclick="toggleMenu()">☰</button>
+    <button class="burger" onclick="toggleMenu()" aria-label="Menu navigation">☰</button>
   </div>
 </nav>
 
@@ -1067,7 +1004,7 @@ Accéder au Dashboard →
 
 <script src="articles.js"></script>
 <script>
-const TRANSLATIONS={fr:{nav_themes:"Thèmes",nav_about:"À propos",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",nav_amso:"AMSO 2026",hero_tag:"Professeur au primaire Etudiant-chercheur · Futur Auditeur",hero_subtitle:"Expert en IA, Management Stratégique & Audit",hero_sub:"23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.",hero_btn1:"Mes Services",hero_btn2:"Mes Publications",stat1:"Ans d'expérience",stat2:"Niveaux enseignés",stat3:"Publication int'l",stat4:"Langues",themes_tag:"Domaines d'expertise",themes_title_1:"Mes",themes_title_2:"Thèmes",themes_sub:"Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.",theme1_t:"Intelligence Artificielle & Éducation",theme1_d:"Comment l'IA transforme les pratiques managériales.",theme2_t:"Management Stratégique",theme2_d:"Analyse SWOT, PESTEL, forces de Porter.",theme2_tag:"Management · Stratégie",theme3_t:"Audit & Contrôle de Gestion",theme3_d:"Audit organisationnel et contrôle de gestion.",theme3_tag:"Audit · Gestion",theme4_t:"Méthodologie de Recherche",theme4_d:"PRISMA 2020, approches qualitatives et quantitatives.",theme5_t:"Pédagogie Moderne",theme5_d:"Innovations pédagogiques adaptées au Maroc.",theme5_tag:"Éducation",theme6_t:"Transformation Digitale",theme6_d:"Numérisation des établissements scolaires.",about_tag:"À propos",about_title_1:"Qui",about_title_2:"suis-je",about_loc:"📍 Localisation",about_form:"🎓 Formation actuelle",about_p1:"Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans. Ma mission : <strong style='color:var(--gold)'>rendre le savoir accessible à tous</strong>.",about_p2:"À travers ce site, je partage mes connaissances en management stratégique, audit, IA et méthodologie de recherche.",about_quote:'"L\'éducation est l\'arme la plus puissante pour changer le monde."',pub_label:"📄 Publication scientifique internationale",pub_title:'"L\'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"',pub_authors:"Co-auteurs : Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"Mon parcours",tl1_t:"2000-2002 — CFI Kénitra",tl1_d:"Formation bilingue arabe-français en sciences de l'éducation.",tl2_t:"2002-aujourd'hui — Enseignant",tl2_d:"23 ans d'enseignement au Ministère de l'Éducation Nationale.",tl5_t:"2025-aujourd'hui — Master AMSO",tl5_d:"Audit et Management Stratégique — FSJESKS.",tl6_t:"2026 — Publication scientifique internationale",tl6_d:'"L\'IA comme levier de transformation managériale" — AJMET.',pubs_tag:"Mes publications",pubs_title_1:"Articles &",pubs_title_2:"Recherches",pubs_sub:"Cliquez sur un article pour le lire en intégralité.",filter_all:"Tous",filter_ia:"IA & Éducation",filter_mgmt:"Management",filter_meth:"Méthodologie",filter_audit:"Audit",services_tag:"Ce que je propose",services_title_1:"Mes",services_title_2:"Services",services_sub:"Accompagnement académique professionnel en français, arabe et anglais.",srv1_t:"Rédaction de Mémoire",srv1_d:"Accompagnement complet : problématique, revue de littérature, méthodologie.",srv2_t:"Accompagnement Méthodologique",srv2_d:"PRISMA 2020, approches qualitatives et quantitatives.",srv3_t:"Relecture & Correction",srv3_d:"Correction linguistique et méthodologique.",srv4_t:"Conseil en Management",srv4_d:"Analyse SWOT, PESTEL, audit organisationnel.",srv_price:"Sur devis",srv1_u:"Tarif selon le niveau",srv2_u:"Sessions individuelles",srv3_u:"2 à 5 jours",srv4_u:"Selon la mission",srv_btn:"Me contacter",why_title:"💡 Pourquoi me choisir ?",why1:"23 ans d'expérience en éducation",why2:"Publication scientifique internationale",why3:"Master AMSO en cours",why4:"Maîtrise de PRISMA 2020",why5:"Multilingue FR-AR-EN",why6:"Tarifs étudiants",why7:"Travail à distance",why8:"Réponse sous 24-48h",contact_tag:"Travaillons ensemble",contact_title_1:"Me",contact_title_2:"Contacter",contact_sub:"Vous avez un mémoire à rédiger ? Je suis disponible.",ci_loc:"Localisation",ci_aff:"Affiliation académique",ci_lang:"Langues de travail",ci_lang_v:"🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija",ci_delay:"Délai de réponse",ci_delay_v:"24 à 48 heures",f_prenom:"Votre prénom *",f_nom:"Votre nom *",f_email:"Votre email *",f_msg:"Votre message *",f_submit:"📩 Envoyer ma demande",f_success:"✅ Votre message a bien été envoyé !",footer_tag:"Professeur au primaire Etudiant-chercheur · Expert en IA, Management Stratégique & Audit",footer_copy:"© 2026 Noamane Boulahcen · Tous droits réservés",read_more:"Lire →",contact_me:"Me contacter"},ar:{nav_themes:"المحاور",nav_about:"نبذة عني",nav_pubs:"المنشورات",nav_services:"الخدمات",nav_contact:"تواصل",nav_amso:"AMSO 2026",hero_tag:"أستاذ باحث · مدقق المستقبل",hero_subtitle:"خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",hero_sub:"23 سنة من الخبرة في التعليم. مؤلف منشور علمي دولي.",hero_btn1:"خدماتي",hero_btn2:"منشوراتي",stat1:"سنة خبرة",stat2:"مستويات تدريس",stat3:"منشور دولي",stat4:"لغات",themes_tag:"مجالات الخبرة",themes_title_1:"محاوري",themes_title_2:"",themes_sub:"محتوى تعليمي غني وميسر.",theme1_t:"الذكاء الاصطناعي والتعليم",theme1_d:"كيف يحول الذكاء الاصطناعي الممارسات الإدارية.",theme2_t:"الإدارة الاستراتيجية",theme2_d:"تحليل SWOT وPESTEL وقوى بورتر.",theme2_tag:"إدارة · استراتيجية",theme3_t:"التدقيق ومراقبة التسيير",theme3_d:"التدقيق التنظيمي ومراقبة التسيير.",theme3_tag:"تدقيق · تسيير",theme4_t:"منهجية البحث",theme4_d:"PRISMA 2020، المقاربات النوعية والكمية.",theme5_t:"البيداغوجيا الحديثة",theme5_d:"الابتكارات البيداغوجية المكيفة مع المغرب.",theme5_tag:"تعليم",theme6_t:"التحول الرقمي",theme6_d:"رقمنة المؤسسات المدرسية.",about_tag:"نبذة عني",about_title_1:"من",about_title_2:"أنا",about_loc:"📍 الموقع",about_form:"🎓 التكوين الحالي",about_p1:"من مواليد الراشيدية، أب لثلاثة أطفال، أستاذ منذ 23 سنة. مهمتي: <strong style='color:var(--gold)'>جعل المعرفة متاحة للجميع</strong>.",about_p2:"من خلال هذا الموقع، أشارك معرفتي في الإدارة الاستراتيجية والتدقيق والذكاء الاصطناعي.",about_quote:'"التعليم هو أقوى سلاح لتغيير العالم."',pub_label:"📄 منشور علمي دولي",pub_title:'"الذكاء الاصطناعي كرافعة لتحويل الممارسات الإدارية في المؤسسات المدرسية العمومية: مراجعة منهجية وفق PRISMA 2020"',pub_authors:"المؤلفون المشاركون: نويب أ.، بولخير ل.، بولحسن ن.",about_parcours:"مساري",tl1_t:"2000-2002 — CFI القنيطرة",tl1_d:"تكوين ثنائي اللغة في علوم التربية.",tl2_t:"2002-اليوم — أستاذ",tl2_d:"23 سنة من التدريس.",tl5_t:"2025-اليوم — ماستر AMSO",tl5_d:"التدقيق والإدارة الاستراتيجية — FSJESKS.",tl6_t:"2026 — منشور علمي دولي",tl6_d:'"الذكاء الاصطناعي كرافعة للتحول الإداري" — AJMET.',pubs_tag:"منشوراتي",pubs_title_1:"مقالات و",pubs_title_2:"أبحاث",pubs_sub:"انقر على أي مقال لقراءته كاملا.",filter_all:"الكل",filter_ia:"ذكاء اصطناعي",filter_mgmt:"إدارة",filter_meth:"منهجية",filter_audit:"تدقيق",services_tag:"ما أقدمه",services_title_1:"",services_title_2:"خدماتي",services_sub:"مرافقة أكاديمية احترافية بالفرنسية والعربية والإنجليزية.",srv1_t:"كتابة المذكرات",srv1_d:"مرافقة شاملة: الإشكالية، مراجعة الأدبيات، المنهجية.",srv2_t:"المرافقة المنهجية",srv2_d:"PRISMA 2020، المقاربات النوعية والكمية.",srv3_t:"المراجعة والتصحيح",srv3_d:"تصحيح لغوي ومنهجي.",srv4_t:"استشارة في الإدارة",srv4_d:"تحليل SWOT وPESTEL والتدقيق التنظيمي.",srv_price:"حسب الطلب",srv1_u:"السعر حسب المستوى",srv2_u:"جلسات فردية",srv3_u:"2 إلى 5 أيام",srv4_u:"حسب المهمة",srv_btn:"تواصل معي",why_title:"💡 لماذا تختارني؟",why1:"23 سنة من الخبرة في التعليم",why2:"منشور علمي دولي",why3:"ماستر AMSO قيد الإنجاز",why4:"إتقان PRISMA 2020",why5:"متعدد اللغات",why6:"أسعار طلابية",why7:"عمل عن بعد",why8:"رد خلال 24-48 ساعة",contact_tag:"لنعمل معًا",contact_title_1:"تواصل",contact_title_2:"معي",contact_sub:"هل لديك مذكرة لكتابتها؟ أنا متاح.",ci_loc:"الموقع",ci_aff:"الانتماء الأكاديمي",ci_lang:"لغات العمل",ci_lang_v:"🇫🇷 الفرنسية · 🇲🇦 العربية · 🇬🇧 الإنجليزية · الدارجة",ci_delay:"مدة الرد",ci_delay_v:"24 إلى 48 ساعة",f_prenom:"اسمك الشخصي *",f_nom:"اسمك العائلي *",f_email:"بريدك الإلكتروني *",f_msg:"رسالتك *",f_submit:"📩 إرسال طلبي",f_success:"✅ تم إرسال رسالتك بنجاح!",footer_tag:"أستاذ باحث · خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",footer_copy:"© 2026 نعمان بولحسن · جميع الحقوق محفوظة",read_more:"اقرأ ←",contact_me:"تواصل معي"},en:{nav_themes:"Topics",nav_about:"About",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",nav_amso:"AMSO 2026",hero_tag:"Lecturer-Researcher · Future Auditor",hero_subtitle:"Expert in AI, Strategic Management & Audit",hero_sub:"23 years of experience in education. Author of an international scientific publication.",hero_btn1:"My Services",hero_btn2:"My Publications",stat1:"Years of experience",stat2:"Teaching levels",stat3:"Int'l publication",stat4:"Languages",themes_tag:"Areas of expertise",themes_title_1:"My",themes_title_2:"Topics",themes_sub:"Rich, accessible educational content based on scientific research.",theme1_t:"AI & Education",theme1_d:"How AI is transforming managerial practices.",theme2_t:"Strategic Management",theme2_d:"SWOT, PESTEL, Porter's forces.",theme2_tag:"Management · Strategy",theme3_t:"Audit & Management Control",theme3_d:"Organizational audit and management control.",theme3_tag:"Audit · Control",theme4_t:"Research Methodology",theme4_d:"PRISMA 2020, qualitative and quantitative approaches.",theme5_t:"Modern Pedagogy",theme5_d:"Pedagogical innovations adapted to Morocco.",theme5_tag:"Education",theme6_t:"Digital Transformation",theme6_d:"Digitization of schools.",about_tag:"About",about_title_1:"Who",about_title_2:"am I",about_loc:"📍 Location",about_form:"🎓 Current education",about_p1:"From Errachidia, father of 3 children, teacher for 23 years. My mission: <strong style='color:var(--gold)'>make knowledge accessible to all</strong>.",about_p2:"Through this site, I share my knowledge in strategic management, audit, AI and research methodology.",about_quote:'"Education is the most powerful weapon to change the world."',pub_label:"📄 International scientific publication",pub_title:'"Artificial intelligence as a lever for transforming managerial practices in public schools: a systematic literature review using PRISMA 2020"',pub_authors:"Co-authors: Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"My journey",tl1_t:"2000-2002 — CFI Kenitra",tl1_d:"Bilingual Arabic-French training.",tl2_t:"2002-present — Teacher",tl2_d:"23 years of teaching.",tl5_t:"2025-present — Master AMSO",tl5_d:"Audit and Strategic Management — FSJESKS.",tl6_t:"2026 — International scientific publication",tl6_d:'"AI as a lever for managerial transformation" — AJMET.',pubs_tag:"My publications",pubs_title_1:"Articles &",pubs_title_2:"Research",pubs_sub:"Click on an article to read it in full.",filter_all:"All",filter_ia:"AI & Education",filter_mgmt:"Management",filter_meth:"Methodology",filter_audit:"Audit",services_tag:"What I offer",services_title_1:"My",services_title_2:"Services",services_sub:"Professional academic support in French, Arabic and English.",srv1_t:"Thesis Writing",srv1_d:"Complete support: research question, literature review, methodology.",srv2_t:"Methodological Support",srv2_d:"PRISMA 2020, qualitative and quantitative approaches.",srv3_t:"Proofreading & Editing",srv3_d:"Linguistic and methodological correction.",srv4_t:"Management Consulting",srv4_d:"SWOT, PESTEL analysis, organizational audit.",srv_price:"On quote",srv1_u:"Price depending on level",srv2_u:"Individual sessions",srv3_u:"2 to 5 days",srv4_u:"Depending on the mission",srv_btn:"Contact me",why_title:"💡 Why choose me?",why1:"23 years of experience in education",why2:"International scientific publication",why3:"Master AMSO in progress",why4:"Mastery of PRISMA 2020",why5:"Multilingual FR-AR-EN",why6:"Student rates",why7:"Remote work",why8:"Response within 24-48h",contact_tag:"Let's work together",contact_title_1:"Contact",contact_title_2:"Me",contact_sub:"Do you have a thesis to write? I am available.",ci_loc:"Location",ci_aff:"Academic affiliation",ci_lang:"Working languages",ci_lang_v:"🇫🇷 French · 🇲🇦 Arabic · 🇬🇧 English · Darija",ci_delay:"Response time",ci_delay_v:"24 to 48 hours",f_prenom:"Your first name *",f_nom:"Your last name *",f_email:"Your email *",f_msg:"Your message *",f_submit:"📩 Send my request",f_success:"✅ Your message has been sent!",footer_tag:"Lecturer-Researcher · Expert in AI, Strategic Management & Audit",footer_copy:"© 2026 Noamane Boulahcen · All rights reserved",read_more:"Read →",contact_me:"Contact me"}};
+const TRANSLATIONS={fr:{nav_themes:"Thèmes",nav_about:"À propos",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",nav_amso:"AMSO 2026",nav_tools:"Outils & Ressources",nav_dashboard:"Dashboard interactif",nav_dashboard_sub:"Diagnostic KPI & pilotage stratégique",nav_ai_phd:"Outils IA doctorants",nav_ai_phd_sub:"Recherche, lecture & synthèse",nav_recherche:"Recherche NBProf",nav_recherche_sub:"Plateforme scientifique",nav_ecosystem:"Tous les projets & ressources",nav_ecosystem_sub:"Vue d'ensemble de l'écosystème",hero_tag:"Professeur au primaire Etudiant-chercheur · Futur Auditeur",hero_subtitle:"Expert en IA, Management Stratégique & Audit",hero_sub:"23 ans d'expérience en éducation. Auteur d'une publication scientifique internationale.",hero_btn1:"Mes Services",hero_btn2:"Mes Publications",stat1:"Ans d'expérience",stat2:"Niveaux enseignés",stat3:"Publication int'l",stat4:"Langues",themes_tag:"Domaines d'expertise",themes_title_1:"Mes",themes_title_2:"Thèmes",themes_sub:"Des contenus pédagogiques riches, accessibles et basés sur la recherche scientifique.",theme1_t:"Intelligence Artificielle & Éducation",theme1_d:"Comment l'IA transforme les pratiques managériales.",theme2_t:"Management Stratégique",theme2_d:"Analyse SWOT, PESTEL, forces de Porter.",theme2_tag:"Management · Stratégie",theme3_t:"Audit & Contrôle de Gestion",theme3_d:"Audit organisationnel et contrôle de gestion.",theme3_tag:"Audit · Gestion",theme4_t:"Méthodologie de Recherche",theme4_d:"PRISMA 2020, approches qualitatives et quantitatives.",theme5_t:"Pédagogie Moderne",theme5_d:"Innovations pédagogiques adaptées au Maroc.",theme5_tag:"Éducation",theme6_t:"Transformation Digitale",theme6_d:"Numérisation des établissements scolaires.",about_tag:"À propos",about_title_1:"Qui",about_title_2:"suis-je",about_loc:"📍 Localisation",about_form:"🎓 Formation actuelle",about_p1:"Originaire d'Errachidia, père de 3 enfants, enseignant depuis 23 ans. Ma mission : <strong style='color:var(--gold)'>rendre le savoir accessible à tous</strong>.",about_p2:"À travers ce site, je partage mes connaissances en management stratégique, audit, IA et méthodologie de recherche.",about_quote:'"L\'éducation est l\'arme la plus puissante pour changer le monde."',pub_label:"📄 Publication scientifique internationale",pub_title:'"L\'intelligence artificielle comme levier de transformation des pratiques managériales dans les établissements scolaires publics : une revue de littérature systématique selon la méthode PRISMA 2020"',pub_authors:"Co-auteurs : Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"Mon parcours",tl1_t:"2000-2002 — CFI Kénitra",tl1_d:"Formation bilingue arabe-français en sciences de l'éducation.",tl2_t:"2002-aujourd'hui — Enseignant",tl2_d:"23 ans d'enseignement au Ministère de l'Éducation Nationale.",tl5_t:"2025-aujourd'hui — Master AMSO",tl5_d:"Audit et Management Stratégique — FSJESKS.",tl6_t:"2026 — Publication scientifique internationale",tl6_d:'"L\'IA comme levier de transformation managériale" — AJMET.',pubs_tag:"Mes publications",pubs_title_1:"Articles &",pubs_title_2:"Recherches",pubs_sub:"Cliquez sur un article pour le lire en intégralité.",filter_all:"Tous",filter_ia:"IA & Éducation",filter_mgmt:"Management",filter_meth:"Méthodologie",filter_audit:"Audit",services_tag:"Ce que je propose",services_title_1:"Mes",services_title_2:"Services",services_sub:"Accompagnement académique professionnel en français, arabe et anglais.",srv1_t:"Rédaction de Mémoire",srv1_d:"Accompagnement complet : problématique, revue de littérature, méthodologie.",srv2_t:"Accompagnement Méthodologique",srv2_d:"PRISMA 2020, approches qualitatives et quantitatives.",srv3_t:"Relecture & Correction",srv3_d:"Correction linguistique et méthodologique.",srv4_t:"Conseil en Management",srv4_d:"Analyse SWOT, PESTEL, audit organisationnel.",srv_price:"Sur devis",srv1_u:"Tarif selon le niveau",srv2_u:"Sessions individuelles",srv3_u:"2 à 5 jours",srv4_u:"Selon la mission",srv_btn:"Me contacter",why_title:"💡 Pourquoi me choisir ?",why1:"23 ans d'expérience en éducation",why2:"Publication scientifique internationale",why3:"Master AMSO en cours",why4:"Maîtrise de PRISMA 2020",why5:"Multilingue FR-AR-EN",why6:"Tarifs étudiants",why7:"Travail à distance",why8:"Réponse sous 24-48h",contact_tag:"Travaillons ensemble",contact_title_1:"Me",contact_title_2:"Contacter",contact_sub:"Vous avez un mémoire à rédiger ? Je suis disponible.",ci_loc:"Localisation",ci_aff:"Affiliation académique",ci_lang:"Langues de travail",ci_lang_v:"🇫🇷 Français · 🇲🇦 Arabe · 🇬🇧 Anglais · Darija",ci_delay:"Délai de réponse",ci_delay_v:"24 à 48 heures",f_prenom:"Votre prénom *",f_nom:"Votre nom *",f_email:"Votre email *",f_msg:"Votre message *",f_submit:"📩 Envoyer ma demande",f_success:"✅ Votre message a bien été envoyé !",footer_tag:"Professeur au primaire Etudiant-chercheur · Expert en IA, Management Stratégique & Audit",footer_copy:"© 2026 Noamane Boulahcen · Tous droits réservés",read_more:"Lire →",contact_me:"Me contacter"},ar:{nav_themes:"المحاور",nav_about:"نبذة عني",nav_pubs:"المنشورات",nav_services:"الخدمات",nav_contact:"تواصل",nav_amso:"AMSO 2026",nav_tools:"الأدوات والموارد",nav_dashboard:"لوحة القيادة التفاعلية",nav_dashboard_sub:"تشخيص المؤشرات والقيادة",nav_ai_phd:"أدوات الذكاء الاصطناعي",nav_ai_phd_sub:"البحث والقراءة والتلخيص",nav_recherche:"منصة أبحاث NBProf",nav_recherche_sub:"مواكبة علمية وأكاديمية",nav_ecosystem:"المشاريع والموارد",nav_ecosystem_sub:"المنظومة الأكاديمية الشاملة",hero_tag:"أستاذ باحث · مدقق المستقبل",hero_subtitle:"خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",hero_sub:"23 سنة من الخبرة في التعليم. مؤلف منشور علمي دولي.",hero_btn1:"خدماتي",hero_btn2:"منشوراتي",stat1:"سنة خبرة",stat2:"مستويات تدريس",stat3:"منشور دولي",stat4:"لغات",themes_tag:"مجالات الخبرة",themes_title_1:"محاوري",themes_title_2:"",themes_sub:"محتوى تعليمي غني وميسر.",theme1_t:"الذكاء الاصطناعي والتعليم",theme1_d:"كيف يحول الذكاء الاصطناعي الممارسات الإدارية.",theme2_t:"الإدارة الاستراتيجية",theme2_d:"تحليل SWOT وPESTEL وقوى بورتر.",theme2_tag:"إدارة · استراتيجية",theme3_t:"التدقيق ومراقبة التسيير",theme3_d:"التدقيق التنظيمي ومراقبة التسيير.",theme3_tag:"تدقيق · تسيير",theme4_t:"منهجية البحث",theme4_d:"PRISMA 2020، المقاربات النوعية والكمية.",theme5_t:"البيداغوجيا الحديثة",theme5_d:"الابتكارات البيداغوجية المكيفة مع المغرب.",theme5_tag:"تعليم",theme6_t:"التحول الرقمي",theme6_d:"رقمنة المؤسسات المدرسية.",about_tag:"نبذة عني",about_title_1:"من",about_title_2:"أنا",about_loc:"📍 الموقع",about_form:"🎓 التكوين الحالي",about_p1:"من مواليد الراشيدية، أب لثلاثة أطفال، أستاذ منذ 23 سنة. مهمتي: <strong style='color:var(--gold)'>جعل المعرفة متاحة للجميع</strong>.",about_p2:"من خلال هذا الموقع، أشارك معرفتي في الإدارة الاستراتيجية والتدقيق والذكاء الاصطناعي.",about_quote:'"التعليم هو أقوى سلاح لتغيير العالم."',pub_label:"📄 منشور علمي دولي",pub_title:'"الذكاء الاصطناعي كرافعة لتحويل الممارسات الإدارية في المؤسسات المدرسية العمومية: مراجعة منهجية وفق PRISMA 2020"',pub_authors:"المؤلفون المشاركون: نويب أ.، بولخير ل.، بولحسن ن.",about_parcours:"مساري",tl1_t:"2000-2002 — CFI القنيطرة",tl1_d:"تكوين ثنائي اللغة في علوم التربية.",tl2_t:"2002-اليوم — أستاذ",tl2_d:"23 سنة من التدريس.",tl5_t:"2025-اليوم — ماستر AMSO",tl5_d:"التدقيق والإدارة الاستراتيجية — FSJESKS.",tl6_t:"2026 — منشور علمي دولي",tl6_d:'"الذكاء الاصطناعي كرافعة للتحول الإداري" — AJMET.',pubs_tag:"منشوراتي",pubs_title_1:"مقالات و",pubs_title_2:"أبحاث",pubs_sub:"انقر على أي مقال لقراءته كاملا.",filter_all:"الكل",filter_ia:"ذكاء اصطناعي",filter_mgmt:"إدارة",filter_meth:"منهجية",filter_audit:"تدقيق",services_tag:"ما أقدمه",services_title_1:"",services_title_2:"خدماتي",services_sub:"مرافقة أكاديمية احترافية بالفرنسية والعربية والإنجليزية.",srv1_t:"كتابة المذكرات",srv1_d:"مرافقة شاملة: الإشكالية، مراجعة الأدبيات، المنهجية.",srv2_t:"المرافقة المنهجية",srv2_d:"PRISMA 2020، المقاربات النوعية والكمية.",srv3_t:"المراجعة والتصحيح",srv3_d:"تصحيح لغوي ومنهجي.",srv4_t:"استشارة في الإدارة",srv4_d:"تحليل SWOT وPESTEL والتدقيق التنظيمي.",srv_price:"حسب الطلب",srv1_u:"السعر حسب المستوى",srv2_u:"جلسات فردية",srv3_u:"2 إلى 5 أيام",srv4_u:"حسب المهمة",srv_btn:"تواصل معي",why_title:"💡 لماذا تختارني؟",why1:"23 سنة من الخبرة في التعليم",why2:"منشور علمي دولي",why3:"ماستر AMSO قيد الإنجاز",why4:"إتقان PRISMA 2020",why5:"متعدد اللغات",why6:"أسعار طلابية",why7:"عمل عن بعد",why8:"رد خلال 24-48 ساعة",contact_tag:"لنعمل معًا",contact_title_1:"تواصل",contact_title_2:"معي",contact_sub:"هل لديك مذكرة لكتابتها؟ أنا متاح.",ci_loc:"الموقع",ci_aff:"الانتماء الأكاديمي",ci_lang:"لغات العمل",ci_lang_v:"🇫🇷 الفرنسية · 🇲🇦 العربية · 🇬🇧 الإنجليزية · الدارجة",ci_delay:"مدة الرد",ci_delay_v:"24 إلى 48 ساعة",f_prenom:"اسمك الشخصي *",f_nom:"اسمك العائلي *",f_email:"بريدك الإلكتروني *",f_msg:"رسالتك *",f_submit:"📩 إرسال طلبي",f_success:"✅ تم إرسال رسالتك بنجاح!",footer_tag:"أستاذ باحث · خبير في الذكاء الاصطناعي والإدارة الاستراتيجية والتدقيق",footer_copy:"© 2026 نعمان بولحسن · جميع الحقوق محفوظة",read_more:"اقرأ ←",contact_me:"تواصل معي"},en:{nav_themes:"Topics",nav_about:"About",nav_pubs:"Publications",nav_services:"Services",nav_contact:"Contact",nav_amso:"AMSO 2026",nav_tools:"Tools & Resources",nav_dashboard:"Interactive Dashboard",nav_dashboard_sub:"KPI diagnostics & steering",nav_ai_phd:"AI Tools for PhDs",nav_ai_phd_sub:"Research, reading & synthesis",nav_recherche:"NBProf Research",nav_recherche_sub:"Academic research platform",nav_ecosystem:"All projects & resources",nav_ecosystem_sub:"Academic ecosystem overview",hero_tag:"Lecturer-Researcher · Future Auditor",hero_subtitle:"Expert in AI, Strategic Management & Audit",hero_sub:"23 years of experience in education. Author of an international scientific publication.",hero_btn1:"My Services",hero_btn2:"My Publications",stat1:"Years of experience",stat2:"Teaching levels",stat3:"Int'l publication",stat4:"Languages",themes_tag:"Areas of expertise",themes_title_1:"My",themes_title_2:"Topics",themes_sub:"Rich, accessible educational content based on scientific research.",theme1_t:"AI & Education",theme1_d:"How AI is transforming managerial practices.",theme2_t:"Strategic Management",theme2_d:"SWOT, PESTEL, Porter's forces.",theme2_tag:"Management · Strategy",theme3_t:"Audit & Management Control",theme3_d:"Organizational audit and management control.",theme3_tag:"Audit · Control",theme4_t:"Research Methodology",theme4_d:"PRISMA 2020, qualitative and quantitative approaches.",theme5_t:"Modern Pedagogy",theme5_d:"Pedagogical innovations adapted to Morocco.",theme5_tag:"Education",theme6_t:"Digital Transformation",theme6_d:"Digitization of schools.",about_tag:"About",about_title_1:"Who",about_title_2:"am I",about_loc:"📍 Location",about_form:"🎓 Current education",about_p1:"From Errachidia, father of 3 children, teacher for 23 years. My mission: <strong style='color:var(--gold)'>make knowledge accessible to all</strong>.",about_p2:"Through this site, I share my knowledge in strategic management, audit, AI and research methodology.",about_quote:'"Education is the most powerful weapon to change the world."',pub_label:"📄 International scientific publication",pub_title:'"Artificial intelligence as a lever for transforming managerial practices in public schools: a systematic literature review using PRISMA 2020"',pub_authors:"Co-authors: Nouib A., Boulkhir L., Boulahcen N.",about_parcours:"My journey",tl1_t:"2000-2002 — CFI Kenitra",tl1_d:"Bilingual Arabic-French training.",tl2_t:"2002-present — Teacher",tl2_d:"23 years of teaching.",tl5_t:"2025-present — Master AMSO",tl5_d:"Audit and Strategic Management — FSJESKS.",tl6_t:"2026 — International scientific publication",tl6_d:'"AI as a lever for managerial transformation" — AJMET.',pubs_tag:"My publications",pubs_title_1:"Articles &",pubs_title_2:"Research",pubs_sub:"Click on an article to read it in full.",filter_all:"All",filter_ia:"AI & Education",filter_mgmt:"Management",filter_meth:"Methodology",filter_audit:"Audit",services_tag:"What I offer",services_title_1:"My",services_title_2:"Services",services_sub:"Professional academic support in French, Arabic and English.",srv1_t:"Thesis Writing",srv1_d:"Complete support: research question, literature review, methodology.",srv2_t:"Methodological Support",srv2_d:"PRISMA 2020, qualitative and quantitative approaches.",srv3_t:"Proofreading & Editing",srv3_d:"Linguistic and methodological correction.",srv4_t:"Management Consulting",srv4_d:"SWOT, PESTEL analysis, organizational audit.",srv_price:"On quote",srv1_u:"Price depending on level",srv2_u:"Individual sessions",srv3_u:"2 to 5 days",srv4_u:"Depending on the mission",srv_btn:"Contact me",why_title:"💡 Why choose me?",why1:"23 years of experience in education",why2:"International scientific publication",why3:"Master AMSO in progress",why4:"Mastery of PRISMA 2020",why5:"Multilingual FR-AR-EN",why6:"Student rates",why7:"Remote work",why8:"Response within 24-48h",contact_tag:"Let's work together",contact_title_1:"Contact",contact_title_2:"Me",contact_sub:"Do you have a thesis to write? I am available.",ci_loc:"Location",ci_aff:"Academic affiliation",ci_lang:"Working languages",ci_lang_v:"🇫🇷 French · 🇲🇦 Arabic · 🇬🇧 English · Darija",ci_delay:"Response time",ci_delay_v:"24 to 48 hours",f_prenom:"Your first name *",f_nom:"Your last name *",f_email:"Your email *",f_msg:"Your message *",f_submit:"📩 Send my request",f_success:"✅ Your message has been sent!",footer_tag:"Lecturer-Researcher · Expert in AI, Strategic Management & Audit",footer_copy:"© 2026 Noamane Boulahcen · All rights reserved",read_more:"Read →",contact_me:"Contact me"}};
 Object.assign(TRANSLATIONS.fr, {"yt_hero": "YouTube · NBProf AMSO", "yt_kicker": "NOUVEAU SUR YOUTUBE", "yt_desc": "Du S1 au S3, révisez les modules du Master Audit et Management Stratégique des Organisations avec des vidéos courtes et des cas pratiques. Retrouvez aussi des repères pour votre PFE, du choix du sujet à la soutenance.", "yt_channel": "Découvrir la chaîne YouTube", "yt_credit": "Chaîne de Noamane Boulahcen. Contenus préparés avec Advisory Growth (NB, MAH et YAT).", "yt_short": "Voir le premier Short", "yt_duration": "Présentation · 30 s"});
 Object.assign(TRANSLATIONS.ar, {"yt_hero": "يوتيوب · NBProf AMSO", "yt_kicker": "جديد على يوتيوب", "yt_desc": "راجع وحدات ماستر التدقيق والتدبير الاستراتيجي للمنظمات من الفصل الأول إلى الفصل الثالث عبر فيديوهات قصيرة وحالات تطبيقية. ستجد أيضا إرشادات لمشروع نهاية الدراسة، من اختيار الموضوع إلى المناقشة.", "yt_channel": "اكتشف القناة على يوتيوب", "yt_credit": "قناة نعمان بولحسن. يُعَدّ المحتوى بالتعاون مع مجموعة Advisory Growth ‏(NB، MAH وYAT).", "yt_short": "شاهد أول فيديو قصير", "yt_duration": "فيديو تعريفي · 30 ثانية"});
 Object.assign(TRANSLATIONS.en, {"yt_hero": "YouTube · NBProf AMSO", "yt_kicker": "NEW ON YOUTUBE", "yt_desc": "Review the Audit and Strategic Management master’s modules from semesters 1 to 3 with short videos and practical cases. Find guidance for your final project, from choosing a topic to preparing your defense.", "yt_channel": "Explore the YouTube channel", "yt_credit": "Noamane Boulahcen’s channel. Content prepared with Advisory Growth (NB, MAH and YAT).", "yt_short": "Watch the first Short", "yt_duration": "Introduction · 30 sec"});
