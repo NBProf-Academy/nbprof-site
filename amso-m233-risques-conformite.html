@@ -1,468 +1,588 @@
 <!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="fr"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <script src="/nbprof-analytics.js"></script>
 <title>M233 · Gestion des risques et conformité — Cours AMSO | NBProf</title>
-<meta name="description" content="Cours complet M233 : Gestion des risques et conformité (Master AMSO S3). ISO 31000, COSO, AMF, cartographie et matrice 5×5 interactive, contrôles, gouvernance, cas Al Baraka et quiz corrigé.">
+<meta content="Cours de synthèse complet M233 : gestion, maîtrise, contrôle interne, ISO 31000, COSO, AMF, cartographie et matrice 5×5 interactive, gouvernance, cas Al Baraka et quiz corrigé." name="description"/>
 <!-- Google AdSense -->
 <script async="" crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-226605235930350"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* VOICE: cours de master, clair et rigoureux, ton d'enseignant
-   IDEA: la matrice des risques (heat map) qu'on présente au comité d'audit
-   PICTURE: la boucle des 6 étapes en tête, puis une matrice 5×5 interactive brut / net / cible
-   COLOUR and TYPE: système NBProf — sarcelle dominante, bleu en appui, ambre en accent ; Lora titres, DM Sans texte
-   LAYOUT: barre latérale collante au-dessus de 900px, sections en colonne lisible, tableaux bien réglés */
-:root{color-scheme:light dark;
---bg:light-dark(#f7faf9,#0d1716);--panel:light-dark(#ffffff,#13211f);--ink:light-dark(#10201e,#e6f0ee);--mute:light-dark(#4b605c,#9fb4af);
---line:light-dark(#d9e4e1,#24413c);--teal:light-dark(#0f766e,#2dd4bf);--teal-bg:light-dark(#e6f4f2,#123330);
---blue:light-dark(#1d4ed8,#7aa2ff);--blue-bg:light-dark(#eaf0ff,#17223f);--amber:light-dark(#b45309,#fbbf24);--amber-bg:light-dark(#fff4e0,#33260f);
---z1:#7fd49a;--z2:#f3dd6b;--z3:#f6a54a;--z4:#ec5f55}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{font-family:Lora,Georgia,serif;line-height:1.15;text-wrap:balance;margin:0 0 .5em}
-h1{font-size:clamp(32px,5vw,48px)}h2{font-size:clamp(26px,3.4vw,34px);margin-top:.2em}h3{font-size:21px;margin-top:1.6em}
-p{margin:0 0 1em;max-width:72ch}a{color:var(--teal)}
-.wrap{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1280px;margin:0 auto}
-nav.side{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 18px;border-right:1px solid var(--line)}
-nav.side .brand{font-family:Lora,serif;font-weight:700;font-size:20px;color:var(--teal);margin-bottom:18px}
-nav.side a{display:block;padding:8px 10px;border-radius:8px;color:var(--ink);text-decoration:none;font-size:14.5px}
-nav.side a:hover,nav.side a.on{background:var(--teal-bg);color:var(--teal)}
-nav.side .grp{font-size:13px;color:var(--mute);margin:16px 10px 4px}
-nav.side .new{font-size:12px;background:var(--amber);color:#fff;border-radius:99px;padding:1px 7px;margin-left:4px}
-main{padding:0 max(4vw,16px) 60px}
-section{padding:44px 0 12px;border-bottom:1px solid var(--line)}
-.hero{padding:44px 0 28px}
-.meta{color:var(--mute);font-size:15px}
-.tag{display:inline-block;background:var(--amber-bg);color:var(--amber);font-weight:700;font-size:13.5px;border-radius:99px;padding:4px 12px;margin-bottom:14px}
-.loop{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin:26px 0 8px}
-.loop div{border-radius:12px;padding:14px 12px;background:var(--panel);border:1px solid var(--line);font-size:14px}
-.loop b{display:block;font-family:Lora,serif;font-size:26px;color:var(--mute)}
-.loop .done b{color:var(--teal)}.loop .nw{background:var(--amber-bg);border-color:var(--amber)}.loop .nw b{color:var(--amber)}
-.legend{font-size:13.5px;color:var(--mute)}
+:root{--bg:#07111f;--c:#102137;--c2:#0c1a2c;--l:#29405a;--cyan:#04e0ed;--gold:#e8c46d;--mut:#aebdd1;--text:#f0f5fc;--z1:#22c55e;--z2:#eab308;--z3:#f97316;--z4:#ef4444}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:radial-gradient(circle at top left,#12324a,transparent 40%),var(--bg);font:16px/1.7 Arial,sans-serif;color:var(--text);overflow-x:clip}
+a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+header{padding:16px 5%;display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap;background:#07111feb;border-bottom:1px solid var(--l);position:sticky;top:0;z-index:20;backdrop-filter:blur(8px)}
+header a{text-decoration:none}header nav{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;letter-spacing:1px}
+.logo{font-size:26px;font-weight:800;color:var(--gold)}
+main{max-width:1160px;margin:auto;padding:35px 22px 90px}
+.hero{padding:40px 0 10px}
+.eyebrow{color:var(--cyan);letter-spacing:2px;font-weight:700;font-size:13px}
+.code{display:inline-block;border:1px solid var(--cyan);color:var(--cyan);border-radius:30px;padding:4px 14px;font-weight:700;letter-spacing:2px;font-size:13px;margin-right:8px;background:rgba(4,224,237,.06)}
+h1{font-size:clamp(32px,5.5vw,52px);line-height:1.15;margin:15px 0;color:var(--gold)}
+h2{color:var(--gold);font-size:24px;margin:0 0 6px;line-height:1.3}
+h3{color:var(--cyan);font-size:18px;margin:18px 0 8px;line-height:1.4}
+p,li{color:var(--mut)}strong{color:var(--text)}
+.panel,.card{background:var(--c);border:1px solid var(--l);border-radius:16px;padding:23px;margin:18px 0}
+.objective{border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(232,196,109,.10),rgba(4,224,237,.04))}
+.objective b{color:var(--gold);letter-spacing:1px;font-size:13px;display:block;margin-bottom:4px}
+.objective p{margin:0;color:var(--text)}
+.note{font-style:italic;font-size:14px;color:var(--mut);border-left:3px solid var(--l);padding-left:14px;margin:18px 0}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}
+.howto div{background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:16px;font-size:14px;color:var(--mut)}
+.howto span{display:block;color:var(--cyan);font-weight:700;font-size:22px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:26px 0 6px}
+.btn{font:inherit;font-size:14px;padding:9px 15px;border:1px solid var(--l);border-radius:10px;background:#183047;color:#fff;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.on,.btn.primary{background:var(--cyan);color:#05131e;border-color:var(--cyan);font-weight:bold}
+.progress{flex:1;min-width:180px;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--mut)}
+.bar{flex:1;height:8px;border-radius:99px;background:#183047;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width .3s}
+.layout{display:grid;grid-template-columns:280px minmax(0,1fr);gap:22px;margin-top:14px}
+.side{position:sticky;top:86px;align-self:start;padding:16px;max-height:calc(100vh - 100px);overflow-y:auto}
+.side small{display:block;color:var(--gold);letter-spacing:2px;font-weight:700;font-size:12px;margin-bottom:10px}
+.side a{display:flex;gap:9px;background:#142b43;color:#ecf2f9;border:1px solid var(--l);border-radius:9px;padding:9px 10px;margin-bottom:7px;text-decoration:none;font-size:13.5px;line-height:1.35;transition:border-color .2s}
+.side a b{color:var(--cyan);min-width:16px}.side a.active{border-color:var(--cyan);color:var(--cyan);background:#183858}
+.side a.done::after{content:"✓";margin-left:auto;color:#62e4ba;font-weight:700}
+.chap{scroll-margin-top:86px}
+.chap-head{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid var(--l);padding-bottom:14px;margin-bottom:12px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:10px;background:var(--cyan);color:#05131e;font-weight:800;margin-right:10px;flex:none}
+.chap-head h2{display:flex;align-items:center;font-size:22px}
+.check{display:flex;gap:7px;align-items:center;font-size:13px;color:var(--mut);cursor:pointer;user-select:none}
+.check input{accent-color:var(--cyan);width:16px;height:16px}
+.sub{padding:18px 0;border-bottom:1px dashed var(--l)}.sub:last-child{border-bottom:0;padding-bottom:4px}
+.sub h3 .idx{color:var(--gold);margin-right:6px}
+.sub p{margin:0 0 10px}
+.example{border-left:3px solid var(--cyan);padding:12px 16px;background:#0c3242;margin:14px 0;border-radius:0 10px 10px 0;color:var(--text)}
+.example b{color:var(--cyan);font-size:12px;letter-spacing:1.5px;display:block;margin-bottom:2px}
+body.revision .sub p.expl{display:none}
+.course-table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;background:var(--c2)}
+.course-table th,.course-table td{border:1px solid var(--l);padding:10px 12px;text-align:left;vertical-align:top}
+.course-table th{background:#183047;color:var(--gold);font-weight:700}
+.course-table td{color:var(--mut)}
+.course-table td strong{color:var(--text)}
+.source{color:var(--gold);font-size:12px;letter-spacing:.3px;margin:8px 0}
+.keypoint{margin:15px 0;padding:14px 18px;border-left:4px solid var(--gold);background:#1b2935;border-radius:0 9px 9px 0;color:var(--text)}
+.mini-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:16px 0}
+.mini-flow b{background:#123b45;border:1px solid #256e78;border-radius:10px;padding:9px 12px;color:white;font-size:13px}
+.mini-flow em{color:var(--gold);font-style:normal}
+.qbox{border:1px solid var(--l);background:var(--c2);border-radius:12px;padding:15px;margin:12px 0}
+.qbox summary{color:var(--text);font-weight:700;cursor:pointer}
+.qbox p{margin:12px 0 0;color:var(--mut)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-.card h4{margin:0 0 6px;font-size:16px;color:var(--teal)}
-.card p{margin:0;font-size:15px}
-.key{background:var(--teal-bg);border-radius:12px;padding:14px 18px;margin:18px 0;max-width:80ch}
-.key.warn{background:var(--amber-bg)}.key.info{background:var(--blue-bg)}
-.key strong:first-child{color:var(--teal)}.key.warn strong:first-child{color:var(--amber)}.key.info strong:first-child{color:var(--blue)}
-table{border-collapse:collapse;width:100%;font-size:15px;margin:14px 0 20px;background:var(--panel)}
-th,td{border-bottom:1px solid var(--line);padding:9px 10px;text-align:left;vertical-align:top}
-th{font-size:13.5px;color:var(--mute);font-weight:700;background:var(--teal-bg)}
-td.n,th.n{text-align:right;white-space:nowrap}
-.scroll{overflow-x:auto}
-.pill{display:inline-block;border-radius:99px;padding:1px 9px;font-size:13px;font-weight:700;color:#1b1b1b;white-space:nowrap}
-.z1{background:var(--z1)}.z2{background:var(--z2)}.z3{background:var(--z3)}.z4{background:var(--z4)}
-/* matrice */
-.mx{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:22px;align-items:start;margin:18px 0}
-.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
-button{font:inherit;cursor:pointer}
-.tabs button{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-weight:500}
-.tabs button[aria-pressed=true]{background:var(--teal);border-color:var(--teal);color:#fff}
-button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.heat{display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,minmax(74px,auto)) 34px;gap:4px}
-.heat .c{border-radius:8px;padding:5px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px;position:relative}
-.heat .c i{position:absolute;right:6px;bottom:3px;font-style:normal;font-size:12px;color:#0006}
-.heat .ax{display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--mute);font-weight:700}
-.chip{border:0;border-radius:7px;background:#fffffff0;color:#10201e;font-size:13px;font-weight:700;min-width:38px;min-height:30px;padding:0 6px;box-shadow:0 1px 2px #0003}
-.chip.sel{background:#10201e;color:#fff}
-.axl{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);margin:6px 0 0 38px}
-.detail{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;font-size:15px}
-.detail h4{margin:0 0 6px;font-family:Lora,serif;font-size:18px}
-.detail dl{margin:8px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px}
-.detail dt{color:var(--mute);font-size:13.5px}.detail dd{margin:0}
-.opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:14px 0}
-.opts .card b{font-family:Lora,serif;font-size:19px;display:block;margin-bottom:4px;color:var(--blue)}
-details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
-summary{cursor:pointer;font-weight:700;color:var(--teal);min-height:28px}
-ol.steps{padding-left:1.2em}ol.steps li{margin-bottom:8px}
-/* quiz */
-.q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
-.q p{font-weight:700;margin-bottom:10px}
-.q button{display:block;width:100%;text-align:left;min-height:44px;margin:6px 0;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.q button.ok{background:#d7f5e1;border-color:#2f9e5a;color:#0d3b20}.q button.ko{background:#fde2df;border-color:#d0463b;color:#5a120c}
-.q .ex{font-size:15px;color:var(--mute);margin-top:8px;display:none}.q.answered .ex{display:block}
-.score{position:sticky;bottom:12px;display:inline-block;background:var(--teal);color:#fff;border-radius:99px;padding:8px 18px;font-weight:700;box-shadow:0 4px 14px #0003}
-.reset{min-height:44px;margin-left:10px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:0 14px}
-footer{padding:30px 0;color:var(--mute);font-size:14px}
-footer .sig{font-family:Lora,serif;font-style:italic;color:var(--teal);font-size:20px}
-@media(max-width:900px){.wrap{grid-template-columns:minmax(0,1fr)}
- nav.side{position:sticky;top:0;z-index:5;height:auto;display:flex;gap:4px;overflow-x:auto;padding:8px 10px;border-right:0;border-bottom:1px solid var(--line);background:var(--bg)}
- nav.side a{flex:none;font-size:14px}nav.side .brand,nav.side .grp{display:none}
- .mx{grid-template-columns:minmax(0,1fr)}.loop{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:600px){table{font-size:13.5px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;white-space:normal;color:var(--mute);font-size:13px}.stack td:empty{display:none}
- .heat{grid-template-columns:24px repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,minmax(62px,auto)) 28px;gap:3px}.chip{min-width:32px;font-size:12px;padding:0 4px}.axl{margin-left:27px}
- .loop{grid-template-columns:repeat(2,minmax(0,1fr))}}
-
-.nav-return{font-weight:600;color:var(--teal)!important;border:1px solid var(--line);margin-bottom:12px;background:var(--teal-bg)}
-.breadcrumb{padding-top:20px;font-size:14px;color:var(--mute);margin-bottom:8px}
-.breadcrumb a{color:var(--mute);text-decoration:none}
-.breadcrumb a:hover{color:var(--teal)}
-.pager{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:48px 0 24px}
-.pager a{flex:1;min-width:240px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 20px;text-decoration:none;color:var(--ink);transition:border-color .2s}
-.pager a:hover{border-color:var(--teal)}
-.pager small{display:block;color:var(--teal);font-size:12px;letter-spacing:1px;margin-bottom:4px}
-.pager.next{text-align:right}
+.card{background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:16px 18px}
+.card h4{margin:0 0 6px;font-size:16px;color:var(--cyan)}
+.card p{margin:0;font-size:14px}
+.tag{display:inline-block;padding:3px 10px;border-radius:20px;border:1px solid var(--cyan);font-size:12px;color:var(--cyan);background:rgba(4,224,237,.08);margin-bottom:10px}
+.scroll{overflow-x:auto;margin:14px 0}
+/* Matrice 5x5 */
+.mx{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:20px;align-items:start;margin:18px 0}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 16px}
+.tabs button{min-height:38px;padding:0 16px;border-radius:8px;border:1px solid var(--l);background:var(--c2);color:var(--text);font-weight:600;cursor:pointer;transition:all .2s}
+.tabs button[aria-pressed=true]{background:var(--cyan);border-color:var(--cyan);color:#05131e}
+.heat{display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,minmax(72px,auto)) 34px;gap:5px}
+.heat .c{border-radius:8px;padding:6px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:4px;position:relative;border:1px solid rgba(255,255,255,0.06)}
+.heat .c i{position:absolute;right:6px;bottom:4px;font-style:normal;font-size:11px;font-weight:bold;color:rgba(255,255,255,0.4)}
+.heat .ax{display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--cyan);font-weight:700}
+.chip{border:0;border-radius:6px;background:#ffffffeb;color:#07111f;font-size:12px;font-weight:800;min-width:36px;min-height:28px;padding:0 6px;cursor:pointer;box-shadow:0 2px 4px rgba(0,0,0,0.4);transition:transform .15s}
+.chip:hover{transform:scale(1.08)}
+.chip.sel{background:var(--gold);color:#07111f;box-shadow:0 0 10px rgba(232,196,109,0.8)}
+.axl{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin:6px 0 0 38px}
+.detail{background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:18px;font-size:14.5px}
+.detail h4{margin:0 0 6px;font-size:17px;color:var(--gold)}
+.detail dl{margin:10px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 12px}
+.detail dt{color:var(--cyan);font-size:13px;font-weight:600}
+.detail dd{margin:0;color:var(--text)}
+.pill{display:inline-block;border-radius:99px;padding:2px 9px;font-size:12px;font-weight:700}
+.z1{background:rgba(34,197,94,0.25);border:1px solid rgba(34,197,94,0.6);color:#86efac}
+.z2{background:rgba(234,179,8,0.22);border:1px solid rgba(234,179,8,0.6);color:#fde047}
+.z3{background:rgba(249,115,22,0.25);border:1px solid rgba(249,115,22,0.6);color:#fdba74}
+.z4{background:rgba(239,68,68,0.28);border:1px solid rgba(239,68,68,0.7);color:#fca5a5}
+/* Quiz */
+.q{background:var(--c2);border:1px solid var(--l);border-radius:14px;padding:18px;margin:14px 0}
+.q p{font-weight:700;margin-bottom:12px;color:var(--text);font-size:15.5px}
+.q button{display:block;width:100%;text-align:left;min-height:44px;margin:8px 0;padding:10px 14px;border-radius:10px;border:1px solid var(--l);background:#13243a;color:var(--text);cursor:pointer;font:inherit;transition:all .15s}
+.q button:hover{background:#1b3250;border-color:var(--cyan)}
+.q button.ok{background:#065f46!important;border-color:#34d399!important;color:#ecfdf5!important;font-weight:700}
+.q button.ko{background:#7f1d1d!important;border-color:#f87171!important;color:#fef2f2!important}
+.q .ex{font-size:14px;color:var(--gold);margin-top:10px;display:none;padding-top:8px;border-top:1px dashed var(--l)}
+.q.answered .ex{display:block}
+.score{position:sticky;bottom:16px;display:inline-block;background:linear-gradient(90deg,var(--cyan),var(--gold));color:#05131e;border-radius:99px;padding:10px 22px;font-weight:800;box-shadow:0 4px 20px rgba(0,0,0,0.6);z-index:10}
+.reset{min-height:44px;margin-left:10px;border-radius:10px;border:1px solid var(--l);background:var(--c);color:var(--text);padding:0 16px;cursor:pointer;font:inherit}
+.reset:hover{border-color:var(--cyan)}
+/* Pager & Footer */
+.pager{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:35px 0}
+.pager a{flex:1;min-width:220px;background:var(--c);border:1px solid var(--l);border-radius:14px;padding:16px 18px;text-decoration:none;color:var(--text);transition:border-color .2s}
+.pager a:hover{border-color:var(--cyan)}.pager small{display:block;color:var(--cyan);letter-spacing:1.5px;font-size:12px;margin-bottom:4px}
+.pager a.next{text-align:right}
+footer{text-align:center;padding:35px 20px;background:#060d17;border-top:1px solid var(--l);color:var(--mut);font-size:14px}
+footer a{color:var(--cyan)}
+@media(max-width:850px){.layout,.howto{grid-template-columns:1fr}.side{position:relative;top:0;max-height:none}.mx{grid-template-columns:1fr}}
+@media(max-width:600px){.heat{grid-template-columns:26px repeat(5,minmax(0,1fr));grid-template-rows:repeat(5,minmax(60px,auto)) 28px;gap:3px}.chip{min-width:30px;font-size:11px;padding:0 3px}}
 </style>
-<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
 </head>
-<body>
-<div class="wrap">
-<nav class="side" aria-label="Sommaire">
-  <div class="brand">
-    <a href="index.html" style="color:inherit;text-decoration:none">NBProf</a>
-    <span style="font-size:13px;font-family:'DM Sans',sans-serif;color:var(--mute);display:block;margin-top:2px;font-weight:normal">Master AMSO · S3</span>
-  </div>
-  <a href="amso2026.html" class="nav-return">← AMSO 2026</a>
-  <a href="#accueil">Le module</a>
-  <div class="grp">Déjà étudié</div>
-  <a href="#p1">I · Notions de base</a>
-  <a href="#p2">II · Référentiels et conformité</a>
-  <a href="#p3">III · Processus et identification</a>
-  <div class="grp">Nouveau</div>
-  <a href="#p4">IV · Cartographie <span class="new">nouveau</span></a>
-  <a href="#analyser">Étape 3 · Analyser</a>
-  <a href="#matrice">Étape 4 · Évaluer</a>
-  <a href="#traiter">Étape 5 · Traiter</a>
-  <a href="#suivre">Étape 6 · Suivre</a>
-  <a href="#exercices">Exercices</a>
-  <a href="#quiz">Quiz · 20 questions</a>
-</nav>
-<main>
+<body data-mod="M233">
+<header><a class="logo" href="index.html">#NBProf</a><nav><a href="index.html">ACCUEIL</a><a href="amso2026.html">AMSO 2026</a><a href="#ch1">LE MODULE</a><a href="index.html#contact">CONTACT</a></nav></header>
 
-<div class="breadcrumb">
-  <a href="index.html">Accueil NBProf</a> &gt; 
-  <a href="amso2026.html">AMSO 2026</a> &gt; 
-  <span>M233 · Gestion des risques et conformité</span>
+<main>
+<div class="hero">
+  <div class="eyebrow">MASTER AMSO · SUPPORT COMPLET DE COMPRÉHENSION</div>
+  <h1>🛡️ Gestion des risques et conformité</h1>
+  <p><span class="code">M233 · S3</span> Master Audit et Management Stratégique des Organisations · Pr Otmane Bennani · Année 2026/2027</p>
 </div>
 
-<section class="hero" id="accueil">
-  <span class="tag">Mise à jour du 20 novembre 2026 · ajout de la partie IV</span>
-  <h1>Gestion des risques et conformité</h1>
-  <p class="meta">Master Audit et Management Stratégique des Organisations · S3 · Pr Otmane Bennani · Année 2026/2027</p>
-  <p>Cette page reprend les trois parties déjà vues en séance, puis ajoute la partie qui reste : la <strong>cartographie des risques</strong>, c'est-à-dire les étapes 3 à 6 du processus ISO 31000 (analyser, évaluer, traiter, suivre). Le cas fil rouge du cours, la boulangerie industrielle <strong>Al Baraka</strong>, est poursuivi jusqu'à la matrice finale et au plan d'action.</p>
-  <div class="loop" aria-label="Les six étapes du processus">
-    <div class="done"><b>1</b>Contexte et critères</div>
-    <div class="done"><b>2</b>Identifier</div>
-    <div class="nw"><b>3</b>Analyser</div>
-    <div class="nw"><b>4</b>Évaluer</div>
-    <div class="nw"><b>5</b>Traiter</div>
-    <div class="nw"><b>6</b>Suivre et revoir</div>
+<div class="panel objective">
+  <b>🎯 OBJECTIF GÉNÉRAL DU MODULE</b>
+  <p>Maîtriser les référentiels de maîtrise des risques (ISO 31000, COSO ERM, AMF), bâtir une démarche d'identification et d'évaluation, construire une <strong>cartographie des risques (Heat Map 5×5)</strong> avec plan de traitement sur le cas Al Baraka, et maîtriser les obligations de conformité et le modèle des Trois lignes.</p>
+</div>
+
+<div class="howto">
+  <div><span>1</span><strong>Concepts &amp; Normes :</strong> Maîtrisez le vocabulaire précis (brut, résiduel, appétence, 3 lignes).</div>
+  <div><span>2</span><strong>Cas Al Baraka :</strong> Manipulez la matrice interactive 5×5 (brut, net, cible) et son plan d'action.</div>
+  <div><span>3</span><strong>Validation :</strong> Testez vos compétences avec les exercices corrigés et le quiz de 20 questions.</div>
+</div>
+
+<div class="toolbar">
+  <button class="btn" id="rev" type="button">⚡ Mode révision rapide</button>
+  <button class="btn" onclick="window.print()" type="button">🖨️ Imprimer</button>
+  <a class="btn" href="#ch10">🧠 Quiz · 20 questions</a>
+  <div class="progress"><div class="bar"><i></i></div><span id="pc">0 / 10 parties maîtrisées</span></div>
+</div>
+
+<div class="layout">
+  <aside class="panel side">
+    <small>PLAN DU COURS · 10 PARTIES</small>
+    <a href="#ch1"><b>1</b><span>Notions fondamentales &amp; langage du risque</span></a>
+    <a href="#ch2"><b>2</b><span>Référentiels &amp; obligations de conformité</span></a>
+    <a href="#ch3"><b>3</b><span>Gestion des risques &amp; maîtrise des risques</span></a>
+    <a href="#ch4"><b>4</b><span>Contexte &amp; identification (ISO 31000)</span></a>
+    <a href="#ch5"><b>5</b><span>Analyser : coter probabilité et impact</span></a>
+    <a href="#ch6"><b>6</b><span>Évaluer : la matrice interactive Al Baraka</span></a>
+    <a href="#ch7"><b>7</b><span>Traiter les risques &amp; plan d'action</span></a>
+    <a href="#ch8"><b>8</b><span>Suivre, indicateurs KRI &amp; gouvernance</span></a>
+    <a href="#ch9"><b>9</b><span>Exercices d'application corrigés</span></a>
+    <a href="#ch10"><b>10</b><span>Quiz interactif · 20 questions</span></a>
+  </aside>
+
+  <div>
+    <!-- CHAPITRE 1 -->
+    <section class="panel chap" id="ch1">
+      <div class="chap-head"><h2><span class="num">1</span>Notions fondamentales et langage du risque</h2><label class="check"><input data-ch="ch1" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Support de cours Pr Bennani · ISO 31000:2018 · COSO ERM 2017</div>
+      
+      <div class="sub">
+        <h3>1.1. Qu’est-ce qu’un risque ?</h3>
+        <p class="expl">Selon l'<strong>ISO 31000:2018</strong>, le risque est « <em>l'effet de l'incertitude sur les objectifs</em> ». Cet effet est un écart par rapport aux attentes, qui peut être positif (opportunité), négatif (menace) ou les deux. <strong>Pas d'objectif, pas de risque.</strong></p>
+        <div class="grid">
+          <div class="card"><h4>ISO 31000:2018</h4><p>Effet de l'incertitude sur les objectifs de l'organisation.</p></div>
+          <div class="card"><h4>COSO ERM 2017</h4><p>Possibilité que des événements surviennent et affectent la stratégie et la réalisation des objectifs.</p></div>
+          <div class="card"><h4>AMF (2010)</h4><p>Possibilité d'un événement dont les conséquences affecteraient personnes, actifs, réputation ou objectifs.</p></div>
+          <div class="card"><h4>Knight (1921)</h4><p><strong>Risque</strong> : probabilités mesurables et assurables. <strong>Incertitude</strong> : probabilités inconnues, décision au jugement.</p></div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>1.2. Distinction fondamentale : danger, menace, vulnérabilité, risque, incident</h3>
+        <table class="course-table">
+          <thead><tr><th>Notion</th><th>Définition</th><th>Exemple (Cambriolage)</th><th>Exemple entreprise</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Danger</strong></td><td>Propriété intrinsèque pouvant causer un dommage</td><td>Le cambrioleur</td><td>Le serveur informatique exposé au web</td></tr>
+            <tr><td><strong>Menace</strong></td><td>Cause potentielle d'un incident (souvent externe)</td><td>La possibilité d'un cambriolage</td><td>L'attaque ransomware ou phishing</td></tr>
+            <tr><td><strong>Vulnérabilité</strong></td><td>Faiblesse ou faille exploitable</td><td>La fenêtre restée ouverte</td><td>Mots de passe faibles, défaut de patch</td></tr>
+            <tr><td><strong>Risque</strong></td><td>Événement incertain et son effet sur l'objectif</td><td>Le vol, la dégradation</td><td>L'interruption du système de facturation</td></tr>
+            <tr><td><strong>Incident</strong></td><td>Risque qui s'est concrétisé</td><td>Le cambriolage qui a eu lieu</td><td>Le serveur bloqué hier à 9h00</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub">
+        <h3>1.3. Risque brut, risque net (résiduel) et appétence</h3>
+        <p class="expl"><strong>Risque brut (inhérent) :</strong> niveau d'exposition avant la mise en place des mesures de maîtrise.<br/>
+        <strong>Risque net (résiduel) :</strong> niveau qui subsiste après application des contrôles existants (jamais nul !).<br/>
+        <strong>Appétence pour le risque :</strong> niveau maximal de risque que la direction et le conseil acceptent de porter pour atteindre leurs objectifs.</p>
+        
+        <div class="example">
+          <b>EXEMPLE DU COURS · CAS DES IMPAYÉS CLIENTS</b>
+          Risque brut estimé : <strong>4 % du CA</strong>.<br/>
+          Après contrôles de crédit et relances : risque résiduel = <strong>0,8 % du CA</strong>.<br/>
+          Appétence fixée par le conseil : <strong>0,5 % du CA</strong>.<br/>
+          <em>Diagnostic :</em> à 0,8 %, le risque dépasse l'appétence. Une décision de gestion s'impose : souscrire une assurance-crédit fait chuter le résiduel à <strong>0,3 %</strong>, soit sous le seuil d'appétence.
+        </div>
+        <div class="keypoint"><strong>Règle d'or de classement :</strong> On classe toujours un risque selon son <strong>événement générateur</strong>, et non selon ses conséquences finales. Une cyberattaque est un risque SI, même si elle a des répercussions financières et d'image.</div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 2 -->
+    <section class="panel chap" id="ch2">
+      <div class="chap-head"><h2><span class="num">2</span>Référentiels et obligations de conformité</h2><label class="check"><input data-ch="ch2" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : ISO 31000, COSO 2013 &amp; 2017, AMF, Droit des affaires marocain</div>
+
+      <div class="sub">
+        <h3>2.1. Tableau comparatif des grands référentiels</h3>
+        <table class="course-table">
+          <thead><tr><th>Référentiel</th><th>Rôle et vocation</th><th>Certifiable ?</th><th>Obligatoire ?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>ISO 31000:2018</strong></td><td>Lignes directrices universelles : 8 principes, 1 cadre de gestion, 1 processus.</td><td>Non</td><td>Non (recommandation)</td></tr>
+            <tr><td><strong>COSO ERM 2017</strong></td><td>Management des risques aligné sur la stratégie et la performance (5 composantes, 20 principes).</td><td>Non</td><td>Non</td></tr>
+            <tr><td><strong>COSO Contrôle Interne 2013</strong></td><td>Structuration du contrôle interne : 5 composantes (cube), 17 principes.</td><td>Non</td><td>Non (standard de fait)</td></tr>
+            <tr><td><strong>AMF (2010)</strong></td><td>Cadre de référence français articulant contrôle interne et gestion des risques.</td><td>Non</td><td>Non</td></tr>
+            <tr><td><strong>Normes ISO (37301, 27001, etc.)</strong></td><td>Systèmes de management rédigés en exigences (« l'organisme doit »).</td><td><strong>Oui</strong></td><td>Non (choix d'entreprise)</td></tr>
+            <tr><td><strong>Bâle III / BAM</strong></td><td>Exigences prudentielles bancaires et ratios de solvabilité.</td><td>Non</td><td><strong>Oui</strong> (secteur bancaire)</td></tr>
+          </tbody>
+        </table>
+        <div class="keypoint"><strong>Important pour les examens :</strong> On ne peut pas être « certifié ISO 31000 » ni « certifié COSO » car ce sont des guides de bonnes pratiques, non des normes d'exigences. Seules des normes comme ISO 27001 (sécurité) ou ISO 37301 (conformité) sont certifiables.</div>
+      </div>
+
+      <div class="sub">
+        <h3>2.2. La conformité et le cadre juridique marocain</h3>
+        <p class="expl">La <strong>conformité (compliance)</strong> est le respect de l'ensemble des règles juridiques, réglementaires, contractuelles et éthiques. Elle constitue une famille majeure de risques.</p>
+        <table class="course-table">
+          <thead><tr><th>Domaine</th><th>Texte applicable</th><th>Autorité de régulation</th><th>Exemple d'obligation</th></tr></thead>
+          <tbody>
+            <tr><td>Données personnelles</td><td><strong>Loi 09-08</strong></td><td>CNDP</td><td>Déclaration des fichiers et caméras, recueil du consentement.</td></tr>
+            <tr><td>LBC-FT (Blanchiment)</td><td><strong>Loi 43-05</strong> (mod. 12-18)</td><td>ANRF</td><td>Identification KYC, déclaration de soupçon.</td></tr>
+            <tr><td>Lutte anticorruption</td><td><strong>Loi 46-19</strong></td><td>INPPLC / Justice</td><td>Dispositif d'alerte interne, charte éthique.</td></tr>
+            <tr><td>Droit des sociétés</td><td><strong>Loi 17-95</strong> (mod. 78-12)</td><td>AMMC / Justice</td><td>Commissariat aux comptes, comité d'audit pour les SA cotées.</td></tr>
+            <tr><td>Cybersécurité</td><td><strong>Loi 05-20</strong></td><td>DGSSI</td><td>Sécurité des SI des infrastructures d'importance vitale.</td></tr>
+            <tr><td>Santé et sécurité</td><td><strong>Code du travail (Loi 65-99)</strong></td><td>Inspection du travail</td><td>Conditions de travail, prévention des accidents, durée du travail.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 3 -->
+    <section class="panel chap" id="ch3">
+      <div class="chap-head"><h2><span class="num">3</span>Gestion des risques et maîtrise des risques</h2><label class="check"><input data-ch="ch3" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Diapositives du cours · Modèle des Trois lignes (IIA)</div>
+
+      <div class="sub">
+        <h3>3.1. Deux fonctions distinctes et complémentaires</h3>
+        <table class="course-table">
+          <thead><tr><th>Caractéristique</th><th>Gestion des risques (Risk Management)</th><th>Maîtrise des risques (Contrôle)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Question clé</strong></td><td>« Quels risques voulons-nous prendre, et que décidons-nous d'en faire ? »</td><td>« Les risques conservés sont-ils effectivement tenus et maîtrisés ? »</td></tr>
+            <tr><td><strong>Orientation</strong></td><td>Stratégique, décisionnelle, choix d'arbitrage.</td><td>Opérationnelle, exécution, procédures quotidiennes.</td></tr>
+            <tr><td><strong>Décisions produites</strong></td><td>Éviter, Réduire, Transférer/Partager, Accepter.</td><td>Dispositifs préventifs, détectifs, correctifs.</td></tr>
+            <tr><td><strong>Portage</strong></td><td>Conseil d'administration, Direction générale.</td><td>Management opérationnel, contrôle interne.</td></tr>
+          </tbody>
+        </table>
+        <div class="example">
+          <b>ANALOGIE AUTOMOBILE DU PROFESSEUR</b>
+          Décider de prendre ou non une route de montagne enneigée relève de la <strong>gestion des risques</strong>. Équiper la voiture de pneus neige et savoir freiner relève de la <strong>maîtrise des risques</strong>. Une excellente voiture ne rend pas toute décision prudente.
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>3.2. Types de moyens de maîtrise</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>Moyens Préventifs</h4>
+            <p>Agissent <strong>avant</strong> l'événement pour réduire la probabilité : séparation des fonctions (commander ≠ payer), habilitations ERP, formations, maintenance préventive.</p>
+          </div>
+          <div class="card">
+            <h4>Moyens Détectifs</h4>
+            <p>Repèrent les anomalies <strong>pendant ou juste après</strong> : rapprochements bancaires mensuels, inventaires physiques, alertes automatisées d'écarts de caisse.</p>
+          </div>
+          <div class="card">
+            <h4>Moyens Correctifs / Protection</h4>
+            <p>Agissent <strong>après</strong> la survenance pour limiter l'impact : plan de continuité d'activité (PCA), sauvegardes informatiques, procédure de rappel de produit.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>3.3. Gouvernance : Le modèle des Trois lignes (IIA)</h3>
+        <table class="course-table">
+          <thead><tr><th>Niveau</th><th>Acteur</th><th>Rôle et mission</th><th>Nature de la responsabilité</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gouvernance</strong></td><td>Conseil d'administration &amp; Comité d'audit</td><td>Fixe l'appétence, approuve la politique, examine la cartographie.</td><td>Surveillance stratégique</td></tr>
+            <tr><td><strong>1re ligne</strong></td><td>Management opérationnel &amp; métiers</td><td>Possède les risques au quotidien, exécute les contrôles de 1er niveau.</td><td>Action &amp; maîtrise directe</td></tr>
+            <tr><td><strong>2e ligne</strong></td><td>Risk Manager, Contrôle interne, Conformité</td><td>Conçoit la méthodologie, anime la cartographie, apporte l'expertise.</td><td>Conseil &amp; surveillance</td></tr>
+            <tr><td><strong>3e ligne</strong></td><td>Audit interne</td><td>Évalue de façon indépendante l'efficacité des 1re et 2e lignes.</td><td>Assurance indépendante</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 4 -->
+    <section class="panel chap" id="ch4">
+      <div class="chap-head"><h2><span class="num">4</span>Contexte et démarche d'identification</h2><label class="check"><input data-ch="ch4" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Processus ISO 31000 · Étapes 1 et 2</div>
+
+      <div class="sub">
+        <h3>4.1. Les six étapes de la démarche ISO 31000</h3>
+        <div class="mini-flow">
+          <b>1. Contexte &amp; critères</b><em>→</em>
+          <b>2. Identifier les risques</b><em>→</em>
+          <b>3. Analyser (coter)</b><em>→</em>
+          <b>4. Évaluer (matrice)</b><em>→</em>
+          <b>5. Traiter</b><em>→</em>
+          <b>6. Suivre &amp; revoir</b>
+        </div>
+        <p class="expl">Le processus est itératif et encadré en permanence par la <strong>communication / concertation</strong> et par l'<strong>enregistrement / reporting</strong>.</p>
+      </div>
+
+      <div class="sub">
+        <h3>4.2. Identification : top-down, bottom-up et outils</h3>
+        <p class="expl">La bonne pratique consiste à combiner une approche <strong>descendante (top-down)</strong> avec les dirigeants (10 à 20 risques majeurs) et une approche <strong>ascendante (bottom-up)</strong> par processus avec les équipes opérationnelles.</p>
+        <table class="course-table">
+          <thead><tr><th>Outil</th><th>Principe méthodologique</th><th>Cas d'utilisation recommandé</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Ateliers d'identification</strong></td><td>Session de brainstorming structuré (post-it, vote)</td><td>Croiser les visions entre départements</td></tr>
+            <tr><td><strong>Entretiens individuels</strong></td><td>Guide d'entretien axé sur objectifs, peurs, dépendances</td><td>Dirigeants, sujets sensibles ou confidentiels</td></tr>
+            <tr><td><strong>Analyse de processus</strong></td><td>Parcours de chaque étape : « Qu'est-ce qui peut mal tourner ? »</td><td>Risques opérationnels, achats, paie, fabrication</td></tr>
+            <tr><td><strong>Diagramme d'Ishikawa (5M)</strong></td><td>Classement des causes : Milieu, Matière, Main-d'œuvre, Matériel, Méthode</td><td>Comprendre les causes profondes d'un risque récurrent</td></tr>
+            <tr><td><strong>Nœud papillon (Bow-Tie)</strong></td><td>Relie causes &rarr; événement central &rarr; conséquences, avec barrières</td><td>Risques majeurs (catastrophes, accidents industriels)</td></tr>
+          </tbody>
+        </table>
+        <div class="keypoint"><strong>Bien formuler un risque :</strong> La structure correcte est <strong>Cause &rarr; Événement &rarr; Conséquence</strong>. Exemple : « En raison d'un fournisseur unique de farine (cause), rupture d'approvisionnement (événement), entraînant l'arrêt de production et perte de 200 000 MAD (conséquence) ». Dire simplement « risque farine » est insuffisant.</div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 5 -->
+    <section class="panel chap" id="ch5">
+      <div class="chap-head"><h2><span class="num">5</span>Analyser : coter probabilité et impact</h2><label class="check"><input data-ch="ch5" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Cas Al Baraka · Méthodologie semi-quantitative</div>
+
+      <div class="sub">
+        <h3>5.1. Échelle de Probabilité (1 à 5)</h3>
+        <table class="course-table">
+          <thead><tr><th>Niveau</th><th>Libellé</th><th>Fréquence estimée</th><th>Probabilité annuelle</th></tr></thead>
+          <tbody>
+            <tr><td><strong>1</strong></td><td>Rare</td><td>Moins d'une fois en 10 ans</td><td>&lt; 10 %</td></tr>
+            <tr><td><strong>2</strong></td><td>Peu probable</td><td>Une fois en 5 à 10 ans</td><td>10 à 20 %</td></tr>
+            <tr><td><strong>3</strong></td><td>Possible</td><td>Une fois en 2 à 5 ans</td><td>20 à 50 %</td></tr>
+            <tr><td><strong>4</strong></td><td>Probable</td><td>Environ une fois par an</td><td>50 à 90 %</td></tr>
+            <tr><td><strong>5</strong></td><td>Quasi certain</td><td>Plusieurs fois par an</td><td>&gt; 90 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sub">
+        <h3>5.2. Échelle d'Impact multicritère (Cas Al Baraka — CA 90 M MAD)</h3>
+        <p class="expl"><strong>Règle de prudence :</strong> Lorsqu'un risque affecte plusieurs dimensions, on retient <strong>le niveau le plus élevé</strong> atteint par n'importe quel axe.</p>
+        <div class="scroll">
+          <table class="course-table">
+            <thead><tr><th>Niveau</th><th>Financier</th><th>Activité / Production</th><th>Image &amp; Réputation</th><th>Juridique &amp; Sanitaire</th><th>Humain</th></tr></thead>
+            <tbody>
+              <tr><td><strong>1 Mineur</strong></td><td>&lt; 50 000 MAD</td><td>Arrêt &lt; 2 heures</td><td>Aucun écho externe</td><td>Simple remarque verbale</td><td>Aucun arrêt de travail</td></tr>
+              <tr><td><strong>2 Modéré</strong></td><td>50 k à 250 k MAD</td><td>Un magasin non livré</td><td>Réclamations locales</td><td>Avertissement administratif</td><td>Blessure bénigne</td></tr>
+              <tr><td><strong>3 Significatif</strong></td><td>250 k à 1 M MAD</td><td>Plusieurs magasins, 1 matinée</td><td>Presse régionale, réseaux</td><td>Mise en demeure, amende</td><td>Arrêt de travail avec soins</td></tr>
+              <tr><td><strong>4 Majeur</strong></td><td>1 M à 5 M MAD</td><td>Usine arrêtée &gt; 1 jour</td><td>Scandale régional / réseaux</td><td>Fermeture temporaire de site</td><td>Blessé grave / hospitalisation</td></tr>
+              <tr><td><strong>5 Critique</strong></td><td>&gt; 5 M MAD</td><td>Arrêt usine &gt; 1 semaine</td><td>Crise nationale durable</td><td>Fermeture administrative définitive</td><td>Accident mortel</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="keypoint"><strong>Formule de criticité :</strong> <code>Criticité = Probabilité × Impact</code> (valeur de 1 à 25). Elle permet d'établir les zones de vigilance : Faible (1 à 4), Modéré (5 à 9), Élevé (10 à 14), Critique (15 à 25).</div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 6 -->
+    <section class="panel chap" id="ch6">
+      <div class="chap-head"><h2><span class="num">6</span>Évaluer : la matrice interactive des risques (Al Baraka)</h2><label class="check"><input data-ch="ch6" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">APPLICATION DIRECTE : Cartographie interactive 5×5 du cas d'étude Al Baraka</div>
+
+      <p>Comparez les cotations avant contrôles (<strong>Risque brut</strong>), avec contrôles existants (<strong>Risque net</strong>) et après plan d'action (<strong>Cible</strong>). Cliquez sur un identifiant de risque pour afficher sa fiche complète.</p>
+      
+      <div class="tabs" role="group" aria-label="Vue de la matrice">
+        <button id="vb" aria-pressed="true" data-v="b">Risque Brut</button>
+        <button id="vn" aria-pressed="false" data-v="n">Risque Net (Résiduel)</button>
+        <button id="vc" aria-pressed="false" data-v="c">Cible après plan d'action</button>
+      </div>
+
+      <div class="mx">
+        <div>
+          <div class="heat" id="heat"></div>
+          <div class="axl"><span>Impact 1 (Faible)</span><span>Impact &rarr;</span><span>5 (Critique)</span></div>
+        </div>
+        <div class="detail" id="detail" aria-live="polite"></div>
+      </div>
+
+      <div class="sub">
+        <h3>Registre exhaustif des 12 risques du cas Al Baraka</h3>
+        <div class="scroll">
+          <table class="course-table" id="reg">
+            <thead><tr><th>N°</th><th>Intitulé du risque</th><th>Famille</th><th>Brut</th><th>Contrôles existants (Appréciation)</th><th>Net</th><th>Décision</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 7 -->
+    <section class="panel chap" id="ch7">
+      <div class="chap-head"><h2><span class="num">7</span>Traiter les risques et plan d'action</h2><label class="check"><input data-ch="ch7" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Décisions de traitement et arbitrage coût/bénéfice</div>
+
+      <div class="sub">
+        <h3>7.1. Les quatre options de réponse</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>1. Éviter (Refuser)</h4>
+            <p>Renoncer purement et simplement à l'activité génératrice du risque. Ex : Al Baraka renonce aux emplacements de magasins dont le loyer dépasse 12 % du CA prévisionnel (R12).</p>
+          </div>
+          <div class="card">
+            <h4>2. Réduire (Maîtriser)</h4>
+            <p>Agir sur la probabilité (contrôles préventifs) ou sur l'impact (protection, PCA). Ex : contrat de maintenance préventive du four, référencement d'un 2e minotier.</p>
+          </div>
+          <div class="card">
+            <h4>3. Partager / Transférer</h4>
+            <p>Faire porter une partie de la charge financière par un tiers (assurance, contrat à prix fixe, sous-traitance). Ex : contrat annuel à prix fixe de la farine (R6). <em>Attention : l'image ne se transfère pas !</em></p>
+          </div>
+          <div class="card">
+            <h4>4. Accepter (Tolérer)</h4>
+            <p>Conserver le risque en toute connaissance de cause, s'il se trouve dans l'appétence ou si le coût de réduction excède la perte attendue (R3, R11).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>7.2. Plan d'action des risques prioritaires (Al Baraka)</h3>
+        <p class="expl">Plan validé pour tous les risques dont le niveau net excédait l'appétence (criticité &gt; 9) ainsi que les actions rapides à fort impact légal (R9 CNDP).</p>
+        <div class="scroll">
+          <table class="course-table" id="plan">
+            <thead><tr><th>N°</th><th>Action engagée</th><th>Responsable</th><th>Échéance</th><th>Évolution : Net &rarr; Cible</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 8 -->
+    <section class="panel chap" id="ch8">
+      <div class="chap-head"><h2><span class="num">8</span>Suivre, indicateurs KRI et gouvernance</h2><label class="check"><input data-ch="ch8" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : KRI (Key Risk Indicators) &amp; Revue périodique</div>
+
+      <div class="sub">
+        <h3>8.1. Les indicateurs clés de risque (KRI)</h3>
+        <p class="expl">Contrairement à un KPI qui mesure la performance passée, un <strong>KRI</strong> mesure l'exposition à un risque <em>avant</em> qu'il ne se matérialise.</p>
+        <div class="scroll">
+          <table class="course-table" id="kri">
+            <thead><tr><th>N°</th><th>Indicateur KRI</th><th>Vert (Normal)</th><th>Orange (Vigilance)</th><th>Rouge (Alerte critique)</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>8.2. Rythme de revue et reporting au Comité d'audit</h3>
+        <div class="grid">
+          <div class="card"><h4>Rythme périodique</h4><p>Revue annuelle de la cartographie globale ; revue trimestrielle des risques prioritaires (zones élevée et critique).</p></div>
+          <div class="card"><h4>Revue d'événement</h4><p>Révision immédiate après tout incident opérationnel majeur ou modification réglementaire sensible.</p></div>
+          <div class="card"><h4>Comité d'audit</h4><p>Examine la matrice, le top 10 des risques nets, l'avancement des plans d'action et les KRI en rouge.</p></div>
+          <div class="card"><h4>Audit interne</h4><p>Bâtit son plan de missions annuelles sur les zones à fort risque résiduel pour tester les contrôles déclarés.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 9 -->
+    <section class="panel chap" id="ch9">
+      <div class="chap-head"><h2><span class="num">9</span>Exercices d'application et corrigés détaillés</h2><label class="check"><input data-ch="ch9" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">BASE : Études de cas, calculs de cotation et vrai/faux d'examen</div>
+
+      <div class="sub">
+        <h3>Exercice 1 · Calcul de criticité et positionnement</h3>
+        <p>En utilisant les seuils du cas Al Baraka, déterminez la criticité et la zone pour :<br/>
+        a) P = 2, I = 5<br/>
+        b) P = 4, I = 2<br/>
+        c) P = 5, I = 3<br/>
+        d) P = 1, I = 3</p>
+        <details class="qbox"><summary>👁️ Voir le corrigé détaillé</summary>
+          <p><strong>a) Criticité = 10 &rarr; Zone Élevée (Orange).</strong> Plan d'action obligatoire. Remarque : profil « rare et catastrophique », exigeant des protections (PCA, assurance).<br/>
+          <strong>b) Criticité = 8 &rarr; Zone Modérée (Jaune).</strong> Dans l'appétence (seuil &le; 9). Surveillance continue.<br/>
+          <strong>c) Criticité = 15 &rarr; Zone Critique (Rouge).</strong> Action immédiate et suivi en direction générale.<br/>
+          <strong>d) Criticité = 3 &rarr; Zone Faible (Verte).</strong> Accepté.</p>
+        </details>
+      </div>
+
+      <div class="sub">
+        <h3>Exercice 2 · Qualification des options de traitement</h3>
+        <p>Indiquez pour chacune des 6 situations quelle est l'option de traitement mise en œuvre :</p>
+        <ol>
+          <li>Une entreprise souscrit une police d'assurance incendie pour ses entrepôts.</li>
+          <li>Une banque renonce à ouvrir une succursale dans un pays sous sanctions internationales.</li>
+          <li>Une PME installe la double authentification (2FA) sur ses accès cloud.</li>
+          <li>Une société conserve un risque de change évalué à 0,2 % du résultat (appétence fixée à 1,5 %).</li>
+          <li>Un laboratoire pharmaceutique qualifie un second fournisseur de principes actifs.</li>
+          <li>Un constructeur confie le transport de matières dangereuses à un logisticien spécialisé certifié.</li>
+        </ol>
+        <details class="qbox"><summary>👁️ Voir le corrigé détaillé</summary>
+          <p>1. <strong>Transférer / Partager :</strong> Couverture financière par l'assureur.<br/>
+          2. <strong>Éviter :</strong> Renoncement total à l'opération génératrice.<br/>
+          3. <strong>Réduire la probabilité :</strong> Contrôle préventif diminuant le risque de piratage.<br/>
+          4. <strong>Accepter :</strong> Le risque net est inférieur à l'appétence validée.<br/>
+          5. <strong>Réduire la probabilité :</strong> Suppression de la dépendance à fournisseur unique.<br/>
+          6. <strong>Partager / Transférer :</strong> Transfert contractuel opérationnel (attention : la responsabilité juridique et réputationnelle finale reste chez le donneur d'ordre).</p>
+        </details>
+      </div>
+
+      <div class="sub">
+        <h3>Exercice 3 · Vrai ou Faux : 6 pièges classiques d'examen</h3>
+        <details class="qbox"><summary>1. « Maîtriser un risque, c'est le supprimer complètement. »</summary><p><strong>FAUX.</strong> Un risque résiduel subsiste toujours, sauf en cas d'évitement total de l'activité.</p></details>
+        <details class="qbox"><summary>2. « Gérer les risques consiste à refuser tout risque. »</summary><p><strong>FAUX.</strong> Prendre des risques calculés est nécessaire pour créer de la valeur ; la gestion arbitre entre accepter, réduire, transférer ou éviter.</p></details>
+        <details class="qbox"><summary>3. « La cartographie des risques est validée par l'audit interne. »</summary><p><strong>FAUX.</strong> Elle est établie par la direction/risk manager et examinée par le comité d'audit. L'audit interne en donne une assurance indépendante, il ne peut la valider sans perdre son indépendance.</p></details>
+        <details class="qbox"><summary>4. « Deux risques de même criticité (ex. 10) appellent toujours les mêmes mesures. »</summary><p><strong>FAUX.</strong> P1×I5 (rare et grave) demande de la protection/assurance, alors que P5×I2 (fréquent et léger) demande des contrôles préventifs opérationnels.</p></details>
+        <details class="qbox"><summary>5. « Un KRI mesure les pertes financières subies lors d'un incident passé. »</summary><p><strong>FAUX.</strong> Le KRI est un indicateur d'alerte avancée (en amont). Les pertes subies relèvent de la base d'incidents (post-mortem).</p></details>
+        <details class="qbox"><summary>6. « Plus une entreprise ajoute de contrôles, meilleure est sa sécurité. »</summary><p><strong>FAUX.</strong> Trop de contrôles alourdit les processus, crée des contournements et coûte plus cher que le risque évité. Les contrôles doivent être ciblés et testés.</p></details>
+      </div>
+    </section>
+
+    <!-- CHAPITRE 10 -->
+    <section class="panel chap" id="ch10">
+      <div class="chap-head"><h2><span class="num">10</span>Quiz interactif · 20 questions de révision</h2><label class="check"><input data-ch="ch10" type="checkbox"/> Je maîtrise</label></div>
+      <div class="source">TESTEZ VOS CONNAISSANCES : Résultats immédiats avec explication détaillée pour chaque question</div>
+
+      <p>Cliquez sur l'option de votre choix pour voir la réponse correcte et sa justification pédagogique.</p>
+      <div id="qz"></div>
+      <div style="margin-top:20px;display:flex;align-items:center;flex-wrap:wrap;gap:12px">
+        <span class="score" id="score">Score : 0 / 20</span>
+        <button class="reset" id="reset" type="button">🔄 Recommencer le test</button>
+      </div>
+    </section>
+
+    <!-- Pager de navigation -->
+    <nav class="pager">
+      <a href="amso-m231-audit-marketing-strategique.html">
+        <small>← MODULE PRÉCÉDENT</small>
+        <strong>M231 · Audit &amp; Marketing stratégique</strong>
+      </a>
+      <a class="next" href="amso-m235-ia-decision-strategique.html">
+        <small>MODULE SUIVANT →</small>
+        <strong>M235 · IA &amp; Décision stratégique</strong>
+      </a>
+    </nav>
   </div>
-  <p class="legend">Sarcelle : étudié en séance (support du professeur). Ambre : nouvelle partie de cette mise à jour.</p>
-  <h3>Compétences visées</h3>
-  <ol class="steps">
-    <li>Maîtriser le vocabulaire et les référentiels (ISO 31000, COSO, AMF).</li>
-    <li>Distinguer et articuler gestion des risques, maîtrise des risques et contrôle interne.</li>
-    <li>Identifier, analyser et évaluer les risques à partir des objectifs.</li>
-    <li><strong>Construire une cartographie des risques et proposer des plans de traitement adaptés</strong> (partie IV).</li>
-    <li>Identifier les exigences de conformité, évaluer les risques de non-conformité et proposer des mesures.</li>
-    <li>Mobiliser toute la démarche sur un cas d'entreprise réel.</li>
-  </ol>
-</section>
-
-<!-- PARTIE I -->
-<section id="p1">
-  <h2>Partie I · Introduction et notions de base</h2>
-  <div class="key"><strong>Définition clé.</strong> Le risque est « l'effet de l'incertitude sur les objectifs » (ISO 31000:2018). L'effet est un écart, positif ou négatif. Pas d'objectif, pas de risque.</div>
-  <div class="grid">
-    <div class="card"><h4>Trois définitions</h4><p>ISO 31000 : effet de l'incertitude sur les objectifs. COSO ERM 2017 : possibilité que des événements affectent la stratégie et les objectifs. AMF 2010 : possibilité d'un événement dont les conséquences affecteraient personnes, actifs, objectifs ou réputation.</p></div>
-    <div class="card"><h4>Les familles de risques</h4><p>Stratégiques, opérationnels, financiers, conformité et juridiques, systèmes d'information, humains et sociaux, environnement et climat, réputation (souvent conséquence des autres).</p></div>
-    <div class="card"><h4>Règle de classement</h4><p>On classe un risque selon son <strong>événement</strong>, pas ses conséquences. Une cyberattaque est un risque SI, même si elle a des effets opérationnels, financiers et d'image.</p></div>
-    <div class="card"><h4>Knight (1921)</h4><p>Risque : issues et probabilités connues, donc mesurable et assurable. Incertitude : situation nouvelle, probabilités non mesurables, décision par le jugement.</p></div>
-  </div>
-  <h3>Notions voisines</h3>
-  <table class="stack"><thead><tr><th>Notion</th><th>Définition</th><th>Image du cambriolage</th></tr></thead><tbody>
-    <tr><td>Danger</td><td>Propriété pouvant causer un dommage (source de risque)</td><td>Le cambrioleur</td></tr>
-    <tr><td>Menace</td><td>Cause potentielle d'un incident, souvent externe</td><td>La possibilité d'un cambriolage</td></tr>
-    <tr><td>Vulnérabilité</td><td>Faiblesse exploitable</td><td>La fenêtre restée ouverte</td></tr>
-    <tr><td>Risque</td><td>Événement incertain et son effet sur les objectifs</td><td>Le vol, les dommages</td></tr>
-    <tr><td>Incident</td><td>Risque qui s'est réalisé</td><td>Le cambriolage qui a eu lieu</td></tr>
-  </tbody></table>
-  <h3>Gestion ou maîtrise ?</h3>
-  <div class="grid">
-    <div class="card"><h4>Gestion des risques</h4><p>« Quels risques voulons-nous prendre, et que décidons-nous de faire de chacun ? » Logique de choix, tournée vers la stratégie. Produit des décisions : accepter, réduire, transférer, éviter.</p></div>
-    <div class="card"><h4>Maîtrise des risques</h4><p>« Les risques gardés sont-ils effectivement tenus ? » Logique d'exécution, dans les processus. Produit des dispositifs : procédures, contrôles, surveillance.</p></div>
-    <div class="card"><h4>Moyens de maîtrise</h4><p>Préventifs (séparation des tâches, habilitations), détectifs (rapprochements, inventaires, alertes), correctifs et de protection (PCA, sauvegardes, gestion de crise).</p></div>
-  </div>
-  <div class="key"><strong>Brut, résiduel, appétence.</strong> Risque brut : avant les moyens de maîtrise. Risque résiduel (net) : ce qui subsiste après, jamais nul. Appétence : niveau que la direction accepte. Si le résiduel dépasse l'appétence, la question « remonte » à la gestion des risques. Exemple des impayés : 4 % du CA brut → 0,8 % résiduel → 0,3 % avec l'assurance-crédit, pour une appétence de 0,5 %.</div>
-  <h3>Gouvernance : le modèle des trois lignes</h3>
-  <table class="stack"><thead><tr><th>Acteur</th><th>Rôle</th><th>Dominante</th></tr></thead><tbody>
-    <tr><td>Conseil, comité d'audit</td><td>Fixe l'appétence, approuve le cadre, examine la cartographie</td><td>Gestion</td></tr>
-    <tr><td>Direction générale</td><td>Met en place le dispositif, décide des réponses</td><td>Gestion</td></tr>
-    <tr><td>1re ligne : management opérationnel</td><td>Possède les risques, fait fonctionner les contrôles</td><td>Surtout maîtrise</td></tr>
-    <tr><td>2e ligne : risk management, contrôle interne, conformité</td><td>Méthode, anime la cartographie, surveille</td><td>Gestion et maîtrise</td></tr>
-    <tr><td>3e ligne : audit interne</td><td>Assurance indépendante sur l'ensemble</td><td>Assurance</td></tr>
-  </tbody></table>
-</section>
-
-<!-- PARTIE II -->
-<section id="p2">
-  <h2>Partie II · Référentiels et obligations de conformité</h2>
-  <table class="stack"><thead><tr><th>Référentiel</th><th>À quoi il sert</th><th>Certifiable ?</th><th>Obligatoire ?</th></tr></thead><tbody>
-    <tr><td>ISO 31000:2018</td><td>Gestion globale des risques : 8 principes, un cadre, un processus</td><td>Non</td><td>Non</td></tr>
-    <tr><td>COSO ERM 2017</td><td>Risque relié à la stratégie et à la performance : 5 composantes, 20 principes</td><td>Non</td><td>Non</td></tr>
-    <tr><td>COSO Contrôle interne 2013</td><td>Structurer et évaluer le contrôle interne : 5 composantes, 17 principes</td><td>Non</td><td>Non</td></tr>
-    <tr><td>AMF 2010</td><td>Articuler gestion des risques et contrôle interne</td><td>Non</td><td>Non</td></tr>
-    <tr><td>ISO 37301, 37001, 27001, 45001</td><td>Conformité, anticorruption, sécurité de l'information, santé-sécurité</td><td>Oui</td><td>Non</td></tr>
-    <tr><td>Bâle, Solvabilité II, Bank Al-Maghrib</td><td>Exigences prudentielles des banques et assurances</td><td>Non</td><td>Oui</td></tr>
-    <tr><td>Codes CNGE 2025</td><td>Bonnes pratiques de gouvernance au Maroc</td><td>Non</td><td>Non</td></tr>
-  </tbody></table>
-  <div class="key info"><strong>À retenir.</strong> Seules les normes rédigées en exigences (« l'organisme doit ») sont certifiables. On ne peut pas être « certifié ISO 31000 » ni « certifié COSO ».</div>
-  <p>Les <strong>huit principes ISO 31000</strong> servent un but : créer et préserver la valeur. Intégré, structuré et global, adapté, inclusif, dynamique, meilleure information disponible, facteurs humains et culturels, amélioration continue. Le <strong>cadre</strong> place le leadership au centre (intégration, conception, mise en œuvre, évaluation, amélioration).</p>
-  <h3>La conformité</h3>
-  <p>Respecter toutes les règles qui s'imposent à l'organisation ou qu'elle s'est fixées (lois, normes et engagements, règles internes, éthique). La conformité est un volet de la gestion des risques : elle part des règles pour en déduire les risques de non-conformité.</p>
-  <table class="stack"><thead><tr><th>Domaine</th><th>Texte</th><th>Autorité</th><th>Exemple d'obligation</th></tr></thead><tbody>
-    <tr><td>Données personnelles</td><td>Loi 09-08</td><td>CNDP</td><td>Déclarer ou faire autoriser ses traitements</td></tr>
-    <tr><td>Blanchiment (LBC-FT)</td><td>Loi 43-05 modifiée par la loi 12-18</td><td>ANRF</td><td>Identifier les clients, déclarer les opérations suspectes</td></tr>
-    <tr><td>Corruption</td><td>Loi 46-19</td><td>INPPLC, justice</td><td>Signaler les faits suspects</td></tr>
-    <tr><td>Droit des sociétés</td><td>Loi 17-95 modifiée par la loi 78-12</td><td>Justice, AMMC</td><td>Commissaire aux comptes, comité d'audit des cotées</td></tr>
-    <tr><td>Cybersécurité</td><td>Loi 05-20</td><td>DGSSI</td><td>Règles de sécurité, déclaration des incidents</td></tr>
-    <tr><td>Travail, santé, sécurité</td><td>Code du travail (loi 65-99)</td><td>Inspection du travail</td><td>Sécurité des salariés, durée du travail</td></tr>
-  </tbody></table>
-</section>
-
-<!-- PARTIE III -->
-<section id="p3">
-  <h2>Partie III · Processus, contexte et identification</h2>
-  <p>Le processus ISO 31000 compte six étapes, encadrées par la <strong>communication et consultation</strong> et par l'<strong>enregistrement et les rapports</strong>. Il est itératif : on revient à l'étape utile dès que le contexte change.</p>
-  <div class="grid">
-    <div class="card"><h4>Étape 1 · Contexte</h4><p>Domaine d'application, contexte externe (PESTEL), contexte interne (SWOT) et <strong>critères de risque</strong> : échelles, combinaison P × I, seuils, appétence. Fixés avant l'appréciation pour juger tous les risques de la même façon.</p></div>
-    <div class="card"><h4>Étape 2 · Identifier</h4><p>Trouver, reconnaître, décrire. Approche descendante (direction, 10 à 20 risques majeurs) et ascendante (processus, registre détaillé), à combiner.</p></div>
-    <div class="card"><h4>Bien formuler</h4><p>Cause → événement → conséquence. « Risque informatique » est trop vague, « manque de formation » est une cause, « baisse du CA » est une conséquence.</p></div>
-  </div>
-  <table class="stack"><thead><tr><th>Outil</th><th>Principe</th><th>Quand l'utiliser</th></tr></thead><tbody>
-    <tr><td>Atelier</td><td>6 à 12 personnes, post-it puis regroupement</td><td>Croiser les points de vue</td></tr>
-    <tr><td>Entretien</td><td>Grille : objectifs, menaces, historique, dépendances, contrôles, le pire</td><td>Dirigeants, sujets sensibles</td></tr>
-    <tr><td>Questionnaire</td><td>10 à 20 questions, réponses jamais / parfois / souvent</td><td>Beaucoup de sites</td></tr>
-    <tr><td>Check-list</td><td>Liste type passée point par point</td><td>Ne rien oublier</td></tr>
-    <tr><td>Analyse de processus</td><td>« Qu'est-ce qui peut mal tourner ? » à chaque étape</td><td>Approche ascendante</td></tr>
-    <tr><td>Analyse des incidents</td><td>Base des incidents et pertes</td><td>Risques opérationnels, fraude</td></tr>
-    <tr><td>Ishikawa</td><td>Causes classées en 5M</td><td>Comprendre les causes</td></tr>
-    <tr><td>Nœud papillon</td><td>Causes → événement → conséquences, avec barrières</td><td>Risque majeur</td></tr>
-  </tbody></table>
-  <div class="key"><strong>Où s'arrêtait le support.</strong> Le registre des risques sort de l'identification avec une ligne par risque. Restaient à remplir les colonnes : probabilité, impact, criticité brute, contrôles existants, criticité nette, décision, actions, indicateur, date de revue. C'est l'objet de la partie IV.</div>
-</section>
-
-<!-- PARTIE IV -->
-<section id="p4">
-  <span class="tag">Nouvelle partie</span>
-  <h2>Partie IV · La cartographie des risques</h2>
-  <div class="key"><strong>Définition.</strong> La cartographie des risques est la représentation hiérarchisée des risques d'une organisation, positionnés selon leur probabilité et leur impact, avant et après les moyens de maîtrise. C'est l'outil de pilotage qui relie le registre des risques aux décisions de traitement.</div>
-  <div class="grid">
-    <div class="card"><h4>À quoi elle sert</h4><p>Hiérarchiser les risques, décider où agir en premier, communiquer au conseil et au comité d'audit, et fonder le plan d'audit interne sur les risques.</p></div>
-    <div class="card"><h4>Trois types</h4><p><strong>Globale</strong> (risques majeurs de l'entité, approche descendante), <strong>par processus</strong> (risques opérationnels, approche ascendante), <strong>thématique</strong> (conformité, fraude, SI, RSE).</p></div>
-    <div class="card"><h4>Ce qu'elle n'est pas</h4><p>Un simple inventaire. Sans décisions de traitement ni suivi, la cartographie ne gère rien (rappel du vrai ou faux de la partie I).</p></div>
-  </div>
-  <h3>La démarche en huit temps</h3>
-  <ol class="steps">
-    <li><strong>Cadrer</strong> : périmètre, objectifs, échelles et seuils validés par la direction (étape 1).</li>
-    <li><strong>Identifier</strong> et tenir le registre (étape 2).</li>
-    <li><strong>Coter le risque brut</strong> : probabilité et impact sans les contrôles.</li>
-    <li><strong>Évaluer les contrôles existants</strong> : conception et efficacité.</li>
-    <li><strong>Coter le risque net</strong> (résiduel).</li>
-    <li><strong>Positionner et hiérarchiser</strong> sur la matrice, comparer à l'appétence.</li>
-    <li><strong>Décider du traitement</strong> et bâtir le plan d'action.</li>
-    <li><strong>Valider, communiquer, suivre</strong> : comité d'audit, indicateurs, mise à jour.</li>
-  </ol>
-</section>
-
-<section id="analyser">
-  <h2>Étape 3 · Analyser : coter probabilité et impact</h2>
-  <p>Analyser, c'est comprendre la nature du risque et déterminer son niveau (ISO 31000, 6.4.3). On utilise les échelles fixées à l'étape 1. Voici celles retenues pour Al Baraka.</p>
-  <p class="legend">Échelles et montants : hypothèses pédagogiques construites pour le cas Al Baraka (chiffre d'affaires supposé de 90 M MAD).</p>
-  <h3>Échelle de probabilité</h3>
-  <table class="stack"><thead><tr><th class="n">Niveau</th><th>Libellé</th><th>Fréquence</th><th>Probabilité annuelle</th></tr></thead><tbody>
-    <tr><td class="n">1</td><td>Rare</td><td>Moins d'une fois en 10 ans</td><td>&lt; 10 %</td></tr>
-    <tr><td class="n">2</td><td>Peu probable</td><td>Une fois en 5 à 10 ans</td><td>10 à 20 %</td></tr>
-    <tr><td class="n">3</td><td>Possible</td><td>Une fois en 2 à 5 ans</td><td>20 à 50 %</td></tr>
-    <tr><td class="n">4</td><td>Probable</td><td>Environ une fois par an</td><td>50 à 90 %</td></tr>
-    <tr><td class="n">5</td><td>Quasi certain</td><td>Plusieurs fois par an</td><td>&gt; 90 %</td></tr>
-  </tbody></table>
-  <h3>Échelle d'impact, multicritère</h3>
-  <p>L'impact se mesure sur plusieurs axes. On retient <strong>le niveau le plus élevé</strong> atteint par l'un des axes.</p>
-  <div class="scroll"><table><thead><tr><th class="n">Niveau</th><th>Financier</th><th>Activité</th><th>Image</th><th>Juridique, sanitaire</th><th>Humain</th></tr></thead><tbody>
-    <tr><td class="n">1 Mineur</td><td>&lt; 50 000 MAD</td><td>Arrêt &lt; 2 h</td><td>Aucun écho</td><td>Remarque</td><td>Aucun blessé</td></tr>
-    <tr><td class="n">2 Modéré</td><td>50 000 à 250 000</td><td>Un magasin non livré</td><td>Réclamations locales</td><td>Avertissement</td><td>Blessure légère</td></tr>
-    <tr><td class="n">3 Significatif</td><td>250 000 à 1 M</td><td>Plusieurs magasins, une matinée</td><td>Presse locale</td><td>Mise en demeure, amende</td><td>Arrêt de travail</td></tr>
-    <tr><td class="n">4 Majeur</td><td>1 à 5 M</td><td>Usine arrêtée plus d'un jour</td><td>Réseaux sociaux, région</td><td>Fermeture d'un site</td><td>Blessé grave</td></tr>
-    <tr><td class="n">5 Critique</td><td>&gt; 5 M</td><td>Arrêt de plus d'une semaine</td><td>Crise nationale</td><td>Fermeture administrative</td><td>Décès</td></tr>
-  </tbody></table></div>
-  <h3>Calculer la criticité</h3>
-  <div class="key"><strong>Criticité = Probabilité × Impact</strong>, de 1 à 25. Exemple : la panne du four à tunnel, sans aucun moyen de maîtrise, est probable (4) et majeure (4) : criticité brute 16.</div>
-  <div class="grid">
-    <div class="card"><h4>Qualitative</h4><p>Niveaux décrits par des mots (faible, moyen, fort). Rapide, mais subjective.</p></div>
-    <div class="card"><h4>Semi-quantitative</h4><p>Échelles chiffrées de 1 à 5 et produit P × I. La méthode la plus répandue, celle de ce cours.</p></div>
-    <div class="card"><h4>Quantitative</h4><p>Perte attendue = probabilité annuelle × coût. Exemple : 30 % × 400 000 MAD = 120 000 MAD par an pour une matinée sans livraison. Utile pour comparer au coût d'une action.</p></div>
-  </div>
-  <h3>Du brut au net : évaluer les contrôles existants</h3>
-  <p>On recense les moyens de maîtrise en place, puis on juge leur efficacité. Un contrôle <strong>préventif</strong> réduit la probabilité ; un contrôle de <strong>protection</strong> réduit l'impact.</p>
-  <table class="stack"><thead><tr><th>Appréciation</th><th>Signification</th><th>Effet sur la cotation</th></tr></thead><tbody>
-    <tr><td>Inexistant</td><td>Aucun contrôle</td><td>Net = brut</td></tr>
-    <tr><td>Insuffisant</td><td>Contrôle manuel, tardif ou non documenté</td><td>Baisse faible, d'un niveau au plus</td></tr>
-    <tr><td>Acceptable</td><td>Contrôle conçu et appliqué, avec des failles</td><td>Baisse d'un niveau sur P ou I</td></tr>
-    <tr><td>Efficace</td><td>Contrôle documenté, appliqué et testé</td><td>Baisse d'un niveau ou plus sur P et/ou I</td></tr>
-  </tbody></table>
-  <div class="key info"><strong>Variante.</strong> Certaines organisations appliquent un coefficient à la criticité brute (par exemple 1 ; 0,75 ; 0,5 ; 0,25 selon l'efficacité). Le principe est le même : le net n'est jamais inférieur à ce que les contrôles testés justifient.</div>
-</section>
-
-<section id="matrice">
-  <h2>Étape 4 · Évaluer : la matrice des risques d'Al Baraka</h2>
-  <p>Évaluer, c'est comparer le niveau de chaque risque aux critères pour décider où agir et dans quel ordre. Les seuils fixés par la direction d'Al Baraka sont les suivants.</p>
-  <table class="stack"><thead><tr><th>Zone</th><th>Criticité</th><th>Règle de décision</th></tr></thead><tbody>
-    <tr><td><span class="pill z4">Critique</span></td><td>15 à 25</td><td>Action immédiate, suivi par la direction générale</td></tr>
-    <tr><td><span class="pill z3">Élevé</span></td><td>10 à 14</td><td>Plan d'action obligatoire, échéance et responsable</td></tr>
-    <tr><td><span class="pill z2">Modéré</span></td><td>5 à 9</td><td>Dans l'appétence : surveiller, améliorer si le coût est raisonnable</td></tr>
-    <tr><td><span class="pill z1">Faible</span></td><td>1 à 4</td><td>Accepter</td></tr>
-  </tbody></table>
-  <p><strong>Appétence fixée par le conseil :</strong> un risque net de criticité 9 ou moins est accepté ; au-delà, un plan d'action est exigé.</p>
-  <div class="tabs" role="group" aria-label="Vue de la matrice">
-    <button id="vb" aria-pressed="true" data-v="b">Risque brut</button>
-    <button id="vn" aria-pressed="false" data-v="n">Risque net</button>
-    <button id="vc" aria-pressed="false" data-v="c">Cible après plan</button>
-  </div>
-  <div class="mx">
-    <div>
-      <div class="heat" id="heat"></div>
-      <div class="axl"><span>Impact 1</span><span>Impact →</span><span>5</span></div>
-    </div>
-    <div class="detail" id="detail" aria-live="polite"></div>
-  </div>
-  <p class="legend">Touchez un risque pour voir sa fiche. Axe vertical : probabilité (5 en haut). Cas Al Baraka repris du support, cotations construites pour l'exercice.</p>
-  <div class="key warn"><strong>Lecture.</strong> En brut, trois risques sont critiques (four, contamination, prix du blé). Après les contrôles existants, aucun ne reste critique, mais cinq restent au-dessus de l'appétence : ce sont les priorités du plan d'action. Après le plan, tous passent dans l'appétence.</div>
-
-  <h3>Le registre complété</h3>
-  <p>Ce sont les colonnes annoncées à la fin du support, remplies pour Al Baraka, du plus critique au moins critique en net.</p>
-  <table class="stack" id="reg"><thead><tr><th>N°</th><th>Risque</th><th>Famille</th><th class="n">Brut</th><th>Contrôles existants</th><th class="n">Net</th><th>Décision</th></tr></thead><tbody></tbody></table>
-</section>
-
-<section id="traiter">
-  <h2>Étape 5 · Traiter les risques</h2>
-  <p>Pour chaque risque au-dessus de l'appétence, la direction choisit une réponse. C'est une décision de <strong>gestion</strong> ; sa mise en œuvre relève de la <strong>maîtrise</strong>.</p>
-  <div class="opts">
-    <div class="card"><b>Éviter</b><p>Renoncer à l'activité qui crée le risque. Al Baraka renonce aux emplacements dont le loyer dépasse 12 % du CA prévu (R12).</p></div>
-    <div class="card"><b>Réduire</b><p>Agir sur la probabilité (prévention) ou l'impact (protection). Maintenance préventive du four, deuxième minotier.</p></div>
-    <div class="card"><b>Partager, transférer</b><p>Assurance, contrats, sous-traitance. Contrats annuels à prix fixe pour la farine (R6). Le risque de réputation, lui, ne se transfère pas.</p></div>
-    <div class="card"><b>Accepter</b><p>Garder le risque en connaissance de cause et le surveiller, s'il est dans l'appétence ou si l'action coûte plus qu'elle ne rapporte (R3, R11).</p></div>
-  </div>
-  <div class="key info"><strong>Lien avec les référentiels.</strong> L'ISO 31000 (6.5.2) détaille plus finement les options : éviter, prendre ou augmenter le risque pour saisir une opportunité, supprimer la source, modifier la vraisemblance, modifier les conséquences, partager, maintenir le risque par décision argumentée. Le COSO ERM 2017 parle d'accepter, éviter, poursuivre, réduire, partager.</div>
-  <h3>Arbitrage coût / bénéfice</h3>
-  <p>Une action se justifie si elle réduit la perte attendue plus qu'elle ne coûte. Pour le four : perte attendue de 120 000 MAD par an, contre un contrat de maintenance préventive estimé à 60 000 MAD par an. L'action est rentable, sans compter l'effet sur l'image.</p>
-  <h3>Le plan d'action des risques prioritaires</h3>
-  <table class="stack" id="plan"><thead><tr><th>N°</th><th>Action</th><th>Responsable</th><th>Échéance</th><th class="n">Net → cible</th></tr></thead><tbody></tbody></table>
-  <div class="key"><strong>Une fiche d'action complète</strong> précise : le risque visé, l'action, son type (préventive ou de protection), le responsable, l'échéance, le coût estimé, la criticité cible et l'indicateur de suivi.</div>
-</section>
-
-<section id="suivre">
-  <h2>Étape 6 · Suivre, revoir et rendre compte</h2>
-  <p>Une cartographie vieillit vite. Le suivi vérifie que les actions sont faites, que les contrôles fonctionnent et que les risques restent dans l'appétence.</p>
-  <h3>Les indicateurs clés de risque (KRI)</h3>
-  <p>Un KRI est un indicateur qui alerte <strong>avant</strong> que le risque se réalise. Il a un seuil d'alerte et un seuil critique.</p>
-  <table class="stack" id="kri"><thead><tr><th>N°</th><th>Indicateur</th><th>Vert</th><th>Orange</th><th>Rouge</th></tr></thead><tbody></tbody></table>
-  <div class="grid">
-    <div class="card"><h4>Rythme de revue</h4><p>Cartographie globale mise à jour chaque année ; risques critiques et élevés revus chaque trimestre ; revue immédiate après un incident majeur ou un changement important (nouvelle loi, nouveau site).</p></div>
-    <div class="card"><h4>Reporting</h4><p>Le risk manager présente au comité d'audit la matrice, le top 10 des risques nets, l'avancement des actions et les KRI en alerte. Le conseil valide l'appétence.</p></div>
-    <div class="card"><h4>Lien avec l'audit interne</h4><p>La 3e ligne s'appuie sur la cartographie pour bâtir un plan d'audit fondé sur les risques, puis teste l'efficacité des contrôles déclarés. Ses constats font évoluer les cotations nettes.</p></div>
-  </div>
-  <h3>La cartographie de conformité</h3>
-  <p>C'est une cartographie thématique. On part de la liste des textes applicables, on en déduit les risques de non-conformité, puis on les cote comme les autres. Pour Al Baraka :</p>
-  <table class="stack"><thead><tr><th>Exigence</th><th>Risque de non-conformité</th><th>Mesure</th></tr></thead><tbody>
-    <tr><td>Loi 09-08, CNDP</td><td>Caméras de surveillance non déclarées (constat de la check-list)</td><td>Déclarer, afficher l'information en magasin</td></tr>
-    <tr><td>Contrôles sanitaires de l'ONSSA</td><td>Fermeture temporaire après un contrôle défavorable (PESTEL)</td><td>Formation hygiène, traçabilité, audits internes qualité</td></tr>
-    <tr><td>Code du travail</td><td>Durée du travail et sécurité des livreurs de nuit</td><td>Suivi des temps de conduite, équipements</td></tr>
-  </tbody></table>
-  <h3>Erreurs fréquentes</h3>
-  <div class="grid">
-    <div class="card"><h4>Coter le net sans tester</h4><p>Un contrôle déclaré n'est pas un contrôle efficace. Sans test, on garde une cotation prudente.</p></div>
-    <div class="card"><h4>Échelles changées en cours de route</h4><p>Les critères se fixent avant l'appréciation, sinon les risques ne sont plus comparables.</p></div>
-    <div class="card"><h4>Tout en rouge</h4><p>Une matrice saturée ne hiérarchise plus. L'intérêt est de distinguer quelques priorités.</p></div>
-    <div class="card"><h4>Oublier les liens</h4><p>Vision portefeuille (COSO, principe 14) : la panne du four et la coupure d'eau ont la même conséquence, magasins non livrés. Un PCA commun traite les deux.</p></div>
-  </div>
-</section>
-
-<section id="exercices">
-  <h2>Exercices d'application</h2>
-  <h3>Exercice 1 · Calculer la criticité et la zone</h3>
-  <p>Avec les seuils d'Al Baraka, donnez la criticité et la zone : a) P 2, I 5 ; b) P 4, I 2 ; c) P 5, I 3 ; d) P 1, I 3.</p>
-  <details><summary>Correction</summary><p>a) 10, élevé ; b) 8, modéré ; c) 15, critique ; d) 3, faible. Remarque : a) et b) ont des criticités proches mais des profils opposés. Un risque rare et grave appelle surtout des protections (PCA, assurance), un risque fréquent et léger appelle des contrôles préventifs.</p></details>
-  <h3>Exercice 2 · Quelle option de traitement ?</h3>
-  <ol class="steps">
-    <li>Une entreprise s'assure contre l'incendie de son entrepôt.</li>
-    <li>Une banque renonce à ouvrir une agence dans une zone frontalière à fort risque de blanchiment.</li>
-    <li>Une PME installe une double authentification sur sa messagerie.</li>
-    <li>Une société garde un risque de change de 0,2 % du résultat, sous son appétence de 2 %.</li>
-    <li>Un hôpital signe un contrat avec un deuxième fournisseur de médicaments.</li>
-    <li>Un industriel sous-traite le transport de produits dangereux à un spécialiste assuré.</li>
-  </ol>
-  <details><summary>Correction</summary><p>1 Transférer (assurance). 2 Éviter. 3 Réduire la probabilité (préventif). 4 Accepter, car le risque est dans l'appétence. 5 Réduire la probabilité de rupture (supprimer la dépendance). 6 Partager ou transférer : attention, la responsabilité juridique et l'image restent en partie chez l'industriel.</p></details>
-  <h3>Exercice 3 · Coter brut et net</h3>
-  <p>Une agence de voyage de Marrakech craint une fuite des données de ses clients. Sans contrôle : possible (3), impact majeur (4) avec sanction CNDP et perte de confiance. Elle a mis en place des mots de passe forts et un antivirus, jugés acceptables. Donnez la criticité brute, une cotation nette argumentée et une décision.</p>
-  <details><summary>Correction</summary><p>Brut : 3 × 4 = 12, élevé. Les contrôles sont préventifs et acceptables : on baisse la probabilité d'un niveau, P 2. L'impact ne change pas, car rien ne limite les conséquences d'une fuite. Net : 2 × 4 = 8, modéré, dans l'appétence. Décision : accepter et surveiller, en ajoutant à faible coût le chiffrement et une procédure de réponse à incident (protection), et vérifier la déclaration à la CNDP.</p></details>
-  <h3>Exercice 4 · Vrai ou faux</h3>
-  <ol class="steps">
-    <li>Deux risques de même criticité appellent toujours les mêmes actions.</li>
-    <li>Le risque net est toujours inférieur ou égal au risque brut.</li>
-    <li>La cartographie est validée par l'audit interne.</li>
-    <li>Un KRI mesure les pertes d'un incident déjà survenu.</li>
-  </ol>
-  <details><summary>Correction</summary><p>1 Faux : P 1 × I 5 et P 5 × I 1 ont la même criticité mais demandent des réponses différentes. 2 Vrai par construction, sauf si le contrôle crée lui-même un risque (on le cote alors séparément). 3 Faux : elle est portée par la direction, animée par la 2e ligne et examinée par le comité d'audit ; l'audit interne en donne une assurance indépendante. 4 Faux : c'est un indicateur d'alerte en amont ; les pertes passées relèvent de la base des incidents.</p></details>
-</section>
-
-<section id="quiz">
-  <h2>Quiz · 20 questions sur tout le module</h2>
-  <p>Choisissez une réponse : la correction s'affiche aussitôt.</p>
-  <div id="qz"></div>
-  <span class="score" id="score">Score : 0 / 20</span><button class="reset" id="reset">Recommencer</button>
-</section>
-
-<nav class="pager">
-  <a href="amso-m231-audit-marketing-strategique.html">
-    <small>← MODULE PRÉCÉDENT</small>
-    <strong>M231 · Audit &amp; Marketing stratégique</strong>
-  </a>
-  <a class="next" href="amso-m235-ia-decision-strategique.html">
-    <small>MODULE SUIVANT →</small>
-    <strong>M235 · IA &amp; Décision stratégique</strong>
-  </a>
-</nav>
+</div>
+</main>
 
 <footer>
-  <div class="sig">NBProf</div>
-  <p style="margin:8px 0 16px">Synthèse établie à partir du support du Pr Otmane Bennani (parties I à III) ; la partie IV, ses échelles et ses cotations sont un complément pédagogique NBProf construit sur le cas Al Baraka.</p>
-  <p><a href="amso2026.html">← Retour à AMSO 2026</a> · <a href="index.html">Accueil NBProf</a> · <a href="quiz.html?m=m233">Quiz d'entraînement M233</a></p>
+  <p>✦ © 2026 NBProf Research · Espace Académique Master AMSO ✦</p>
+  <p><small>Support fondé sur les enseignements du Pr Otmane Bennani et les développements pédagogiques NBProf.</small></p>
+  <p><a href="amso2026.html">← Retour au catalogue AMSO 2026</a> · <a href="index.html">Accueil NBProf</a> · <a href="confidentialite.html">Confidentialité</a></p>
 </footer>
-</main>
-</div>
+
+<!-- Cloudflare Web Analytics — nbprof.com -->
+<script data-cf-beacon='{"token":"ecf82d9260a34bfc8a6fc1cbc861f541"}' src="https://static.cloudflareinsights.com/beacon.min.js" type="module"></script>
 
 <script>
 {
 const R=[
- {id:"R1",n:"Panne du four à tunnel la nuit",f:"Opérationnel",c:"Un seul four pour 70 % de la production, maintenance seulement après panne",b:[4,4],k:"Technicien d'astreinte, réparation après panne",e:"Insuffisant",t:[3,4],d:"Réduire",a:"Maintenance préventive, contrat de dépannage en 4 h, accord de production de secours avec un confrère",r:"Resp. maintenance",h:"T1 2027",g:[2,3],ki:["Heures d'arrêt du four par mois","< 2 h","2 à 6 h","> 6 h"]},
- {id:"R2",n:"Vente d'un produit contaminé",f:"Sanitaire, conformité",c:"Personnel non formé, rupture du froid, crème mal conservée",b:[3,5],k:"Relevés de température, contrôle qualité en usine",e:"Acceptable",t:[2,5],d:"Réduire",a:"Formation hygiène de tout le personnel, traçabilité des lots, procédure de rappel testée",r:"Resp. qualité",h:"T1 2027",g:[1,5],ki:["Part du personnel formé à l'hygiène","≥ 95 %","80 à 95 %","< 80 %"]},
- {id:"R6",n:"Flambée du prix du blé",f:"Financier",c:"Blé importé, marchés mondiaux, réforme de la subvention",b:[4,4],k:"Contrats d'achat trimestriels",e:"Acceptable",t:[4,3],d:"Partager",a:"Contrats annuels à prix fixe avec le minotier, clause d'indexation dans les contrats hôtels et cafés",r:"DAF",h:"T1 2027",g:[4,2],ki:["Prix de la farine par rapport au budget","< +5 %","+5 à +10 %","> +10 %"]},
- {id:"R10",n:"Départ du chef de production",f:"Humain",c:"Savoir-faire non documenté, aucun suppléant",b:[3,4],k:"Aucun",e:"Inexistant",t:[3,4],d:"Réduire",a:"Adjoint formé en binôme, fiches recettes écrites, prime de fidélisation",r:"DRH",h:"T2 2027",g:[2,3],ki:["Part des recettes documentées","≥ 90 %","60 à 90 %","< 60 %"]},
- {id:"R8",n:"Coupure d'eau prolongée",f:"Environnement",c:"Sécheresse, restrictions d'eau",b:[2,5],k:"Aucun",e:"Inexistant",t:[2,5],d:"Réduire",a:"Citerne de réserve de 48 h et plan de continuité (gamme essentielle)",r:"Dir. d'usine",h:"T3 2027",g:[2,3],ki:["Alertes de restriction de l'opérateur","Aucune","Pré-alerte","Restriction annoncée"]},
- {id:"R7",n:"Fraude aux encaissements",f:"Opérationnel (fraude)",c:"Gérante seule à la clôture, ventes sans ticket",b:[4,3],k:"Comparaison hebdomadaire des ventes, à la main",e:"Insuffisant",t:[3,3],d:"Réduire",a:"Double clôture de caisse, logiciel avec ticket obligatoire, contrôles inopinés",r:"DAF",h:"T2 2027",g:[2,3],ki:["Écarts de caisse > 200 MAD par mois","0 à 1","2 à 4","≥ 5"]},
- {id:"R12",n:"Magasins ouverts sur des emplacements non rentables",f:"Stratégique",c:"Loyers en forte hausse, plan de 5 ouvertures en 2027",b:[3,3],k:"Aucun",e:"Inexistant",t:[3,3],d:"Éviter",a:"Renoncer aux emplacements dont le loyer dépasse 12 % du CA prévu",r:"DG",h:"À chaque projet",g:[1,3],ki:["Loyer rapporté au CA prévu","< 10 %","10 à 12 %","> 12 %"]},
- {id:"R4",n:"Rupture de farine",f:"Opérationnel",c:"Fournisseur unique, retards de livraison",b:[3,4],k:"Stock de sécurité de 2 jours",e:"Acceptable",t:[2,4],d:"Réduire",a:"Référencer un deuxième minotier, porter le stock à 5 jours",r:"Dir. d'usine",h:"T2 2027",g:[1,4],ki:["Jours de stock de farine","≥ 5","3 à 4","< 3"]},
- {id:"R5",n:"Invendus élevés",f:"Financier",c:"Commandes des magasins estimées à la main",b:[4,2],k:"Revue hebdomadaire manuelle",e:"Insuffisant",t:[4,2],d:"Réduire",a:"Prévision des commandes dans le logiciel de caisse",r:"Contrôle de gestion",h:"T2 2027",g:[3,2],ki:["Taux d'invendus","< 5 %","5 à 8 %","> 8 %"]},
- {id:"R9",n:"Caméras non déclarées à la CNDP",f:"Conformité",c:"Méconnaissance de la loi 09-08",b:[4,2],k:"Aucun",e:"Inexistant",t:[4,2],d:"Réduire",a:"Déclarer les traitements à la CNDP, afficher l'information en magasin",r:"DAF",h:"Déc. 2026",g:[1,2],ki:["Magasins en règle","100 %","90 à 99 %","< 90 %"]},
- {id:"R3",n:"Accident d'un livreur",f:"Humain",c:"Tournées à 4 h du matin, fatigue",b:[3,4],k:"Camions suivis par GPS, formation à la conduite",e:"Acceptable",t:[2,3],d:"Accepter",a:"Surveiller les temps de conduite",r:"Resp. logistique",h:"Continu",g:[2,3],ki:["Dépassements du temps de conduite par mois","0","1 à 2","≥ 3"]},
- {id:"R11",n:"Dépendance à une application de livraison",f:"Stratégique",c:"80 % des commandes en ligne via une seule plateforme",b:[3,2],k:"Aucun",e:"Inexistant",t:[3,2],d:"Accepter",a:"Surveiller la part de l'application, étudier un second canal",r:"Dir. commerciale",h:"Revue semestrielle",g:[3,2],ki:["Part des commandes via l'application","< 60 %","60 à 80 %","> 80 %"]}
+ {id:"R1",n:"Panne du four à tunnel la nuit",f:"Opérationnel",c:"Un seul four pour 70 % de la production, maintenance après panne",b:[4,4],k:"Technicien d'astreinte, réparation après panne",e:"Insuffisant",t:[3,4],d:"Réduire",a:"Maintenance préventive, dépannage garanti sous 4h, accord de secours",r:"Resp. maintenance",h:"T1 2027",g:[2,3],ki:["Heures d'arrêt four / mois","< 2 h","2 à 6 h","> 6 h"]},
+ {id:"R2",n:"Vente d'un produit contaminé",f:"Sanitaire, conformité",c:"Personnel non formé, rupture du froid, crème mal conservée",b:[3,5],k:"Relevés de température, contrôle usine",e:"Acceptable",t:[2,5],d:"Réduire",a:"Formation hygiène 100%, traçabilité des lots, procédure de rappel testée",r:"Resp. qualité",h:"T1 2027",g:[1,5],ki:["Part du personnel formé hygiène","≥ 95 %","80 à 95 %","< 80 %"]},
+ {id:"R6",n:"Flambée du prix du blé",f:"Financier",c:"Blé importé, volatilité des marchés mondiaux",b:[4,4],k:"Contrats trimestriels",e:"Acceptable",t:[4,3],d:"Partager",a:"Contrats annuels prix fixe avec minotier, clause d'indexation contrats pro",r:"DAF",h:"T1 2027",g:[4,2],ki:["Écart prix farine vs budget","< +5 %","+5 à +10 %","> +10 %"]},
+ {id:"R10",n:"Départ du chef de production",f:"Humain",c:"Savoir-faire artisanal non écrit, aucun suppléant",b:[3,4],k:"Aucun",e:"Inexistant",t:[3,4],d:"Réduire",a:"Adjoint formé en binôme, fiches recettes écrites, fidélisation",r:"DRH",h:"T2 2027",g:[2,3],ki:["Part des recettes documentées","≥ 90 %","60 à 90 %","< 60 %"]},
+ {id:"R8",n:"Coupure d'eau prolongée",f:"Environnement",c:"Sécheresse, restrictions réseau",b:[2,5],k:"Aucun",e:"Inexistant",t:[2,5],d:"Réduire",a:"Citerne de réserve 48h et PCA gamme essentielle",r:"Dir. d'usine",h:"T3 2027",g:[2,3],ki:["Alertes restriction opérateur","Aucune","Pré-alerte","Restriction annoncée"]},
+ {id:"R7",n:"Fraude aux encaissements",f:"Opérationnel (fraude)",c:"Gérante seule à la clôture, ventes sans ticket",b:[4,3],k:"Comparaison hebdo des ventes manuelle",e:"Insuffisant",t:[3,3],d:"Réduire",a:"Double clôture, logiciel ticket obligatoire, contrôles inopinés",r:"DAF",h:"T2 2027",g:[2,3],ki:["Écarts caisse > 200 MAD / mois","0 à 1","2 à 4","≥ 5"]},
+ {id:"R12",n:"Magasins sur emplacements non rentables",f:"Stratégique",c:"Loyers en forte hausse, plan de 5 ouvertures",b:[3,3],k:"Aucun",e:"Inexistant",t:[3,3],d:"Éviter",a:"Renoncer aux baux dont le loyer dépasse 12 % du CA prévisionnel",r:"DG",h:"À chaque projet",g:[1,3],ki:["Ratio loyer / CA prévu","< 10 %","10 à 12 %","> 12 %"]},
+ {id:"R4",n:"Rupture de farine",f:"Opérationnel",c:"Fournisseur unique, retards livraison",b:[3,4],k:"Stock de sécurité 2 jours",e:"Acceptable",t:[2,4],d:"Réduire",a:"Référencer un 2e minotier, porter stock sécurité à 5 jours",r:"Dir. d'usine",h:"T2 2027",g:[1,4],ki:["Jours de stock farine","≥ 5","3 à 4","< 3"]},
+ {id:"R5",n:"Invendus élevés en magasin",f:"Financier",c:"Commandes estimées manuellement",b:[4,2],k:"Revue manuelle",e:"Insuffisant",t:[4,2],d:"Réduire",a:"Module de prévision des commandes dans logiciel caisse",r:"Contrôle de gestion",h:"T2 2027",g:[3,2],ki:["Taux d'invendus quotidien","< 5 %","5 à 8 %","> 8 %"]},
+ {id:"R9",n:"Caméras non déclarées à la CNDP",f:"Conformité",c:"Méconnaissance Loi 09-08",b:[4,2],k:"Aucun",e:"Inexistant",t:[4,2],d:"Réduire",a:"Déclaration CNDP, affichage obligatoire en magasin",r:"DAF",h:"Déc. 2026",g:[1,2],ki:["Magasins 100% en règle","100 %","90 à 99 %","< 90 %"]},
+ {id:"R3",n:"Accident de la route d'un livreur",f:"Humain",c:"Tournées à 4h du matin, fatigue",b:[3,4],k:"GPS sur camions, formation conduite",e:"Acceptable",t:[2,3],d:"Accepter",a:"Surveillance des temps de conduite et du repos",r:"Resp. logistique",h:"Continu",g:[2,3],ki:["Dépassements temps conduite / mois","0","1 à 2","≥ 3"]},
+ {id:"R11",n:"Dépendance à une plateforme de livraison",f:"Stratégique",c:"80% des commandes en ligne via un seul canal",b:[3,2],k:"Aucun",e:"Inexistant",t:[3,2],d:"Accepter",a:"Veille de commission, étudier canal direct propriétaire",r:"Dir. commerciale",h:"Semestriel",g:[3,2],ki:["Part canal tiers dans CA digital","< 60 %","60 à 80 %","> 80 %"]}
 ];
-const z=s=>s>=15?4:s>=10?3:s>=5?2:1, zl=["","Faible","Modéré","Élevé","Critique"];
+
+const z=s=>s>=15?4:s>=10?3:s>=5?2:1;
 const sc=p=>p[0]*p[1], pill=p=>`<span class="pill z${z(sc(p))}">${sc(p)}</span>`;
 const key={b:"b",n:"t",c:"g"};
 let view="b", sel="R1";
 const heat=document.getElementById("heat"), det=document.getElementById("detail");
+
 function draw(){
   let h="";
   for(let p=5;p>=1;p--){
@@ -475,61 +595,112 @@ function draw(){
   h+=`<div></div>`+[1,2,3,4,5].map(i=>`<div class="ax">${i}</div>`).join("");
   heat.innerHTML=h;
   const r=R.find(x=>x.id===sel);
-  det.innerHTML=`<h4>${r.id} · ${r.n}</h4><div>${r.f}</div><dl>
+  det.innerHTML=`<h4>${r.id} · ${r.n}</h4><div style="color:var(--mut);font-size:13px;margin-bottom:8px">${r.f}</div><dl>
    <dt>Causes</dt><dd>${r.c}</dd>
    <dt>Brut</dt><dd>P ${r.b[0]} × I ${r.b[1]} = ${pill(r.b)}</dd>
-   <dt>Contrôles</dt><dd>${r.k} (${r.e.toLowerCase()})</dd>
+   <dt>Contrôles</dt><dd>${r.k} <em>(${r.e.toLowerCase()})</em></dd>
    <dt>Net</dt><dd>P ${r.t[0]} × I ${r.t[1]} = ${pill(r.t)}</dd>
-   <dt>Décision</dt><dd>${r.d}</dd>
+   <dt>Décision</dt><dd><strong>${r.d}</strong></dd>
    <dt>Action</dt><dd>${r.a}</dd>
    <dt>Cible</dt><dd>P ${r.g[0]} × I ${r.g[1]} = ${pill(r.g)}</dd></dl>`;
 }
+
 heat.addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){sel=b.dataset.id;draw();}});
 document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>{
   view=b.dataset.v;document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-pressed",x===b));draw();}));
 draw();
-document.querySelector("#reg tbody").innerHTML=R.map(r=>`<tr><td>${r.id}</td><td>${r.n}</td><td>${r.f}</td><td class="n">${pill(r.b)}</td><td>${r.k} · <em>${r.e}</em></td><td class="n">${pill(r.t)}</td><td>${r.d}</td></tr>`).join("");
-document.querySelector("#plan tbody").innerHTML=R.filter(r=>sc(r.t)>=10||r.id==="R9").map(r=>`<tr><td>${r.id}</td><td>${r.a}</td><td>${r.r}</td><td>${r.h}</td><td class="n">${pill(r.t)} → ${pill(r.g)}</td></tr>`).join("")+`<tr><td colspan="5"><em>R9 est ajouté comme « action rapide » : sous l'appétence, mais la non-conformité se corrige à coût presque nul.</em></td></tr>`;
-document.querySelector("#kri tbody").innerHTML=R.map(r=>`<tr><td>${r.id}</td><td>${r.ki[0]}</td><td>${r.ki[1]}</td><td>${r.ki[2]}</td><td>${r.ki[3]}</td></tr>`).join("");
+
+document.querySelector("#reg tbody").innerHTML=R.map(r=>`<tr><td><strong>${r.id}</strong></td><td>${r.n}</td><td>${r.f}</td><td style="text-align:center">${pill(r.b)}</td><td>${r.k} · <em>${r.e}</em></td><td style="text-align:center">${pill(r.t)}</td><td><strong>${r.d}</strong></td></tr>`).join("");
+document.querySelector("#plan tbody").innerHTML=R.filter(r=>sc(r.t)>=10||r.id==="R9").map(r=>`<tr><td><strong>${r.id}</strong></td><td>${r.a}</td><td>${r.r}</td><td>${r.h}</td><td style="text-align:center">${pill(r.t)} &rarr; ${pill(r.g)}</td></tr>`).join("")+`<tr><td colspan="5" style="color:var(--gold);font-style:italic">Action rapide R9 : non-conformité légale CNDP corrigée immédiatement à coût nul.</td></tr>`;
+document.querySelector("#kri tbody").innerHTML=R.map(r=>`<tr><td><strong>${r.id}</strong></td><td>${r.ki[0]}</td><td style="color:#86efac">${r.ki[1]}</td><td style="color:#fde047">${r.ki[2]}</td><td style="color:#fca5a5;font-weight:bold">${r.ki[3]}</td></tr>`).join("");
 
 const Q=[
- ["Selon l'ISO 31000:2018, le risque est…",["la probabilité d'une perte","l'effet de l'incertitude sur les objectifs","un événement qui s'est produit","une faiblesse exploitable"],1,"L'effet peut être positif, négatif ou les deux. Sans objectif, pas de risque."],
- ["Une cyberattaque provoque un arrêt de production et une perte d'image. Sa famille principale est…",["opérationnelle","réputation","systèmes d'information","financière"],2,"On classe selon l'événement, pas selon les conséquences."],
- ["La fenêtre restée ouverte, dans l'exemple du cambriolage, c'est…",["le danger","la menace","la vulnérabilité","l'incident"],2,"La vulnérabilité est une faiblesse que la menace peut exploiter."],
- ["Fixer l'appétence pour le risque relève…",["de la maîtrise des risques","de la gestion des risques","de l'audit interne","du commissaire aux comptes"],1,"C'est une décision de gouvernance, prise par le conseil."],
- ["Un rapprochement bancaire mensuel est un contrôle…",["préventif","détectif","de protection","stratégique"],1,"Il repère une anomalie après coup."],
- ["Quel référentiel peut faire l'objet d'une certification ?",["ISO 31000","COSO ERM 2017","ISO 37301","AMF 2010"],2,"Il est rédigé en exigences : « l'organisme doit »."],
- ["Le COSO Contrôle interne 2013 compte…",["5 composantes et 17 principes","5 composantes et 20 principes","8 principes","3 lignes"],0,"Le COSO ERM 2017, lui, compte 5 composantes et 20 principes."],
- ["Au Maroc, la protection des données personnelles relève de…",["la loi 05-20 et la DGSSI","la loi 09-08 et la CNDP","la loi 43-05 et l'ANRF","la loi 17-95 et l'AMMC"],1,"La loi 05-20 concerne la cybersécurité."],
- ["« Manque de formation » est mal formulé comme risque parce que c'est…",["une conséquence","une cause","un contrôle","trop précis"],1,"Le risque est l'événement : erreur d'un opérateur non formé provoquant un accident."],
- ["L'approche ascendante (bottom-up) part…",["des objectifs stratégiques","des processus et des activités","des rapports du conseil","de la presse"],1,"Elle donne un registre détaillé par processus."],
- ["La criticité d'un risque se calcule le plus souvent par…",["probabilité + impact","probabilité × impact","impact ÷ probabilité","le nombre d'incidents"],1,"Sur des échelles de 1 à 5, elle varie de 1 à 25."],
- ["Quand l'impact se mesure sur plusieurs axes (financier, image, humain), on retient…",["la moyenne des axes","l'axe financier seulement","le niveau le plus élevé atteint","l'axe le plus faible"],2,"C'est la règle prudente de l'échelle multicritère."],
- ["Le risque net (résiduel) est coté…",["avant tout moyen de maîtrise","après prise en compte des contrôles existants","après le plan d'action futur","par l'assureur"],1,"Le risque après plan d'action est le risque cible."],
- ["Un contrôle de protection agit surtout sur…",["la probabilité","l'impact","l'appétence","la fréquence des revues"],1,"Le préventif réduit la probabilité, la protection réduit l'impact."],
- ["Un risque P 2 × I 5 = 10 avec les seuils d'Al Baraka est…",["faible","modéré","élevé","critique"],2,"Zone élevée de 10 à 14 : plan d'action obligatoire."],
- ["Renoncer à un emplacement de magasin trop cher, c'est…",["réduire","éviter","transférer","accepter"],1,"On supprime l'activité qui crée le risque."],
- ["Une assurance-crédit à l'export est une réponse de type…",["éviter","accepter","partager ou transférer","réduire la probabilité"],2,"Une partie de la perte est reportée sur l'assureur."],
- ["Un KRI (indicateur clé de risque) sert à…",["mesurer les pertes passées","alerter avant que le risque se réalise","certifier le contrôle interne","calculer le résultat"],1,"Il a un seuil d'alerte et un seuil critique."],
- ["Qui examine la cartographie des risques pour le conseil ?",["le comité d'audit","le commissaire aux comptes","chaque salarié","l'inspection du travail"],0,"Le comité d'audit prépare les travaux du conseil sur les risques."],
- ["L'audit interne utilise la cartographie pour…",["fixer l'appétence","bâtir un plan d'audit fondé sur les risques","gérer les risques à la place des opérationnels","remplacer le registre"],1,"Il donne ensuite une assurance indépendante sur l'efficacité des contrôles."]
+ ["Selon l'ISO 31000:2018, le risque est défini comme…",["la probabilité de subir une perte financière","l'effet de l'incertitude sur les objectifs","un événement qui s'est déjà produit","une faiblesse exploitable"],1,"L'effet est un écart par rapport aux attentes (positif ou négatif). Sans objectif, pas de risque."],
+ ["Une cyberattaque bloque la production et détériore l'image de marque. Sa famille principale est…",["opérationnelle","réputationnelle","systèmes d'information","financière"],2,"Règle méthodologique : on classe toujours selon l'événement générateur, pas selon ses impacts."],
+ ["Dans l'analogie du cambriolage, la fenêtre restée ouverte correspond à…",["au danger","à la menace","à la vulnérabilité","à l'incident"],2,"La vulnérabilité est la faiblesse interne exploitable par la menace."],
+ ["La décision de fixer l'appétence globale pour le risque relève de…",["la maîtrise des risques","la gestion des risques (gouvernance)","l'audit interne","du commissaire aux comptes"],1,"L'appétence est une décision stratégique souveraine du Conseil d'administration."],
+ ["Un rapprochement bancaire mensuel constitue un contrôle de nature…",["préventive","détective","de protection","stratégique"],1,"Il détecte après coup une anomalie ou un écart entre compta et banque."],
+ ["Parmi les référentiels suivants, lequel PEUT faire l'objet d'une certification ?",["ISO 31000","COSO ERM 2017","ISO 37301 (Conformité)","Cadre AMF"],2,"ISO 37301 contient des exigences normatives (« l'organisme doit »). ISO 31000 et COSO ne sont pas certifiables."],
+ ["Le cadre COSO Contrôle Interne 2013 compte…",["5 composantes et 17 principes","5 composantes et 20 principes","8 principes et 1 cadre","3 lignes de maîtrise"],0,"COSO Contrôle Interne = 5 composantes & 17 principes (COSO ERM 2017 en a 20)."],
+ ["Au Maroc, le contrôle de la protection des données personnelles est régi par…",["la loi 05-20 et la DGSSI","la loi 09-08 et la CNDP","la loi 43-05 et l'ANRF","la loi 17-95 et l'AMMC"],1,"Loi 09-08 appliquée par la CNDP. La loi 05-20 concerne la cybersécurité des infrastructures critiques."],
+ ["Pourquoi la formule « manque de formation » est-elle un mauvais libellé de risque ?",["C'est une conséquence","C'est une cause et non un événement","C'est un contrôle","C'est trop précis"],1,"Le risque doit être formulé : Cause &rarr; Événement &rarr; Impact (ex: l'erreur de saisie due au manque de formation)."],
+ ["L'approche ascendante (Bottom-Up) d'identification part…",["de la vision stratégique du Conseil","des processus et des opérations du terrain","des rapports de presse","des audits externes"],1,"Elle produit un registre détaillé construit avec les opérationnels de chaque processus."],
+ ["La formule semi-quantitative la plus courante pour calculer la criticité est…",["Probabilité + Impact","Probabilité × Impact","Impact ÷ Probabilité","Perte financière maximale"],1,"Sur des échelles de 1 à 5, la criticité varie de 1 à 25."],
+ ["Dans une échelle d'impact multicritère (financier, image, humain), quelle valeur retient-on ?",["La moyenne arithmétique","L'axe financier uniquement","Le niveau le plus élevé atteint par l'un des axes","L'axe le plus faible"],2,"Principe de prudence : on retient le niveau d'impact le plus sévère."],
+ ["Le risque net (résiduel) est coté…",["avant tout contrôle","après prise en compte des contrôles existants et testés","après le plan d'action futur","par l'assureur seul"],1,"Brut = avant contrôle ; Net = après contrôles existants ; Cible = après plan d'action futur."],
+ ["Un moyen de protection (ex: Plan de Continuité d'Activité) agit principalement sur…",["la probabilité d'occurrence","l'impact et les conséquences","l'appétence du conseil","la fréquence des audits"],1,"Le préventif réduit la probabilité ; la protection et le correctif réduisent l'impact final."],
+ ["Un risque coté P 2 × I 5 = 10 avec les seuils d'Al Baraka se situe en zone…",["Faible","Modérée","Élevée","Critique"],2,"Zone élevée de 10 à 14 : plan d'action et suivi obligatoires."],
+ ["Renoncer à s'implanter dans un pays instable constitue une stratégie de…",["Réduction","Évitement","Partage / Transfert","Acceptation"],1,"On supprime l'activité à la source du risque."],
+ ["Une assurance multirisque industrielle est une réponse de type…",["Évitement","Acceptation","Transfert / Partage","Prévention"],2,"Une part de l'impact financier est reportée sur la compagnie d'assurance."],
+ ["À quoi sert un KRI (Key Risk Indicator) ?",["À comptabiliser les pertes passées","À alerter en amont avant qu'un risque ne se matérialise","À certifier les comptes annuels","À remplacer la cartographie"],1,"Un KRI est un indicateur précurseur doté de seuils d'alerte (vert, orange, rouge)."],
+ ["Quel organe examine la cartographie des risques pour le Conseil d'administration ?",["Le comité d'audit","Le commissaire aux comptes","La direction commerciale","L'inspection du travail"],0,"Le comité d'audit prépare et instruit les travaux du Conseil sur les risques et le contrôle interne."],
+ ["L'audit interne utilise la cartographie des risques principalement pour…",["définir l'appétence à la place de la DG","bâtir son plan de missions annuelles fondé sur les risques","mettre en œuvre les contrôles opérationnels","fixer les objectifs commerciaux"],1,"La 3e ligne (audit interne) oriente ses missions prioritaires vers les risques nets les plus élevés."]
 ];
+
 const qz=document.getElementById("qz"), scoreEl=document.getElementById("score");
 let pts=0,done=0;
-function render(){pts=0;done=0;scoreEl.textContent="Score : 0 / 20";
-  qz.innerHTML=Q.map((q,i)=>`<div class="q" data-i="${i}"><p>${i+1}. ${q[0]}</p>${q[1].map((o,j)=>`<button data-j="${j}">${o}</button>`).join("")}<div class="ex">${q[3]}</div></div>`).join("");}
-qz.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const box=b.closest(".q");if(box.classList.contains("answered"))return;
-  const q=Q[+box.dataset.i],j=+b.dataset.j;box.classList.add("answered");
-  box.querySelectorAll("button")[q[2]].classList.add("ok");if(j!==q[2])b.classList.add("ko");else pts++;
-  done++;scoreEl.textContent=`Score : ${pts} / 20`+(done===20?(pts>=16?" · très bien":pts>=12?" · bien, revoyez les erreurs":" · à retravailler"):"");});
+function render(){
+  pts=0;done=0;scoreEl.textContent="Score : 0 / 20";
+  qz.innerHTML=Q.map((q,i)=>`<div class="q" data-i="${i}"><p>${i+1}. ${q[0]}</p>${q[1].map((o,j)=>`<button data-j="${j}" type="button">${o}</button>`).join("")}<div class="ex">${q[3]}</div></div>`).join("");
+}
+qz.addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  const box=b.closest(".q");if(box.classList.contains("answered"))return;
+  const q=Q[+box.dataset.i],j=+b.dataset.j;
+  box.classList.add("answered");
+  box.querySelectorAll("button")[q[2]].classList.add("ok");
+  if(j!==q[2])b.classList.add("ko");else pts++;
+  done++;
+  scoreEl.textContent=`Score : ${pts} / 20`+(done===20?(pts>=16?" · Excellent !":pts>=12?" · Bon score, revoyez les détails":" · À retravailler"):"");
+});
 document.getElementById("reset").addEventListener("click",render);
 render();
-const links=[...document.querySelectorAll("nav.side a")];
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+en.target.id));}),{rootMargin:"-40% 0px -55% 0px"});
-document.querySelectorAll("main section[id]").forEach(s=>io.observe(s));
+
+// Checkbox progress
+const KEY='nbprof-m233-progress-v2';
+let st={};
+try{st=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){}
+const boxes=[...document.querySelectorAll('.check input')];
+function paint(){
+  let n=0;
+  boxes.forEach(b=>{
+    const id=b.dataset.ch;
+    b.checked=!!st[id];
+    if(st[id])n++;
+    const l=document.querySelector('.side a[href="#'+id+'"]');
+    if(l)l.classList.toggle('done',!!st[id]);
+  });
+  document.querySelector('.bar i').style.width=(n/boxes.length*100)+'%';
+  document.getElementById('pc').textContent=n+' / '+boxes.length+' parties maîtrisées';
+}
+boxes.forEach(b=>b.addEventListener('change',()=>{
+  st[b.dataset.ch]=b.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}
+  paint();
+}));
+paint();
+
+// Mode révision
+const rv=document.getElementById('rev');
+rv.addEventListener('click',()=>{
+  const on=document.body.classList.toggle('revision');
+  rv.classList.toggle('on',on);
+  rv.textContent=on?'📖 Afficher explications':'⚡ Mode révision rapide';
+});
+
+// IntersectionObserver sidebar
+const links=[...document.querySelectorAll('.side a')];
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>{
+    es.forEach(en=>{
+      if(en.isIntersecting){
+        links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id));
+      }
+    });
+  },{rootMargin:'-30% 0px -60% 0px'});
+  document.querySelectorAll('.chap').forEach(c=>io.observe(c));
+}
 }
 </script>
-<!-- Cloudflare Web Analytics — nbprof.com -->
-<script data-cf-beacon='{"token":"ecf82d9260a34bfc8a6fc1cbc861f541"}' src="https://static.cloudflareinsights.com/beacon.min.js" type="module"></script>
 </body>
 </html>
