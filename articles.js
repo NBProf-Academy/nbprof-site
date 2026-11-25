@@ -1027,32 +1027,257 @@ const ARTICLES = [
     category: 'audit',
     icon: '🔍',
     date:     { fr: 'Mars 2026', ar: 'مارس 2026', en: 'March 2026' },
-    readTime: { fr: '7 min', ar: '7 دقائق', en: '7 min' },
-    badge:    { fr: 'Audit & Contrôle', ar: 'تدقيق ومراقبة', en: 'Audit & Control' },
+    readTime: { fr: '10 min', ar: '10 دقائق', en: '10 min' },
+    badge:    { fr: 'Audit & Contrôle · Gouvernance scolaire', ar: 'تدقيق ومراقبة · حكامة مدرسية', en: 'Audit & Control · School Governance' },
     title: {
-      fr: "L'audit organisationnel scolaire",
-      ar: "التدقيق التنظيمي المدرسي",
-      en: "Organizational audit applied to schools"
+      fr: "L'audit organisationnel appliqué à l'école : méthode, outils et exemple concret",
+      ar: "التدقيق التنظيمي في المؤسسة المدرسية: المنهجية، الأدوات ومثال تطبيقي",
+      en: "Organizational audit applied to schools: method, tools and a concrete example"
     },
     excerpt: {
-      fr: "Comment l'audit peut-il transformer la gouvernance des établissements éducatifs ?",
-      ar: "كيف يمكن للتدقيق أن يحول حوكمة المؤسسات التعليمية؟",
-      en: "How can audit transform educational governance?"
+      fr: "Auditer une école, ce n'est pas l'inspecter ni la sanctionner. C'est comprendre comment elle fonctionne pour l'aider à mieux fonctionner. Définition, démarche en 5 étapes, outils de l'auditeur et exemple concret appliqué à une école primaire marocaine.",
+      ar: "تدقيق المدرسة لا يعني تفتيشها ولا معاقبتها، بل فهم طريقة اشتغالها لمساعدتها على الاشتغال بشكل أفضل. تعريف، منهجية من 5 مراحل، أدوات المدقق ومثال تطبيقي على مدرسة ابتدائية مغربية.",
+      en: "Auditing a school does not mean inspecting or sanctioning it. It means understanding how it works in order to help it work better. Definition, a 5-step approach, the auditor's tools and a concrete example from a Moroccan primary school."
     },
     content: {
-      fr: `<h3>Pourquoi auditer un établissement scolaire ?</h3>
-        <p>Pour améliorer la gouvernance, l'efficience et l'impact pédagogique.</p>
-        <h3>Les 4 dimensions</h3>
+      fr: `
+        <p>Quand on parle d'audit, beaucoup pensent spontanément aux banques, aux grandes entreprises ou aux comptes annuels. Pourtant, une école publique est elle aussi une <strong>organisation</strong> : elle a des objectifs, des ressources humaines et matérielles, des processus, une direction et des parties prenantes. Elle peut donc, comme toute organisation, être <strong>auditée</strong> pour mieux fonctionner.</p>
+
+        <p>Après 23 ans passés dans l'enseignement primaire et une formation en Master Audit et Management Stratégique des Organisations, je suis convaincu que l'audit organisationnel est l'un des outils les plus utiles — et les moins utilisés — pour améliorer nos établissements.</p>
+
+        <h3>1. Qu'est-ce que l'audit organisationnel ?</h3>
+        <p>L'audit organisationnel est un <strong>examen méthodique, objectif et documenté</strong> du fonctionnement d'une organisation : ses structures, ses processus, la répartition des responsabilités, ses outils de pilotage et l'usage de ses ressources. Son but est d'évaluer leur <strong>efficacité</strong> (atteint-on les objectifs ?) et leur <strong>efficience</strong> (avec quelles ressources ?), puis de proposer des améliorations concrètes.</p>
+
+        <div class="highlight-box">
+          💡 <strong>À ne pas confondre :</strong><br>
+          • <strong>L'inspection pédagogique</strong> évalue surtout la pratique d'un enseignant ou la conformité à des normes.<br>
+          • <strong>L'audit organisationnel</strong> analyse le <em>système</em> dans son ensemble : comment les tâches, les décisions et les informations circulent dans l'établissement.<br>
+          L'inspection regarde souvent une personne ; l'audit regarde une organisation.
+        </div>
+
+        <h3>2. Pourquoi auditer un établissement scolaire ?</h3>
+        <p>Plusieurs raisons rendent cette démarche particulièrement pertinente aujourd'hui :</p>
         <ul>
-          <li><strong>Audit pédagogique</strong></li>
-          <li><strong>Audit organisationnel</strong></li>
-          <li><strong>Audit financier</strong></li>
-          <li><strong>Audit de conformité</strong></li>
+          <li><strong>La gouvernance par les résultats</strong> : les réformes successives du système éducatif marocain, notamment la loi-cadre 51-17, mettent l'accent sur l'évaluation, la reddition des comptes et la qualité.</li>
+          <li><strong>Le projet d'établissement</strong> : pour être utile, il doit partir d'un diagnostic honnête de la situation réelle de l'école.</li>
+          <li><strong>Des ressources limitées</strong> : quand les moyens sont rares, chaque dirham et chaque heure doivent être utilisés là où ils ont le plus d'impact.</li>
+          <li><strong>La complexité croissante</strong> : numérique, nouvelles approches pédagogiques, attentes des familles… la direction a besoin d'une vision claire pour décider.</li>
         </ul>
-        <div class="highlight-box">🎯 <strong>L'objectif :</strong> identifier les leviers d'amélioration, pas juger.</div>
-        <blockquote>L'audit, bien conduit, est un puissant outil de transformation.</blockquote>`,
-      ar: `<h3>لماذا تدقيق المدرسة؟</h3><p>لتحسين الحوكمة والفعالية.</p>`,
-      en: `<h3>Why audit a school?</h3><p>To improve governance and efficiency.</p>`
+
+        <h3>3. Les quatre dimensions de l'audit scolaire</h3>
+
+        <h3>📚 L'audit pédagogique</h3>
+        <p>Il examine l'organisation des apprentissages : répartition des emplois du temps, couverture des programmes, dispositifs de soutien, suivi des élèves en difficulté, résultats aux évaluations. La question centrale : <em>l'organisation de l'école favorise-t-elle réellement les apprentissages ?</em></p>
+
+        <h3>🏛️ L'audit organisationnel au sens strict</h3>
+        <p>Il porte sur les structures et les processus : rôles du directeur et des conseils, circulation de l'information, coordination entre enseignants, gestion des absences, relations avec les parents et les partenaires.</p>
+
+        <h3>💰 L'audit financier et matériel</h3>
+        <p>Il vérifie la gestion des crédits et des fonds disponibles (par exemple ceux gérés par l'association de soutien de l'école), l'état et l'utilisation des équipements, la traçabilité des dépenses et leur cohérence avec les priorités du projet d'établissement.</p>
+
+        <h3>⚖️ L'audit de conformité</h3>
+        <p>Il contrôle le respect des textes réglementaires et des procédures : registres obligatoires, sécurité des locaux, procédures d'inscription, archivage, protection des données des élèves.</p>
+
+        <div class="highlight-box">
+          🎯 <strong>L'objectif n'est jamais de juger :</strong> un audit utile identifie des <strong>leviers d'amélioration</strong>. S'il est vécu comme une sanction, les acteurs cachent les problèmes et l'audit perd toute sa valeur.
+        </div>
+
+        <h3>4. La démarche en 5 étapes</h3>
+        <ol>
+          <li><strong>Cadrage</strong> : définir avec la direction le périmètre (quel domaine ? quelle période ?), les objectifs et le calendrier. Cette étape se formalise souvent dans une <em>lettre de mission</em>.</li>
+          <li><strong>Prise de connaissance</strong> : comprendre l'établissement — effectifs, organigramme, documents internes, résultats des dernières années, contexte local.</li>
+          <li><strong>Collecte des données</strong> : entretiens avec la direction et les enseignants, questionnaires aux parents ou aux élèves, observation sur le terrain, analyse documentaire et des indicateurs.</li>
+          <li><strong>Analyse</strong> : comparer ce qui <em>est</em> à ce qui <em>devrait être</em>, identifier les écarts, en chercher les causes et en mesurer les conséquences.</li>
+          <li><strong>Restitution et suivi</strong> : présenter un rapport clair, discuter les recommandations avec l'équipe, construire un plan d'action daté et vérifier quelques mois plus tard ce qui a été réalisé.</li>
+        </ol>
+
+        <h3>5. Les outils de l'auditeur</h3>
+        <ul>
+          <li><strong>Le guide d'entretien</strong> : une liste de questions ouvertes pour recueillir la perception de chaque acteur.</li>
+          <li><strong>Le questionnaire</strong> : pour toucher un grand nombre de personnes (parents, élèves) et obtenir des données comparables.</li>
+          <li><strong>Le tableau de bord d'indicateurs</strong> : taux de réussite, taux d'absentéisme, taux d'abandon, effectif moyen par classe, taux d'utilisation des crédits.</li>
+          <li><strong>La matrice des risques</strong> : classer chaque risque selon sa probabilité et sa gravité pour décider des priorités.</li>
+          <li><strong>La FRAP</strong> (Feuille de Révélation et d'Analyse de Problème) : l'outil central de l'auditeur, qui structure chaque constat en quatre parties — <strong>fait, cause, conséquence, recommandation</strong>.</li>
+        </ul>
+
+        <h3>6. Exemple concret : une FRAP dans une école primaire</h3>
+        <p>Voici un exemple illustratif, inspiré de situations fréquentes dans les écoles rurales :</p>
+
+        <div class="highlight-box">
+          <strong>📋 Constat :</strong> absentéisme élevé des élèves de 5<sup>e</sup> et 6<sup>e</sup> année entre octobre et décembre.<br><br>
+          <strong>Fait :</strong> le registre d'appel montre un taux d'absence nettement supérieur à celui des autres niveaux sur cette période.<br><br>
+          <strong>Causes :</strong> participation des élèves aux travaux agricoles saisonniers ; absence de transport scolaire pour les douars éloignés ; faible communication entre l'école et les familles.<br><br>
+          <strong>Conséquences :</strong> retard dans la progression des apprentissages, résultats plus faibles aux évaluations, risque accru de décrochage.<br><br>
+          <strong>Recommandations :</strong> suivre l'absentéisme chaque semaine dans un tableau simple ; organiser une rencontre avec les parents avant la saison agricole ; solliciter la commune et les partenaires pour le transport ; prévoir des séances de rattrapage ciblées.
+        </div>
+
+        <p>On voit ici la force de la démarche : au lieu de constater simplement que « les élèves s'absentent », l'audit relie le problème à ses causes réelles et débouche sur des actions précises, réalistes et mesurables.</p>
+
+        <h3>7. Les conditions de réussite</h3>
+        <ul>
+          <li><strong>Une posture bienveillante</strong> : expliquer dès le départ que l'audit vise l'amélioration, pas la sanction.</li>
+          <li><strong>L'implication de l'équipe</strong> : les enseignants connaissent le terrain ; leurs propositions rendent les recommandations applicables.</li>
+          <li><strong>Des preuves, pas des impressions</strong> : chaque constat doit s'appuyer sur des données vérifiables.</li>
+          <li><strong>La confidentialité</strong> : ce qui est dit en entretien ne doit pas se retourner contre la personne.</li>
+          <li><strong>Le suivi</strong> : un rapport rangé dans un tiroir ne change rien. Le plan d'action doit avoir des responsables et des échéances.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>L'audit organisationnel n'est pas réservé aux entreprises. Appliqué à l'école avec méthode et bienveillance, il aide la direction à voir clair, à prioriser ses efforts et à transformer des difficultés diffuses en actions concrètes. Il donne aussi aux enseignants une place active dans l'amélioration de leur établissement.</p>
+
+        <blockquote>
+          « Auditer une école, ce n'est pas chercher un coupable. C'est chercher, ensemble, ce qui empêche l'école de donner le meilleur d'elle-même. »<br>
+          <strong>— NB</strong>
+        </blockquote>
+
+        <p><strong>Noamane Boulahcen</strong><br>
+        Professeur au primaire · Étudiant-chercheur · Master AMSO – Université Cadi Ayyad</p>
+
+        <div class="highlight-box">
+          📝 Vous préparez un mémoire ou un projet sur l'audit d'un établissement ? Besoin d'aide pour construire votre grille d'analyse ?<br>
+          <strong>Contactez-moi sur NBProf.com</strong>
+        </div>
+
+        <p style="color:var(--white-dim);font-size:0.9em">#Audit #AuditOrganisationnel #GouvernanceScolaire #ManagementScolaire #NBProf #AMSO</p>
+      `,
+      ar: `
+        <p>عندما نتحدث عن التدقيق، يفكر الكثيرون مباشرة في البنوك والمقاولات الكبرى والحسابات السنوية. غير أن المدرسة العمومية هي أيضا <strong>منظمة</strong>: لها أهداف، وموارد بشرية ومادية، وعمليات، وإدارة، وأطراف معنية. ويمكن إذن، مثل أي منظمة، أن <strong>تخضع للتدقيق</strong> من أجل اشتغال أفضل.</p>
+
+        <h3>1. ما هو التدقيق التنظيمي؟</h3>
+        <p>التدقيق التنظيمي هو <strong>فحص منهجي وموضوعي وموثق</strong> لطريقة اشتغال المنظمة: بنياتها، وعملياتها، وتوزيع المسؤوليات، وأدوات القيادة، واستعمال الموارد. هدفه تقييم <strong>الفعالية</strong> (هل نحقق الأهداف؟) و<strong>النجاعة</strong> (بأي موارد؟)، ثم اقتراح تحسينات ملموسة.</p>
+
+        <div class="highlight-box">
+          💡 <strong>للتمييز:</strong> التفتيش التربوي يقيّم غالبا ممارسة الأستاذ أو المطابقة للمعايير، أما التدقيق التنظيمي فيحلل <em>النظام</em> ككل: كيف تنتقل المهام والقرارات والمعلومات داخل المؤسسة.
+        </div>
+
+        <h3>2. لماذا تدقيق مؤسسة مدرسية؟</h3>
+        <ul>
+          <li><strong>الحكامة القائمة على النتائج</strong>: الإصلاحات المتتالية، ومنها القانون الإطار 51-17، تركز على التقييم وربط المسؤولية بالمحاسبة والجودة.</li>
+          <li><strong>مشروع المؤسسة</strong>: لكي يكون مفيدا، يجب أن ينطلق من تشخيص صادق للوضعية الحقيقية.</li>
+          <li><strong>محدودية الموارد</strong>: يجب توجيه كل درهم وكل ساعة إلى حيث يكون الأثر أكبر.</li>
+        </ul>
+
+        <h3>3. الأبعاد الأربعة للتدقيق المدرسي</h3>
+        <ul>
+          <li><strong>📚 التدقيق البيداغوجي</strong>: تنظيم التعلمات، استعمالات الزمن، تغطية البرامج، الدعم، النتائج.</li>
+          <li><strong>🏛️ التدقيق التنظيمي</strong>: الأدوار، المجالس، تداول المعلومات، التنسيق، تدبير الغياب، العلاقة مع الآباء.</li>
+          <li><strong>💰 التدقيق المالي والمادي</strong>: تدبير الاعتمادات والأموال (مثل أموال جمعية دعم مدرسة النجاح)، حالة التجهيزات، تتبع النفقات.</li>
+          <li><strong>⚖️ تدقيق المطابقة</strong>: احترام النصوص التنظيمية، السجلات، سلامة البنايات، حماية معطيات التلاميذ.</li>
+        </ul>
+
+        <h3>4. المنهجية في 5 مراحل</h3>
+        <ol>
+          <li><strong>التأطير</strong>: تحديد المجال والأهداف والجدول الزمني مع الإدارة (رسالة المهمة).</li>
+          <li><strong>التعرف على المؤسسة</strong>: الأعداد، الهيكل التنظيمي، الوثائق، النتائج، السياق المحلي.</li>
+          <li><strong>جمع المعطيات</strong>: مقابلات، استمارات، ملاحظة ميدانية، تحليل الوثائق والمؤشرات.</li>
+          <li><strong>التحليل</strong>: مقارنة ما هو كائن بما يجب أن يكون، وتحديد الفوارق وأسبابها ونتائجها.</li>
+          <li><strong>العرض والتتبع</strong>: تقرير واضح، مناقشة التوصيات، خطة عمل مؤرخة، وتتبع التنفيذ.</li>
+        </ol>
+
+        <h3>5. أدوات المدقق</h3>
+        <ul>
+          <li><strong>دليل المقابلة</strong> و<strong>الاستمارة</strong> لجمع آراء الفاعلين.</li>
+          <li><strong>لوحة القيادة</strong>: نسبة النجاح، الغياب، الانقطاع، متوسط عدد التلاميذ في القسم.</li>
+          <li><strong>مصفوفة المخاطر</strong>: ترتيب المخاطر حسب الاحتمال والخطورة.</li>
+          <li><strong>ورقة كشف وتحليل المشكل (FRAP)</strong>: الواقعة، السبب، النتيجة، التوصية.</li>
+        </ul>
+
+        <h3>6. مثال تطبيقي</h3>
+        <div class="highlight-box">
+          <strong>📋 الملاحظة:</strong> ارتفاع غياب تلاميذ المستويين الخامس والسادس بين أكتوبر ودجنبر.<br><br>
+          <strong>الأسباب:</strong> مشاركة التلاميذ في الأشغال الفلاحية الموسمية، غياب النقل المدرسي للدواوير البعيدة، ضعف التواصل مع الأسر.<br><br>
+          <strong>النتائج:</strong> تأخر في التعلمات، ضعف النتائج، خطر الانقطاع.<br><br>
+          <strong>التوصيات:</strong> تتبع أسبوعي للغياب، لقاء مع الآباء قبل الموسم الفلاحي، التنسيق مع الجماعة والشركاء بخصوص النقل، حصص استدراك موجهة.
+        </div>
+
+        <h3>7. شروط النجاح</h3>
+        <ul>
+          <li>موقف إيجابي: التدقيق للتحسين لا للعقاب.</li>
+          <li>إشراك الفريق التربوي في صياغة الحلول.</li>
+          <li>الاعتماد على أدلة لا على انطباعات.</li>
+          <li>احترام السرية وتتبع تنفيذ خطة العمل.</li>
+        </ul>
+
+        <h3>خاتمة</h3>
+        <p>التدقيق التنظيمي ليس حكرا على المقاولات. عندما يطبق في المدرسة بمنهجية وروح إيجابية، يساعد الإدارة على الرؤية الواضحة وترتيب الأولويات وتحويل الصعوبات إلى إجراءات ملموسة.</p>
+
+        <blockquote>
+          « تدقيق المدرسة ليس بحثا عن مذنب، بل بحث مشترك عما يمنعها من تقديم أفضل ما لديها. »<br>
+          <strong>— ن.ب</strong>
+        </blockquote>
+
+        <p><strong>نعمان بولحسن</strong><br>
+        أستاذ بالتعليم الابتدائي · طالب باحث · ماستر AMSO – جامعة القاضي عياض</p>
+      `,
+      en: `
+        <p>When people hear the word audit, they usually think of banks, large companies or annual accounts. Yet a public school is also an <strong>organization</strong>: it has goals, human and material resources, processes, leadership and stakeholders. Like any organization, it can be <strong>audited</strong> in order to work better.</p>
+
+        <h3>1. What is an organizational audit?</h3>
+        <p>An organizational audit is a <strong>methodical, objective and documented review</strong> of how an organization works: its structures, processes, distribution of responsibilities, management tools and use of resources. Its purpose is to assess <strong>effectiveness</strong> (are goals achieved?) and <strong>efficiency</strong> (with what resources?), then to recommend concrete improvements.</p>
+
+        <div class="highlight-box">
+          💡 <strong>Not to be confused with inspection:</strong> a pedagogical inspection usually assesses a teacher's practice or compliance with standards. An organizational audit analyses the <em>system</em> as a whole: how tasks, decisions and information flow through the school.
+        </div>
+
+        <h3>2. Why audit a school?</h3>
+        <ul>
+          <li><strong>Results-based governance</strong>: successive reforms in Morocco, including Framework Law 51-17, emphasise evaluation, accountability and quality.</li>
+          <li><strong>The school project</strong>: to be useful, it must start from an honest diagnosis of the real situation.</li>
+          <li><strong>Limited resources</strong>: every dirham and every hour must go where it has the greatest impact.</li>
+        </ul>
+
+        <h3>3. The four dimensions of a school audit</h3>
+        <ul>
+          <li><strong>📚 Pedagogical audit</strong>: organization of learning, timetables, curriculum coverage, support schemes, results.</li>
+          <li><strong>🏛️ Organizational audit</strong>: roles, councils, information flow, coordination, absence management, relations with parents.</li>
+          <li><strong>💰 Financial and material audit</strong>: management of budgets and funds, condition of equipment, traceability of spending.</li>
+          <li><strong>⚖️ Compliance audit</strong>: regulations, mandatory registers, building safety, protection of student data.</li>
+        </ul>
+
+        <h3>4. A 5-step approach</h3>
+        <ol>
+          <li><strong>Scoping</strong>: agree with the principal on scope, objectives and timeline (engagement letter).</li>
+          <li><strong>Understanding the school</strong>: enrolment, organization chart, documents, past results, local context.</li>
+          <li><strong>Data collection</strong>: interviews, questionnaires, field observation, document and indicator analysis.</li>
+          <li><strong>Analysis</strong>: compare what <em>is</em> with what <em>should be</em>, identify gaps, their causes and consequences.</li>
+          <li><strong>Reporting and follow-up</strong>: clear report, discussion of recommendations, dated action plan, follow-up review.</li>
+        </ol>
+
+        <h3>5. The auditor's tools</h3>
+        <ul>
+          <li><strong>Interview guide</strong> and <strong>questionnaire</strong> to gather stakeholders' views.</li>
+          <li><strong>Indicator dashboard</strong>: pass rate, absenteeism, dropout rate, average class size.</li>
+          <li><strong>Risk matrix</strong>: rank each risk by likelihood and severity.</li>
+          <li><strong>Problem analysis sheet</strong> (FRAP in French practice): fact, cause, consequence, recommendation.</li>
+        </ul>
+
+        <h3>6. A concrete example</h3>
+        <div class="highlight-box">
+          <strong>📋 Finding:</strong> high absenteeism among grade 5 and 6 pupils between October and December.<br><br>
+          <strong>Causes:</strong> children helping with seasonal farm work, no school transport for remote villages, weak communication with families.<br><br>
+          <strong>Consequences:</strong> learning delays, lower results, higher dropout risk.<br><br>
+          <strong>Recommendations:</strong> weekly absence tracking, a meeting with parents before the farming season, working with the local council and partners on transport, targeted catch-up sessions.
+        </div>
+
+        <h3>7. Conditions for success</h3>
+        <ul>
+          <li>A supportive stance: the audit aims at improvement, not punishment.</li>
+          <li>Involving the teaching team in designing solutions.</li>
+          <li>Evidence rather than impressions.</li>
+          <li>Confidentiality and real follow-up of the action plan.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>Organizational audit is not only for companies. Applied to schools with method and goodwill, it helps leadership see clearly, set priorities and turn vague difficulties into concrete actions.</p>
+
+        <blockquote>
+          "Auditing a school is not about finding someone to blame. It is about finding, together, what prevents the school from giving its best."<br>
+          <strong>— NB</strong>
+        </blockquote>
+
+        <p><strong>Noamane Boulahcen</strong><br>
+        Primary school teacher · Student-researcher · Master AMSO – Cadi Ayyad University</p>
+      `
     }
   },
 {
