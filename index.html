@@ -1,31 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <script src="/nbprof-analytics.js"></script>
-<!-- Consent Mode v2 : valeurs par défaut (avant GTM) -->
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  (function(){
-    var choix = null;
-    try { choix = localStorage.getItem('nbprof_consent'); } catch(e) {}
-    var ok = choix === 'accepte' ? 'granted' : 'denied';
-    gtag('consent', 'default', {
-      analytics_storage: ok,
-      ad_storage: ok,
-      ad_user_data: ok,
-      ad_personalization: ok,
-      wait_for_update: 500
-    });
-  })();
-</script>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PDQ92BZ3');</script>
-<!-- End Google Tag Manager -->
+<!-- NBProf Analytics : GTM + consentement + événements -->
+<script src="/nbprof-analytics.js"></script>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>NBProf · Noamane Boulahcen · Professeur au primaire Etudiant-chercheur</title>
@@ -570,6 +547,7 @@ border:1px solid rgba(201,168,76,.3);
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2266053235930350"
      crossorigin="anonymous"></script>
   <link rel="stylesheet" href="nbprof-apparence.css">
+  <link rel="canonical" href="https://nbprof.com/">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1004,6 +982,7 @@ Accéder au Dashboard →
     </div>
   </div>
   <div class="pub-grid" id="pubGrid"></div>
+  <p style="text-align:center;margin-top:30px"><a href="/articles/" class="btn">📚 Tous les articles →</a> <a href="/articles/ar/" style="margin:0 10px;color:var(--gold-light)">المقالات بالعربية</a> <a href="/articles/en/" style="color:var(--gold-light)">Articles in English</a></p>
 </section>
 
 <section id="services">
@@ -1214,6 +1193,7 @@ Accéder au Dashboard →
     <a onclick="scrollToSection('publications')" data-i18n="nav_pubs">Publications</a>
     <a onclick="scrollToSection('services')" data-i18n="nav_services">Services</a>
     <a onclick="scrollToSection('contact')" data-i18n="nav_contact">Contact</a>
+    <a href="/articles/">Articles</a>
     <a href="confidentialite.html" data-i18n="nav_privacy">Politique de confidentialité</a>
   </div>
   
@@ -1242,11 +1222,14 @@ Object.assign(TRANSLATIONS.fr, {"yt_hero": "YouTube · NBProf AMSO", "yt_kicker"
 Object.assign(TRANSLATIONS.ar, {"yt_hero": "يوتيوب · NBProf AMSO", "yt_kicker": "جديد على يوتيوب", "yt_desc": "راجع وحدات ماستر التدقيق والتدبير الاستراتيجي للمنظمات من الفصل الأول إلى الفصل الثالث عبر فيديوهات قصيرة وحالات تطبيقية. ستجد أيضا إرشادات لمشروع نهاية الدراسة، من اختيار الموضوع إلى المناقشة.", "yt_channel": "اكتشف القناة على يوتيوب", "yt_credit": "قناة نعمان بولحسن. يُعَدّ المحتوى بالتعاون مع مجموعة Advisory Growth ‏(NB، MAH وYAT).", "yt_short": "شاهد أول فيديو قصير", "yt_duration": "فيديو تعريفي · 30 ثانية"});
 Object.assign(TRANSLATIONS.en, {"yt_hero": "YouTube · NBProf AMSO", "yt_kicker": "NEW ON YOUTUBE", "yt_desc": "Review the Audit and Strategic Management master’s modules from semesters 1 to 3 with short videos and practical cases. Find guidance for your final project, from choosing a topic to preparing your defense.", "yt_channel": "Explore the YouTube channel", "yt_credit": "Noamane Boulahcen’s channel. Content prepared with Advisory Growth (NB, MAH and YAT).", "yt_short": "Watch the first Short", "yt_duration": "Introduction · 30 sec"});
 let currentLang='fr';
+const ARTICLE_SLUGS={1:'ia-transformer-ecole-marocaine',2:'analyse-swot-methode-erreurs',3:'methode-prisma-2020-guide-complet',4:'audit-organisationnel-scolaire',5:'erreurs-fatales-memoire-master',6:'culture-entreprise-motivation-performance',7:'comprendre-ne-suffit-pas-pour-retenir'};
+const ARTICLE_FR_ONLY={4:true};
+function articleUrl(id){const s=ARTICLE_SLUGS[id];if(!s)return '/articles/';const l=ARTICLE_FR_ONLY[id]?'fr':currentLang;return l==='fr'?'/articles/'+s+'.html':'/articles/'+l+'/'+s+'.html';}
 function applyTranslations(lang){const t=TRANSLATIONS[lang];if(!t)return;document.querySelectorAll('[data-i18n]').forEach(el=>{const key=el.getAttribute('data-i18n');if(t[key]!==undefined)el.innerHTML=t[key];});}
-function renderArticles(filter='all'){const grid=document.getElementById('pubGrid');grid.innerHTML='';if(typeof ARTICLES==='undefined')return;const filtered=filter==='all'?ARTICLES:ARTICLES.filter(a=>a.category===filter);const readMore=TRANSLATIONS[currentLang].read_more||'Lire →';filtered.forEach(a=>{const card=document.createElement('div');card.className='pub-card reveal visible';card.onclick=()=>openArticle(a.id);card.innerHTML=`<div class="pub-thumb">${a.icon}</div><div class="pub-body"><span class="pub-badge">${a.badge[currentLang]}</span><h3>${a.title[currentLang]}</h3><p class="pub-excerpt">${a.excerpt[currentLang]}</p><div class="pub-meta"><span>${a.date[currentLang]} · ${a.readTime[currentLang]}</span><span class="pub-link">${readMore}</span></div></div>`;grid.appendChild(card);});}
+function renderArticles(filter='all'){const grid=document.getElementById('pubGrid');grid.innerHTML='';if(typeof ARTICLES==='undefined')return;const filtered=filter==='all'?ARTICLES:ARTICLES.filter(a=>a.category===filter);const readMore=TRANSLATIONS[currentLang].read_more||'Lire →';filtered.forEach(a=>{const card=document.createElement('div');card.className='pub-card reveal visible';card.onclick=()=>openArticle(a.id);card.innerHTML=`<div class="pub-thumb">${a.icon}</div><div class="pub-body"><span class="pub-badge">${a.badge[currentLang]}</span><h3><a href="${articleUrl(a.id)}" onclick="event.preventDefault()" style="color:inherit">${a.title[currentLang]}</a></h3><p class="pub-excerpt">${a.excerpt[currentLang]}</p><div class="pub-meta"><span>${a.date[currentLang]} · ${a.readTime[currentLang]}</span><span class="pub-link">${readMore}</span></div></div>`;grid.appendChild(card);});}
 function filterPubs(category,btn){document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderArticles(category);}
 function filterAndScroll(category){scrollToSection('publications');setTimeout(()=>{const btns=document.querySelectorAll('#pubFilters .filter-btn');const map={ia:1,management:2,methodologie:3,audit:4};if(map[category]&&btns[map[category]])filterPubs(category,btns[map[category]]);else filterPubs('all',btns[0]);},600);}
-function openArticle(id){if(typeof ARTICLES==='undefined')return;const a=ARTICLES.find(x=>x.id===id);if(!a)return;const contactMe=TRANSLATIONS[currentLang].contact_me||'Me contacter';document.getElementById('modalBody').innerHTML=`<span class="modal-badge">${a.badge[currentLang]}</span><h2>${a.title[currentLang]}</h2><div class="modal-meta">📅 ${a.date[currentLang]} · ⏱️ ${a.readTime[currentLang]}</div><div class="modal-content">${a.content[currentLang]}</div><div style="margin-top:30px;padding-top:20px;border-top:1px solid var(--gold-medium);text-align:center"><button class="btn-primary" onclick="closeModal();scrollToSection('contact')">📩 ${contactMe}</button></div>`;document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden';document.querySelector('.modal').scrollTop=0;}
+function openArticle(id){if(typeof ARTICLES==='undefined')return;const a=ARTICLES.find(x=>x.id===id);if(!a)return;const contactMe=TRANSLATIONS[currentLang].contact_me||'Me contacter';document.getElementById('modalBody').innerHTML=`<span class="modal-badge">${a.badge[currentLang]}</span><h2>${a.title[currentLang]}</h2><div class="modal-meta">📅 ${a.date[currentLang]} · ⏱️ ${a.readTime[currentLang]}</div><div class="modal-content">${a.content[currentLang]}</div><p style="margin-top:20px"><a href="${articleUrl(a.id)}" style="color:var(--gold-light);text-decoration:underline">🔗 Page de l'article (lien permanent à partager)</a></p><div style="margin-top:30px;padding-top:20px;border-top:1px solid var(--gold-medium);text-align:center"><button class="btn-primary" onclick="closeModal();scrollToSection('contact')">📩 ${contactMe}</button></div>`;document.getElementById('modalOverlay').classList.add('active');document.body.style.overflow='hidden';document.querySelector('.modal').scrollTop=0;}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('active');document.body.style.overflow='';}
 function closeModalOutside(e){if(e.target.id==='modalOverlay')closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
@@ -1265,145 +1248,5 @@ window.addEventListener('load',()=>{renderArticles();});
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"ecf82d9260a34bfc8a6fc1cbc861f541"}'></script>
 <!-- End Cloudflare Web Analytics -->
 
-<!-- ===== Bannière de consentement NBProf ===== -->
-<style>
-#nbConsent{position:fixed;left:16px;right:16px;bottom:16px;z-index:3000;max-width:640px;margin:0 auto;background:var(--navy-2);border:1px solid var(--gold-strong);border-radius:12px;padding:18px 20px;box-shadow:0 20px 50px rgba(0,0,0,.6);display:none;font-size:.92em;color:var(--white-dim)}
-#nbConsent.show{display:block}
-#nbConsent strong{color:var(--gold)}
-#nbConsent a{color:var(--gold-light);text-decoration:underline}
-#nbConsent .nb-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-#nbConsent button{padding:9px 18px;border-radius:6px;font-weight:600;cursor:pointer;font-size:.95em}
-#nbConsentOk{background:var(--gold);color:var(--navy);border:none}
-#nbConsentNo{background:transparent;color:var(--white);border:1px solid var(--gold-strong)}
-body.rtl #nbConsent{direction:rtl}
-</style>
-<div id="nbConsent" role="dialog" aria-live="polite" aria-label="Consentement aux cookies">
-  <p id="nbConsentTxt"></p>
-  <div class="nb-actions">
-    <button id="nbConsentOk" type="button"></button>
-    <button id="nbConsentNo" type="button"></button>
-  </div>
-</div>
-
-<!-- ===== Suivi statistique NBProf (GTM / GA4) ===== -->
-<script>
-(function(){
-  /* --- Textes de la bannière (FR / AR / EN) --- */
-  var TXT = {
-    fr:{t:"<strong>Statistiques de visite.</strong> NBProf utilise Google Analytics pour mesurer l'audience et améliorer ses ressources pédagogiques (données anonymisées, à des fins de recherche). <a href='confidentialite.html'>En savoir plus</a>",ok:"Accepter",no:"Refuser"},
-    ar:{t:"<strong>إحصائيات الزيارة.</strong> يستخدم NBProf خدمة Google Analytics لقياس عدد الزوار وتحسين موارده التعليمية (بيانات مجهولة الهوية لأغراض البحث). <a href='confidentialite.html'>اعرف المزيد</a>",ok:"قبول",no:"رفض"},
-    en:{t:"<strong>Visit statistics.</strong> NBProf uses Google Analytics to measure audience and improve its learning resources (anonymised data, for research purposes). <a href='confidentialite.html'>Learn more</a>",ok:"Accept",no:"Decline"}
-  };
-  var box = document.getElementById('nbConsent');
-  function langue(){ return (typeof currentLang!=='undefined' && TXT[currentLang]) ? currentLang : 'fr'; }
-  function remplirBanniere(){
-    var t = TXT[langue()];
-    document.getElementById('nbConsentTxt').innerHTML = t.t;
-    document.getElementById('nbConsentOk').textContent = t.ok;
-    document.getElementById('nbConsentNo').textContent = t.no;
-  }
-  function enregistrer(choix){
-    try { localStorage.setItem('nbprof_consent', choix); } catch(e) {}
-    var v = choix === 'accepte' ? 'granted' : 'denied';
-    gtag('consent','update',{analytics_storage:v,ad_storage:v,ad_user_data:v,ad_personalization:v});
-    dataLayer.push({event:'choix_consentement', choix:choix});
-    box.classList.remove('show');
-  }
-  var dejaChoisi = null;
-  try { dejaChoisi = localStorage.getItem('nbprof_consent'); } catch(e) {}
-  if (!dejaChoisi) { remplirBanniere(); box.classList.add('show'); }
-  document.getElementById('nbConsentOk').onclick = function(){ enregistrer('accepte'); };
-  document.getElementById('nbConsentNo').onclick = function(){ enregistrer('refuse'); };
-
-  /* --- Fonction d'envoi commune --- */
-  function nbTrack(nom, params){
-    var p = params || {};
-    p.event = nom;
-    p.langue_site = langue();
-    dataLayer.push(p);
-  }
-  window.nbTrack = nbTrack;
-
-  /* --- 1. Ouverture d'un article (panneau) + durée de lecture --- */
-  var articleOuvert = null, debutLecture = 0;
-  var _openArticle = window.openArticle;
-  window.openArticle = function(id){
-    _openArticle(id);
-    var a = (typeof ARTICLES!=='undefined') ? ARTICLES.find(function(x){return x.id===id;}) : null;
-    articleOuvert = a ? {id:id, titre:a.title[langue()] || a.title.fr, categorie:a.category} : {id:id, titre:String(id), categorie:''};
-    debutLecture = Date.now();
-    nbTrack('ouverture_article', {article_id:articleOuvert.id, article_titre:articleOuvert.titre, article_categorie:articleOuvert.categorie});
-  };
-  var _closeModal = window.closeModal;
-  window.closeModal = function(){
-    if (articleOuvert) {
-      var sec = Math.round((Date.now() - debutLecture) / 1000);
-      nbTrack('fin_lecture_article', {article_id:articleOuvert.id, article_titre:articleOuvert.titre, article_categorie:articleOuvert.categorie, duree_lecture_sec:sec});
-      articleOuvert = null;
-    }
-    _closeModal();
-  };
-
-  /* --- 2. Changement de langue --- */
-  var _setLang = window.setLang;
-  window.setLang = function(lang, btn){
-    _setLang(lang, btn);
-    remplirBanniere();
-    nbTrack('changement_langue', {nouvelle_langue:lang});
-  };
-
-  /* --- 3. Filtres des publications --- */
-  var _filterPubs = window.filterPubs;
-  window.filterPubs = function(cat, btn){
-    _filterPubs(cat, btn);
-    nbTrack('filtre_publications', {filtre:cat});
-  };
-
-  /* --- 4. Navigation interne (menu, boutons) --- */
-  var _scrollToSection = window.scrollToSection;
-  window.scrollToSection = function(id){
-    _scrollToSection(id);
-    nbTrack('navigation_section', {section:id});
-  };
-
-  /* --- 5. Clics vers les ressources de l'écosystème --- */
-  document.addEventListener('click', function(e){
-    var lien = e.target.closest ? e.target.closest('a[href]') : null;
-    if (!lien) return;
-    var href = lien.getAttribute('href') || '';
-    var type = null;
-    if (href.indexOf('recherche.nbprof.com') > -1) type = 'recherche_nbprof';
-    else if (href.indexOf('youtube.com') > -1) type = 'youtube';
-    else if (href.indexOf('/dashboard') > -1) type = 'dashboard';
-    else if (href.indexOf('amso2026') > -1) type = 'amso2026';
-    else if (href.indexOf('outils-ia-doctorants') > -1) type = 'outils_ia';
-    else if (href.indexOf('revues.imist.ma') > -1) type = 'publication_ajmet';
-    else if (href.indexOf('linkedin.com') > -1) type = 'linkedin';
-    else if (href.indexOf('mailto:') === 0) type = 'email';
-    if (type) nbTrack('clic_ressource', {ressource:type, lien_url:href, lien_texte:(lien.textContent||'').trim().slice(0,80)});
-  }, true);
-
-  /* --- 6. Envoi du formulaire de contact --- */
-  var form = document.querySelector('.contact-form');
-  if (form) form.addEventListener('submit', function(){
-    nbTrack('envoi_formulaire_contact', {formulaire:'contact'});
-  });
-
-  /* --- 7. Sections réellement vues (défilement) --- */
-  var vues = {};
-  if ('IntersectionObserver' in window) {
-    var obs = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        var id = en.target.id;
-        if (en.isIntersecting && id && !vues[id]) {
-          vues[id] = true;
-          nbTrack('section_vue', {section:id});
-        }
-      });
-    }, {threshold:0.4});
-    document.querySelectorAll('section[id]').forEach(function(s){ obs.observe(s); });
-  }
-})();
-</script>
 </body>
 </html>
